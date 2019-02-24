@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "rootDir": "src",
+    // "outDir": "ts-build",
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "types":["react","react-dom"],
+    "outDir": "build"
+  },
+  "include": ["./src/**/*"]
+}
