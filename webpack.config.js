@@ -11,7 +11,7 @@ module.exports = {
   mode: "development",
   devtool: "cheap-module-source-map",
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".ts"]
+    extensions: [".js", ".jsx", ".tsx", ".ts",'.png']
   },
   module: {
     rules: [
@@ -60,27 +60,12 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/i,
         use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 10000,
-              mimetype: "image/png",
-              fallback: "responsive-loader"
-            }
-          }
+          'file-loader'
         ]
       },
       {
         test: /\.(woff|woff2|svg|tff|eot)$/i,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 10000,
-              fallback: "responsive-loader"
-            }
-          }
-        ]
+        use: ['file-loader']
       }
     ]
   },

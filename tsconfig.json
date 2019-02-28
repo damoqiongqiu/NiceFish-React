@@ -2,7 +2,6 @@
   "compilerOptions": {
     "jsx": "react",
     "rootDir": "src",
-    // "outDir": "ts-build",
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "target": "es5",
