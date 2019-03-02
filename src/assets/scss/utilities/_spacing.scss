@@ -71,3 +71,101 @@
     }
   }
 }
+
+  
+    /**
+     * @Description: spacing extension
+      * @author Xu Xiao dong
+     * @date 2019/3/3
+    */
+
+@mixin ml($num){
+  margin-left: $num
+}
+@mixin mr($num){
+  margin-right: $num
+}
+@mixin mt($num){
+  margin-top: $num
+}
+@mixin mb($num){
+  margin-bottom: $num
+}
+@mixin padding($tb,$lr){
+  @if $lr{
+    padding:  $tb $lr;
+  }@else{
+    padding: $tb;
+  }
+}
+%ml-5{
+  @include ml(5px);
+}
+%ml-16{
+  @include ml(16px);
+}
+%mr-16{
+  @include mr(16px);
+}
+%mt-16{
+  @include mt(16px);
+}
+%pd-16{
+  @include padding(16px,false);
+
+}
+%pd-lr-10{
+  @include padding(0,10px )
+}
+%pd-3-5{
+  @include padding(3px,5px );
+}
+%pd-5-10{
+  @include padding(5px,10px );
+}
+%pd-5{
+  @include padding(5px,false);
+}
+%pd-10{
+  @include padding(10px,10px);
+}
+%no-padding{
+  @include padding(0,false);
+}
+  .margin-top-16px{
+    @extend %mt-16
+  }
+  .ml-5px{
+    @extend %ml-5
+  }
+  .ml-16px{
+    @extend %ml-16
+  }
+  .mr-16px{
+    @extend %mr-16
+  }
+  .mt-16px{
+    @extend %mt-16
+  }
+  .pd-3-5px{
+    @extend %pd-3-5
+  }
+  .pd-5px{
+    @extend %pd-3-5
+  }
+
+  .pd-lr10px{
+    @extend %pd-lr-10
+  }
+  .pd-5-10px{
+    @extend %pd-5-10
+  }
+  .pd-10px{
+    @extend %pd-10
+  }
+  .pd-16px{
+    @extend %pd-16
+  }
+  .no-padding{
+    @extend %no-padding
+  }
