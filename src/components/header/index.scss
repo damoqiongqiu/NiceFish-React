@@ -6,18 +6,21 @@ $navbarBgHoverColor: #303d47;
 }
 .bd-navbar {
   .navbar-nav {
+    .nav-link {
+      // padding-right: 0.5rem;
+      // padding-left: 0.5rem;
+    }
     > li {
       display: flex;
+      align-items: center;
       >a{
           cursor: pointer;
+          padding: .5rem .8rem;
           &:hover{
             background-color:$navbarBgHoverColor;
           }
       }
     }
-    .nav-link {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem;
-    }
+    
   }
 }
