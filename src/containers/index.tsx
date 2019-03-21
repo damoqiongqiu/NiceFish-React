@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Header from '../components/header';
-import Home from './home'
+import Home from './home';
 
 export interface IAppProps {
 }

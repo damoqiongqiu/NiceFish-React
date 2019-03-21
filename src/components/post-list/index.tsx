@@ -140,7 +140,7 @@ function PostList() {
                 }
             ]
         }
-    )
+    );
   return (
     <div className="post-list-container">
       <div className="row">

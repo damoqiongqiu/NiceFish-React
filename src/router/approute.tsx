@@ -1,7 +1,7 @@
 
 import * as React from 'react';
-import PostList from '../components/post-list'
-import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom';
+import PostList from '../components/post-list';
+import {HashRouter as Router,Link, Route,Switch} from 'react-router-dom';
 const routes = [
     {
         path:'/',
@@ -24,6 +24,9 @@ function AppRoute(){
                       return <RouteGen key={index} {...route}/>
                    })
                }
+               <Route exact path='/' component={PostList}/>
+               
+     
              </Switch>
            </Router>
        </div>

@@ -17,7 +17,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx", ".tsx",".ts"]
+    extensions: [".js", ".jsx", ".tsx", ".ts",'.png']
   },
   mode: "production",
   module: {
