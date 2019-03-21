@@ -1,8 +1,167 @@
-import * as React from 'react'
+import * as React from "react";
+import {useState} from 'react'
 
-function PostList(){
-   return (
-       <div></div>
-   )
+function PostList() {
+    const[postLists,updatePostLists] = useState(
+        {
+            "total": 20,
+            "items": [
+                {
+                    "postId": 1,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。<p>测试渲染HTML标签。</p>",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 2,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 3,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 4,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 5,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 6,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 7,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 8,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 9,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 10,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                },
+                {
+                    "postId": 11,
+                    "title": "从头了解光刻机",
+                    "content": "光刻是集成电路最重要的加工工艺，他的作用，如同金工车间中车床的作用。在整个芯片制造工艺中，几乎每个工艺的实施，都离不开光刻的技术。光刻也是制造芯片的最关键技术，他占芯片制造成本的35%以上。在如今的科技与社会发展中，光刻技术的增长，直接关系到大型计算机的运作等高科技领域。",
+                    "postTime": "2018-05-17 10:44",
+                    "userName": "大漠穷秋",
+                    "userId": "1",
+                    "readTimes": "10000",
+                    "commentTimes": "10000",
+                    "likedTimes": "5555",
+                    "isfamous": "true"
+                }
+            ]
+        }
+    )
+  return (
+    <div className="post-list-container">
+      <div className="row">
+        <div className="col-md-12">
+        {
+          postLists.items.map((list,index)=>{
+             return (
+                <div className="post-item-container mt-16px" key={index}>
+                    <h3 className="font-size-18">
+                    <a href="">{list.title}</a>
+                    </h3>
+                    <div className="abs" >
+                        {list.content}
+                    </div>
+              </div>
+             )
+          })
+        }
+        </div>
+      </div>
+    </div>
+  );
 }
-export default PostList
+export default PostList;

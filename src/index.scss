@@ -1,6 +1,9 @@
 @import "./assets/scss/bootstrap.scss";
 $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;
+body{
+    color:#666;
+}
 .main-nav {
   background: $navbarBgColor;
   box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
@@ -15,7 +18,7 @@ $navbarBgHoverColor: #303d47;
       align-items: center;
       @include media-breakpoint-down("sm", $grid-breakpoints) {
         > a {
-          width: 100%;
+          flex:1;
         }
       }
       > a {

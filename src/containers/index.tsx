@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Header from '../components/header';
-
+import Home from './home'
 
 export interface IAppProps {
 }
@@ -11,6 +11,7 @@ function App(){
     return (
         <div>
           <Header/>
+          <Home/>
         </div>
     )
 }
