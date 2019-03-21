@@ -17,3 +17,34 @@
 .bg-transparent {
   background-color: transparent !important;
 }
+
+%bg-yellow{
+  background-color: $yellow;
+}
+%bg-green{
+  background-color: $green;
+}
+%bg-white{
+  background-color: $white;
+}
+%bg-primary{
+  background-color: $primary;
+}
+%bg-secondary{
+  // background-color: $gray-1000;
+}
+.bg-primary{
+  @extend %bg-primary
+}
+.bg-yellow{
+  @extend %bg-yellow
+}
+.bg-green{
+  @extend %bg-green
+}
+.bg-white{
+  @extend %bg-white
+}
+.bg-secondary{
+  // @extend %bg-secondary
+}

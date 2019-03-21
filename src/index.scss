@@ -1,0 +1,35 @@
+@import "./assets/scss/bootstrap.scss";
+$navbarBgColor: #3f4b57;
+$navbarBgHoverColor: #303d47;
+.main-nav {
+  background: $navbarBgColor;
+  box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
+}
+.bd-navbar {
+  .navbar-nav {
+    @include media-breakpoint-down("sm", $grid-breakpoints) {
+      flex-direction: column !important;
+    }
+    > li {
+      display: flex;
+      align-items: center;
+      @include media-breakpoint-down("sm", $grid-breakpoints) {
+        > a {
+          width: 100%;
+        }
+      }
+      > a {
+        cursor: pointer;
+        padding: 0.6rem 0.8rem;
+        &:hover {
+          background-color: $navbarBgHoverColor;
+        }
+      }
+    }
+  }
+  .collapse {
+    @include media-breakpoint-down("sm", $grid-breakpoints) {
+      flex-direction: column;
+    }
+  }
+}

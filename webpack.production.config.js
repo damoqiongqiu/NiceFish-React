@@ -49,25 +49,15 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/i,
         use: [
           {
-            loader: "url-loader",
-            options: {
-              limit: 10000,
-              mimetype: "image/png",
-              fallback: "responsive-loader"
-            }
+            loader: "file-loader",
           }
         ]
       },
       {
-        test: /\.(woff|woff2|svg|tff|eot)()/i,
+        test: /\.(woff|woff2|svg|tff|eot|ttf)()/i,
         use: [
           {
-            loader: "url-loader",
-            options: {
-              limit: 10000,
-              mimetype: "image/png",
-              fallback: "responsive-loader"
-            }
+            loader: "file-loader"
           }
         ]
       },
