@@ -3,6 +3,11 @@ $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;
 body{
     color:#666;
+    font-size: 14px;
+    a:hover{
+      text-decoration: none;
+    }
+  
 }
 .main-nav {
   background: $navbarBgColor;

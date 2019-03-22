@@ -136,7 +136,7 @@ a {
   background-color: transparent; }
   a:hover {
     color: #007183;
-    text-decoration: underline; }
+    text-decoration: none; }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -2057,9 +2057,9 @@ fieldset:disabled a.btn {
   color: #00b4cf; }
   .btn-link:hover {
     color: #007183;
-    text-decoration: underline; }
+    text-decoration: none; }
   .btn-link:focus, .btn-link.focus {
-    text-decoration: underline;
+    text-decoration: none;
     box-shadow: none; }
   .btn-link:disabled, .btn-link.disabled {
     color: #6c757d;
@@ -7124,7 +7124,10 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  color: #666; }
+  color: #666;
+  font-size: 14px; }
+  body a:hover {
+    text-decoration: none; }
 
 .main-nav {
   background: #3f4b57;
