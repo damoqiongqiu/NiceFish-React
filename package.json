@@ -18,6 +18,7 @@
   "author": "damoqiongqiu",
   "license": "MIT",
   "dependencies": {
+    "antd": "^3.15.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-router": "5.0.0",

@@ -117,6 +117,9 @@
 %pd-lr-10{
   @include padding(0,10px )
 }
+%pd-lr-1rem{
+  @include padding(0.75rem,1rem )
+}
 %pd-3-5{
   @include padding(3px,5px );
 }
@@ -156,6 +159,9 @@
 
   .pd-lr10px{
     @extend %pd-lr-10
+  }
+  .pd-lr-1rem{
+    @extend %pd-lr-1rem
   }
   .pd-5-10px{
     @extend %pd-5-10

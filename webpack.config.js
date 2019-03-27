@@ -20,15 +20,15 @@ module.exports = {
         loader: "babel-loader",
         include: /src/,
         exclude: /node_modules/,
-        options: {
-          plugins: [
-            [
-              "import",
-              { libraryName: "antd", libraryDirectory: "es", style: "css" }
-            ]
-          ], //antd组件按需引入
-          cacheDirectory: true
-        }
+        // options: {
+        //   plugins: [
+        //     [
+        //       "import",
+        //       { libraryName: "antd", libraryDirectory: "es", style: "css" }
+        //     ]
+        //   ], //antd组件按需引入
+        //   cacheDirectory: true
+        // }
       },
       {
         test: /\.tsx?$/,

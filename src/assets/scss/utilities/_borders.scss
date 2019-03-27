@@ -73,3 +73,13 @@
 .rounded-0 {
   border-radius: 0 !important;
 }
+
+@mixin border-color($color){
+  border-color:$color !important;
+}
+%border-color-primary{
+  @include border-color($primary)
+}
+.border-color-primary{
+  @extend %border-color-primary
+}

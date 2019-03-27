@@ -1,11 +1,17 @@
 
 import * as React from 'react';
 import PostList from '../components/post-list';
+import Login from '../components/login';
 import {HashRouter as Router,Link, Route,Switch} from 'react-router-dom';
 const routes = [
     {
         path:'/',
         component: PostList,
+        exact:true,
+    },
+    {
+        path:'/login',
+        component: Login,
         exact:true,
     },
 ]

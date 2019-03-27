@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+
 import * as nicefish from "../../assets/images/nice-fish.png";
 
 function Header() {
@@ -27,13 +28,18 @@ function Header() {
         <div className={`d-flex col d-sm-none d-md-flex collapse ${active?'d-sm-flex':''}`}>
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>
             <li>
-              <a className="nav-link ">阅读</a>
+              <a className="nav-link " href="#/">阅读</a>
             </li>
             <li>
               <a className="nav-link">写作</a>
             </li>
           </ul>
           <ul className={`nav navbar-nav ml-md-auto flex-row `}>
+            <li>
+              <a className="nav-link" href="/#/login">
+                <i className="fa fa-sign-in" />
+              </a>
+            </li>
             <li>
               <a className="nav-link">
                 <i className="fa fa-user" />

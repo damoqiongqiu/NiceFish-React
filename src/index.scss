@@ -1,4 +1,6 @@
-@import "./assets/scss/bootstrap.scss";
+@import "./assets/scss/bootstrap.scss";  
+@import "../node_modules/antd/dist/antd.min.css"; 
+  
 $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;
 body{
@@ -24,10 +26,12 @@ body{
       @include media-breakpoint-down("sm", $grid-breakpoints) {
         > a {
           flex:1;
+          
         }
       }
       > a {
         cursor: pointer;
+        color: inherit;
         padding: 0.6rem 0.8rem;
         &:hover {
           background-color: $navbarBgHoverColor;

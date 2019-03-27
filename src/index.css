@@ -4,6 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url(/damoqiongqiu/NiceFish-React/node_modules/antd/dist/antd.min.css);
 :root {
   --blue: #00b4cf;
   --indigo: #6610f2;
@@ -10692,4 +10693,64 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
+
+body {
+  color: #666;
+  font-size: 14px;
+}
+
+body a:hover {
+  text-decoration: none;
+}
+
+.main-nav {
+  background: #3f4b57;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
+          box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
+}
+
+@media (max-width: 767.98px) {
+  .bd-navbar .navbar-nav {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+}
+
+.bd-navbar .navbar-nav > li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 767.98px) {
+  .bd-navbar .navbar-nav > li > a {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+}
+
+.bd-navbar .navbar-nav > li > a {
+  cursor: pointer;
+  color: inherit;
+  padding: 0.6rem 0.8rem;
+}
+
+.bd-navbar .navbar-nav > li > a:hover {
+  background-color: #303d47;
+}
+
+@media (max-width: 767.98px) {
+  .bd-navbar .collapse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+/*# sourceMappingURL=index.css.map */

@@ -124,28 +124,14 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #00b4cf;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-a:not([href]):not([tabindex]) {
-  color: inherit;
+  color: #007183;
   text-decoration: none;
-}
-
-a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:not([href]):not([tabindex]):focus {
-  outline: 0;
 }
 
 pre,
@@ -173,7 +159,6 @@ img {
 
 svg {
   overflow: hidden;
-  vertical-align: middle;
 }
 
 table {

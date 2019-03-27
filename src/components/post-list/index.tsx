@@ -1,10 +1,15 @@
 import * as React from "react";
-import {useState} from 'react'
+import {useState} from 'react';
+import {Pagination} from 'antd';
 
 function PostList() {
+   
+    function onChange(page:any){
+      console.log(page)
+    }
     const[postLists,updatePostLists] = useState(
         {
-            "total": 20,
+            "total": 11,
             "items": [
                 {
                     "postId": 1,
@@ -160,7 +165,12 @@ function PostList() {
           })
         }
         </div>
+        
       </div>
+      <div className="mt-16px pd-16px">
+           <Pagination size="small" total={postLists.total} showSizeChanger showQuickJumper onChange={onChange} 
+           />
+        </div>
     </div>
   );
 }
