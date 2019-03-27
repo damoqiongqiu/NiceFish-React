@@ -10699,8 +10699,16 @@ body {
   font-size: 14px;
 }
 
-body a:hover {
+body a {
   text-decoration: none;
+}
+
+body a:focus {
+  text-decoration: none;
+}
+
+body a.active {
+  background-color: #303d47;
 }
 
 .main-nav {

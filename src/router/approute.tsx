@@ -2,19 +2,20 @@
 import * as React from 'react';
 import PostList from '../components/post-list';
 import Login from '../components/login';
-import {HashRouter as Router,Link, Route,Switch} from 'react-router-dom';
+import {HashRouter as Router,Link, Route,Switch,Redirect} from 'react-router-dom';
 const routes = [
     {
-        path:'/',
+        path:'/post',
         component: PostList,
         exact:true,
     },
     {
         path:'/login',
         component: Login,
-        exact:true,
+        exact:false,
     },
 ]
+ 
 function AppRoute(){
     function RouteGen(route:any){
         return (
@@ -22,19 +23,15 @@ function AppRoute(){
         )
       }
    return (
-       <div>
-           <Router>
-             <Switch>
-               {
-                   routes.map((route,index)=>{
-                      return <RouteGen key={index} {...route}/>
-                   })
-               }
-               <Route exact path='/' component={PostList}/>
-               
-     
-             </Switch>
-           </Router>
+       <div> 
+               <Switch>
+                 {
+                           routes.map((route,index)=>{
+                              return <RouteGen key={index} {...route}/>
+                          })
+                           
+                   }  
+               </Switch>
        </div>
    )
 }
