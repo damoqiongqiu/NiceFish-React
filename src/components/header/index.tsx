@@ -54,7 +54,7 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/set">
+              <NavLink to="/manage">
                 {" "}
                 <i className="fa fa-cog" />
               </NavLink>
