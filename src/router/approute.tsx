@@ -9,8 +9,12 @@ const routes = [
         path:'/post',
         component: PostList,
         exact:true,
+    },
+    {
+        path:'/home',
+        component: PostList,
+        exact:true,
     }
-
 ]
  
 function AppRoute(){

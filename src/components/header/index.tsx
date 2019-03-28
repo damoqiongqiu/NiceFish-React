@@ -7,7 +7,10 @@ import * as nicefish from "../../assets/images/nice-fish.png";
 function Header() {
   const [active, updateActive] = useState(false);
   function onToggle() {
-    updateActive(!active);
+    if(isPhone())updateActive(!active);
+  }
+  function isPhone(){
+    return window.innerWidth < 768? true:false
   }
   return (
     <div
@@ -36,31 +39,31 @@ function Header() {
         >
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>
             <li>
-              <NavLink to="/post">阅读</NavLink>
+              <NavLink to="/post" onClick={()=>onToggle()}>阅读</NavLink>
             </li>
             <li>
-              <NavLink to="/write">写作</NavLink>
+              <NavLink to="/write" onClick={()=>onToggle()}>写作</NavLink>
             </li>
           </ul>
           <ul className={`nav navbar-nav ml-md-auto flex-row `}>
             <li>
-              <NavLink to="/login">
+              <NavLink to="/login" onClick={()=>onToggle()}>
                 <i className="fa fa-sign-in" />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/l">
+              <NavLink to="/home" onClick={()=>onToggle()}>
                 <i className="fa fa-user" />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/manage">
+              <NavLink to="/manage" onClick={()=>onToggle()}>
                 {" "}
                 <i className="fa fa-cog" />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/out">
+              <NavLink to="/out" onClick={()=>onToggle()}>
                 <i className="fa fa-sign-out" />
               </NavLink>
             </li>
