@@ -56,7 +56,7 @@ function Manage() {
     return <Route path={route.path} component={route.component} />;
   }
   return (
-    <div className="container mt-16px">
+    <div className="container mtb-16px">
       <div className="row">
         <div className="col-md-9">
           <Route

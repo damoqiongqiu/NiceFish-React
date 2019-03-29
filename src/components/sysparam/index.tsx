@@ -2,10 +2,10 @@ import * as React from "react";
 
 function Sysparam() {
   return (
-    <div className="sys-param-container md-text-align-right">
+    <div className="sys-param-container ">
       <div className="card">
         <div className="card-header">文章设置</div>
-        <div className="pd-10px ">
+        <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
               <label className="col-md-4 control-label">
@@ -64,7 +64,7 @@ function Sysparam() {
       </div>
       <div className="card mt-16px">
         <div className="card-header">评论设置</div>
-        <div className="pd-10px">
+        <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
               <label className="col-md-4 control-label">评论最小长度：</label>
@@ -119,7 +119,7 @@ function Sysparam() {
       </div>
       <div className="card mt-16px">
         <div className="card-header">用户设置</div>
-        <div className="pd-10px">
+        <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
               <label className="col-md-4 control-label">用户名最小长度：</label>

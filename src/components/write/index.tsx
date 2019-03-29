@@ -21,7 +21,7 @@ function Write() {
     // })
   }, []);
   return (
-    <div className="container write-post-container mt-16px">
+    <div className="container write-post-container mtb-16px">
       <div className="row no-gutters">
         <div className="col-md-12">
           <form role="form">
@@ -39,9 +39,12 @@ function Write() {
                 onSave={submitContent}
               />
             </div>
+            <div className="pd-16px">
             <button type="button" className="btn btn-primary">
               提交
             </button>
+            </div>
+            
           </form>
         </div>
       </div>

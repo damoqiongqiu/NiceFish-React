@@ -8496,6 +8496,10 @@ button.bg-dark:focus {
 .mr-16px {
   margin-right: 16px; }
 
+.mtb-16px {
+  margin-top: 16px;
+  margin-bottom: 16px; }
+
 .margin-top-16px, .mt-16px {
   margin-top: 16px; }
 

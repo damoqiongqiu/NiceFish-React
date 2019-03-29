@@ -107,6 +107,10 @@
 %mr-16{
   @include mr(16px);
 }
+%mtb-16{
+  @include mt(16px);
+  @include mb(16px);
+}
 %mt-16{
   @include mt(16px);
 }
@@ -152,6 +156,9 @@
   }
   .mt-16px{
     @extend %mt-16
+  }
+  .mtb-16px{
+    @extend %mtb-16
   }
   .pd-3-5px{
     @extend %pd-3-5
