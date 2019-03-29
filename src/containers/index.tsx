@@ -9,7 +9,7 @@ import {
 import Home from "./home";
 import Manage from "./manage";
 import Login from "../components/login";
-import PostList from "../components/post-list";
+import Write from "../components/write";
 const routes = [
   {
     path: "/post",
@@ -29,6 +29,11 @@ const routes = [
   {
     path: "/login",
     component: Login,
+    exact: false
+  },
+  {
+    path: "/write",
+    component: Write,
     exact: false
   }
 ];

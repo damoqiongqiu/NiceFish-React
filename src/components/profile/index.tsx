@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Transfer } from "antd";
-import { string } from "prop-types";
+import './index.scss'
+// import * as reactlogo from '../../assets/images/react.svg';
+
 function Profile() {
   const formControls = [
-    { type: "image", label: "", key: "", value: "", placeholder: "", src: "" },
+    { type: "image", label: "", key: "", value: "", placeholder: ""},
     { type: "input", label: "头像", key: "", value: "", placeholder: "" },
     { type: "input", label: "用户名", key: "", value: "", placeholder: "" },
     { type: "input", label: "常用邮箱", key: "", value: "", placeholder: "" },
@@ -71,7 +73,7 @@ function Profile() {
                         ""
                       )}
 
-                      {item.type === "image" ? <img src={item.src} /> : ""}
+                      {item.type === "image" ? <div className="react-logo"/> : ""}
                     </div>
                   </div>
                 </div>

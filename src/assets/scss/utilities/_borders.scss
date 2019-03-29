@@ -83,3 +83,6 @@
 .border-color-primary{
   @extend %border-color-primary
 }
+.border-1px-primary{
+  border: 1px solid $gray-400;
+}

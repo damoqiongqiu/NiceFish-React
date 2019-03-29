@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useState} from 'react';
-import {Table} from 'antd';
+import {Table,Tag} from 'antd';
 function RoleTable() {
     const columns = [
         {
@@ -19,10 +19,15 @@ function RoleTable() {
           title: "操作",
           dataIndex: "options",
           render: (options:any) => (
-             options.map((option:any,index:any)=>{
-                 return ( <a key={index} ><i className={`${option.icon} ${index!==0 ?'ml-16px':''} align-self-center`}
-                 aria-hidden="true"></i></a>)
-             })
+              <span>
+              {
+                options.map((option:any,index:any)=>{
+                    return ( <Tag key={index} ><i className={`${option.icon} `}
+                    aria-hidden="true"></i></Tag>)
+                })
+              }
+              </span>
+            
           ),
         },
     
@@ -38,7 +43,7 @@ function RoleTable() {
     <div className="role-table-container">
       <form role="form">
         <div className="row">
-          <div className="col-md-10">
+          <div className="col-sm-8">
             <div className="input-group">
               <input
                 className="form-control"
@@ -53,7 +58,7 @@ function RoleTable() {
               </span>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-sm-4 ">
             <div className="input-group pull-right">
               <button className="btn btn-primary" type="button">
                 <i className="fa fa-user" aria-hidden="true" />
