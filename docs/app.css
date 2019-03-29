@@ -6889,6 +6889,9 @@ button.bg-dark:focus {
 .pd-16px {
   padding: 16px; }
 
+.pd-24px {
+  padding: 24px; }
+
 .pd-lr10px {
   padding: 0 10px; }
 
@@ -7113,6 +7116,10 @@ a.text-dark:hover, a.text-dark:focus {
 .text-align-right {
   text-align: right; }
 
+@media (min-width: 768px) {
+  .md-text-align-right {
+    text-align: right; } }
+
 .no-border {
   border: none;
   outline: 0; }
@@ -7219,6 +7226,9 @@ body {
 .react-echart {
   width: 100%;
   height: 400px; }
+
+table thead th, table tbody td {
+  text-align: center !important; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

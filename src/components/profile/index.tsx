@@ -49,12 +49,12 @@ function Profile() {
     <div className="user-profile-container">
       <div className="card">
         <div className="card-header">基本资料</div>
-        <div className="pd-16px">
+        <div className="pd-10px">
           <form role="form">
             {formControls.map((item, index) => {
               return (
-                <div className="form-group row text-align-right" key={index}>
-                  <label className="col-md-2 control-label">{item.label}</label>
+                <div className="form-group row " key={index}>
+                  <label className="col-md-2 col-form-label md-text-align-right">{item.label}</label>
                   <div className="col-md-10">
                     <div>
                       {item.type === "input" ? (

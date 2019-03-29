@@ -154,6 +154,11 @@ color: $primary;
 .text-align-right{
   @extend %text-align-right
 }
+.md-text-align-right{
+  @include media-breakpoint-up("md", $grid-breakpoints) {
+     text-align: right;
+  }
+}
 .text-primary{
   @extend %text-primary
 }
