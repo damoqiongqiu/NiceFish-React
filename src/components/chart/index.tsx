@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRef, useEffect } from "react";
-import Color from "../../utils/color-util";
+import Color from "../../utils/color.util";
 import * as echarts from "echarts";
 function Chart() {
   const pie = useRef(null);

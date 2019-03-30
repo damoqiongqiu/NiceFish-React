@@ -1,24 +1,24 @@
 import * as React from "react";
 import { useState } from "react";
 import { Button } from "antd";
+import Common from "../../utils/common.util";
 import "./index.scss";
 function Login() {
-  const [namefill, updatenamefill] = useState("");
-  const [pwdfill, updatepwdfill] = useState("");
-  const [login, updatelogin] = useState({
+  const [namefill, updateNamefill] = useState("");
+  const [pwdfill, updatePwdfill] = useState("");
+  const [login, updateLogin] = useState({
     name: "",
     pwd: ""
   });
-  function onNameBlur() {
-    if (login.name.trim()) {
-      updatenamefill("ui-state-filled");
-    } else {
-      updatenamefill("");
-    }
-    if (login.pwd.trim()) {
-      updatepwdfill("ui-state-filled");
-    } else {
-      updatepwdfill("");
+  function onBlur(key: any, value: any) {
+
+    switch (key) {
+      case "name":
+        Common.toggleClass(value, updateNamefill, Common.fillClass);
+        break;
+      case "pwd":
+        Common.toggleClass(value, updatePwdfill, Common.fillClass);
+        break;
     }
   }
   function handleChange(value: any) {
@@ -26,10 +26,10 @@ function Login() {
       ...login,
       ...value
     };
-    updatelogin(uplogin);
+    updateLogin(uplogin);
   }
-  function doLogin(){
-     console.log(login)
+  function doLogin() {
+    console.log(login);
   }
   return (
     <div className="login-container">
@@ -47,7 +47,7 @@ function Login() {
                   autoComplete="off"
                   value={login.name}
                   onChange={e => handleChange({ name: e.target.value })}
-                  onBlur={() => onNameBlur()}
+                  onBlur={e => onBlur("name", e.target.value)}
                 />
                 <label>Username</label>
               </span>
@@ -59,8 +59,8 @@ function Login() {
                   type="password"
                   value={login.pwd}
                   autoComplete="off"
-                  onBlur={() => {
-                    onNameBlur();
+                  onBlur={e => {
+                    onBlur("pwd", e.target.value);
                   }}
                   onChange={e => handleChange({ pwd: e.target.value })}
                 />
@@ -71,7 +71,7 @@ function Login() {
               <Button
                 type="primary"
                 className="col bg-primary border-color-primary"
-                onClick={()=>doLogin()}
+                onClick={() => doLogin()}
               >
                 登录
               </Button>

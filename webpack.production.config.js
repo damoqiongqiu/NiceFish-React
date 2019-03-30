@@ -77,7 +77,7 @@ module.exports = {
   },
   plugins: [
     // webpack 内置的 banner-plugin
-    new webpack.BannerPlugin("Copyright by wangfupeng1988@github.com."),
+    new webpack.BannerPlugin("Copyright By yanyunchangfeng"),
     new CleanWebpackPlugin(["docs"]),
     // html 模板插件
     new HtmlWebpackPlugin({

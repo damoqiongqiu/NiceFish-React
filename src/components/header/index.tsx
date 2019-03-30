@@ -52,6 +52,12 @@ function Header() {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/register" onClick={()=>onToggle()}>
+                <i className="fa fa-user-plus" />
+              </NavLink>
+            </li>
+
+            <li>
               <NavLink to="/home" onClick={()=>onToggle()}>
                 <i className="fa fa-user" />
               </NavLink>

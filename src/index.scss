@@ -1,5 +1,6 @@
 @import "./assets/scss/bootstrap.scss";  
-@import "../node_modules/antd/dist/antd.min.css"; 
+@import "~antd/dist/antd.min.css"; 
+@import '~font-awesome/css/font-awesome.min.css';
   
 $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;

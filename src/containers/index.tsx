@@ -1,5 +1,6 @@
 import * as React from "react";
 import Header from "../components/header";
+import Register from '../components/register';
 import {
   HashRouter as Router,
   Route,
@@ -29,6 +30,11 @@ const routes = [
   {
     path: "/login",
     component: Login,
+    exact: false
+  },
+  {
+    path: "/register",
+    component: Register,
     exact: false
   },
   {
