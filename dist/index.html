@@ -4,8 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NiceFish-REACT</title>
+    <style>
+        /* Loading 动画 */
+    html,
+    body,
+    #root {
+      height: 100%;
+      margin: 0;
+    }
+
+    .splash-screen {
+      background-color: #04091e;
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    .splash-logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      margin-left: -25px;
+      margin-top: -25px;
+      z-index: 2;
+      text-align: center;
+      color: #ffffff;
+      line-height: 46px;
+      font-size: 32px;
+      display: block;
+    }
+
+    .splash-loader,
+    .splash-loader::before,
+    .splash-loader::after {
+      left: 50%;
+      top: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+      position: absolute;
+      vertical-align: middle;
+      background: #f6214b;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .splash-loader::before {
+      content: "";
+      animation: bounce 1.5s infinite;
+    }
+
+    .splash-loader::after {
+      content: "";
+      animation: bounce 1.5s -0.4s infinite;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes bounce {
+      0% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }
+    </style>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <div class="splash-screen">
+            <div class="splash-loader"></div>
+            <div class="splash-logo">漁</div>
+          </div>
+    </div>
 <script type="text/javascript" src="main.bundle.js"></script></body>
 </html>
