@@ -169,7 +169,7 @@ function Profile() {
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button type="button" className="btn btn-default">
+            <button type="button" className="btn btn-secondary ml-16px">
               取消
             </button>
           </div>

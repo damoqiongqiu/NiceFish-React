@@ -3,25 +3,25 @@
 // Easily pump out default styles, as well as :hover, :focus, :active,
 // and disabled options for all buttons
 
-@mixin button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
+@mixin button-variant($background, $border, $hover-background: lighten($background, 10.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10.5%), $active-border: darken($border, 12.5%)) {
   color: color-yiq($background);
   @include gradient-bg($background);
   border-color: $border;
-  @include box-shadow($btn-box-shadow);
+  // @include box-shadow($btn-box-shadow);
 
   @include hover {
     color: color-yiq($hover-background);
     @include gradient-bg($hover-background);
-    border-color: $hover-border;
+    border-color: $hover-background;
   }
 
   &:focus,
   &.focus {
     // Avoid using mixin so we can pass custom focus shadow properly
     @if $enable-shadows {
-      box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+      // box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
     } @else {
-      box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+      // box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
     }
   }
 
@@ -45,14 +45,14 @@
     @if $enable-gradients {
       background-image: none; // Remove the gradient for the pressed/active state
     }
-    border-color: $active-border;
+    border-color: $active-background;
 
     &:focus {
       // Avoid using mixin so we can pass custom focus shadow properly
       @if $enable-shadows and $btn-active-box-shadow != none {
-        box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+        // box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
       } @else {
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+        // box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
       }
     }
   }
@@ -65,12 +65,13 @@
   @include hover {
     color: $color-hover;
     background-color: $active-background;
-    border-color: $active-border;
+    // border-color: $active-border;
+    border-color: $active-background;
   }
 
   &:focus,
   &.focus {
-    box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+    // box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
   }
 
   &.disabled,

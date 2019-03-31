@@ -130,7 +130,6 @@ dl {
 }
 
 ol ol,
-ul ul,
 ol ul,
 ul ol {
   margin-bottom: 0;
@@ -185,7 +184,7 @@ a {
   background-color: transparent; // Remove the gray background on active links in IE 10.
 
   @include hover {
-    color: $link-hover-color;
+    color: lighten($color: ($link-color), $amount: 10.5%);
     text-decoration: $link-hover-decoration;
   }
 }

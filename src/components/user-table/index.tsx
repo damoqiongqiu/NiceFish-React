@@ -52,7 +52,7 @@ function UserTable() {
                 placeholder="用户名，昵称"
               />
               <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
+                <button className="btn btn-secondary" type="button">
                   <i className="fa fa-search" />
                   搜索
                 </button>

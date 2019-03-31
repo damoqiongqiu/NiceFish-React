@@ -1,11 +1,13 @@
 @import "./assets/scss/bootstrap.scss";  
 @import "~antd/dist/antd.min.css"; 
 @import '~font-awesome/css/font-awesome.min.css';
-  
+
 $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;
+
 body{
     color:#666;
+    // color:$priHover;
     font-size: 14px;
     a{
       &:focus{

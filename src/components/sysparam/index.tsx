@@ -195,10 +195,10 @@ function Sysparam() {
         </div>
       </div>
       <div className="pd-16px text-left">
-        <button type="submit" className="btn btn-primary btn-margin-1rem">
+        <button type="submit" className="btn btn-primary ">
         保存
         </button>
-        <button type="button" className="btn btn-default">
+        <button type="button" className="btn btn-secondary ml-16px">
         取消
         </button>
       </div>

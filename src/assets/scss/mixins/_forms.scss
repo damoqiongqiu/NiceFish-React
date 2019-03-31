@@ -20,7 +20,7 @@
     @if $enable-shadows {
       box-shadow: $input-box-shadow, $input-focus-box-shadow;
     } @else {
-      box-shadow: $input-focus-box-shadow;
+      // box-shadow: $input-focus-box-shadow;
     }
   }
 }

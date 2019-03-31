@@ -42,7 +42,7 @@ function PermissionTable(){
         <div className="input-group">
           <input className="form-control" type="text" placeholder="权限名称，权限代码"/>
           <span className="input-group-btn">
-            <button className="btn btn-default" type="button"><i className="fa fa-search" aria-hidden="true"></i>
+            <button className="btn btn-secondary" type="button"><i className="fa fa-search" aria-hidden="true"></i>
               搜索</button>
           </span>
         </div>

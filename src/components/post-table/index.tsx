@@ -205,7 +205,7 @@ function PostTable() {
                 placeholder="标题，作者"
               />
               <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
+                <button className="btn btn-secondary" type="button">
                   <i className="fa fa-search" aria-hidden="true" />
                   搜索
                 </button>

@@ -44,7 +44,7 @@ function CommentTable(){
                 <div className="input-group">
                     <input className="form-control" type="text" placeholder="内容，用户名"/>
                     <span className="input-group-btn">
-                        <button className="btn btn-default" type="button"><i className="fa fa-search" ></i>
+                        <button className="btn btn-secondary" type="button"><i className="fa fa-search" ></i>
                             </button>
                     </span>
                 </div>
