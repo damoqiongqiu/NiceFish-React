@@ -1,18 +1,66 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Transfer } from "antd";
-import './index.scss'
-// import * as reactlogo from '../../assets/images/react.svg';
+import { Transfer, Upload, Button,Icon } from "antd";
+import "./index.scss";
 
 function Profile() {
   const formControls = [
-    { type: "image", label: "", key: "", value: "", placeholder: ""},
-    { type: "input", label: "头像", key: "", value: "", placeholder: "" },
-    { type: "input", label: "用户名", key: "", value: "", placeholder: "" },
-    { type: "input", label: "常用邮箱", key: "", value: "", placeholder: "" },
-    { type: "input", label: "密码", key: "", value: "", placeholder: "" },
-    { type: "input", label: "确认密码", key: "", value: "", placeholder: "" },
-    { type: "textarea", label: "个人简介", key: "", value: "", placeholder: "" }
+    {
+      controlType: "image",
+      type: "image",
+      label: "",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "file",
+      type: "file",
+      label: "头像",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "textbox",
+      type: "text",
+      label: "用户名",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "textbox",
+      type: "text",
+      label: "常用邮箱",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "textbox",
+      type: "password",
+      label: "密码",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "textbox",
+      type: "password",
+      label: "确认密码",
+      key: "",
+      value: "",
+      placeholder: ""
+    },
+    {
+      controlType: "textareabox",
+      type: "textarea",
+      label: "个人简介",
+      key: "",
+      value: "",
+      placeholder: ""
+    }
   ];
 
   const [mockData, updateMockData] = useState([] as any);
@@ -56,15 +104,27 @@ function Profile() {
             {formControls.map((item, index) => {
               return (
                 <div className="form-group row " key={index}>
-                  <label className="col-md-2 col-form-label md-text-align-right">{item.label}</label>
+                  <label className="col-md-2 col-form-label md-text-align-right">
+                    {item.label}
+                  </label>
                   <div className="col-md-10">
                     <div>
-                      {item.type === "input" ? (
-                        <input className="form-control" />
+                      {item.controlType === "textbox" ? (
+                        <input className="form-control" type={item.type} />
                       ) : (
                         ""
                       )}
-                      {item.type === "textarea" ? (
+                      {item.controlType === "file" ? (
+                        <Upload>
+                          <Button>
+                            <Icon type="upload" />
+                            上传
+                          </Button>
+                        </Upload>
+                      ) : (
+                        ""
+                      )}
+                      {item.controlType === "textarea" ? (
                         <textarea
                           className="form-control"
                           placeholder={item.placeholder}
@@ -73,7 +133,11 @@ function Profile() {
                         ""
                       )}
 
-                      {item.type === "image" ? <div className="react-logo"/> : ""}
+                      {item.controlType === "image" ? (
+                        <div className="react-logo" />
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>
