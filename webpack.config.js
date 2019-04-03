@@ -11,7 +11,7 @@ module.exports = {
   mode: "development",
   devtool: "cheap-module-source-map",
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".ts",'.png']
+    extensions: [".js", ".jsx", ".tsx", ".ts",'.png','.jpg']
   },
   module: {
     rules: [

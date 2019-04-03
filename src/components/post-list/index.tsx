@@ -1,6 +1,11 @@
 import * as React from "react";
 import {useState} from 'react';
 import {Pagination} from 'antd';
+import { NavLink } from "react-router-dom";
+import PostHeadline from '../post-headline';
+import * as listImg from '../../assets/images/2.jpg';
+
+
 
 function PostList() {
    
@@ -150,16 +155,39 @@ function PostList() {
     <div className="post-list-container">
       <div className="row">
         <div className="col-md-12">
+          <PostHeadline/>
+        </div>
+        <div className="col-md-12">
         {
           postLists.items.map((list,index)=>{
              return (
                 <div className="post-item-container mt-16px" key={index}>
-                    <h3 className="font-size-18">
-                    <a href="">{list.title}</a>
-                    </h3>
-                    <div className="abs" >
-                        {list.content}
+                    <div className="row">
+                        <div className="col-md-2">
+                            <img src={listImg} alt="..." className="img-thumbnail"/>
+                        </div>
+                        <div className="col-md-10 post-item-text-container">
+                        <h3 className="font-size-18">
+                        <NavLink to="/manage/comment-table">
+                            {list.title}
+                        </NavLink>
+                        </h3>
+                        <div className="user-name-intitle">
+                            <div className="row">
+                                <div className="col-md-2">
+                                    <span className="fa fa-user"></span>
+                                    <span>{list.userName}</span>
+                                </div>
+                                <div className="col-md-3">
+                                    <span className="fa fa-clock-o"></span>
+                                    <span>{list.postTime}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="abs">{list.content}</div>
                     </div>
+                    </div>
+                   
               </div>
              )
           })
