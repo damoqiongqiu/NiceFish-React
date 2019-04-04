@@ -188,3 +188,9 @@
   .no-padding{
     @extend %no-padding
   }
+  .sm-mt-10px{
+    @include media-breakpoint-down("sm", $grid-breakpoints) {
+       @include mt(10px)
+    }
+  }
+  

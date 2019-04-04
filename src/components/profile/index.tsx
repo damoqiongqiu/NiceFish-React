@@ -94,7 +94,7 @@ function Profile() {
 
   useEffect(() => {
     getMock();
-  }, []);
+  },[]);
   return (
     <div className="user-profile-container">
       <div className="card">

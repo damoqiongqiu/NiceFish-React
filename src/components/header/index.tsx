@@ -21,7 +21,7 @@ function Header() {
         <div className="d-flex col-sm-12 col-md-auto no-gutters">
           <div className="d-flex col-sm">
             <a className="navbar-brand-my ">
-              <img width="45" src={`${nicefish}`} />
+              <img width="45" src={nicefish} />
             </a>
             <a
               className="d-flex align-items-center d-md-none  ml-sm-auto"

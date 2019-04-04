@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Pagination} from 'antd';
 import { NavLink } from "react-router-dom";
 import PostHeadline from '../post-headline';
@@ -8,11 +8,9 @@ import * as listImg from '../../assets/images/2.jpg';
 
 
 function PostList() {
-   
-    function onChange(page:any){
-      console.log(page)
-    }
-    const[postLists,updatePostLists] = useState(
+    const [currentPage,updateCurrentPage] = useState(1);
+    const [itemPerpage,updatePerpage] = useState(10);
+    const[postLists] = useState(
         {
             "total": 11,
             "items": [
@@ -151,6 +149,22 @@ function PostList() {
             ]
         }
     );
+    const [data,updateData] = useState([] as any);
+    function onChange(page:any){
+       loadData(page);
+    }
+    function ShowSizeChange(current:any,pageSize:any){
+      loadData(current,pageSize);
+    }
+    function loadData(page:any = 1,itemPerpage:any = 10){
+        const offset = (page-1)*10;
+        const end = page*itemPerpage;
+        const data = postLists.items.slice(offset,end>postLists.total?postLists.total:end);
+        updateData(data);
+    }
+    useEffect(()=>{
+       loadData(currentPage,itemPerpage);
+    },[])
   return (
     <div className="post-list-container">
       <div className="row">
@@ -159,14 +173,14 @@ function PostList() {
         </div>
         <div className="col-md-12">
         {
-          postLists.items.map((list,index)=>{
+          data.map((list:any,index:number)=>{
              return (
                 <div className="post-item-container mt-16px" key={index}>
                     <div className="row">
                         <div className="col-md-2">
                             <img src={listImg} alt="..." className="img-thumbnail"/>
                         </div>
-                        <div className="col-md-10 post-item-text-container">
+                        <div className="col-md-10 post-item-text-container sm-mt-10px">
                         <h3 className="font-size-18">
                         <NavLink to="/manage/comment-table">
                             {list.title}
@@ -174,13 +188,13 @@ function PostList() {
                         </h3>
                         <div className="user-name-intitle">
                             <div className="row">
-                                <div className="col-md-2">
-                                    <span className="fa fa-user"></span>
-                                    <span>{list.userName}</span>
-                                </div>
                                 <div className="col-md-3">
+                                    <span className="fa fa-user"></span>
+                                    <span className="ml-5px">{list.userName}</span>
+                                </div>
+                                <div className="col-md-5">
                                     <span className="fa fa-clock-o"></span>
-                                    <span>{list.postTime}</span>
+                                    <span className="ml-5px">{list.postTime}</span>
                                 </div>
                             </div>
                         </div>
@@ -196,8 +210,7 @@ function PostList() {
         
       </div>
       <div className="mt-16px pd-16px">
-           <Pagination size="small" total={postLists.total} showSizeChanger showQuickJumper onChange={onChange} 
-           />
+           <Pagination size="" total={postLists.total} showSizeChanger  showQuickJumper onChange={onChange} onShowSizeChange={ShowSizeChange}/>
         </div>
     </div>
   );
