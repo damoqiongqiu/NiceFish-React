@@ -45,7 +45,7 @@
 .login-panel {
   width: 350px;
   padding: 50px 20px;
-  margin: 100px auto 0 auto; }
+  margin: 100px auto 30px auto; }
   .login-panel .col-12 {
     padding: 25px 40px; }
 
@@ -1840,11 +1840,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #01869a;
+  color: #00BCD4;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #01b4cf;
+    color: #00d3ee;
     text-decoration: none; }
 
 pre,

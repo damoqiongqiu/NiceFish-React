@@ -1,5 +1,6 @@
 import * as React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import Register from '../components/register';
 import {
   HashRouter as Router,
@@ -58,6 +59,7 @@ function App() {
             return <RouteGen key={index} {...route} />;
           })}
         </Switch>
+        <Footer/>
       </Router>
     </div>
   );
