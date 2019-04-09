@@ -32,8 +32,8 @@ function Login() {
     console.log(login);
   }
   return (
-    <div className="login-container">
-      <div className="container">
+  
+      <div className="container d-flex align-items-center">
         <div className="card login-panel bg-white">
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="bg-red pd-5-10px font-size-24">魚</span>
@@ -79,7 +79,6 @@ function Login() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 export default Login;

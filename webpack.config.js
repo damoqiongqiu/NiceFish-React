@@ -1,5 +1,5 @@
 const path = require("path");
-const webpack = require("webpack");
+const webpack = require("webpack"); 
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成HTML文件
 // const eslintFormatter = require("react-dev-utils/eslintFormatter");
 
@@ -54,6 +54,7 @@ module.exports = {
         use: [
           { loader: "style-loader" },
           { loader: "css-loader" },
+          { loader: "postcss-loader"},
           { loader: "sass-loader" }
         ]
       },
@@ -76,7 +77,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public/index.html"),
-      filename: "./index.html"
+      filename: "./index.html",
+      favicon:'./src/assets/images/nice-fish.png'
     }),
     new webpack.HotModuleReplacementPlugin() //配合 webpack-dev-server启用HMR
   ],

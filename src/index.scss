@@ -1,3 +1,4 @@
+
 @import "./assets/scss/bootstrap.scss";  
 @import "~antd/dist/antd.min.css"; 
 @import '~font-awesome/css/font-awesome.min.css';
@@ -7,7 +8,6 @@ $navbarBgHoverColor: #303d47;
 
 body{
     color:#666;
-    // color:$priHover;
     font-size: 14px;
     a{
       &:focus{
@@ -20,6 +20,10 @@ body{
     }
   
 }
+#root > div{
+  height: 100%;
+}
+
 .main-nav {
   background: $navbarBgColor;
   box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);

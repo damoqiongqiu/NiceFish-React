@@ -50,15 +50,18 @@ function App() {
     return <Route path={route.path} component={route.component} />;
   }
   return (
-    <div>
+    <div className="layout-warpper d-flex flex-column">
       <Router>
         <Header />
-        <Switch>
-          <Route exact path="/" render={() => <Redirect to="/post" />} />
-          {routes.map((route, index) => {
-            return <RouteGen key={index} {...route} />;
-          })}
-        </Switch>
+        <div className="main d-flex col">
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/post" />} />
+            {routes.map((route, index) => {
+              return <RouteGen key={index} {...route} />;
+            })}
+          </Switch>
+        </div>
+        
         <Footer/>
       </Router>
     </div>

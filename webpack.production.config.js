@@ -3,6 +3,7 @@ var path = require("path");
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const copyWebPackPlugin = require("copy-webpack-plugin");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
@@ -70,6 +71,7 @@ module.exports = {
         use: [
           { loader: MiniCssExtractPlugin.loader },
           "css-loader",
+          "postcss-loader",
           "sass-loader"
         ]
       }
@@ -81,8 +83,12 @@ module.exports = {
     new CleanWebpackPlugin(["docs"]),
     // html 模板插件
     new HtmlWebpackPlugin({
-      template: __dirname + "/public/index.html"
+      template: __dirname + "/public/index.html",
+      favicon:'./src/assets/images/nice-fish.png'
     }),
+    // new copyWebPackPlugin([
+    //   {from :'src/assets',to:'assets/',toType:'dir'}
+    // ]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
