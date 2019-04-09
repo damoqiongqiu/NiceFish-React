@@ -23,14 +23,14 @@ body{
 .layout-warpper{
   height: 100%;
 }
-
+.main{
+  min-height:1024px;
+}
 .main-nav {
   background: $navbarBgColor;
   box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
 }
-.footer{
-  height: 92px;
-}
+
 .bd-navbar {
   .navbar-nav {
     @include media-breakpoint-down("sm", $grid-breakpoints) {

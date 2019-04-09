@@ -124,7 +124,7 @@ function Profile() {
                       ) : (
                         ""
                       )}
-                      {item.controlType === "textarea" ? (
+                      {item.controlType === "textareabox" ? (
                         <textarea
                           className="form-control"
                           placeholder={item.placeholder}

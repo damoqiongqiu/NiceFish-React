@@ -50,10 +50,10 @@ function App() {
     return <Route path={route.path} component={route.component} />;
   }
   return (
-    <div className="layout-warpper d-flex flex-column">
+    <div className="layout-warpper">
       <Router>
         <Header />
-        <div className="main d-flex col">
+        <div className="main">
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/post" />} />
             {routes.map((route, index) => {

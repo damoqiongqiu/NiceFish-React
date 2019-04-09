@@ -188,11 +188,11 @@ function PostList() {
                         </h3>
                         <div className="user-name-intitle">
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-md-4 col-lg-3 ">
                                     <span className="fa fa-user"></span>
                                     <span className="ml-5px">{list.userName}</span>
                                 </div>
-                                <div className="col-md-5">
+                                <div className="col-md-6 col-lg-5">
                                     <span className="fa fa-clock-o"></span>
                                     <span className="ml-5px">{list.postTime}</span>
                                 </div>
@@ -209,7 +209,7 @@ function PostList() {
         </div>
         
       </div>
-      <div className="mt-16px pd-16px">
+      <div className="mt-16px">
            <Pagination size="" total={postLists.total} showSizeChanger  showQuickJumper onChange={onChange} onShowSizeChange={ShowSizeChange}/>
         </div>
     </div>
