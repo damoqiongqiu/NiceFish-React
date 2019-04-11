@@ -1,17 +1,24 @@
 import * as React from "react";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import { useState, Fragment ,useEffect} from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import storageService from '../../service/storage.service';
 import * as nicefish from "../../assets/images/nice-fish.png";
 
-function Header() {
+function Header(props:any) {
   const [active, updateActive] = useState(false);
   function onToggle() {
     if(isPhone())updateActive(!active);
   }
+  function doLogout(){
+    onToggle();
+    storageService.clearKey('user');
+    props.history.push('/');
+  }
   function isPhone(){
     return window.innerWidth < 768? true:false
   }
+  const user:any = storageService.getKey('user');
+
   return (
     <div
       className="bd-navbar main-nav navbar no-padding text-white"
@@ -46,37 +53,44 @@ function Header() {
             </li>
           </ul>
           <ul className={`nav navbar-nav ml-md-auto flex-row `}>
-            <li>
-              <NavLink to="/login" onClick={()=>onToggle()}>
-                <i className="fa fa-sign-in" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/register" onClick={()=>onToggle()}>
-                <i className="fa fa-user-plus" />
-              </NavLink>
-            </li>
+           {
 
-            <li>
-              <NavLink to="/home" onClick={()=>onToggle()}>
-                <i className="fa fa-user" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/manage" onClick={()=>onToggle()}>
-                {" "}
-                <i className="fa fa-cog" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/out" onClick={()=>onToggle()}>
-                <i className="fa fa-sign-out" />
-              </NavLink>
-            </li>
+            !user? 
+            <Fragment> <li>
+            <NavLink to="/login" onClick={()=>onToggle()}>
+              <i className="fa fa-sign-in" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/register" onClick={()=>onToggle()}>
+              <i className="fa fa-user-plus" />
+            </NavLink>
+          </li></Fragment>
+            :''
+           } 
+           {
+             user?<Fragment><li>
+             <NavLink to="/home" onClick={()=>onToggle()}>
+               <i className="fa fa-user" />
+             </NavLink>
+           </li>
+           <li>
+             <NavLink to="/manage" onClick={()=>onToggle()}>
+               {" "}
+               <i className="fa fa-cog" />
+             </NavLink>
+           </li>
+           <li>
+             <a href="javascript:void(0)"onClick={()=>doLogout()}>
+               <i className="fa fa-sign-out" />
+             </a>
+           </li></Fragment>:''
+           }
+            
           </ul>
         </div>
       </div>
     </div>
   );
 }
-export default Header;
+export default  withRouter(Header);

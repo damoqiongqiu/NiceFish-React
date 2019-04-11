@@ -2,10 +2,12 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Button } from "antd";
 import Common from "../../utils/common.util";
+import {withRouter} from 'react-router-dom';
+import storageService from '../../service/storage.service';
 import {loginFormValidator} from '../../validator/login-form-validator';
 import "./index.scss";
 
-function Login() {
+function Login(props:any) {
   const [namefill, updateNamefill] = useState("");
   const [pwdfill, updatePwdfill] = useState("");
   const [login, updateLogin] = useState({
@@ -15,17 +17,18 @@ function Login() {
   const [errors,setErrors] = useState({} as any);
   const [meta,setMeta] = useState({name:{touched:false},pwd:{touched:false}});
   const [formValid ,setformValid] = useState(false);
-  function onFocus(key:any){
-     setMeta({...meta,[key]:{touched:true}});
-     setErrors(loginFormValidator(login))
-  }
+  
   function onBlur(key: any, value: any) {
 
     switch (key) {
       case "name":
+        setMeta({...meta,[key]:{touched:true}});
+        setErrors(loginFormValidator(login));
         Common.toggleClass(value, updateNamefill, Common.fillClass);
         break;
       case "pwd":
+        setMeta({...meta,[key]:{touched:true}});
+        setErrors(loginFormValidator(login))
         Common.toggleClass(value, updatePwdfill, Common.fillClass);
         break;
     }
@@ -38,8 +41,10 @@ function Login() {
     updateLogin(uplogin);
     setErrors(loginFormValidator(uplogin));
   }
-  function doLogin() {
-    console.log(login);
+  function doLogin(e:any) {
+    e.preventDefault();
+    storageService.setKeyValue('user',login.name);
+    props.history.push('/home')
   }
   useEffect(()=>{
     const errors = loginFormValidator(login);
@@ -53,7 +58,7 @@ function Login() {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="bg-red pd-5-10px font-size-24">魚</span>
           </div>
-          <form>
+          <form onSubmit={e => doLogin(e)}>
             <div className="col-12 d-flex  text-white">
               <span className="inputfiled">
                 <input
@@ -61,7 +66,6 @@ function Login() {
                   type="text"
                   autoComplete="off"
                   value={login.name}
-                  onFocus = {e=>{onFocus('name')}}
                   onChange={e => handleChange({ name: e.target.value })}
                   onBlur={e => onBlur("name", e.target.value)}
                 />
@@ -77,7 +81,6 @@ function Login() {
                   type="password"
                   value={login.pwd}
                   autoComplete="off"
-                  onFocus = {e=>{onFocus('pwd')}}
                   onBlur={e => {
                     onBlur("pwd", e.target.value);
                   }}
@@ -92,7 +95,7 @@ function Login() {
                 type="primary"
                 className="col bg-primary border-color-primary"
                 disabled={formValid}
-                onClick={()=> doLogin()}
+                htmlType="submit"
               >
                 登录
               </Button>
@@ -102,4 +105,4 @@ function Login() {
       </div>
   );
 }
-export default Login;
+export default withRouter(Login);
