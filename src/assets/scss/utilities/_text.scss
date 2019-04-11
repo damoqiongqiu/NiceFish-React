@@ -86,6 +86,9 @@ color: $primary;
 %text-secondary{
   @include text-color($secondary);
 }
+%text-red{
+  @include text-color($red);
+}
 %font-size-12{
  @include font-size(12px); 
 }
@@ -167,6 +170,9 @@ color: $primary;
 }
 .text-white{
   @extend %text-white
+}
+.text-red{
+  @extend %text-red
 }
 .no-border{
   border: none;

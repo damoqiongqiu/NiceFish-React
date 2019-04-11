@@ -23,6 +23,12 @@
       outline: medium none;
       color: #00b4cf;
       padding: 2px;
+      &.error{
+      
+        & + label{
+          color: #b7302c!important;
+        }
+      }
       &:focus {
         border-width: 0;
         background-size: 100% 2px, 100% 1px;
