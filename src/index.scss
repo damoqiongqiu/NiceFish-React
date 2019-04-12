@@ -68,3 +68,7 @@ body{
 table thead th,table tbody td{
    text-align: center !important;
 }
+.exception-404{
+  min-height: 500px;
+  background: url('assets/images/404.svg') no-repeat center / contain
+}

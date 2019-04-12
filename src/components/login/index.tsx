@@ -15,29 +15,37 @@ function Login(props:any) {
     pwd: ""
   });
   const [errors,setErrors] = useState({} as any);
-  const [meta,setMeta] = useState({name:{touched:false},pwd:{touched:false}});
+  const [meta,setMeta] = useState({name:{touched:false,dirty:false},pwd:{touched:false,dirty:false}} as any);
   const [formValid ,setformValid] = useState(false);
   
   function onBlur(key: any, value: any) {
 
     switch (key) {
       case "name":
-        setMeta({...meta,[key]:{touched:true}});
+        setMeta({...meta,[key]:{...meta[key],touched:true}});
         setErrors(loginFormValidator(login));
         Common.toggleClass(value, updateNamefill, Common.fillClass);
         break;
       case "pwd":
-        setMeta({...meta,[key]:{touched:true}});
+        setMeta({...meta,[key]:{...meta[key],touched:true}});
         setErrors(loginFormValidator(login))
         Common.toggleClass(value, updatePwdfill, Common.fillClass);
         break;
     }
   }
-  function handleChange(value: any) {
+  function handleChange(key:any, value:any) {
     const uplogin = {
       ...login,
-      ...value
+      [key]:value
     };
+    switch(key){
+      case 'name':
+      setMeta({...meta,[key]:{...meta[key],dirty:true}});
+      break;
+      case 'pwd':
+      setMeta({...meta,[key]:{...meta[key],dirty:true}});
+      break;
+    }
     updateLogin(uplogin);
     setErrors(loginFormValidator(uplogin));
   }
@@ -65,52 +73,37 @@ function Login(props:any) {
             <div className="col-12 d-flex  text-white">
               <span className="inputfiled">
                 <input
-                  className={`col input-text ${namefill} ${(meta.name.touched&&errors.name)?'error':''}`}
+                  className={`col input-text ${namefill} ${(meta.name.touched|| meta.name.dirty)&&errors.name?'error':''}`}
                   type="text"
                   autoComplete="off"
                   value={login.name}
-                  onChange={e => handleChange({ name: e.target.value })}
+                  onChange={e => handleChange("name" , e.target.value )}
                   onBlur={e => onBlur("name", e.target.value)}
                 />
                 <label>Username</label>
-                {meta.name.touched&&errors.name?<div className="text-red">{errors.name}</div>:''}
+                {(meta.name.touched||meta.name.dirty)&&errors.name?<div className="text-red">{errors.name}</div>:''}
               </span>
               
             </div>
             <div className="col-12 d-flex justify-content-center  text-white">
               <span className="inputfiled">
                 <input
-                  className={`col input-text ${pwdfill} ${meta.pwd.touched&&errors.pwd ? 'error':''}`}
+                  className={`col input-text ${pwdfill} ${(meta.pwd.touched||meta.pwd.dirty)&&errors.pwd ? 'error':''}`}
                   type="password"
                   value={login.pwd}
                   autoComplete="off"
                   onBlur={e => {
                     onBlur("pwd", e.target.value);
                   }}
-                  onChange={e => handleChange({ pwd: e.target.value })}
+                  onChange={e => handleChange("pwd", e.target.value)}
                 />
                 <label>Password</label>
-                {meta.pwd.touched&&errors.pwd?<div className="text-red">{errors.pwd}</div>:''}
+                {(meta.pwd.touched||meta.pwd.dirty)&&errors.pwd?<div className="text-red">{errors.pwd}</div>:''}
               </span>
             </div>
             <div className="col-12 text-white ui-fluid">
-              <Button
-                type="primary"
-                className=" bg-primary border-color-primary"
-                disabled={formValid}
-                htmlType="submit"
-                block
-              >
-                登录
-              </Button>
-              <Button
-                type="primary"
-                className=" bg-primary border-color-primary mt-16px"
-                onClick ={()=>forgotPwd()}
-                block
-              >
-                忘记密码
-              </Button>    
+              <button  className="btn btn-primary col"  disabled={formValid}>登录</button>
+              <button  className="btn btn-primary col mt-16px"  onClick ={()=>forgotPwd()}>忘记密码</button> 
             </div>
           </form>
         </div>

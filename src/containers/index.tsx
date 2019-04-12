@@ -1,8 +1,9 @@
 import * as React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Register from '../components/register';
-import Forgot from '../components/forgot';
+import Register from "../components/register";
+import Forgot from "../components/forgot";
+import Exception404 from "../components/exception/404";
 import {
   HashRouter as Router,
   Route,
@@ -16,38 +17,31 @@ import Write from "../components/write";
 const routes = [
   {
     path: "/post",
-    component: Home,
-    exact: true
+    component: Home
   },
   {
     path: "/home",
-    component: Home,
-    exact: true
+    component: Home
   },
   {
     path: "/manage",
-    component: Manage,
-    exact: false
+    component: Manage
   },
   {
     path: "/login",
-    component: Login,
-    exact: false
+    component: Login
   },
   {
     path: "/forgot",
-    component: Forgot,
-    exact: false
+    component: Forgot
   },
   {
     path: "/register",
-    component: Register,
-    exact: false
+    component: Register
   },
   {
     path: "/write",
-    component: Write,
-    exact: false
+    component: Write
   }
 ];
 
@@ -65,10 +59,10 @@ function App() {
             {routes.map((route, index) => {
               return <RouteGen key={index} {...route} />;
             })}
+            <Route component={Exception404} />
           </Switch>
         </div>
-        
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );
