@@ -46,6 +46,9 @@ function Login(props:any) {
     storageService.setKeyValue('user',login.name);
     props.history.push('/home')
   }
+  function forgotPwd(){
+    props.history.push('/forgot')
+  }
   useEffect(()=>{
     const errors = loginFormValidator(login);
     const isDisabled = Object.keys(errors).some(x => errors[x]);
@@ -90,15 +93,24 @@ function Login(props:any) {
                 {meta.pwd.touched&&errors.pwd?<div className="text-red">{errors.pwd}</div>:''}
               </span>
             </div>
-            <div className="col-12 d-flex justify-content-center  text-white ui-fluid">
+            <div className="col-12 text-white ui-fluid">
               <Button
                 type="primary"
-                className="col bg-primary border-color-primary"
+                className=" bg-primary border-color-primary"
                 disabled={formValid}
                 htmlType="submit"
+                block
               >
                 登录
               </Button>
+              <Button
+                type="primary"
+                className=" bg-primary border-color-primary mt-16px"
+                onClick ={()=>forgotPwd()}
+                block
+              >
+                忘记密码
+              </Button>    
             </div>
           </form>
         </div>

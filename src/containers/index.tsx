@@ -2,6 +2,7 @@ import * as React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Register from '../components/register';
+import Forgot from '../components/forgot';
 import {
   HashRouter as Router,
   Route,
@@ -31,6 +32,11 @@ const routes = [
   {
     path: "/login",
     component: Login,
+    exact: false
+  },
+  {
+    path: "/forgot",
+    component: Forgot,
     exact: false
   },
   {

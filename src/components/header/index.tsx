@@ -1,4 +1,5 @@
 import * as React from "react";
+import{message} from 'antd'
 import { useState, Fragment ,useEffect} from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import storageService from '../../service/storage.service';
@@ -12,6 +13,7 @@ function Header(props:any) {
   function doLogout(){
     onToggle();
     storageService.clearKey('user');
+    message.success('退出成功');
     props.history.push('/');
   }
   function isPhone(){
