@@ -11,6 +11,7 @@ import UserTable from "../components/user-table";
 import RoleTable from "../components/role-table";
 import Sysparam from "../components/sysparam";
 import PermissionTable from "../components/permission-table";
+import PostDetailMain from "../components/post-detail-main";
 import Home from "./home";
 import Manage from "./manage";
 import Login from "../components/login";
@@ -30,53 +31,58 @@ const routes = [
     exact:true
   },
   {
+    path: "/post/post-detail/:id",
+    component: PostDetailMain,
+    exact:true
+  },
+  {
     path: "/home",
     component: Home,
-    exact:true
+    exact: true
   },
   {
     path: "/manage",
     component: Manage,
-    routes:[
+    routes: [
       {
         path: "/manage/chart",
         component: Chart,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/post-table",
         component: PostTable,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/comment-table",
         component: CommentTable,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/profile",
         component: Profile,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/user-table",
         component: UserTable,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/role-table",
         component: RoleTable,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/permission-table",
         component: PermissionTable,
-        exact:true
+        exact: true
       },
       {
         path: "/manage/sysparam",
         component: Sysparam,
-        exact:true
+        exact: true
       },
       {
         path: "*",
@@ -87,30 +93,30 @@ const routes = [
   {
     path: "/login",
     component: Login,
-    exact:true
+    exact: true
   },
   {
     path: "/forgot",
     component: Forgot,
-    exact:true
+    exact: true
   },
   {
     path: "/register",
     component: Register,
-    exact:true
+    exact: true
   },
   {
     path: "/write",
     component: Write,
-    exact:true
+    exact: true
   },
   {
     path: "*",
     component: Exception404
-  },
+  }
 ];
 
-export function RouteWithSubRoutes(route:any) {
+export function RouteWithSubRoutes(route: any) {
   return (
     <Route
       path={route.path}

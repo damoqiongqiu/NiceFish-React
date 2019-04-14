@@ -182,7 +182,7 @@ function PostList() {
                         </div>
                         <div className="col-md-10 post-item-text-container sm-mt-10px">
                         <h3 className="font-size-18">
-                        <NavLink to="/manage/comment-table">
+                        <NavLink to={`/post/post-detail/${list.postId}`}>
                             {list.title}
                         </NavLink>
                         </h3>
