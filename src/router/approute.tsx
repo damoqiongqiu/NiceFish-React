@@ -1,32 +1,29 @@
 
 import * as React from 'react';
 import PostList from '../components/post-list';
-import {HashRouter as Router,Link, Route,Switch,Redirect} from 'react-router-dom';
+import {RouteWithSubRoutes} from '../containers/index'
+import {Switch} from 'react-router-dom';
 const routes = [
     {
         path:'/post',
         component: PostList,
+        exact:true
     },
     {
         path:'/home',
         component: PostList,
+        exact:true
     }
 ]
  
 function AppRoute(){
-    function RouteGen(route:any){
-        return (
-            <Route path={route.path} component={route.component} />
-        )
-      }
    return (
        <div> 
                <Switch>
                  {
                            routes.map((route,index)=>{
-                              return <RouteGen key={index} {...route}/>
-                           })
-                           
+                              return <RouteWithSubRoutes key={index} {...route}/>
+                           })    
                    }  
                </Switch>
        </div>

@@ -1,67 +1,24 @@
 import * as React from "react";
-import Chart from "../../components/chart";
-import PostTable from "../../components/post-table";
-import CommentTable from "../../components/comment-table";
-import Profile from "../../components/profile";
-import UserTable from "../../components/user-table";
-import RoleTable from "../../components/role-table";
-import Sysparam from "../../components/sysparam";
+import {RouteWithSubRoutes} from '../index';
+import StorageService from '../../service/storage.service';
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
-import PermissionTable from "../../components/permission-table";
-import Exception404 from "../../components/exception/404";
-const routes = [
-  {
-    path: "/manage/chart",
-    component: Chart
-  },
-  {
-    path: "/manage/post-table",
-    component: PostTable
-  },
-  {
-    path: "/manage/comment-table",
-    component: CommentTable
-  },
-  {
-    path: "/manage/profile",
-    component: Profile
-  },
-  {
-    path: "/manage/user-table",
-    component: UserTable,
-  },
-  {
-    path: "/manage/role-table",
-    component: RoleTable,
-  },
-  {
-    path: "/manage/permission-table",
-    component: PermissionTable,
-  },
-  {
-    path: "/manage/sysparam",
-    component: Sysparam,
-  }
-];
-
-function Manage() {
-  function RouteGen(route: any) {
-    return <Route path={route.path} component={route.component} />;
-  }
+function Manage(props:any) {
+  const user = StorageService.getKey('user');
   return (
     <div className="container mtb-16px">
       <div className="row">
         <div className="col-md-9">
+
           <Switch>
             <Route
               exact
               path="/manage"
               render={() => <Redirect to="/manage/chart" />}
             />
-            {routes.map((route, index) => {
-              return <RouteGen key={index} {...route} />;
+            {props.routes.map((route:any, index:number) => {
+              return user? <RouteWithSubRoutes key={index} {...route} />:<Redirect to="/" key={index}/>;
             })}
-            <Route component={Exception404} />
+            
           </Switch>
         </div>
         <div className="col-md-3 text-align-center">
