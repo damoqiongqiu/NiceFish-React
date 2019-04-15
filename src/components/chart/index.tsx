@@ -25,14 +25,15 @@ function Chart() {
       subtext: "纯属虚构",
       x: "center"
     },
+  
     tooltip: {
       trigger: "item",
       formatter: "{a} <br/>{b} : {c} ({d}%)"
     },
     legend: {
       orient: "vertical",
-      top: "30rem",
-      left: "left",
+      top: "7%",
+      left: "3%",
       data: ["深圳", "北京", "广州", "上海", "长沙"]
     },
     series: [
@@ -144,6 +145,12 @@ function Chart() {
       text: "NiceFish月访问趋势图",
       subtext: "纯属虚构",
       x: "center"
+    },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true
     },
     legend: {
       x: "center",

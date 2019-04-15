@@ -180,7 +180,7 @@ function PostList() {
                         <div className="col-md-2">
                             <img src={listImg} alt="..." className="img-thumbnail"/>
                         </div>
-                        <div className="col-md-10 post-item-text-container sm-mt-10px">
+                        <div className="col-md-10 post-item-text-container sm-mt-16px">
                         <h3 className="font-size-18">
                         <NavLink to={`/post/post-detail/${list.postId}`}>
                             {list.title}

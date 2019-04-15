@@ -42,15 +42,15 @@ function PermissionEdit(props: any) {
   }, [errors]);
 
   return (
-    <div className="role-edit-container">
+    <div className="role-edit-container font-size-16">
       <div className="card ">
         <div className="card-header">
-          <h3 className="font-size-16">编辑权限</h3>
+          <h3 className="font-size-16 m-0">编辑权限</h3>
         </div>
         <div className="pd-10px ">
           <form onSubmit={onSubmit}>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right">名称：</label>
+              <label className="col-md-2 md-text-align-right col-form-label">名称：</label>
               <div className="col-md-10">
                 <input
                   name="roleName"

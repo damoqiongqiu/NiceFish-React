@@ -71,6 +71,14 @@ function RoleEdit(props: any) {
     console.log(role);
     e.preventDefault();
   }
+  function onBlur(key: any, value: any) {
+    switch (key) {
+      case "name":
+        setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
+        setErrors(roleFormValidator(role));
+        break;
+    }
+  }
   function cancel() {
     props.history.goBack();
   }
@@ -83,21 +91,22 @@ function RoleEdit(props: any) {
     getMock();
   }, []);
   return (
-    <div className="role-edit-container">
+    <div className="role-edit-container font-size-16">
       <div className="card ">
         <div className="card-header">
-          <h3 className="font-size-16">编辑角色</h3>
+          <h3 className="font-size-16 m-0">编辑角色</h3>
         </div>
         <div className="pd-10px ">
           <form onSubmit={onSubmit}>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right">名称：</label>
+              <label className="col-md-2 md-text-align-right col-form-label">名称：</label>
               <div className="col-md-10">
                 <input
                   name="roleName"
                   type="text"
                   value={role.name}
                   className="form-control"
+                  onBlur={e => onBlur("name", e.target.value)}
                   onChange={e => handleChange("name", e.target.value)}
                   placeholder="请输入名称"
                 />
@@ -109,7 +118,7 @@ function RoleEdit(props: any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right">权限：</label>
+              <label className="col-md-2 md-text-align-right col-form-label">权限：</label>
               <div className="col-md-10">
                 <Transfer
                   dataSource={mockData}

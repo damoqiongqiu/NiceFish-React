@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import {withRouter} from 'react-router-dom'
-import { Transfer, Upload, Button,Icon } from "antd";
+import { withRouter } from "react-router-dom";
+import { Transfer, Upload, Button, Icon } from "antd";
 import "./index.scss";
 
-function Profile(props:any) {
-  console.log(props.match.params)
+function Profile(props: any) {
+  console.log(props.match.params);
   const formControls = [
     {
       controlType: "image",
@@ -88,7 +88,7 @@ function Profile(props:any) {
       }
     ];
 
-     mockData.map((value: any) => {
+    mockData.map((value: any) => {
       if (value.chosen) {
         targetKeys.push(value.key);
       }
@@ -99,16 +99,18 @@ function Profile(props:any) {
   function handleChange(targetKeys: any) {
     updatetargetKeys(targetKeys);
   }
-  function cancel( ){
+  function cancel() {
     props.history.goBack();
   }
   useEffect(() => {
     getMock();
-  },[]);
+  }, []);
   return (
     <div className="user-profile-container">
       <div className="card">
-        <div className="card-header">基本资料</div>
+        <div className="card-header">
+          <h3 className="font-size-16 m-0">基本资料</h3>
+        </div>
         <div className="pd-10px">
           <form role="form">
             {formControls.map((item, index) => {
@@ -157,7 +159,9 @@ function Profile(props:any) {
         </div>
       </div>
       <div className="card mt-16px">
-        <div className="card-header">关联角色</div>
+        <div className="card-header">
+          <h3 className="font-size-16 m-0">关联角色</h3>
+        </div>
         <div className="pd-16px">
           <form>
             <div className="form-group">
@@ -179,7 +183,11 @@ function Profile(props:any) {
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
+            <button
+              type="button"
+              className="btn btn-secondary ml-16px"
+              onClick={cancel}
+            >
               取消
             </button>
           </div>
