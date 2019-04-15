@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import './index.scss';
 function CommonList() {
+  const [commentdata,setCommentData] =useState('');
   const [comments] = useState([
     {
       id: 1,
@@ -25,14 +26,23 @@ function CommonList() {
       username: "大漠3"
     }
   ]);
+  function handleChange(value:string){
+    setCommentData(value);
+  }
+  function onSubmit(e:any){
+    e.preventDefault();
+    console.log(commentdata)
+  }
   return (
     <div className="add-component-container mt-16px">
       <div className="row no-gutters">
         <div className="col-md-12">
-          <form role="form">
+          <form onSubmit={onSubmit}>
             <div className="form-group">
               <textarea
                 className="form-control"
+                value={commentdata}
+                onChange={e => handleChange(e.target.value)}
                 placeholder="5-140个字符，非法字符自动截断。"
               />
             </div>

@@ -24,20 +24,20 @@ function PostDetail(props: any) {
            <h3 className="mtb-16px">{postDetail.title}</h3> 
         </div>
       </div>
-      <div className="row post-info">
-        <div className="col-md-3">
+      <div className="row post-info ">
+        <div className="col-md-3 col-xl-3">
           <span className="fa fa-user"></span>
           <span className="ml-5px">{postDetail.author}</span>
         </div>
-        <div className="col-md-3">
+        <div className=" col-md-8 col-xl-3">
           <span className="fa fa-clock-o"></span>
-          <span className="ml-5px">{postDetail.author}</span>
-        </div>
-        <div className="col-md-3">
-          <span className="fa fa-hand-pointer-o"></span>
           <span className="ml-5px">{postDetail.postTime}</span>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 col-xl-3">
+          <span className="fa fa-hand-pointer-o"></span>
+          <span className="ml-5px">{postDetail.readTimes}</span>
+        </div>
+        <div className="col-md-8 col-xl-3">
           <span className="fa fa-comment"></span>
           <span className="ml-5px">{postDetail.commentTimes}</span>
         </div>
