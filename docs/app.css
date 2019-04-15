@@ -7782,6 +7782,9 @@ button.bg-dark:focus {
 .border-1px-primary {
   border: 1px solid #ced4da; }
 
+.border-width-1-0 {
+  border-width: 1px 0; }
+
 .clearfix::after {
   display: block;
   clear: both;
@@ -10387,8 +10390,8 @@ button.bg-dark:focus {
   padding: 0; }
 
 @media (max-width: 767.98px) {
-  .sm-mt-10px {
-    margin-top: 10px; } }
+  .sm-mt-16px {
+    margin-top: 16px; } }
 
 .text-monospace {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important; }
