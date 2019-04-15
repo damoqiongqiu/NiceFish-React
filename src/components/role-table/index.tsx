@@ -1,44 +1,73 @@
 import * as React from "react";
-import {useState} from 'react';
-import {Table,Tag} from 'antd';
+import { useState } from "react";
+import { Table, Tag } from "antd";
 function RoleTable() {
-    const columns = [
-        {
-          title: "序号",
-          dataIndex: "key"
-        },
-        {
-          title: "名称",
-          dataIndex: "title"
-        },
-        {
-          title: "拥有权限",
-          dataIndex: "permission"
-        },
-        {
-          title: "操作",
-          dataIndex: "options",
-          render: (options:any) => (
-              <span>
-              {
-                options.map((option:any,index:any)=>{
-                    return ( <Tag key={index} ><i className={`${option.icon} `}
-                    aria-hidden="true"></i></Tag>)
-                })
-              }
-              </span>
-            
-          ),
-        },
-    
-      ];
-      const [data] = useState(
-       [
-        { key: '1', title: '游客', permission: '阅读文章' ,options:[{icon:'fa fa-pencil-square-o'}, {icon:'fa fa-trash'}]},
-        { key: '2', title: '注册用户', permission: '发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码',options:[{icon:'fa fa-pencil-square-o'}, {icon:'fa fa-trash'}]},
-        { key: '3', title: '系统管理员', permission: 'All',options:[{icon:'fa fa-pencil-square-o'}, {icon:'fa fa-trash'}]},
-        ]
-      );
+  const [filteredInfo, setFilterdInfo] = useState({} as any);
+  const [sortedInfo, setSortedInfo] = useState({} as any);
+  const columns = [
+    {
+      title: "序号",
+      dataIndex: "key",
+      filteredValue: filteredInfo.key || null,
+      filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
+      onFilter: (value: any, record: any) => record.key.includes(value),
+      sorter: (a: any, b: any) => a.key - b.key,
+      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
+    },
+    {
+      title: "名称",
+      dataIndex: "title",
+      sorter: (a: any, b: any) => a.title.localeCompare(b.title),
+      sortOrder: sortedInfo.columnKey === "title" && sortedInfo.order
+    },
+    {
+      title: "拥有权限",
+      dataIndex: "permission",
+      sorter: (a: any, b: any) => a.permission.localeCompare(b.permission),
+      sortOrder: sortedInfo.columnKey === "permission" && sortedInfo.order
+    },
+    {
+      title: "操作",
+      dataIndex: "options",
+      render: (options: any) => (
+        <span>
+          {options.map((option: any, index: any) => {
+            return (
+              <Tag key={index}>
+                <i className={`${option.icon} `} aria-hidden="true" />
+              </Tag>
+            );
+          })}
+        </span>
+      )
+    }
+  ];
+  const [data] = useState([
+    {
+      key: "1",
+      title: "游客",
+      permission: "阅读文章",
+      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+    },
+    {
+      key: "2",
+      title: "注册用户",
+      permission:
+        "发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码",
+      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+    },
+    {
+      key: "3",
+      title: "系统管理员",
+      permission: "All",
+      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+    }
+  ]);
+  function handleChange(pagination: any, filters: any, sorter: any) {
+    console.log(pagination, filters, sorter);
+    setFilterdInfo(filters);
+    setSortedInfo(sorter);
+  }
   return (
     <div className="role-table-container">
       <form role="form">
@@ -70,9 +99,12 @@ function RoleTable() {
       </form>
       <div className="row mt-16px ">
         <div className="col-md-12">
-       
-               
-    <Table dataSource={data} columns={columns}></Table>
+          <Table
+            dataSource={data}
+            columns={columns}
+            scroll={{ x: 500 }}
+            onChange={handleChange}
+          />
         </div>
       </div>
     </div>

@@ -1,48 +1,90 @@
 import * as React from "react";
-import {useState} from 'react';
-import {Table,Tag} from 'antd';
+import { useState } from "react";
+import { Table, Tag } from "antd";
 function UserTable() {
-    const columns = [
-        {
-          title: "序号",
-          dataIndex: "key"
-        },
-        {
-          title: "用户名",
-          dataIndex: "userName"
-        },
-        {
-          title: "注册时间",
-          dataIndex: "registerTime"
-        },
-        {
-          title: "最后登录",
-          dataIndex: "lastLoginTime"
-        },
-        {
-          title: "操作",
-          dataIndex: "options",
-          render: (options:any) => (
-            <span>
-            {
-              options.map((option:any,index:any)=>{
-                  return ( <Tag key={index} ><i className={`${option.icon} `}
-                  aria-hidden="true"></i></Tag>)
-              })
-            }
-            </span>
-          ),
-        },
-    
-      ];
-      const [data] = useState(
-       [
-        { key: '1', userName: 'damoqiongqiu@126.com', registerTime:'2010-11-11 11:11', lastLoginTime:'2016-11-27 09:34',options:[{icon:'fa fa-pencil-square-o'},{icon:'fa fa-lock'}, {icon:'fa fa-trash'},{icon:'fa fa-user-secret'}]},
-        ]
-      );
+  const [filteredInfo, setFilterdInfo] = useState({} as any);
+  const [sortedInfo, setSortedInfo] = useState({} as any);
+  const columns = [
+    {
+      title: "序号",
+      dataIndex: "key",
+      filteredValue: filteredInfo.key || null,
+      filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
+      onFilter: (value: any, record: any) => record.key.includes(value),
+      sorter: (a: any, b: any) => a.key - b.key,
+      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
+    },
+    {
+      title: "用户名",
+      dataIndex: "userName",
+      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
+      sortOrder: sortedInfo.columnKey === "userName" && sortedInfo.order
+    },
+    {
+      title: "注册时间",
+      dataIndex: "registerTime",
+      sorter: (a: any, b: any) =>
+        new Date(a.registerTime).getTime() - new Date(b.registerTime).getTime(),
+      sortOrder: sortedInfo.columnKey === "registerTime" && sortedInfo.order
+    },
+    {
+      title: "最后登录",
+      dataIndex: "lastLoginTime",
+      sorter: (a: any, b: any) =>
+        new Date(a.lastLoginTime).getTime() -
+        new Date(b.lastLoginTime).getTime(),
+      sortOrder: sortedInfo.columnKey === "lastLoginTime" && sortedInfo.order
+    },
+    {
+      title: "操作",
+      dataIndex: "options",
+      render: (options: any) => (
+        <span>
+          {options.map((option: any, index: any) => {
+            return (
+              <Tag key={index}>
+                <i className={`${option.icon} `} aria-hidden="true" />
+              </Tag>
+            );
+          })}
+        </span>
+      )
+    }
+  ];
+  const [data] = useState([
+    {
+      key: "1",
+      userName: "damoqiongqiu@126.com",
+      registerTime: "2010-11-11 11:11",
+      lastLoginTime: "2016-11-27 09:34",
+      options: [
+        { icon: "fa fa-pencil-square-o" },
+        { icon: "fa fa-lock" },
+        { icon: "fa fa-trash" },
+        { icon: "fa fa-user-secret" }
+      ]
+    },
+    {
+      key: "2",
+      userName: "yanyunchangfeng@gmail.com",
+      registerTime: "2011-11-11 11:11",
+      lastLoginTime: "2018-11-15 09:34",
+      options: [
+        { icon: "fa fa-pencil-square-o" },
+        { icon: "fa fa-lock" },
+        { icon: "fa fa-trash" },
+        { icon: "fa fa-user-secret" }
+      ]
+    }
+  ]);
+  function handleChange(pagination: any, filters: any, sorter: any) {
+    console.log(pagination, filters, sorter);
+    setFilterdInfo(filters);
+    setSortedInfo(sorter);
+  }
   return (
     <div className="user-table-container">
-      <form  role="form">
+      <form role="form">
         <div className="row">
           <div className="col-sm-8">
             <div className="input-group">
@@ -71,7 +113,12 @@ function UserTable() {
       </form>
       <div className="row mt-16px">
         <div className="col-md-12">
-          <Table dataSource={data} columns={columns}></Table>
+          <Table
+            dataSource={data}
+            columns={columns}
+            scroll={{ x: 500 }}
+            onChange={handleChange}
+          />
         </div>
       </div>
     </div>
