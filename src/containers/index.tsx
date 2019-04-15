@@ -9,8 +9,10 @@ import CommentTable from "../components/comment-table";
 import Profile from "../components/profile";
 import UserTable from "../components/user-table";
 import RoleTable from "../components/role-table";
+import RoleEdit from '../components/role-edit';
 import Sysparam from "../components/sysparam";
 import PermissionTable from "../components/permission-table";
+import PermissionEdit from "../components/permission-edit";
 import PostDetailMain from "../components/post-detail-main";
 import Home from "./home";
 import Manage from "./manage";
@@ -70,13 +72,28 @@ const routes = [
         exact: true
       },
       {
+        path: "/manage/user-table/edituser/:userId",
+        component: Profile,
+        exact: true
+      },
+      {
         path: "/manage/role-table",
         component: RoleTable,
         exact: true
       },
       {
+        path: "/manage/role-edit/:roleId",
+        component: RoleEdit,
+        exact: true
+      },
+      {
         path: "/manage/permission-table",
         component: PermissionTable,
+        exact: true
+      },
+      {
+        path: "/manage/permission-edit/:permissionId",
+        component: PermissionEdit,
         exact: true
       },
       {

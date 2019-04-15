@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Table, Tag } from "antd";
+import { NavLink } from "react-router-dom";
 function RoleTable() {
   const [filteredInfo, setFilterdInfo] = useState({} as any);
   const [sortedInfo, setSortedInfo] = useState({} as any);
@@ -29,16 +30,30 @@ function RoleTable() {
     {
       title: "操作",
       dataIndex: "options",
-      render: (options: any) => (
-        <span>
+      render: (options: any,props:any) => (
+
+        <div>
           {options.map((option: any, index: any) => {
-            return (
-              <Tag key={index}>
-                <i className={`${option.icon} `} aria-hidden="true" />
+            if(option.link){
+              return (
+                <Tag key={index}>
+                <NavLink to={`${option.link+props.key}`}>
+                <i className={`${option.icon} `} aria-hidden="true" /></NavLink>
+                 
+                </Tag>
+              );
+            }else{
+              return (
+                <Tag key={index}>
+                <a href="javascript:void(0)">
+                   <i className={`${option.icon} `} aria-hidden="true" />
+                </a>
               </Tag>
-            );
+              )
+            }
+           
           })}
-        </span>
+        </div>
       )
     }
   ];
@@ -47,20 +62,20 @@ function RoleTable() {
       key: "1",
       title: "游客",
       permission: "阅读文章",
-      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o",link:'/manage/role-edit/' }, { icon: "fa fa-trash" }]
     },
     {
       key: "2",
       title: "注册用户",
       permission:
         "发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码",
-      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o",link:'/manage/role-edit/'  }, { icon: "fa fa-trash" }]
     },
     {
       key: "3",
       title: "系统管理员",
       permission: "All",
-      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o" ,link:'/manage/role-edit/' }, { icon: "fa fa-trash" }]
     }
   ]);
   function handleChange(pagination: any, filters: any, sorter: any) {

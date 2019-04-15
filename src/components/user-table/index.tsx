@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Table, Tag } from "antd";
+import { NavLink } from "react-router-dom";
 function UserTable() {
   const [filteredInfo, setFilterdInfo] = useState({} as any);
   const [sortedInfo, setSortedInfo] = useState({} as any);
@@ -38,16 +39,33 @@ function UserTable() {
     {
       title: "操作",
       dataIndex: "options",
-      render: (options: any) => (
-        <span>
+      render: (options: any,props:any) => (
+        
+        <div>
           {options.map((option: any, index: any) => {
-            return (
-              <Tag key={index}>
-                <i className={`${option.icon} `} aria-hidden="true" />
-              </Tag>
-            );
+            console.log(props)
+            if(option.link){
+              return (
+                <Tag key={index}>
+                  <NavLink to={`${option.link+props.key}`}>
+                  <i className={`${option.icon} `} aria-hidden="true" />
+                  </NavLink>
+                </Tag>
+              );
+            }else{
+              return (
+                <Tag key={index}>
+                <a href='javascript:void(0)'>
+                  <i className={`${option.icon} `} aria-hidden="true" />
+                </a>
+                 
+            
+                </Tag>
+              );
+            }
+           
           })}
-        </span>
+        </div>
       )
     }
   ];
@@ -58,7 +76,7 @@ function UserTable() {
       registerTime: "2010-11-11 11:11",
       lastLoginTime: "2016-11-27 09:34",
       options: [
-        { icon: "fa fa-pencil-square-o" },
+        { icon: "fa fa-pencil-square-o" ,link:"/manage/user-table/edituser/"},
         { icon: "fa fa-lock" },
         { icon: "fa fa-trash" },
         { icon: "fa fa-user-secret" }
@@ -70,7 +88,7 @@ function UserTable() {
       registerTime: "2011-11-11 11:11",
       lastLoginTime: "2018-11-15 09:34",
       options: [
-        { icon: "fa fa-pencil-square-o" },
+        { icon: "fa fa-pencil-square-o" ,link:"/manage/user-table/edituser/"},
         { icon: "fa fa-lock" },
         { icon: "fa fa-trash" },
         { icon: "fa fa-user-secret" }

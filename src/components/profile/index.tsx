@@ -1,9 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import {withRouter} from 'react-router-dom'
 import { Transfer, Upload, Button,Icon } from "antd";
 import "./index.scss";
 
-function Profile() {
+function Profile(props:any) {
+  console.log(props.match.params)
   const formControls = [
     {
       controlType: "image",
@@ -77,7 +79,7 @@ function Profile() {
       {
         key: "2",
         title: "签约作者",
-        chosen: false
+        chosen: true
       },
       {
         key: "3",
@@ -85,13 +87,21 @@ function Profile() {
         chosen: false
       }
     ];
+
+     mockData.map((value: any) => {
+      if (value.chosen) {
+        targetKeys.push(value.key);
+      }
+    });
     updatetargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
   function handleChange(targetKeys: any) {
     updatetargetKeys(targetKeys);
   }
-
+  function cancel( ){
+    props.history.goBack();
+  }
   useEffect(() => {
     getMock();
   },[]);
@@ -169,7 +179,7 @@ function Profile() {
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button type="button" className="btn btn-secondary ml-16px">
+            <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
               取消
             </button>
           </div>
@@ -178,4 +188,4 @@ function Profile() {
     </div>
   );
 }
-export default Profile;
+export default withRouter(Profile);

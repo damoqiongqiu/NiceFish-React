@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Table, Tag } from "antd";
+import { NavLink } from "react-router-dom";
 function PermissionTable() {
   const [filteredInfo, setFilterdInfo] = useState({} as any);
   const [sortedInfo, setSortedInfo] = useState({} as any);
@@ -23,16 +24,28 @@ function PermissionTable() {
     {
       title: "操作",
       dataIndex: "options",
-      render: (options: any) => (
-        <span>
+      render: (options: any, props: any) => (
+        <div>
           {options.map((option: any, index: any) => {
-            return (
-              <Tag key={index}>
-                <i className={`${option.icon} `} aria-hidden="true" />
-              </Tag>
-            );
+            if (option.link) {
+              return (
+                <Tag key={index}>
+                  <NavLink to={`${option.link + props.key}`}>
+                    <i className={`${option.icon} `} aria-hidden="true" />
+                  </NavLink>
+                </Tag>
+              );
+            } else {
+              return (
+                <Tag key={index}>
+                  <a href="javascript:void(0)">
+                    <i className={`${option.icon} `} aria-hidden="true" />
+                  </a>
+                </Tag>
+              );
+            }
           })}
-        </span>
+        </div>
       )
     }
   ];
@@ -41,13 +54,19 @@ function PermissionTable() {
       key: "1",
       title: "发表文章",
       userName: "damoqiongqiu",
-      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+      options: [
+        { icon: "fa fa-pencil-square-o", link: "/manage/permission-edit/" },
+        { icon: "fa fa-trash" }
+      ]
     },
     {
       key: "2",
       title: "删除文章",
       userName: "damoqiongqiu",
-      options: [{ icon: "fa fa-pencil-square-o" }, { icon: "fa fa-trash" }]
+      options: [
+        { icon: "fa fa-pencil-square-o", link: "/manage/permission-edit/" },
+        { icon: "fa fa-trash" }
+      ]
     }
   ]);
   function handleChange(pagination: any, filters: any, sorter: any) {
