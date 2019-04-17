@@ -1,6 +1,9 @@
 import * as React from "react";
 
-function Sysparam() {
+function Sysparam(props:any) {
+  function cancel(){
+    props.history.goBack();
+  }
   return (
     <div className="sys-param-container  font-size-16">
       <div className="card">
@@ -195,11 +198,11 @@ function Sysparam() {
           </form>
         </div>
       </div>
-      <div className="pd-16px text-left">
+      <div className="mt-16px text-left">
         <button type="submit" className="btn btn-primary ">
         保存
         </button>
-        <button type="button" className="btn btn-secondary ml-16px">
+        <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
         取消
         </button>
       </div>

@@ -39,7 +39,7 @@ function UserTable() {
     {
       title: "操作",
       dataIndex: "options",
-      width:130,
+      width:100,
       fixed:"right" as any,
       render: (options: any,props:any) => (
         
@@ -48,7 +48,7 @@ function UserTable() {
             console.log(props)
             if(option.link){
               return (
-                <Tag key={index}>
+                <Tag key={index} className="mb-1">
                   <NavLink to={`${option.link+props.key}`}>
                   <i className={`${option.icon} `} aria-hidden="true" />
                   </NavLink>
@@ -56,7 +56,7 @@ function UserTable() {
               );
             }else{
               return (
-                <Tag key={index}>
+                <Tag key={index} className="mb-1">
                 <a href='javascript:void(0)'>
                   <i className={`${option.icon} `} aria-hidden="true" />
                 </a>
@@ -136,7 +136,7 @@ function UserTable() {
           <Table
             dataSource={data}
             columns={columns}
-            scroll={{ x: 500 }}
+            scroll={{ x: 768 }}
             onChange={handleChange}
           />
         </div>
