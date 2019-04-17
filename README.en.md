@@ -25,7 +25,7 @@ This project is a React version of NiceFish, using React Hooks version 16.8.3, d
 
 
 - NiceFish Demo address on Alibaba Cloud: http://47.104.13.149:4200
-- NiceFish-React 在gitee上的演示地址：https://mumu-osc.gitee.io/nicefish-react
+- NiceFish-React Demo address on gitee：https://mumu-osc.gitee.io/nicefish-react
 - OpenWMS Demo address on gitee：http://47.104.80.251:4200
 - OpenWMS Demo address on gitee：https://mumu-osc.gitee.io/openwms-frontend
 - NiceFish-ionic：https://damoqiongqiu.github.io/NiceFish-ionic/
