@@ -178,8 +178,8 @@ function Profile(props: any) {
         </div>
       </div>
       <form role="form">
-        <div className="form-group row mt-16px">
-          <div className="col-md-10">
+        <div className="form-group row  m-0">
+          <div className="col-md-10 mt-16px">
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>

@@ -21,7 +21,7 @@ function Manage(props:any) {
             
           </Switch>
         </div>
-        <div className="col-md-3 text-align-center">
+        <div className="col-md-3 text-align-center sm-mt-16px">
           <div className="list-group">
             <NavLink to="/manage/chart" className="list-group-item">
               统计图表

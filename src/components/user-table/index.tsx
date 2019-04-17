@@ -39,6 +39,8 @@ function UserTable() {
     {
       title: "操作",
       dataIndex: "options",
+      width:130,
+      fixed:"right" as any,
       render: (options: any,props:any) => (
         
         <div>
@@ -112,7 +114,7 @@ function UserTable() {
                 placeholder="用户名，昵称"
               />
               <span className="input-group-btn">
-                <button className="btn btn-secondary" type="button">
+                <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" />
                   搜索
                 </button>

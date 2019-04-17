@@ -24,6 +24,8 @@ function PermissionTable() {
     {
       title: "操作",
       dataIndex: "options",
+      width:150,
+      fixed:"right" as any,
       render: (options: any, props: any) => (
         <div>
           {options.map((option: any, index: any) => {

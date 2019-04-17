@@ -30,6 +30,8 @@ function RoleTable() {
     {
       title: "操作",
       dataIndex: "options",
+      width:150,
+      fixed:"right" as any,
       render: (options: any,props:any) => (
 
         <div>
@@ -95,7 +97,7 @@ function RoleTable() {
                 placeholder="角色名称，角色代码"
               />
               <span className="input-group-btn">
-                <button className="btn btn-secondary" type="button">
+                <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" aria-hidden="true" />
                   搜索
                 </button>

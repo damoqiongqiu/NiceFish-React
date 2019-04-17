@@ -29,6 +29,8 @@ function CommentTable() {
     {
       title: "日期",
       dataIndex: "time",
+      width:182,
+      fixed:"right" as any,
       sorter: (a: any, b: any) =>
         new Date(a.time).getTime() - new Date(b.time).getTime(),
       sortOrder: sortedInfo.columnKey === "time" && sortedInfo.order
@@ -138,7 +140,7 @@ function CommentTable() {
                 placeholder="内容，用户名"
               />
               <span className="input-group-btn">
-                <button className="btn btn-secondary" type="button">
+                <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" />
                 </button>
               </span>

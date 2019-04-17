@@ -9,6 +9,8 @@ function PostTable() {
     {
       title: "序号",
       dataIndex: "postId",
+      width:100,
+      fixed:"left" as any,
       filteredValue: filteredInfo.postId || null,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
       onFilter: (value: any, record: any) => record.postId.includes(value),
@@ -29,6 +31,8 @@ function PostTable() {
     },
     {
       title: "日期",
+      width:180,
+      fixed:"right" as any,
       dataIndex: "postTime",
       sorter: (a:any,b:any) =>   new Date(a.postTime).getTime()- new Date(b.postTime).getTime(),
       sortOrder: sortedInfo.columnKey === 'postTime' && sortedInfo.order,
@@ -221,7 +225,7 @@ function PostTable() {
                 placeholder="标题，作者"
               />
               <span className="input-group-btn">
-                <button className="btn btn-secondary" type="button">
+                <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" aria-hidden="true" />
                   搜索
                 </button>
