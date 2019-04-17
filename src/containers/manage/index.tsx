@@ -7,7 +7,7 @@ function Manage(props:any) {
   return (
     <div className="container mtb-16px">
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-md-9 col-lg-9">
 
           <Switch>
             <Route

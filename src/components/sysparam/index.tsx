@@ -11,10 +11,10 @@ function Sysparam(props:any) {
         <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 文章列表显示条数：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -24,10 +24,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 文章标题最小长度：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -37,10 +37,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 文章标题最大长度：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -50,10 +50,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 每日发文数量限制：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -71,8 +71,8 @@ function Sysparam(props:any) {
         <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">评论最小长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">评论最小长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -82,8 +82,8 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">评论最大长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">评论最大长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -93,10 +93,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 评论列表每页显示条数：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -106,10 +106,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 评论时间间隔（分钟）：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -126,8 +126,8 @@ function Sysparam(props:any) {
         <div className="pd-10px md-text-align-right">
           <form  role="form">
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">用户名最小长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">用户名最小长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -137,8 +137,8 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">用户名最大长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">用户名最大长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -148,8 +148,8 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">密码最小长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">密码最小长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -159,8 +159,8 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">密码最大长度：</label>
-              <div className="col-md-8">
+              <label className="col-md-5 col-form-label">密码最大长度：</label>
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -170,10 +170,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
+              <label className="col-md-5 col-form-label">
                 个人简介最大长度：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
@@ -183,10 +183,10 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-4 col-form-label">
-                新用户自动禁言时间（5分钟）：
+              <label className="col-md-5 col-form-label">
+                新用户禁言时间（5'）：
               </label>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <input
                   type="text"
                   required
