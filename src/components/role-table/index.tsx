@@ -119,7 +119,7 @@ function RoleTable() {
           <Table
             dataSource={data}
             columns={columns}
-            scroll={{ x: 868 }}
+            scroll={{ x: 650 }}
             onChange={handleChange}
           />
         </div>

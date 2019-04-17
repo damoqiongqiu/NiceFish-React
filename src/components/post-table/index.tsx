@@ -240,7 +240,7 @@ function PostTable() {
             <Table
               dataSource={data.items}
               columns={columns}
-              scroll={{ x: 600 }}
+              scroll={{ x: 550 }}
               onChange={handleChange}
             />
           </div>

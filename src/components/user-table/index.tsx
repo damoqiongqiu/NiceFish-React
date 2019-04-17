@@ -45,7 +45,6 @@ function UserTable() {
         
         <div>
           {options.map((option: any, index: any) => {
-            console.log(props)
             if(option.link){
               return (
                 <Tag key={index} className="mb-1">
@@ -136,7 +135,7 @@ function UserTable() {
           <Table
             dataSource={data}
             columns={columns}
-            scroll={{ x: 768 }}
+            scroll={{ x: 690 }}
             onChange={handleChange}
           />
         </div>

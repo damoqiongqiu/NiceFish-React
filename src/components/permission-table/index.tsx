@@ -24,7 +24,7 @@ function PermissionTable() {
     {
       title: "操作",
       dataIndex: "options",
-      width:150,
+      width:120,
       fixed:"right" as any,
       render: (options: any, props: any) => (
         <div>
@@ -111,7 +111,7 @@ function PermissionTable() {
             dataSource={data}
             columns={columns}
             onChange={handleChange}
-            scroll={{ x: 500 }}
+            scroll={{ x: 420 }}
           />
         </div>
       </div>

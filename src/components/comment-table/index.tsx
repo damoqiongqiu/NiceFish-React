@@ -154,7 +154,7 @@ function CommentTable() {
             <Table
               dataSource={data}
               columns={columns}
-              scroll={{ x: 768 }}
+              scroll={{ x: 690 }}
               onChange={handleChange}
             />
           </div>
