@@ -1,12 +1,16 @@
 import * as React from "react";
-import * as headImg from '../../assets/images/headline.png';
-import './index.scss';
+import * as headImgWide from "../../assets/images/headline-wide.png";
+import * as headImgNarrow from "../../assets/images/headline-narrow.png";
+import "./index.scss";
 
 function PostHeadline() {
   return (
     <div className="post-headline-container">
       <div className="img-container">
-        <img src={String(headImg)} alt="光刻机" />
+        <picture>
+          <source srcSet={headImgWide} media="(min-width:600px)" />
+          <img src={headImgNarrow} alt="光刻机" />
+        </picture>
       </div>
       <div className="post-headline-details">
         <a href="#">
@@ -15,12 +19,14 @@ function PostHeadline() {
         <ul className="user-info">
           <li>
             <a href="#">
-              <span className="lnr lnr-user" />作者
+              <span className="lnr lnr-user" />
+              作者
             </a>
           </li>
           <li>
             <a href="#">
-              <span className="lnr lnr-calendar-full" />2019-03-24
+              <span className="lnr lnr-calendar-full" />
+              2019-03-24
             </a>
           </li>
         </ul>
@@ -29,4 +35,4 @@ function PostHeadline() {
   );
 }
 
-export default PostHeadline
+export default PostHeadline;

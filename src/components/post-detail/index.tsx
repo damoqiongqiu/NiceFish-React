@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import * as headImg from "../../assets/images/headline.png";
+import * as headImgWide from "../../assets/images/headline-wide.png";
+import * as headImgNarrow from "../../assets/images/headline-narrow.png";
 function PostDetail(props: any) {
   console.log(props.match.params);
   // 这是路由参数，用id去后台请求数据,此处模拟数据
@@ -17,28 +18,31 @@ function PostDetail(props: any) {
   return (
     <div className="post-detail-container">
       <div className="img-container">
-        <img src={headImg} alt="光刻机" />
+        <picture>
+          <source srcSet={headImgWide} media="(min-width:600px)" />
+          <img src={headImgNarrow} alt="光刻机" />
+        </picture>
       </div>
       <div className="row">
         <div className="col-md-12">
-           <h3 className="mtb-16px">{postDetail.title}</h3> 
+          <h3 className="mtb-16px">{postDetail.title}</h3>
         </div>
       </div>
       <div className="row post-info ">
         <div className="col-md-3 col-xl-3">
-          <span className="fa fa-user"></span>
+          <span className="fa fa-user" />
           <span className="ml-5px">{postDetail.author}</span>
         </div>
         <div className=" col-md-8 col-xl-3">
-          <span className="fa fa-clock-o"></span>
+          <span className="fa fa-clock-o" />
           <span className="ml-5px">{postDetail.postTime}</span>
         </div>
         <div className="col-md-3 col-xl-3">
-          <span className="fa fa-hand-pointer-o"></span>
+          <span className="fa fa-hand-pointer-o" />
           <span className="ml-5px">{postDetail.readTimes}</span>
         </div>
         <div className="col-md-8 col-xl-3">
-          <span className="fa fa-comment"></span>
+          <span className="fa fa-comment" />
           <span className="ml-5px">{postDetail.commentTimes}</span>
         </div>
       </div>
