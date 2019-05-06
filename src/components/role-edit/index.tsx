@@ -46,6 +46,7 @@ function RoleEdit(props: any) {
         targetKeys.push(value.key);
       }
     });
+    updateRole({...role,permission:targetKeys})
     updatetargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
