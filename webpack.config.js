@@ -1,7 +1,6 @@
 const path = require("path");
 const webpack = require("webpack"); 
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成HTML文件
-// const eslintFormatter = require("react-dev-utils/eslintFormatter");
 
 module.exports = {
   entry: path.join(__dirname, "src/index.tsx"), //入口文件
@@ -16,37 +15,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loader: "babel-loader",
-        include: /src/,
-        exclude: /node_modules/,
-        // options: {
-        //   plugins: [
-        //     [
-        //       "import",
-        //       { libraryName: "antd", libraryDirectory: "es", style: "css" }
-        //     ]
-        //   ], //antd组件按需引入
-        //   cacheDirectory: true
-        // }
-      },
-      {
         test: /\.tsx?$/,
         loader: "ts-loader",
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(js|jsx)$/,
-        enforce: "pre",
-        // use: [
-        //   {
-        //     options: {
-        //       formatter: eslintFormatter,
-        //       eslintPath: require.resolve("eslint")
-        //     },
-        //     loader: require.resolve("eslint-loader")
-        //   }
-        // ],
         exclude: /node_modules/
       },
       {
@@ -61,7 +31,12 @@ module.exports = {
       {
         test: /\.(png|jpg|gif)$/i,
         use: [
-          'file-loader'
+          {
+            loader:'url-loader',
+            options:{
+              limit:10000
+            }
+          }
         ]
       },
       {
@@ -70,7 +45,14 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|tff|eot|ttf)$/i,
-        use: ['file-loader']
+        use: [
+          {
+            loader:'url-loader',
+            options:{
+              limit:10000
+            }
+          }
+        ]
       }
     ]
   },

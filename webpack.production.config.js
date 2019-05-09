@@ -24,15 +24,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader"
-          }
-        ]
-      },
-      {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
@@ -50,7 +41,10 @@ module.exports = {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader:'url-loader',
+            options:{
+              limit:10000
+            }
           }
         ]
       },
@@ -62,7 +56,10 @@ module.exports = {
         test: /\.(woff|woff2|tff|eot|ttf)()/i,
         use: [
           {
-            loader: "file-loader"
+            loader:'url-loader',
+            options:{
+              limit:10000
+            }
           }
         ]
       },

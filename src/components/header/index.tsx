@@ -3,7 +3,7 @@ import{message} from 'antd'
 import { useState, Fragment ,useEffect} from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import storageService from '../../service/storage.service';
-import * as nicefish from "../../assets/images/nice-fish.png";
+import * as  nicefish from "../../assets/images/nice-fish.png";
 
 function Header(props:any) {
   const [active, updateActive] = useState(false);
