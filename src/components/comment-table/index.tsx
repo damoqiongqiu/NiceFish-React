@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Table } from "antd";
-function CommentTable() {
+export function CommentTable() {
   const [filteredInfo, setFilterdInfo] = useState({} as any);
   const [sortedInfo, setSortedInfo] = useState({} as any);
   const columns = [
@@ -163,4 +163,4 @@ function CommentTable() {
     </div>
   );
 }
-export default CommentTable;
+export{ CommentTable as default} from './'

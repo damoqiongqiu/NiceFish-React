@@ -1,0 +1,1 @@
+{"version":3,"file":"18.bundle.js","sources":["webpack:///./src/validator/permission-form-validator.ts"],"sourcesContent":["export function permissionFormValidator(values:any){\n    let errors:any = {};\n    if (!values.name) {\n      errors.name = '权限名称为必填项';\n    } \n    return errors;\n}"],"mappings":"AAAA","sourceRoot":""}

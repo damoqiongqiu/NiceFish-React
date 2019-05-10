@@ -72,3 +72,11 @@ table thead th,table tbody td{
   min-height: 500px;
   background: url('assets/images/404.svg') no-repeat center / contain
 }
+.loading-container{
+   position: fixed;
+   top:0;
+   left:0;
+   right: 0;
+   bottom:0;
+   background: rgba(0,0,0,0.05);
+}

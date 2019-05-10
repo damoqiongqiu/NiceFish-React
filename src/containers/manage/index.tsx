@@ -2,7 +2,7 @@ import * as React from "react";
 import {RouteWithSubRoutes} from '../index';
 import StorageService from '../../service/storage.service';
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
-function Manage(props:any) {
+export function Manage(props:any) {
   const user = StorageService.getKey('user');
   return (
     <div className="container mtb-16px">
@@ -55,4 +55,4 @@ function Manage(props:any) {
     </div>
   );
 }
-export default Manage;
+export {Manage as default} from './';
