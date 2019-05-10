@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成HTML文件
 module.exports = {
   entry: path.join(__dirname, "src/index.tsx"), //入口文件
   output: {
-    filename: "[name].bundle.js" //输出文件名
+    filename: "[name].bundle.js" ,//输出文件名
+    chunkFilename:"[name].bundle.js",
   },
   mode: "development",
   devtool: "cheap-module-source-map",

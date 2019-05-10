@@ -1,10 +1,12 @@
-var pkg = require("./package.json");
-var path = require("path");
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const pkg = require("./package.json");
+const path = require("path");
+const webpack = require("webpack");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const copyWebPackPlugin = require("copy-webpack-plugin");
-var CleanWebpackPlugin = require("clean-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -14,9 +16,12 @@ module.exports = {
   },
   output: {
     path: __dirname + "/docs",
-    filename: "[name].[chunkhash:8].js"
+    filename: "[name].bundle.js",
+    chunkFilename:"[name].bundle.js",
   },
-
+  optimization: {
+         minimizer:[new TerserJSPlugin({}),new OptimizeCssAssetsPlugin({})]
+       },
   resolve: {
     extensions: [".js", ".jsx", ".tsx", ".ts",'.png']
   },
