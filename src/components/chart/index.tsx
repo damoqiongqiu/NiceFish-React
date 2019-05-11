@@ -2,7 +2,7 @@ import * as React from "react";
 import { useRef, useEffect } from "react";
 import Color from "../../utils/color.util";
 import * as echarts from "echarts";
-export function Chart() {
+function Chart() {
   const pie = useRef(null);
   const bar = useRef(null);
   const line = useRef(null);
@@ -235,4 +235,5 @@ export function Chart() {
     </div>
   );
 }
-export {Chart as default} from './';
+export default Chart 
+

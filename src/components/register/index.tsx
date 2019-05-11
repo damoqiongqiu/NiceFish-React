@@ -68,7 +68,7 @@ function Register(props:any) {
   },[errors])
   return (
     
-      <div className="container d-flex align-items-center">
+      <div className="container d-flex align-items-center login-container">
         <div className="card login-panel bg-white">
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="bg-red pd-5-10px font-size-24">魚</span>
