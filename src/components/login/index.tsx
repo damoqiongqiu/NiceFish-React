@@ -1,11 +1,9 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Button } from "antd";
 import Common from "../../utils/common.util";
 import {withRouter} from 'react-router-dom';
 import storageService from '../../service/storage.service';
 import {loginFormValidator} from '../../validator/login-form-validator';
-import "./index.scss";
 
 function Login(props:any) {
   const [namefill, updateNamefill] = useState("");
@@ -64,7 +62,7 @@ function Login(props:any) {
   },[errors])
   return (
   
-      <div className="container d-flex align-items-center">
+      <div className="container d-flex align-items-center login-container">
         <div className="card login-panel bg-white">
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="bg-red pd-5-10px font-size-24">魚</span>

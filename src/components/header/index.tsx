@@ -1,6 +1,6 @@
 import * as React from "react";
 import{message} from 'antd'
-import { useState, Fragment ,useEffect} from "react";
+import { useState, Fragment} from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import storageService from '../../service/storage.service';
 import * as  nicefish from "../../assets/images/nice-fish.png";
@@ -54,7 +54,7 @@ function Header(props:any) {
               <NavLink to="/write" onClick={()=>onToggle()}>写作</NavLink>
             </li>
           </ul>
-          <ul className={`nav navbar-nav ml-md-auto flex-row `}>
+          <ul className={`navbar-nav ml-md-auto flex-row `}>
            {
 
             !user? 
@@ -95,4 +95,4 @@ function Header(props:any) {
     </div>
   );
 }
-export default  withRouter(Header);
+export default withRouter(Header);

@@ -80,3 +80,72 @@ table thead th,table tbody td{
    bottom:0;
    background: rgba(0,0,0,0.05);
 }
+// 这是login 和register 的通用样式
+.card{
+  box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.login-panel {
+  width: 350px;
+  padding: 50px 20px;
+  margin: 30px auto 30px auto;
+  .col-12 {
+    padding: 25px 40px;
+  }
+}
+
+.login-container{
+  background: url('assets/images/login.svg');
+}
+
+.inputfiled {
+  position: relative;
+  flex: 1;
+  .input-text {
+    border-width: 0px;
+    background: transparent no-repeat;
+    background-image: linear-gradient(90deg, #00b4cf, #00b4cf),
+      linear-gradient(90deg, #bdbdbd, #bdbdbd);
+    background-position: 50% 100%, 50% 100%;
+    background-size: 0 2px, 100% 2px;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    outline: medium none;
+    color: #00b4cf;
+    padding: 2px;
+    &.error{
+    
+      & + label{
+        color: #b7302c!important;
+      }
+    }
+    &:focus {
+      border-width: 0;
+      background-size: 100% 2px, 100% 1px;
+      outline: none;
+      padding-bottom: 2px;
+      & ~ label{
+          top: -20px;
+          font-size: 12px;
+          color: #00b4cf;
+
+      }
+    }
+    &:-webkit-autofill ~ label {
+      top:-20px;
+      font-size:12px;
+      color:#00b4cf;
+    }
+    &.ui-state-filled ~ label{
+      top: -20px;
+          font-size: 12px;
+          color: #00b4cf;
+    }
+  }
+  label {
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    color: #999;
+    transition: .3s ease all;
+    pointer-events: none;
+  }
+}
