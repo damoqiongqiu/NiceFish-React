@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import BraftEditor from "braft-editor";
 import "braft-editor/dist/index.css";
 function Write() {
-  const [editorState, updateEditorState] = useState(null);
+  const [editorState, updateEditorState] = useState();
   function handleEditorChange(editorState: any) {
     updateEditorState(editorState);
   }

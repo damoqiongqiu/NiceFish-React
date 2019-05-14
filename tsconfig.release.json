@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "rootDir": "src",
+      "outDir": "./components",
+      "esModuleInterop": true,
+      "lib": ["es5", "es2015", "es2016", "dom"],
+      "module": "esnext",
+      "target": "es5",
+      "declaration": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "types":["react","react-dom"],
+    },
+    "include": ["./src/**/*"]
+  }
+  

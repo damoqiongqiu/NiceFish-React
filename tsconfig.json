@@ -2,6 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     "rootDir": "src",
+    "baseUrl": "./",
     "esModuleInterop": true,
     "lib": ["es5", "es2015", "es2016", "dom"],
     "module": "esnext",

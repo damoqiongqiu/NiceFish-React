@@ -1,1 +1,0 @@
-{"version":3,"file":"20.bundle.js","sources":["webpack:///./src/validator/role-form-validator.ts"],"sourcesContent":["export function roleFormValidator(values:any){\n    let errors:any = {};\n    if (!values.name) {\n      errors.name = '角色名称为必填项';\n    } \n    return errors;\n}"],"mappings":"AAAA","sourceRoot":""}
