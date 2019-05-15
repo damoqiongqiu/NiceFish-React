@@ -4,9 +4,9 @@
   "description": "nicefish-react",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server  --env=dev",
+    "start": "webpack-dev-server  --env=dev  --host 127.0.0.1",
     "build": "webpack --env=prod --progress --colors",
-    "bundle": " tsc -p tsconfig.release.json"
+    "bundle": "tsc -p tsconfig.release.json"
   },
   "repository": {
     "type": "git",
