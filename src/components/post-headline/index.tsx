@@ -1,22 +1,22 @@
 import * as React from "react";
 import * as headImgWide from "../../assets/images/headline-wide.png";
 import * as headImgNarrow from "../../assets/images/headline-narrow.png";
-import "./index.scss";
+import styles from "./index.scss";
 
 function PostHeadline() {
   return (
-    <div className="post-headline-container">
-      <div className="img-container">
+    <div className={styles['post-headline-container']}>
+      <div className={'img-container'}>
         <picture>
           <source srcSet={headImgWide} media="(min-width:600px)" />
           <img src={headImgNarrow} alt="光刻机" />
         </picture>
       </div>
-      <div className="post-headline-details">
+      <div className={styles['post-headline-details']}>
         <a href="#">
           <h3>光刻机技术需要长时间的技术积累才能做</h3>
         </a>
-        <ul className="user-info">
+        <ul className={styles['user-info']}>
           <li>
             <a href="#">
               <span className="lnr lnr-user" />
