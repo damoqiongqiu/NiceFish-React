@@ -8,7 +8,7 @@ module.exports = merge(commonConfig, {
        rules:[
         {
             test: /\.scss|css$/,
-            exclude:[path.join(process.cwd(),'src/index.scss')],
+            exclude:[path.join(process.cwd(),'src/index.scss'),/node_modules/],
             use: [
               { loader: "style-loader" },
               { loader: "css-loader",options:{
@@ -23,7 +23,7 @@ module.exports = merge(commonConfig, {
         },
         {
             test: /\.scss|css$/,
-            include:[path.join(process.cwd(),'src/index.scss')],
+            include:[path.join(process.cwd(),'src/index.scss'),/node_modules/],
             use: [
               { loader: "style-loader" },
               { loader: "css-loader"},
