@@ -26,14 +26,14 @@ function Header(props:any) {
       className="bd-navbar main-nav navbar no-padding text-white"
       role="navigation"
     >
-      <div className="container justify-content-start no-padding">
+      <div className="container-xl justify-content-start no-padding">
         <div className="d-flex col-sm-12 col-md-auto no-gutters">
           <div className="d-flex col-sm">
             <a className="navbar-brand-my ">
               <img width="45" src={nicefish} />
             </a>
             <a
-              className="d-flex align-items-center d-md-none  ml-sm-auto"
+              className="d-flex align-items-center d-md-none  ml-auto"
               onClick={() => onToggle()}
             >
               <i className="fa fa-bars font-size-30 text-white" />
@@ -42,8 +42,8 @@ function Header(props:any) {
         </div>
 
         <div
-          className={`d-flex col d-sm-none d-md-flex collapse ${
-            active ? "d-sm-flex" : ""
+          className={`col d-none d-md-flex collapse ${
+            active ? "d-flex" : ""
           }`}
         >
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>

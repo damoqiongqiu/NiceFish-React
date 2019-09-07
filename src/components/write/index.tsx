@@ -21,7 +21,7 @@ function Write() {
     // })
   }, []);
   return (
-    <div className="container write-post-container mtb-16px">
+    <div className="container-xl write-post-container mtb-16px">
       <div className="row no-gutters">
         <div className="col-md-12">
           <form role="form">
