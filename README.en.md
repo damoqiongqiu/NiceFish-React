@@ -1,3 +1,5 @@
+[简体中文](README.md) |  English  
+
 <p align="center">
     <img width="150" src="./src/assets/images/nice-fish.png">
 </p>
@@ -9,7 +11,7 @@ NiceFish (Mermaid) is a series of projects, the goal is to demonstrate the devel
 </div>
 
 
-#### Installation
+## Installation
 Open your command line terminal and execute the following command:
 
 - git clone https://gitee.com/mumu-osc/NiceFish-React.git 
@@ -17,22 +19,20 @@ Open your command line terminal and execute the following command:
 - npm i 
 - npm start 
 
-#### Instructions
+## Instructions
 
 This project is a React version of NiceFish, using React Hooks version 16.8.3, developed using TypeScript, the Ant Design component library, and Bootstrap v4.2.1.
 
-#### Online demo
+## Online demo
 
 
-- NiceFish Demo address on Alibaba Cloud: http://47.104.13.149:4200
-- NiceFish-React Demo address on gitee：https://mumu-osc.gitee.io/nicefish-react
-- OpenWMS Demo address on gitee：http://47.104.80.251:4200
-- OpenWMS Demo address on gitee：https://mumu-osc.gitee.io/openwms-frontend
+- NiceFish Demo address on Alibaba Cloud: http://118.25.136.164
+- NiceFish-React Demo address on gitee：https://yanyunchangfeng.gitee.io/nicefish-react  
 - NiceFish-ionic：https://damoqiongqiu.github.io/NiceFish-ionic/
 
-#### Series project
+## Series project
 
-*  NiceFish: Mermaid, this is a microblogging system with a front end based on Angular 7.0 + PrimeNG 7.1.0.
+*  NiceFish: Mermaid, this is a microblogging system with a front end based on Angular 7.0 + PrimeNG 7.1.0. http://gitee.com/mumu-osc/NiceFish/ 
 *  NiceFish-React: This is the implementation of the React version, the interface looks exactly the same. React Hooks version 16.8.3, using TypeScript, Ant Design component library, and Bootstrap v4.2.1 development.
 *  NiceBlogElectron: https://github.com/damoqiongqiu/NiceBlogElectron, an Electron-based desktop project that packages NiceFish with Electron as a desktop-running program. This is provided by the front-end friends of ZTE . I have a fork and there are several version numbers of the node module. If you are researching how to use Electron to develop desktop applications, please refer to this project.
 

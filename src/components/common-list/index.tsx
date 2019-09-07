@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { commentFormValidator } from '../../validator/comment-form-validator';
-import styles from './index.scss';
-console.log(styles)
+import './index.scss';
 function CommonList() {
   const [commentdata,setCommentData] =useState({comment:''});
   const [errors, setErrors] = useState({} as any);
@@ -60,7 +59,7 @@ function CommonList() {
     setformValid(isDisabled);
   }, [errors]);
   return (
-    <div className={`${styles['add-component-container']} mt-16px`}>
+    <div className="add-component-container mt-16px">
       <div className="row no-gutters">
         <div className="col-md-12">
           <form onSubmit={onSubmit}>
@@ -87,7 +86,7 @@ function CommonList() {
         <div className="col-md-12">
           {comments.map((comment, index) => {
             return (
-              <div className={styles['comment-item-container']} key={index}>
+              <div className="comment-item-container" key={index}>
                 <h5>{comment.content}</h5>
                 <p>
                   {comment.username} {comment.date}

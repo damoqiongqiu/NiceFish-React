@@ -5,7 +5,7 @@ import AppRoute from "../../router/approute";
 
 function Home() {
   return (
-    <div className="container mtb-16px ">
+    <div className="container-xl mtb-16px ">
       <div className="row">
         <div className="col-md-7 col-lg-8 col-xl-9">
           <AppRoute/>

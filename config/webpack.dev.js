@@ -8,29 +8,13 @@ module.exports = merge(commonConfig, {
        rules:[
         {
             test: /\.scss|css$/,
-            exclude:[path.join(process.cwd(),'src/index.scss'),/node_modules/],
             use: [
               { loader: "style-loader" },
-              { loader: "css-loader",options:{
-                  modules:true,
-                  context: path.join(process.cwd(), 'src/components'),
-                  localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                }
-              },
+              { loader: "css-loader" },
               { loader: "postcss-loader"},
               { loader: "sass-loader" }
             ]
-        },
-        {
-            test: /\.scss|css$/,
-            include:[path.join(process.cwd(),'src/index.scss'),/node_modules/],
-            use: [
-              { loader: "style-loader" },
-              { loader: "css-loader"},
-              { loader: "postcss-loader"},
-              { loader: "sass-loader" }
-            ]
-        }
+          }
        ]
     },
     devServer: {
@@ -38,7 +22,7 @@ module.exports = merge(commonConfig, {
         open: true,
         hot: true,
         historyApiFallback: true, //不跳转，在开发单页应用时非常有用,它依赖于HTML5 history API, 如果设置为true,所有的跳转，将指向index.html
-        contentBase: path.join(process.cwd(), "public"), //本地服务器所加载的页面所在的目录
+        contentBase: path.join(process.cwd(), "dist"), //本地服务器所加载的页面所在的目录
         proxy: {
             //凡是 '/api' 开头的http请求，都会被代理到localhost:3000上，实际上后端做了一次转发 ，后端去3000端口拿到数据后，又返回的，这里并不是真正的服务，真正的服务在3000端口上
             "/api": {

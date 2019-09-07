@@ -5,7 +5,7 @@ import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 function Manage(props:any) {
   const user = StorageService.getKey('user');
   return (
-    <div className="container mtb-16px">
+    <div className="container-xl mtb-16px">
       <div className="row">
         <div className="col-md-9 col-lg-9">
 
