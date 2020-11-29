@@ -4,29 +4,30 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Home from "./home";
 import Exception404 from "../components/exception/404";
-import{Spin} from 'antd'
+import{Spin} from 'antd';
+import ErrorBoundary from './ErrorBoundary'
 import {
   HashRouter as Router,
   Route,
   Switch,
   Redirect
 } from "react-router-dom";
-const Manage = lazy(()=> import('./manage'));
-const Login = lazy(()=> import('../components/login'));
-const Register = lazy(()=> import('../components/register'));
-const Forgot = lazy(()=> import('../components/forgot'));
-const Write = lazy(()=> import('../components/write'));
-const PostTable = lazy(()=> import('../components/post-table'));
-const Chart = lazy(()=> import('../components/chart'));
-const CommentTable = lazy(()=> import('../components/comment-table'));
-const Profile = lazy(()=> import('../components/profile'));
-const RoleTable = lazy(()=> import('../components/role-table'));
-const RoleEdit = lazy(()=> import('../components/role-edit'));
-const Sysparam = lazy(()=> import('../components/sysparam'));
-const PermissionTable = lazy(()=> import('../components/permission-table'));
-const PermissionEdit = lazy(()=> import('../components/permission-edit'));
-const UserTable = lazy(()=> import('../components/user-table'));
-const PostDetailMain = lazy(()=> import('../components/post-detail-main'));
+const Manage = lazy(()=> import(/*webpackChunkName:'manage'*/'./manage'));
+const Login = lazy(()=> import(/*webpackChunkName:'login'*/'../components/login'));
+const Register = lazy(()=> import(/*webpackChunkName:'register'*/'../components/register'));
+const Forgot = lazy(()=> import(/*webpackChunkName:'forgot'*/'../components/forgot'));
+const Write = lazy(()=> import(/*webpackChunkName:'write'*/'../components/write'));
+const PostTable = lazy(()=> import(/*webpackChunkName:'post-table'*/'../components/post-table'));
+const Chart = lazy(()=> import(/*webpackChunkName:'register'*/'../components/chart'));
+const CommentTable = lazy(()=> import(/*webpackChunkName:'comment-table'*/'../components/comment-table'));
+const Profile = lazy(()=> import(/*webpackChunkName:'profile'*/'../components/profile'));
+const RoleTable = lazy(()=> import(/*webpackChunkName:'role-table'*/'../components/role-table'));
+const RoleEdit = lazy(()=> import(/*webpackChunkName:'role-edit'*/'../components/role-edit'));
+const Sysparam = lazy(()=> import(/*webpackChunkName:'sysparam'*/'../components/sysparam'));
+const PermissionTable = lazy(()=> import(/*webpackChunkName:'permission-table'*/'../components/permission-table'));
+const PermissionEdit = lazy(()=> import(/*webpackChunkName:'permission-edit'*/'../components/permission-edit'));
+const UserTable = lazy(()=> import(/*webpackChunkName:'user-table'*/'../components/user-table'));
+const PostDetailMain = lazy(()=> import(/*webpackChunkName:'post-detail-main'*/'../components/post-detail-main'));
 const routes = [
   {
     path: "/post",
@@ -151,6 +152,7 @@ function App() {
       <Router>
         <Header />
         <div className="main">
+        <ErrorBoundary>
         <Suspense fallback={
           <div className="loading-container d-flex align-items-center justify-content-center">
             <Spin size="large"/>
@@ -164,6 +166,7 @@ function App() {
             ))}
           </Switch>
          </Suspense>
+         </ErrorBoundary>
         </div>
         <Footer />
       </Router>

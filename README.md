@@ -40,7 +40,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
  
 ## 关联QQ群
 
-<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e" class="list-group-item"><i class="fa fa-qq" aria-hidden="true"></i> React Family photo-1 :701149807 </a>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e" class="list-group-item"><i class="fa fa-qq" aria-hidden="true"></i> React 全家福一区 :701149807 </a>
 
 ## 开源许可证
 
