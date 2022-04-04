@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import * as headImgWide from "../../assets/images/headline-wide.png";
-import * as headImgNarrow from "../../assets/images/headline-narrow.png";
+import headImgWide from "../../assets/images/headline-wide.png";
+import headImgNarrow from "../../assets/images/headline-narrow.png";
 function PostDetail(props: any) {
   console.log(props.match.params);
   // 这是路由参数，用id去后台请求数据,此处模拟数据

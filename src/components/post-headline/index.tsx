@@ -1,6 +1,6 @@
 import * as React from "react";
-import * as headImgWide from "../../assets/images/headline-wide.png";
-import * as headImgNarrow from "../../assets/images/headline-narrow.png";
+import headImgWide from "../../assets/images/headline-wide.png";
+import headImgNarrow from "../../assets/images/headline-narrow.png";
 import "./index.scss";
 
 function PostHeadline() {

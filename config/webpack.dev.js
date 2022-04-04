@@ -1,34 +1,22 @@
-const merge = require('webpack-merge');
-const path = require('path')
 const commonConfig = require('./webpack.common');
-
+const path = require('path')
+const { merge } = require('webpack-merge');
+// 区分环境
+// . --mode 用来设置模块内的process.env.NODE_ENV
+// . --env  用来设置webpack配置文件的函数参数
+// . cross-env用来设置node环境的 process.env.NODE_ENV
+// . DefinePlugin 用来设置模块内的全局变量
 module.exports = merge(commonConfig, {
-    devtool: "cheap-module-source-map",
-    module:{
-       rules:[
-        {
-            test: /\.scss|css$/,
-            use: [
-              { loader: "style-loader" },
-              { loader: "css-loader" },
-              { loader: "postcss-loader"},
-              { loader: "sass-loader" }
-            ]
-          }
-       ]
+    devtool: 'eval-cheap-module-source-map',
+    mode: process.env.NODE_ENV,
+    cache: {
+        // 不要使用cnpm 来安装模块 会有问题
+        type: 'memory',// memory filesystem,  // 默认是在内存中存储
+        // cacheDirectory:path.resolve(__dirname,'../node_modules/.cache/webpack') // 默认缓存目录
     },
     devServer: {
-        port: 3001,
-        open: true,
-        hot: true,
-        historyApiFallback: true, //不跳转，在开发单页应用时非常有用,它依赖于HTML5 history API, 如果设置为true,所有的跳转，将指向index.html
-        contentBase: path.join(process.cwd(), "dist"), //本地服务器所加载的页面所在的目录
-        proxy: {
-            //凡是 '/api' 开头的http请求，都会被代理到localhost:3000上，实际上后端做了一次转发 ，后端去3000端口拿到数据后，又返回的，这里并不是真正的服务，真正的服务在3000端口上
-            "/api": {
-                target: "http://localhost:3000",
-                secure: false
-            }
-        }
+        port: 8888,
+        compress: true, //启动压缩 gzip
+        open: true,// 启动之后自动打开浏览器
     }
 })

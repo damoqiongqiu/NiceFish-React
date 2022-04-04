@@ -2,20 +2,34 @@
   "compilerOptions": {
     "jsx": "react",
     "rootDir": "src",
-    "baseUrl": "./",
     "esModuleInterop": true,
-    "lib": ["es5", "es2015", "es2016", "dom"],
+    "lib": [
+      "es5",
+      "es2015",
+      "es2016",
+      "dom"
+    ],
     "module": "esnext",
     "target": "es5",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "types":["react","react-dom"],
-    "outDir": "build"
+    "baseUrl": ".",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*"
+  ]
 }
