@@ -1,24 +1,18 @@
 const commonConfig = require('./webpack.common');
 const webpack = require('webpack')
 const path = require('path');
-const merge = require('webpack-merge');
-const pkg = require("../package.json");
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = merge(commonConfig, {
-    mode:"production",
-    entry: {
-        app: path.resolve(process.cwd(), "src/index.tsx"),
-        // 将 第三方依赖(node_modules中的) 单独打包
-        vendor: Object.keys(pkg.dependencies)
-    },
-    output:{
-       path:path.join(process.cwd(), 'docs'),
-    },
+    // devtool: 'cheap-module-source-map',
     optimization: {
-        minimizer: [new TerserJSPlugin({}), new OptimizeCssAssetsPlugin({})]
+        minimizer: [new TerserJSPlugin({})]
+    },
+    cache: {
+        type: 'filesystem',// memory filesystem,  // 默认是在内存中存储
+        cacheDirectory: path.resolve(__dirname, '../node_modules/.cache/webpack') // 默认缓存目录
     },
     module: {
         rules: [
@@ -27,7 +21,6 @@ module.exports = merge(commonConfig, {
                 use: [
                     { loader: MiniCssExtractPlugin.loader },
                     "css-loader",
-                    "postcss-loader",
                     "sass-loader"
                 ]
             }
@@ -37,10 +30,8 @@ module.exports = merge(commonConfig, {
         new webpack.BannerPlugin("Copyright By yanyunchangfeng"),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[name].css"
+            filename: "[name].[contenthash].css",
+            chunkFilename: "[name].[contenthash].css"
         })
     ]
 })

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Transfer, Upload, Button, Icon } from "antd";
+import { Transfer, Upload, Button } from "antd";
+import { UploadOutlined } from '@ant-design/icons';
 import "./index.scss";
 
 function Profile(props: any) {
@@ -128,8 +129,7 @@ function Profile(props: any) {
                       )}
                       {item.controlType === "file" ? (
                         <Upload>
-                          <Button>
-                            <Icon type="upload" />
+                          <Button icon={<UploadOutlined />}>
                             上传
                           </Button>
                         </Upload>
