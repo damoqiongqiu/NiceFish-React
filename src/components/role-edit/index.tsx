@@ -1,9 +1,13 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import {
+  // withRouter
+  useNavigate
+} from "react-router-dom";
 import { roleFormValidator } from "../../validator/role-form-validator";
 import { Transfer } from "antd";
 function RoleEdit(props: any) {
+  let navigate = useNavigate();
   const [role, updateRole] = useState({
     name: "",
     permission: [] as any
@@ -46,7 +50,7 @@ function RoleEdit(props: any) {
         targetKeys.push(value.key);
       }
     });
-    updateRole({...role,permission:targetKeys})
+    updateRole({ ...role, permission: targetKeys })
     updatetargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
@@ -81,7 +85,8 @@ function RoleEdit(props: any) {
     }
   }
   function cancel() {
-    props.history.goBack();
+    // props.history.goBack();
+    navigate(-1)
   }
   useEffect(() => {
     const errors = roleFormValidator(role);
@@ -152,4 +157,4 @@ function RoleEdit(props: any) {
     </div>
   );
 }
-export default withRouter(RoleEdit);
+export default RoleEdit;

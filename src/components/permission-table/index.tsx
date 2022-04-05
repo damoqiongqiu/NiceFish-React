@@ -3,29 +3,24 @@ import { useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
 function PermissionTable() {
-  const [filteredInfo, setFilterdInfo] = useState({} as any);
-  const [sortedInfo, setSortedInfo] = useState({} as any);
   const columns = [
     {
       title: "序号",
       dataIndex: "key",
-      filteredValue: filteredInfo.key || null,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
       onFilter: (value: any, record: any) => record.key.includes(value),
       sorter: (a: any, b: any) => a.key - b.key,
-      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
     },
     {
       title: "名称",
       dataIndex: "title",
       sorter: (a: any, b: any) => a.title.localeCompare(b.title),
-      sortOrder: sortedInfo.columnKey === "title" && sortedInfo.order
     },
     {
       title: "操作",
       dataIndex: "options",
-      width:120,
-      fixed:"right" as any,
+      width: 120,
+      fixed: "right" as any,
       render: (options: any, props: any) => (
         <div>
           {options.map((option: any, index: any) => {
@@ -71,11 +66,6 @@ function PermissionTable() {
       ]
     }
   ]);
-  function handleChange(pagination: any, filters: any, sorter: any) {
-    console.log(pagination, filters, sorter);
-    setFilterdInfo(filters);
-    setSortedInfo(sorter);
-  }
   return (
     <div className="permission-table-container">
       <form className="form-vertical" role="form">
@@ -110,7 +100,6 @@ function PermissionTable() {
           <Table
             dataSource={data}
             columns={columns}
-            onChange={handleChange}
             scroll={{ x: 420 }}
           />
         </div>

@@ -1,38 +1,51 @@
-import * as React from "react";
-import {RouteWithSubRoutes} from '../index';
+import React, { useEffect } from "react";
+import { RouteWithSubRoutes } from '../index';
 import StorageService from '../../service/storage.service';
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
-function Manage(props:any) {
+import Chart from '../../components/chart'
+import Home from "../home";
+import {
+  Route,
+  Routes,
+  // Switch,
+  // Redirect,
+  // NavLink,
+  useNavigate,
+  Link as NavLink
+} from "react-router-dom";
+function Manage(props: any) {
   const user = StorageService.getKey('user');
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!user) navigate('/')
+  }, [])
   return (
     <div className="container-xl mtb-16px">
       <div className="row">
         <div className="col-md-9 col-lg-9">
 
-          <Switch>
+          <Routes>
             <Route
-              exact
-              path="/manage"
-              render={() => <Redirect to="/manage/chart" />}
+              // exact
+              path="*"
+              // render={() => <Redirect to="/manage/chart" />}
+              element={<Chart />}
             />
-            {props.routes.map((route:any, index:number) => {
-              return user? <RouteWithSubRoutes key={index} {...route} />:<Redirect to="/" key={index}/>;
-            })}
-            
-          </Switch>
+            {props.routes?.map((route: any, index: number) => (RouteWithSubRoutes(route, index)))}
+
+          </Routes>
         </div>
         <div className="col-md-3 text-align-center sm-mt-16px">
           <div className="list-group">
-            <NavLink to="/manage/chart" className="list-group-item">
+            <NavLink to="chart" className="list-group-item">
               统计图表
             </NavLink>
-            <NavLink to="/manage/post-table" className="list-group-item">
+            <NavLink to="post-table" className="list-group-item">
               文章管理
             </NavLink>
-            <NavLink to="/manage/comment-table" className="list-group-item">
+            <NavLink to="comment-table" className="list-group-item">
               评论管理
             </NavLink>
-            <NavLink to="/manage/profile" className="list-group-item">
+            <NavLink to="profile" className="list-group-item">
               个人设置
             </NavLink>
           </div>
@@ -51,6 +64,7 @@ function Manage(props:any) {
             </NavLink>
           </div>
         </div>
+        {/* <Outlet /> */}
       </div>
     </div>
   );

@@ -2,38 +2,31 @@ import * as React from "react";
 import { useState } from "react";
 import { Table } from "antd";
 function CommentTable() {
-  const [filteredInfo, setFilterdInfo] = useState({} as any);
-  const [sortedInfo, setSortedInfo] = useState({} as any);
   const columns = [
     {
       title: "序号",
       dataIndex: "key",
-      filteredValue: filteredInfo.key || null,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
       onFilter: (value: any, record: any) => record.key.includes(value),
       sorter: (a: any, b: any) => a.key - b.key,
-      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
     },
     {
       title: "内容",
       dataIndex: "content",
       sorter: (a: any, b: any) => a.content.length - b.content.length,
-      sortOrder: sortedInfo.columnKey === "content" && sortedInfo.order
     },
     {
       title: "用户",
       dataIndex: "userName",
-      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
-      sortOrder: sortedInfo.columnKey === "userName" && sortedInfo.order
+      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName)
     },
     {
       title: "日期",
       dataIndex: "time",
-      width:182,
-      fixed:"right" as any,
+      width: 182,
+      fixed: "right" as any,
       sorter: (a: any, b: any) =>
-        new Date(a.time).getTime() - new Date(b.time).getTime(),
-      sortOrder: sortedInfo.columnKey === "time" && sortedInfo.order
+        new Date(a.time).getTime() - new Date(b.time).getTime()
     }
   ];
 
@@ -123,11 +116,6 @@ function CommentTable() {
       time: "2004-07-15 16:22:58"
     }
   ]);
-  function handleChange(pagination: any, filters: any, sorter: any) {
-    console.log(pagination, filters, sorter);
-    setFilterdInfo(filters);
-    setSortedInfo(sorter);
-  }
   return (
     <div className="comment-table-container">
       <form className="form-vertical" role="form">
@@ -155,7 +143,6 @@ function CommentTable() {
               dataSource={data}
               columns={columns}
               scroll={{ x: 690 }}
-              onChange={handleChange}
             />
           </div>
         </div>
@@ -163,5 +150,5 @@ function CommentTable() {
     </div>
   );
 }
-export default CommentTable 
+export default CommentTable
 

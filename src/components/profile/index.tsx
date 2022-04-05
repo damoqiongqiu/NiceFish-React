@@ -1,12 +1,16 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import {
+  // withRouter
+  useNavigate
+} from "react-router-dom";
 import { Transfer, Upload, Button } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import "./index.scss";
 
 function Profile(props: any) {
-  console.log(props.match.params);
+  let navigate = useNavigate();
+  // console.log(props.match.params);
   const formControls = [
     {
       controlType: "image",
@@ -101,7 +105,8 @@ function Profile(props: any) {
     updatetargetKeys(targetKeys);
   }
   function cancel() {
-    props.history.goBack();
+    // props.history.goBack();
+    navigate(-1)
   }
   useEffect(() => {
     getMock();
@@ -196,4 +201,4 @@ function Profile(props: any) {
     </div>
   );
 }
-export default withRouter(Profile);
+export default Profile;

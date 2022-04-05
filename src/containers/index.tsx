@@ -9,8 +9,10 @@ import ErrorBoundary from './ErrorBoundary'
 import {
   HashRouter as Router,
   Route,
-  Switch,
-  Redirect
+  // Switch,
+  Routes,
+  Outlet,
+  // Redirect
 } from "react-router-dom";
 const Manage = lazy(() => import(/*webpackChunkName:'manage'*/'./manage'));
 const Login = lazy(() => import(/*webpackChunkName:'login'*/'../components/login'));
@@ -30,78 +32,64 @@ const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/'../compone
 const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/'../components/post-detail-main'));
 const routes = [
   {
-    path: "/post",
+    path: "/post/*",
     component: Home,
-    exact: true
   },
   {
     path: "/post/post-detail/:id",
     component: PostDetailMain,
-    exact: true
   },
   {
-    path: "/home",
+    path: "/home/*",
     component: Home,
-    exact: true
   },
   {
-    path: "/manage",
+    path: "/manage/*",
     component: Manage,
     routes: [
       {
-        path: "/manage/chart",
+        path: "chart",
         component: Chart,
-        exact: true
       },
       {
-        path: "/manage/post-table",
+        path: "post-table",
         component: PostTable,
-        exact: true
       },
       {
-        path: "/manage/comment-table",
+        path: "comment-table",
         component: CommentTable,
-        exact: true
       },
       {
-        path: "/manage/profile",
+        path: "profile",
         component: Profile,
-        exact: true
       },
       {
-        path: "/manage/user-table",
+        path: "user-table",
         component: UserTable,
-        exact: true
       },
       {
-        path: "/manage/user-table/edituser/:userId",
+        path: "user-table/edituser/:userId",
         component: Profile,
-        exact: true
       },
       {
-        path: "/manage/role-table",
+        path: "role-table",
         component: RoleTable,
-        exact: true
       },
       {
-        path: "/manage/role-edit/:roleId",
+        path: "role-edit/:roleId",
         component: RoleEdit,
-        exact: true
       },
       {
-        path: "/manage/permission-table",
+        path: "permission-table",
         component: PermissionTable,
-        exact: true
       },
       {
-        path: "/manage/permission-edit/:permissionId",
+        path: "permission-edit/:permissionId",
         component: PermissionEdit,
-        exact: true
       },
       {
-        path: "/manage/sysparam",
+        path: "sysparam",
         component: Sysparam,
-        exact: true
       },
       {
         path: "*",
@@ -112,22 +100,18 @@ const routes = [
   {
     path: "/login",
     component: Login,
-    exact: true
   },
   {
     path: "/forgot",
     component: Forgot,
-    exact: true
   },
   {
     path: "/register",
     component: Register,
-    exact: true
   },
   {
     path: "/write",
     component: Write,
-    exact: true
   },
   {
     path: "*",
@@ -135,15 +119,18 @@ const routes = [
   }
 ];
 
-export function RouteWithSubRoutes(route: any) {
-  return (
-    <Route
-      path={route.path}
-      render={props => (
-        <route.component {...props} routes={route.routes} exact={route.exact} />
-      )}
-    />
-  );
+export function RouteWithSubRoutes(route: any, i: any) {
+  // console.log(route, 'route')
+  // return (
+  // <Route
+  // path={route.path}
+  // render={props => (
+  // <route.component {...props} routes={route.routes} />
+  // )}
+  // />
+  // );
+  return (<Route path={route.path} element={<route.component routes={route.routes} />} key={i}>
+  </Route>)
 }
 function App() {
   return (
@@ -159,12 +146,12 @@ function App() {
               </div>
             }
             >
-              <Switch>
-                <Route exact path="/" render={() => <Redirect to="/post" />} />
+              <Routes>
+                <Route path="/" element={<Home />} />
                 {routes.map((route, i) => (
-                  <RouteWithSubRoutes key={i} {...route} />
+                  RouteWithSubRoutes(route, i)
                 ))}
-              </Switch>
+              </Routes>
             </Suspense>
           </ErrorBoundary>
         </div>

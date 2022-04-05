@@ -2,12 +2,16 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Button, message } from "antd";
 import { forgotFormValidator } from "../../validator/forgot-form-validator";
-import { withRouter } from "react-router-dom";
+import {
+  // withRouter
+  useNavigate
+} from "react-router-dom";
 import Common from "../../utils/common.util";
 function Forgot(props: any) {
+  let navigate = useNavigate();
   const [emailfill, updateEmailfill] = useState("");
   const [formValid, setFormValid] = useState(false);
-  const [meta, setMeta] = useState({ email: { touched: false , dirty:false} });
+  const [meta, setMeta] = useState({ email: { touched: false, dirty: false } });
   const [errors, setErrors] = useState({} as any);
   const [forgot, updateForgot] = useState({
     email: ""
@@ -21,12 +25,12 @@ function Forgot(props: any) {
         Common.toggleClass(value, updateEmailfill, Common.fillClass);
     }
   }
-  function handleChange(key:any ,value: any) {
+  function handleChange(key: any, value: any) {
     const upForgot = {
       ...forgot,
-      [key]:value
+      [key]: value
     };
-    setMeta({...meta, [key]:{dirty:true}})
+    setMeta({ ...meta, [key]: { dirty: true } })
     updateForgot(upForgot);
     setErrors(forgotFormValidator(upForgot));
   }
@@ -49,17 +53,16 @@ function Forgot(props: any) {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${emailfill} ${
-                  (meta.email.touched||meta.email.dirty) && errors.email ? "error" : ""
-                }`}
+                className={`col input-text ${emailfill} ${(meta.email.touched || meta.email.dirty) && errors.email ? "error" : ""
+                  }`}
                 type="text"
                 autoComplete="off"
                 value={forgot.email}
-                onChange={e => handleChange("email", e.target.value )}
+                onChange={e => handleChange("email", e.target.value)}
                 onBlur={e => onBlur("email", e.target.value)}
               />
               <label>Email</label>
-              {(meta.email.touched||meta.email.dirty)&& errors.email ? (
+              {(meta.email.touched || meta.email.dirty) && errors.email ? (
                 <div className="text-red">{errors.email}</div>
               ) : (
                 ""
@@ -76,4 +79,4 @@ function Forgot(props: any) {
     </div>
   );
 }
-export default withRouter(Forgot);
+export default Forgot;

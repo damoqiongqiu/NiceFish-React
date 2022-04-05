@@ -2,8 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
 const CopyPlugin = require("copy-webpack-plugin");
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const smw = new SpeedMeasureWebpackPlugin() // 费时分析的插件
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const os = require('os')
+// module.exports = smw.wrap({ //需要包裹一层配置对象
+
 module.exports = {
   context: path.join(process.cwd(), 'src'),
   entry: {
@@ -124,6 +129,7 @@ module.exports = {
       }
     ]
   },
+  stats: 'errors-only',// 只在错误时输出
   plugins: [
     new BundleAnalyzerPlugin(
       {
@@ -140,6 +146,16 @@ module.exports = {
     new webpack.DefinePlugin({
       AUTHOR: JSON.stringify('yanyunchangfeng')
     }),
+    new FriendlyErrorsWebpackPlugin(),// .日志太多太少都不美观// .可以修改stats
+
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(process.cwd(), 'src', 'assets'), to: path.resolve(process.cwd(), 'dist') }
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
     // IgnorePlugin用于忽略某些特定的模块，让webpack不把这些指定的模块打包进去
     // 第一个是匹配引入模块路径的正则表达式
     // 第二个是匹配模块的对应上下文，即所在目录名
@@ -150,3 +166,5 @@ module.exports = {
   ]
 }
 
+
+// })

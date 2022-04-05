@@ -3,7 +3,7 @@ import { useState } from "react";
 import headImgWide from "../../assets/images/headline-wide.png";
 import headImgNarrow from "../../assets/images/headline-narrow.png";
 function PostDetail(props: any) {
-  console.log(props.match.params);
+  // console.log(props.match.params);
   // 这是路由参数，用id去后台请求数据,此处模拟数据
   const [postDetail] = useState({
     id: 1,

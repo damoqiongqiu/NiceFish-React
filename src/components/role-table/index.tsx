@@ -3,57 +3,51 @@ import { useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
 function RoleTable() {
-  const [filteredInfo, setFilterdInfo] = useState({} as any);
-  const [sortedInfo, setSortedInfo] = useState({} as any);
   const columns = [
     {
       title: "序号",
       dataIndex: "key",
-      filteredValue: filteredInfo.key || null,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
       onFilter: (value: any, record: any) => record.key.includes(value),
       sorter: (a: any, b: any) => a.key - b.key,
-      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
     },
     {
       title: "名称",
       dataIndex: "title",
       sorter: (a: any, b: any) => a.title.localeCompare(b.title),
-      sortOrder: sortedInfo.columnKey === "title" && sortedInfo.order
     },
     {
       title: "拥有权限",
       dataIndex: "permission",
       sorter: (a: any, b: any) => a.permission.localeCompare(b.permission),
-      sortOrder: sortedInfo.columnKey === "permission" && sortedInfo.order
     },
     {
       title: "操作",
       dataIndex: "options",
-      width:150,
-      fixed:"right" as any,
-      render: (options: any,props:any) => (
+      width: 150,
+      fixed: "right" as any,
+      render: (options: any, props: any) => (
 
         <div>
           {options.map((option: any, index: any) => {
-            if(option.link){
+            if (option.link) {
               return (
                 <Tag key={index}>
-                <NavLink to={`${option.link+props.key}`}>
-                <i className={`${option.icon} `} aria-hidden="true" /></NavLink>
-                 
+                  <NavLink to={`${option.link + props.key}`}>
+                    <i className={`${option.icon} `} aria-hidden="true" /></NavLink>
+
                 </Tag>
               );
-            }else{
+            } else {
               return (
                 <Tag key={index}>
-                <a href="javascript:void(0)">
-                   <i className={`${option.icon} `} aria-hidden="true" />
-                </a>
-              </Tag>
+                  <a href="javascript:void(0)">
+                    <i className={`${option.icon} `} aria-hidden="true" />
+                  </a>
+                </Tag>
               )
             }
-           
+
           })}
         </div>
       )
@@ -64,27 +58,22 @@ function RoleTable() {
       key: "1",
       title: "游客",
       permission: "阅读文章",
-      options: [{ icon: "fa fa-pencil-square-o",link:'/manage/role-edit/' }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o", link: '/manage/role-edit/' }, { icon: "fa fa-trash" }]
     },
     {
       key: "2",
       title: "注册用户",
       permission:
         "发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码",
-      options: [{ icon: "fa fa-pencil-square-o",link:'/manage/role-edit/'  }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o", link: '/manage/role-edit/' }, { icon: "fa fa-trash" }]
     },
     {
       key: "3",
       title: "系统管理员",
       permission: "All",
-      options: [{ icon: "fa fa-pencil-square-o" ,link:'/manage/role-edit/' }, { icon: "fa fa-trash" }]
+      options: [{ icon: "fa fa-pencil-square-o", link: '/manage/role-edit/' }, { icon: "fa fa-trash" }]
     }
   ]);
-  function handleChange(pagination: any, filters: any, sorter: any) {
-    console.log(pagination, filters, sorter);
-    setFilterdInfo(filters);
-    setSortedInfo(sorter);
-  }
   return (
     <div className="role-table-container">
       <form role="form">
@@ -120,7 +109,6 @@ function RoleTable() {
             dataSource={data}
             columns={columns}
             scroll={{ x: 650 }}
-            onChange={handleChange}
           />
         </div>
       </div>

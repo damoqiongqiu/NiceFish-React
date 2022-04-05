@@ -3,30 +3,27 @@ import { useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
 function UserTable() {
-  const [filteredInfo, setFilterdInfo] = useState({} as any);
-  const [sortedInfo, setSortedInfo] = useState({} as any);
   const columns = [
     {
       title: "序号",
       dataIndex: "key",
-      filteredValue: filteredInfo.key || null,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
-      onFilter: (value: any, record: any) => record.key.includes(value),
+      onFilter: (value: any, record: any) => {
+        console.log(value, record)
+        return record.key.includes(value)
+      },
       sorter: (a: any, b: any) => a.key - b.key,
-      sortOrder: sortedInfo.columnKey === "key" && sortedInfo.order
     },
     {
       title: "用户名",
       dataIndex: "userName",
       sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
-      sortOrder: sortedInfo.columnKey === "userName" && sortedInfo.order
     },
     {
       title: "注册时间",
       dataIndex: "registerTime",
       sorter: (a: any, b: any) =>
         new Date(a.registerTime).getTime() - new Date(b.registerTime).getTime(),
-      sortOrder: sortedInfo.columnKey === "registerTime" && sortedInfo.order
     },
     {
       title: "最后登录",
@@ -34,37 +31,36 @@ function UserTable() {
       sorter: (a: any, b: any) =>
         new Date(a.lastLoginTime).getTime() -
         new Date(b.lastLoginTime).getTime(),
-      sortOrder: sortedInfo.columnKey === "lastLoginTime" && sortedInfo.order
     },
     {
       title: "操作",
       dataIndex: "options",
-      width:100,
-      fixed:"right" as any,
-      render: (options: any,props:any) => (
-        
+      width: 100,
+      fixed: "right" as any,
+      render: (options: any, props: any) => (
+
         <div>
           {options.map((option: any, index: any) => {
-            if(option.link){
+            if (option.link) {
               return (
                 <Tag key={index} className="mb-1">
-                  <NavLink to={`${option.link+props.key}`}>
-                  <i className={`${option.icon} `} aria-hidden="true" />
+                  <NavLink to={`${option.link + props.key}`}>
+                    <i className={`${option.icon} `} aria-hidden="true" />
                   </NavLink>
                 </Tag>
               );
-            }else{
+            } else {
               return (
                 <Tag key={index} className="mb-1">
-                <a href='javascript:void(0)'>
-                  <i className={`${option.icon} `} aria-hidden="true" />
-                </a>
-                 
-            
+                  <a href='javascript:void(0)'>
+                    <i className={`${option.icon} `} aria-hidden="true" />
+                  </a>
+
+
                 </Tag>
               );
             }
-           
+
           })}
         </div>
       )
@@ -77,7 +73,7 @@ function UserTable() {
       registerTime: "2010-11-11 11:11",
       lastLoginTime: "2016-11-27 09:34",
       options: [
-        { icon: "fa fa-pencil-square-o" ,link:"/manage/user-table/edituser/"},
+        { icon: "fa fa-pencil-square-o", link: "/manage/user-table/edituser/" },
         { icon: "fa fa-lock" },
         { icon: "fa fa-trash" },
         { icon: "fa fa-user-secret" }
@@ -89,18 +85,13 @@ function UserTable() {
       registerTime: "2011-11-11 11:11",
       lastLoginTime: "2018-11-15 09:34",
       options: [
-        { icon: "fa fa-pencil-square-o" ,link:"/manage/user-table/edituser/"},
+        { icon: "fa fa-pencil-square-o", link: "/manage/user-table/edituser/" },
         { icon: "fa fa-lock" },
         { icon: "fa fa-trash" },
         { icon: "fa fa-user-secret" }
       ]
     }
   ]);
-  function handleChange(pagination: any, filters: any, sorter: any) {
-    console.log(pagination, filters, sorter);
-    setFilterdInfo(filters);
-    setSortedInfo(sorter);
-  }
   return (
     <div className="user-table-container">
       <form role="form">
@@ -136,7 +127,6 @@ function UserTable() {
             dataSource={data}
             columns={columns}
             scroll={{ x: 690 }}
-            onChange={handleChange}
           />
         </div>
       </div>

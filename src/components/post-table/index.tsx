@@ -9,33 +9,28 @@ function PostTable() {
     {
       title: "序号",
       dataIndex: "postId",
-      width:100,
-      fixed:"left" as any,
-      filteredValue: filteredInfo.postId || null,
+      width: 100,
+      fixed: "left" as any,
       filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
       onFilter: (value: any, record: any) => record.postId.includes(value),
       sorter: (a: any, b: any) => a.postId - b.postId,
-      sortOrder: sortedInfo.columnKey === "postId" && sortedInfo.order
     },
     {
       title: "标题",
       dataIndex: "title",
-      sorter: (a:any,b:any) =>  a.title.localeCompare(b.title),
-      sortOrder: sortedInfo.columnKey === 'title' && sortedInfo.order,
+      sorter: (a: any, b: any) => a.title.localeCompare(b.title),
     },
     {
       title: "作者",
       dataIndex: "userName",
-      sorter: (a:any,b:any) =>  a.userName.localeCompare(b.userName),
-      sortOrder: sortedInfo.columnKey === 'userName' && sortedInfo.order,
+      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
     },
     {
       title: "日期",
-      width:180,
-      fixed:"right" as any,
+      width: 180,
+      fixed: "right" as any,
       dataIndex: "postTime",
-      sorter: (a:any,b:any) =>   new Date(a.postTime).getTime()- new Date(b.postTime).getTime(),
-      sortOrder: sortedInfo.columnKey === 'postTime' && sortedInfo.order,
+      sorter: (a: any, b: any) => new Date(a.postTime).getTime() - new Date(b.postTime).getTime(),
     }
   ];
   const [data] = useState({
@@ -208,11 +203,6 @@ function PostTable() {
       }
     ]
   });
-  function handleChange(pagination: any, filters: any, sorter: any) {
-    setFilterdInfo(filters);
-    setSortedInfo(sorter);
-  }
-
   return (
     <div className="post-table-container">
       <form className="form-vertical" role="form">
@@ -241,7 +231,6 @@ function PostTable() {
               dataSource={data.items}
               columns={columns}
               scroll={{ x: 550 }}
-              onChange={handleChange}
             />
           </div>
         </div>

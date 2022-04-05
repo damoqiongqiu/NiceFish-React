@@ -1,8 +1,12 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import {
+  // withRouter
+  useNavigate
+} from "react-router-dom";
 import { permissionFormValidator } from "../../validator/permission-form-validator";
 function PermissionEdit(props: any) {
+  let navigate = useNavigate();
   const [permission, updatePermission] = useState({
     name: ""
   });
@@ -24,7 +28,8 @@ function PermissionEdit(props: any) {
     }
   }
   function cancel() {
-    props.history.goBack();
+    // props.history.goBack();
+    navigate(-1)
   }
   function handleChange(key: any, value: any) {
     const uppermission = {
@@ -91,4 +96,4 @@ function PermissionEdit(props: any) {
     </div>
   );
 }
-export default withRouter(PermissionEdit);
+export default PermissionEdit;

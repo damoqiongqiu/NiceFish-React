@@ -1,11 +1,16 @@
 import * as React from "react";
 import { message } from 'antd'
 import { useState, Fragment } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import {
+  NavLink,
+  useNavigate
+  // withRouter
+} from "react-router-dom";
 import storageService from '../../service/storage.service';
 import nicefish from "../../assets/images/nice-fish.png";
 
 function Header(props: any) {
+  let navigate = useNavigate();
   const [active, updateActive] = useState(false);
   function onToggle() {
     if (isPhone()) updateActive(!active);
@@ -14,7 +19,8 @@ function Header(props: any) {
     onToggle();
     storageService.clearKey('user');
     message.success('退出成功');
-    props.history.push('/');
+    // props.history.push('/');
+    navigate('/')
   }
   function isPhone() {
     return window.innerWidth < 768 ? true : false
@@ -94,4 +100,4 @@ function Header(props: any) {
     </div>
   );
 }
-export default withRouter(Header);
+export default Header;
