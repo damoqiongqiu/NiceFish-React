@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
+    "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
     "generateAnalyzerFile": "cross-env NODE_ENV=production webpack --profile --json > stats.json",
     "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
@@ -40,9 +41,11 @@
     "cross-env": "7.0.3",
     "css-loader": "6.7.1",
     "font-awesome": "4.7.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.13",
     "friendly-errors-webpack-plugin": "1.7.0",
     "html-loader": "3.1.0",
     "html-webpack-plugin": "5.5.0",
+    "image-webpack-loader": "^8.1.0",
     "mini-css-extract-plugin": "2.6.0",
     "sass": "1.49.11",
     "sass-loader": "12.6.0",

@@ -175,7 +175,7 @@ function Profile(props: any) {
                   dataSource={mockData}
                   targetKeys={targetKeys}
                   onChange={handleChange}
-                  render={item => item.title}
+                  render={(item:any) => item.title}
                 />
               </div>
             </div>

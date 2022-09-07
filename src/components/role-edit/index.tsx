@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import {
   // withRouter
-  useNavigate
+  useNavigate,
 } from "react-router-dom";
 import { roleFormValidator } from "../../validator/role-form-validator";
 import { Transfer } from "antd";
@@ -10,13 +10,13 @@ function RoleEdit(props: any) {
   let navigate = useNavigate();
   const [role, updateRole] = useState({
     name: "",
-    permission: [] as any
+    permission: [] as any,
   });
   const [formValid, setformValid] = useState(false);
   const [errors, setErrors] = useState({} as any);
   const [meta, setMeta] = useState({
     name: { touched: false, dirty: false },
-    pwd: { touched: false, dirty: false }
+    pwd: { touched: false, dirty: false },
   } as any);
   const [mockData, updateMockData] = useState([] as any);
   const [targetKeys, updatetargetKeys] = useState([] as any);
@@ -27,30 +27,30 @@ function RoleEdit(props: any) {
       {
         key: "1",
         title: "发表文章",
-        chosen: true
+        chosen: true,
       },
       {
         key: "2",
         title: "删除文章",
-        chosen: false
+        chosen: false,
       },
       {
         key: "3",
         title: "创建用户",
-        chosen: true
+        chosen: true,
       },
       {
         key: "4",
         title: "删除用户",
-        chosen: false
-      }
+        chosen: false,
+      },
     ];
     mockData.map((value: any) => {
       if (value.chosen) {
         targetKeys.push(value.key);
       }
     });
-    updateRole({ ...role, permission: targetKeys })
+    updateRole({ ...role, permission: targetKeys });
     updatetargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
@@ -59,13 +59,13 @@ function RoleEdit(props: any) {
       updatetargetKeys(targetKeys);
       const uprole = {
         ...role,
-        permission: targetKeys
+        permission: targetKeys,
       };
       updateRole(uprole);
     } else {
       const uprole = {
         ...role,
-        name: value
+        name: value,
       };
       setMeta({ ...meta, [targetKeys]: { ...meta[targetKeys], dirty: true } });
       updateRole(uprole);
@@ -86,11 +86,11 @@ function RoleEdit(props: any) {
   }
   function cancel() {
     // props.history.goBack();
-    navigate(-1)
+    navigate(-1);
   }
   useEffect(() => {
     const errors = roleFormValidator(role);
-    const isDisabled = Object.keys(errors).some(x => errors[x]);
+    const isDisabled = Object.keys(errors).some((x) => errors[x]);
     setformValid(isDisabled);
   }, [errors]);
   useEffect(() => {
@@ -105,15 +105,17 @@ function RoleEdit(props: any) {
         <div className="pd-10px ">
           <form onSubmit={onSubmit}>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right col-form-label">名称：</label>
+              <label className="col-md-2 md-text-align-right col-form-label">
+                名称：
+              </label>
               <div className="col-md-10">
                 <input
                   name="roleName"
                   type="text"
                   value={role.name}
                   className="form-control"
-                  onBlur={e => onBlur("name", e.target.value)}
-                  onChange={e => handleChange("name", e.target.value)}
+                  onBlur={(e) => onBlur("name", e.target.value)}
+                  onChange={(e) => handleChange("name", e.target.value)}
                   placeholder="请输入名称"
                 />
                 {(meta.name.touched || meta.name.dirty) && errors.name ? (
@@ -124,13 +126,15 @@ function RoleEdit(props: any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right col-form-label">权限：</label>
+              <label className="col-md-2 md-text-align-right col-form-label">
+                权限：
+              </label>
               <div className="col-md-10">
                 <Transfer
                   dataSource={mockData}
                   targetKeys={targetKeys}
                   onChange={handleChange}
-                  render={item => item.title}
+                  render={(item: any) => item.title}
                 />
               </div>
             </div>
