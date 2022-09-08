@@ -1,14 +1,10 @@
-import * as React from "react";
-import { message } from 'antd'
-import { useState, Fragment } from "react";
-import {
-  NavLink,
-  useNavigate
-  // withRouter
-} from "react-router-dom";
-import storageService from '../../service/storage.service';
-import nicefish from "../../assets/images/nice-fish.png";
-
+import React, { useState, Fragment } from "react";
+import { message } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
+import nicefish from "src/assets/images/nice-fish.png";
+import StorageService from "src/platform/storage/browser/storageService";
+import { useService } from "src/base/common/injector";
+const storageService: StorageService = useService(StorageService);
 function Header(props: any) {
   let navigate = useNavigate();
   const [active, updateActive] = useState(false);
@@ -17,15 +13,14 @@ function Header(props: any) {
   }
   function doLogout() {
     onToggle();
-    storageService.clearKey('user');
-    message.success('退出成功');
-    // props.history.push('/');
-    navigate('/')
+    storageService.clearKey("user");
+    message.success("退出成功");
+    navigate("/");
   }
   function isPhone() {
-    return window.innerWidth < 768 ? true : false
+    return window.innerWidth < 768 ? true : false;
   }
-  const user: any = storageService.getKey('user');
+  const user: any = storageService.getKey("user");
 
   return (
     <div
@@ -48,52 +43,54 @@ function Header(props: any) {
         </div>
 
         <div
-          className={`col d-none d-md-flex collapse ${active ? "d-flex" : ""
-            }`}
+          className={`col d-none d-md-flex collapse ${active ? "d-flex" : ""}`}
         >
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>
             <li>
-              <NavLink to="/post" onClick={() => onToggle()}>阅读</NavLink>
+              <NavLink to="/post" onClick={() => onToggle()}>
+                阅读
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/write" onClick={() => onToggle()}>写作</NavLink>
+              <NavLink to="/write" onClick={() => onToggle()}>
+                写作
+              </NavLink>
             </li>
           </ul>
           <ul className={`navbar-nav ml-md-auto flex-row `}>
-            {
-
-              !user ?
-                <Fragment> <li>
+            {!user ? (
+              <Fragment>
+                <li>
                   <NavLink to="/login" onClick={() => onToggle()}>
                     <i className="fa fa-sign-in" />
                   </NavLink>
                 </li>
-                  <li>
-                    <NavLink to="/register" onClick={() => onToggle()}>
-                      <i className="fa fa-user-plus" />
-                    </NavLink>
-                  </li></Fragment>
-                : ''
-            }
-            {
-              user ? <Fragment><li>
-                <NavLink to="/home" onClick={() => onToggle()}>
-                  <i className="fa fa-user" />
-                </NavLink>
-              </li>
+                <li>
+                  <NavLink to="/register" onClick={() => onToggle()}>
+                    <i className="fa fa-user-plus" />
+                  </NavLink>
+                </li>
+              </Fragment>
+            ) : null}
+            {user ? (
+              <Fragment>
+                <li>
+                  <NavLink to="/home" onClick={() => onToggle()}>
+                    <i className="fa fa-user" />
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink to="/manage" onClick={() => onToggle()}>
-                    {" "}
                     <i className="fa fa-cog" />
                   </NavLink>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" onClick={() => doLogout()}>
+                  <a onClick={() => doLogout()}>
                     <i className="fa fa-sign-out" />
                   </a>
-                </li></Fragment> : ''
-            }
-
+                </li>
+              </Fragment>
+            ) : null}
           </ul>
         </div>
       </div>

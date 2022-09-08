@@ -1,14 +1,13 @@
-import * as React from "react";
-import OnlineContact from "../../components/online-contact";
-
-import AppRoute from "../../router/approute";
+import React from "react";
+import OnlineContact from "./online-contact";
+import Read from "src/containers/read";
 
 function Home() {
   return (
     <div className="container-xl mtb-16px ">
       <div className="row">
         <div className="col-md-7 col-lg-8 col-xl-9">
-          <AppRoute />
+          <Read />
         </div>
         <div className="col-md-5 col-lg-4 col-xl-3">
           <OnlineContact />

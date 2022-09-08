@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "jsx": "react",
     "rootDir": "src",
     "esModuleInterop": true,
@@ -22,6 +23,7 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
       "src/*": [
