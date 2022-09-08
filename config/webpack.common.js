@@ -7,7 +7,6 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const smw = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const os = require("os");
 const isDev = process.env.NODE_ENV === "development";
@@ -24,6 +23,7 @@ module.exports = {
     path: path.join(process.cwd(), "dist"),
     filename: "[name].[contenthash].js", //入口代码块文件名的生成规则
     chunkFilename: "[name].[contenthash].js", //非入口模块的生成规则
+    clean: true,
   },
   mode: process.env.NODE_ENV, //编译模式短语，支持 development、production 等值，可以理解为一种声明环境的短语
   resolve: {
@@ -52,29 +52,31 @@ module.exports = {
     // moduleIds: 'natural', named  deterministic size // 模块名称的生成规则 deterministic 生产模式默认值
     // chunkIds:'natural' // named  deterministic size //代码块名称的生成规则
     // 自动分割第三方模块和公共模块
+    // runtimeChunk: "single",
     splitChunks: isDev
       ? false //关闭代码分包；
       : {
           chunks: "all", // 默认作用于异步chunk，值为 all 全部/initial同步/async异步
-          minSize: 0, //默认值是30kb，代码块的最小尺寸
-          minChunks: 1, //被多少模块共享，在分割之前模块的被引用次数
+          minSize: 390 * 1024, //默认值是30kb，代码块的最小尺寸 超过这个尺寸的 Chunk 才会正式被分包；
+          maxSize: 500 * 1024, //超过这个尺寸的 Chunk 会尝试进一步拆分出更小的 Chunk  设置 maxSize 的值会同时设置 maxAsyncSize 和 maxInitialSize 的值。
+          // maxAsyncSize: 500 * 1000, //与 maxSize 功能类似，但只对异步引入的模块生效；
+          // maxInitialSize: 500 * 1000 与 maxSize 类似，但只对 entry 配置的入口模块生效；
+          minChunks: 2, //被多少模块共享，在分割之前模块的被引用次数
           maxAsyncRequests: 2, // 限制异步模块内部的并行最大请求数的，说白了你可以理解为是每个import()它里面的最大并行请求数量
-          maxInitialRequests: 4, // 限制入口的拆分数量
-          name: false, //打包后的名称，默认是chunk的名字通过分割符（默认是~）分隔开，如vendor~
-          automaticNameDelimiter: "~", //默认webpack将会使用入口名和代码块的名称生成命名，比如'vendors~main.js'
+          maxInitialRequests: 4, // 限制入口的拆分数量 用于设置 Initial Chunk 最大并行请求数；
+          // enforceSizeThreshold: 300 * 1000, //超过这个尺寸的 Chunk 会被强制分包，忽略上述其它 size 限制；
           cacheGroups: {
-            //设置缓存组用来抽取满足不同规则的chunk，下面以生成common为例
-            vendors: {
-              chunks: "all",
-              test: /node_modules/, //条件
-              priority: -10, //优先级，一个chunk很可能满足多个缓存组，会被抽取到优先级高的缓存组中，为了能够让自定义缓存组有更高的优先级
-            },
-            commons: {
-              chunks: "all",
-              minSize: 0, // 最小提取字节数
-              minChunks: 2, //最少被几个chunk引用
+            default: {
+              idHint: "",
+              reuseExistingChunk: true,
+              minChunks: 2,
               priority: -20,
-              reuseExistingChunk: true, //如果该chunk中引用了已经被抽取的chunk，直接引用该chunk，不会重复打包代码
+            },
+            defaultVendors: {
+              idHint: "vendors",
+              reuseExistingChunk: true,
+              test: /[\\/]node_modules[\\/]/i,
+              priority: -10,
             },
           },
         },
@@ -215,7 +217,6 @@ module.exports = {
           chunkFilename: "[name].[contenthash].css",
         })
       : noop,
-    !isDev ? new CleanWebpackPlugin() : noop,
     !isDev ? new webpack.BannerPlugin("Copyright By yanyunchangfeng") : noop,
   ],
 };
