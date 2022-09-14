@@ -1,16 +1,11 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import {
-  // withRouter
-  useNavigate
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Transfer, Upload, Button } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined } from "@ant-design/icons";
 import "./index.scss";
 
 function Profile(props: any) {
-  let navigate = useNavigate();
-  // console.log(props.match.params);
+  const navigate = useNavigate();
   const formControls = [
     {
       controlType: "image",
@@ -18,7 +13,7 @@ function Profile(props: any) {
       label: "",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "file",
@@ -26,7 +21,7 @@ function Profile(props: any) {
       label: "头像",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "textbox",
@@ -34,7 +29,7 @@ function Profile(props: any) {
       label: "用户名",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "textbox",
@@ -42,7 +37,7 @@ function Profile(props: any) {
       label: "常用邮箱",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "textbox",
@@ -50,7 +45,7 @@ function Profile(props: any) {
       label: "密码",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "textbox",
@@ -58,7 +53,7 @@ function Profile(props: any) {
       label: "确认密码",
       key: "",
       value: "",
-      placeholder: ""
+      placeholder: "",
     },
     {
       controlType: "textareabox",
@@ -66,8 +61,8 @@ function Profile(props: any) {
       label: "个人简介",
       key: "",
       value: "",
-      placeholder: ""
-    }
+      placeholder: "",
+    },
   ];
 
   const [mockData, updateMockData] = useState([] as any);
@@ -79,18 +74,18 @@ function Profile(props: any) {
       {
         key: "1",
         title: "默认权限",
-        chosen: false
+        chosen: false,
       },
       {
         key: "2",
         title: "签约作者",
-        chosen: true
+        chosen: true,
       },
       {
         key: "3",
         title: "系统管理员",
-        chosen: false
-      }
+        chosen: false,
+      },
     ];
 
     mockData.map((value: any) => {
@@ -105,8 +100,7 @@ function Profile(props: any) {
     updatetargetKeys(targetKeys);
   }
   function cancel() {
-    // props.history.goBack();
-    navigate(-1)
+    navigate(-1);
   }
   useEffect(() => {
     getMock();
@@ -134,9 +128,7 @@ function Profile(props: any) {
                       )}
                       {item.controlType === "file" ? (
                         <Upload>
-                          <Button icon={<UploadOutlined />}>
-                            上传
-                          </Button>
+                          <Button icon={<UploadOutlined />}>上传</Button>
                         </Upload>
                       ) : (
                         ""
@@ -175,7 +167,7 @@ function Profile(props: any) {
                   dataSource={mockData}
                   targetKeys={targetKeys}
                   onChange={handleChange}
-                  render={(item:any) => item.title}
+                  render={(item: any) => item.title}
                 />
               </div>
             </div>

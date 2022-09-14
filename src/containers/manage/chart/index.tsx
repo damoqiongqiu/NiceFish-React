@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Color from "src/utils/color.util";
 import echarts from "echarts";
 

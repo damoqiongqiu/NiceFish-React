@@ -1,12 +1,8 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import {
-  // withRouter
-  useNavigate,
-} from "react-router-dom";
-import { permissionFormValidator } from "../../../validator/permission-form-validator";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { permissionFormValidator } from "src/validator/permission-form-validator";
 function PermissionEdit(props: any) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [permission, updatePermission] = useState({
     name: "",
   });
@@ -28,7 +24,6 @@ function PermissionEdit(props: any) {
     }
   }
   function cancel() {
-    // props.history.goBack();
     navigate(-1);
   }
   function handleChange(key: any, value: any) {

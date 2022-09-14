@@ -1,13 +1,9 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import {
-  // withRouter
-  useNavigate,
-} from "react-router-dom";
-import { roleFormValidator } from "../../../validator/role-form-validator";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { roleFormValidator } from "src/validator/role-form-validator";
 import { Transfer } from "antd";
 function RoleEdit(props: any) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [role, updateRole] = useState({
     name: "",
     permission: [] as any,
@@ -85,7 +81,6 @@ function RoleEdit(props: any) {
     }
   }
   function cancel() {
-    // props.history.goBack();
     navigate(-1);
   }
   useEffect(() => {

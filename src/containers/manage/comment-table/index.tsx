@@ -1,12 +1,14 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Table } from "antd";
 function CommentTable() {
   const columns = [
     {
       title: "序号",
       dataIndex: "key",
-      filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
+      filters: [
+        { text: "1", value: "1" },
+        { text: "2", value: "2" },
+      ],
       onFilter: (value: any, record: any) => record.key.includes(value),
       sorter: (a: any, b: any) => a.key - b.key,
     },
@@ -18,7 +20,7 @@ function CommentTable() {
     {
       title: "用户",
       dataIndex: "userName",
-      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName)
+      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
     },
     {
       title: "日期",
@@ -26,8 +28,8 @@ function CommentTable() {
       width: 182,
       fixed: "right" as any,
       sorter: (a: any, b: any) =>
-        new Date(a.time).getTime() - new Date(b.time).getTime()
-    }
+        new Date(a.time).getTime() - new Date(b.time).getTime(),
+    },
   ];
 
   const [data] = useState([
@@ -35,86 +37,86 @@ function CommentTable() {
       key: "1",
       content: "这是一条不合法的评论",
       userName: "damoqiongqiu",
-      time: "2017-07-15 16:22:58"
+      time: "2017-07-15 16:22:58",
     },
     {
       key: "2",
       content: "这是一条合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2016-07-15 16:22:58"
+      time: "2016-07-15 16:22:58",
     },
     {
       key: "3",
       content: "这是一条不合法的评论",
       userName: "damoqiongqiu",
-      time: "2015-07-15 16:22:58"
+      time: "2015-07-15 16:22:58",
     },
     {
       key: "4",
       content: "这是一条合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2014-07-15 16:22:58"
+      time: "2014-07-15 16:22:58",
     },
     {
       key: "5",
       content: "这是一条不合法的评论",
       userName: "damoqiongqiu",
-      time: "2013-07-15 16:22:58"
+      time: "2013-07-15 16:22:58",
     },
     {
       key: "6",
       content: "这是一条合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2012-07-15 16:22:58"
+      time: "2012-07-15 16:22:58",
     },
     {
       key: "7",
       content: "这是一条不合法的评论",
       userName: "damoqiongqiu",
-      time: "2011-07-15 16:22:58"
+      time: "2011-07-15 16:22:58",
     },
     {
       key: "8",
       content: "这是一条合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2010-07-15 16:22:58"
+      time: "2010-07-15 16:22:58",
     },
     {
       key: "9",
       content: "这是一条不合法的评论",
       userName: "damoqiongqiu",
-      time: "2009-07-15 16:22:58"
+      time: "2009-07-15 16:22:58",
     },
     {
       key: "10",
       content: "这是一条合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2008-07-15 16:22:58"
+      time: "2008-07-15 16:22:58",
     },
     {
       key: "11",
       content: "这是一条合法的评论",
       userName: "damoqiongqiu",
-      time: "2007-07-15 16:22:58"
+      time: "2007-07-15 16:22:58",
     },
     {
       key: "12",
       content: "这是一条不合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2006-07-15 16:22:58"
+      time: "2006-07-15 16:22:58",
     },
     {
       key: "13",
       content: "这是一条合法的评论",
       userName: "damoqiongqiu",
-      time: "2005-07-15 16:22:58"
+      time: "2005-07-15 16:22:58",
     },
     {
       key: "14",
       content: "这是一条不合法的评论",
       userName: "yanyuncahngfeng",
-      time: "2004-07-15 16:22:58"
-    }
+      time: "2004-07-15 16:22:58",
+    },
   ]);
   return (
     <div className="comment-table-container">
@@ -139,16 +141,11 @@ function CommentTable() {
       <div className="row mt-16px">
         <div className="col-md-12">
           <div className="comment-item-container">
-            <Table
-              dataSource={data}
-              columns={columns}
-              scroll={{ x: 690 }}
-            />
+            <Table dataSource={data} columns={columns} scroll={{ x: 690 }} />
           </div>
         </div>
       </div>
     </div>
   );
 }
-export default CommentTable
-
+export default CommentTable;

@@ -12,7 +12,6 @@ export default class ErrorBoundary extends Component {
   //   }
   componentDidCatch(error: any) {
     // 你同样可以将错误志上报给服务器
-    // console.log(error)
     this.setState({ hasError: true });
   }
   render() {

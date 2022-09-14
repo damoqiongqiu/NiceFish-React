@@ -31,8 +31,8 @@ module.exports = {
   resolve: {
     modules: [path.resolve("node_modules")], // 解析第三方包
     extensions: [".js", ".ts", ".tsx", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
-    // mainFields: ['style', 'main'],// eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
-    // mainFiles:['index.js','index.ts'],// 入口文件的名字 默认是index.js
+    mainFields: ["browser", "module", "main", "style"], // eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
+    mainFiles: ["index"], // 入口文件的名字 默认是index
     alias: {
       // 别名  注意tsconfig.json˙中的paths也要对应配置
       src: path.resolve(__dirname, "../src"),
@@ -86,6 +86,7 @@ module.exports = {
     minimize: isDev ? false : true, //关闭代码压缩;
     concatenateModules: isDev ? false : true, //关闭模块合并;
     usedExports: isDev ? false : true, //关闭 Tree-shaking 功能； // 标记使用到的导出
+    //  Tree-shaking   最大粒度优化需要在package.json中配置 "sideEffects":false, 如果是css文件 需要配置sideEffects:["*.css"] // js 就是纯函数 没有副作用
     minimizer: [
       // Webpack5 之后，约定使用 `'...'` 字面量保留默认 `minimizer` 配置
       "...",

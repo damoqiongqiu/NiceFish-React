@@ -1,15 +1,18 @@
-import * as React from "react";
-
-function Sysparam(props:any) {
-  function cancel(){
-    props.history.goBack();
+import React from "react";
+import { useNavigate } from "react-router-dom";
+function Sysparam(props: any) {
+  const navigate = useNavigate();
+  function cancel() {
+    navigate(-1);
   }
   return (
     <div className="sys-param-container  font-size-16">
       <div className="card">
-        <div className="card-header"><h3 className="font-size-16 m-0">文章设置</h3></div>
+        <div className="card-header">
+          <h3 className="font-size-16 m-0">文章设置</h3>
+        </div>
         <div className="pd-10px md-text-align-right">
-          <form  role="form">
+          <form role="form">
             <div className="form-group row">
               <label className="col-md-5 col-form-label">
                 文章列表显示条数：
@@ -66,10 +69,11 @@ function Sysparam(props:any) {
         </div>
       </div>
       <div className="card mt-16px">
-
-        <div className="card-header"><h3 className="font-size-16 m-0">评论设置</h3></div>
+        <div className="card-header">
+          <h3 className="font-size-16 m-0">评论设置</h3>
+        </div>
         <div className="pd-10px md-text-align-right">
-          <form  role="form">
+          <form role="form">
             <div className="form-group row">
               <label className="col-md-5 col-form-label">评论最小长度：</label>
               <div className="col-md-7">
@@ -122,11 +126,15 @@ function Sysparam(props:any) {
         </div>
       </div>
       <div className="card mt-16px">
-        <div className="card-header"><h3 className="font-size-16 m-0">用户设置</h3></div>
+        <div className="card-header">
+          <h3 className="font-size-16 m-0">用户设置</h3>
+        </div>
         <div className="pd-10px md-text-align-right">
-          <form  role="form">
+          <form role="form">
             <div className="form-group row">
-              <label className="col-md-5 col-form-label">用户名最小长度：</label>
+              <label className="col-md-5 col-form-label">
+                用户名最小长度：
+              </label>
               <div className="col-md-7">
                 <input
                   type="text"
@@ -137,7 +145,9 @@ function Sysparam(props:any) {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-md-5 col-form-label">用户名最大长度：</label>
+              <label className="col-md-5 col-form-label">
+                用户名最大长度：
+              </label>
               <div className="col-md-7">
                 <input
                   type="text"
@@ -200,13 +210,16 @@ function Sysparam(props:any) {
       </div>
       <div className="mt-16px text-left">
         <button type="submit" className="btn btn-primary ">
-        保存
+          保存
         </button>
-        <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
-        取消
+        <button
+          type="button"
+          className="btn btn-secondary ml-16px"
+          onClick={cancel}
+        >
+          取消
         </button>
       </div>
-    
     </div>
   );
 }

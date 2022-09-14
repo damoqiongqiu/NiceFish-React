@@ -5,7 +5,7 @@ import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
 function Manage(props: any) {
   const user = storageService.getKey("user");
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/");
   }, []);

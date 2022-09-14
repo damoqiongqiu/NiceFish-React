@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Table } from "antd";
 
 function PostTable() {
@@ -11,7 +10,10 @@ function PostTable() {
       dataIndex: "postId",
       width: 100,
       fixed: "left" as any,
-      filters: [{ text: "1", value: "1" }, { text: "2", value: "2" }],
+      filters: [
+        { text: "1", value: "1" },
+        { text: "2", value: "2" },
+      ],
       onFilter: (value: any, record: any) => record.postId.includes(value),
       sorter: (a: any, b: any) => a.postId - b.postId,
     },
@@ -30,8 +32,9 @@ function PostTable() {
       width: 180,
       fixed: "right" as any,
       dataIndex: "postTime",
-      sorter: (a: any, b: any) => new Date(a.postTime).getTime() - new Date(b.postTime).getTime(),
-    }
+      sorter: (a: any, b: any) =>
+        new Date(a.postTime).getTime() - new Date(b.postTime).getTime(),
+    },
   ];
   const [data] = useState({
     total: 20,
@@ -49,7 +52,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "2",
@@ -64,7 +67,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "3",
@@ -79,7 +82,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "4",
@@ -94,7 +97,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "5",
@@ -109,7 +112,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "6",
@@ -124,7 +127,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "7",
@@ -139,7 +142,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "8",
@@ -154,7 +157,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "9",
@@ -169,7 +172,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "10",
@@ -184,7 +187,7 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
+        isfamous: "true",
       },
       {
         postId: "11",
@@ -199,9 +202,9 @@ function PostTable() {
         readTimes: "10000",
         commentTimes: "10000",
         likedTimes: "5555",
-        isfamous: "true"
-      }
-    ]
+        isfamous: "true",
+      },
+    ],
   });
   return (
     <div className="post-table-container">

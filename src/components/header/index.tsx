@@ -6,7 +6,7 @@ import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
 function Header(props: any) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [active, updateActive] = useState(false);
   function onToggle() {
     if (isPhone()) updateActive(!active);

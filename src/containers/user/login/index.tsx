@@ -1,8 +1,7 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Common from "../../../utils/common.util";
+import React, { useState, useEffect } from "react";
+import Common from "src/utils/common.util";
 import { useNavigate } from "react-router-dom";
-import { loginFormValidator } from "../../../validator/login-form-validator";
+import { loginFormValidator } from "src/validator/login-form-validator";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 import AccountService from "src/platform/account/browser/accountService";
@@ -11,7 +10,7 @@ const storageService: StorageService = useService(StorageService);
 function Login(props: any) {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [namefill, updateNamefill] = useState("");
   const [pwdfill, updatePwdfill] = useState("");
   const [login, updateLogin] = useState({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { registerFormValidator } from "../../../validator/register-form-validator";
+import { registerFormValidator } from "src/validator/register-form-validator";
 import { useNavigate } from "react-router-dom";
-import Common from "../../../utils/common.util";
+import Common from "src/utils/common.util";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
@@ -10,7 +10,7 @@ import AccountService from "src/platform/account/browser/accountService";
 function Register(props: any) {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [emailfill, updateEmailfill] = useState("");
   const [pwdfill, updatePwdfill] = useState("");
   const [cfpwdfill, updateCfPwdfill] = useState("");
