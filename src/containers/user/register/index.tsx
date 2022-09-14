@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { registerFormValidator } from "src/validator/register-form-validator";
 import { useNavigate } from "react-router-dom";
 import Common from "src/utils/common.util";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
-const storageService: StorageService = useService(StorageService);
 import AccountService from "src/platform/account/browser/accountService";
+const storageService: StorageService = useService(StorageService);
 
-function Register(props: any) {
+const Register: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const navigate = useNavigate();
@@ -155,5 +155,5 @@ function Register(props: any) {
       </div>
     </div>
   );
-}
+};
 export default Register;

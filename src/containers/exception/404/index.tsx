@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
-function Exception404() {
+const Exception404: FC = () => {
   return (
     <div className="container mt-16px">
       <div className="row no-gutters align-items-center">
@@ -19,5 +19,5 @@ function Exception404() {
       </div>
     </div>
   );
-}
+};
 export default Exception404;

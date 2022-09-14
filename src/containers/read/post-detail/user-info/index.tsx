@@ -1,5 +1,5 @@
-import React from "react";
-function UserInfo() {
+import React, { FC } from "react";
+const UserInfo: FC = () => {
   return (
     <div className="user-info-container">
       <div className="card ">
@@ -23,5 +23,5 @@ function UserInfo() {
       </div>
     </div>
   );
-}
+};
 export default UserInfo;

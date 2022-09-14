@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { commentFormValidator } from "src/validator/comment-form-validator";
 import "./index.scss";
-function CommonList() {
+const CommonList: FC = () => {
   const [commentdata, setCommentData] = useState({ comment: "" });
   const [errors, setErrors] = useState({} as any);
   const [formValid, setformValid] = useState(false);
@@ -97,5 +97,5 @@ function CommonList() {
       </div>
     </div>
   );
-}
+};
 export default CommonList;

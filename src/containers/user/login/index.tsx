@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Common from "src/utils/common.util";
 import { useNavigate } from "react-router-dom";
 import { loginFormValidator } from "src/validator/login-form-validator";
@@ -7,7 +7,7 @@ import { useService } from "src/base/common/injector";
 import AccountService from "src/platform/account/browser/accountService";
 const storageService: StorageService = useService(StorageService);
 
-function Login(props: any) {
+const Login: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const navigate = useNavigate();
@@ -132,5 +132,5 @@ function Login(props: any) {
       </div>
     </div>
   );
-}
+};
 export default Login;

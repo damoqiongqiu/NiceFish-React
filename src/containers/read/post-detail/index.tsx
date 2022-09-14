@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import headImgWide from "src/assets/images/headline-wide.png";
 import headImgNarrow from "src/assets/images/headline-narrow.png";
-function PostDetail(props: any) {
+const PostDetail: FC = () => {
   // 这是路由参数，用id去后台请求数据,此处模拟数据
   const [postDetail] = useState({
     id: 1,
@@ -48,5 +48,5 @@ function PostDetail(props: any) {
       </div>
     </div>
   );
-}
+};
 export default PostDetail;

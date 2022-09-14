@@ -1,6 +1,5 @@
-import React from "react";
-
-function OnlineContact() {
+import React, { FC } from "react";
+const OnlineContact: FC = () => {
   return (
     <div className="online-contact-container sm-mt-16px">
       <div className="card">
@@ -70,6 +69,5 @@ function OnlineContact() {
       </div>
     </div>
   );
-}
-
+};
 export default OnlineContact;

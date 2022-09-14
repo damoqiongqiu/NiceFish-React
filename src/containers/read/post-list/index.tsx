@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Pagination } from "antd";
-import { NavLink } from "react-router-dom";
-import PostHeadline from "../post-headline";
-import listImg from "src/assets/images/2.jpg";
+import PostHeadline from "src/containers/read/post-headline";
+import ListItem from "src/containers/read/post-list/components/list-item";
 
-function PostList() {
+const PostList: FC = () => {
   const [currentPage, updateCurrentPage] = useState(1);
-  const [itemPerpage, updatePerpage] = useState(10);
+  const [itemPerPage, updatePerPage] = useState(10);
   const [postLists] = useState({
     total: 11,
     items: [
@@ -155,24 +154,24 @@ function PostList() {
       },
     ],
   });
-  const [data, updateData] = useState([] as any);
-  function onChange(page: any) {
+  const [list, updateList] = useState([] as any);
+  function onChange(page: number) {
     loadData(page);
   }
-  function ShowSizeChange(current: any, pageSize: any) {
+  function ShowSizeChange(current: number, pageSize: number) {
     loadData(current, pageSize);
   }
-  function loadData(page: any = 1, itemPerpage: any = 10) {
+  function loadData(page: number = 1, itemPerPage: number = 10) {
     const offset = (page - 1) * 10;
-    const end = page * itemPerpage;
+    const end = page * itemPerPage;
     const data = postLists.items.slice(
       offset,
       end > postLists.total ? postLists.total : end
     );
-    updateData(data);
+    updateList(data);
   }
   useEffect(() => {
-    loadData(currentPage, itemPerpage);
+    loadData(currentPage, itemPerPage);
   }, []);
   return (
     <div className="post-list-container">
@@ -181,37 +180,7 @@ function PostList() {
           <PostHeadline />
         </div>
         <div className="col-md-12">
-          {data.map((list: any, index: number) => {
-            return (
-              <div className="post-item-container mt-16px" key={index}>
-                <div className="row">
-                  <div className="col-md-2">
-                    <img src={listImg} alt="..." className="img-thumbnail" />
-                  </div>
-                  <div className="col-md-10 post-item-text-container sm-mt-16px">
-                    <h3 className="font-size-18">
-                      <NavLink to={`/post/post-detail/${list.postId}`}>
-                        {list.title}
-                      </NavLink>
-                    </h3>
-                    <div className="user-name-intitle">
-                      <div className="row">
-                        <div className="col-md-4 col-lg-3 ">
-                          <span className="fa fa-user"></span>
-                          <span className="ml-5px">{list.userName}</span>
-                        </div>
-                        <div className="col-md-6 col-lg-5">
-                          <span className="fa fa-clock-o"></span>
-                          <span className="ml-5px">{list.postTime}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="abs">{list.content}</div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          <ListItem list={list} />
         </div>
       </div>
       <div className="mt-16px">
@@ -225,5 +194,5 @@ function PostList() {
       </div>
     </div>
   );
-}
+};
 export default PostList;

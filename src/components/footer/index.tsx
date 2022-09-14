@@ -1,5 +1,5 @@
-import React from "react";
-function Footer() {
+import React, { FC } from "react";
+const Footer: FC = () => {
   return (
     <div className="footer bg-secondary text-white pd-16px">
       <div className="container">
@@ -33,5 +33,5 @@ function Footer() {
       </div>
     </div>
   );
-}
+};
 export default Footer;

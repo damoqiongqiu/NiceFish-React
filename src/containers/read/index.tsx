@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import PostList from "src/containers/read/post-list";
 
-function Read() {
+const ReadContainer: FC = () => {
   return (
     <div>
       <PostList />
     </div>
   );
-}
-export default Read;
+};
+export default ReadContainer;

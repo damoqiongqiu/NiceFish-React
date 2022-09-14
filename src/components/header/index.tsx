@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, FC } from "react";
 import { message } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
-import nicefish from "src/assets/images/nice-fish.png";
+import niceFish from "src/assets/images/nice-fish.png";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
-function Header(props: any) {
+const Header: FC = () => {
   const navigate = useNavigate();
   const [active, updateActive] = useState(false);
   function onToggle() {
@@ -31,7 +31,7 @@ function Header(props: any) {
         <div className="d-flex col-sm-12 col-md-auto no-gutters">
           <div className="d-flex col-sm">
             <a className="navbar-brand-my ">
-              <img width="45" src={nicefish} />
+              <img width="45" src={niceFish} />
             </a>
             <a
               className="d-flex align-items-center d-md-none  ml-auto"
@@ -96,5 +96,5 @@ function Header(props: any) {
       </div>
     </div>
   );
-}
+};
 export default Header;

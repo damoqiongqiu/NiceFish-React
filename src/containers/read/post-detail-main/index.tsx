@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import PostDetail from "../post-detail";
 import CommentList from "../common-list";
 import UserInfo from "../post-detail/user-info";
-function PostDetailMain(props: any) {
+const PostDetailMain: FC = (props: any) => {
   return (
     <div className="container post-detail-main-container mtb-16px">
       <div className="row">
@@ -16,5 +16,5 @@ function PostDetailMain(props: any) {
       </div>
     </div>
   );
-}
+};
 export default PostDetailMain;

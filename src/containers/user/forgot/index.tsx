@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { message } from "antd";
 import { forgotFormValidator } from "src/validator/forgot-form-validator";
 import Common from "src/utils/common.util";
 import { useService } from "src/base/common/injector";
 import AccountService from "src/platform/account/browser/accountService";
-function Forgot(props: any) {
+
+const Forgot: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const [emailfill, updateEmailfill] = useState("");
@@ -79,5 +80,5 @@ function Forgot(props: any) {
       </div>
     </div>
   );
-}
+};
 export default Forgot;

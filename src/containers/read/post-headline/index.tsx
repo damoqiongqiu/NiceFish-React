@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import headImgWide from "src/assets/images/headline-wide.png";
 import headImgNarrow from "src/assets/images/headline-narrow.png";
 import "./index.scss";
 
-function PostHeadline() {
+const PostHeadline: FC = () => {
   return (
     <div className="post-headline-container">
       <div className="img-container">
@@ -33,6 +33,5 @@ function PostHeadline() {
       </div>
     </div>
   );
-}
-
+};
 export default PostHeadline;
