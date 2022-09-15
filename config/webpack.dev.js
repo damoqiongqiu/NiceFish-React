@@ -13,7 +13,6 @@ module.exports = merge(commonConfig, {
     // cacheDirectory:path.resolve(__dirname,'../node_modules/.cache/webpack') // 默认缓存目录
   },
   devServer: {
-    port: "auto",
     compress: true, //启动压缩 gzip
     open: true, // 启动之后自动打开浏览器
   },

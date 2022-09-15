@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { roleFormValidator } from "src/validator/role-form-validator";
 import { Transfer } from "antd";
-function RoleEdit(props: any) {
+const RoleEdit: FC = () => {
   const navigate = useNavigate();
   const [role, updateRole] = useState({
     name: "",
     permission: [] as any,
   });
-  const [formValid, setformValid] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const [errors, setErrors] = useState({} as any);
   const [meta, setMeta] = useState({
     name: { touched: false, dirty: false },
     pwd: { touched: false, dirty: false },
   } as any);
   const [mockData, updateMockData] = useState([] as any);
-  const [targetKeys, updatetargetKeys] = useState([] as any);
+  const [targetKeys, updateTargetKeys] = useState([] as any);
   function getMock() {
     let mockData = [] as any;
     let targetKeys = [] as any;
@@ -47,12 +47,12 @@ function RoleEdit(props: any) {
       }
     });
     updateRole({ ...role, permission: targetKeys });
-    updatetargetKeys([...targetKeys]);
+    updateTargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
   function handleChange(targetKeys: any, value: any) {
     if (Array.isArray(targetKeys)) {
-      updatetargetKeys(targetKeys);
+      updateTargetKeys(targetKeys);
       const uprole = {
         ...role,
         permission: targetKeys,
@@ -86,7 +86,7 @@ function RoleEdit(props: any) {
   useEffect(() => {
     const errors = roleFormValidator(role);
     const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setformValid(isDisabled);
+    setFormValid(isDisabled);
   }, [errors]);
   useEffect(() => {
     getMock();
@@ -155,5 +155,5 @@ function RoleEdit(props: any) {
       </div>
     </div>
   );
-}
+};
 export default RoleEdit;

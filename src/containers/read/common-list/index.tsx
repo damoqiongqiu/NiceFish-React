@@ -2,9 +2,9 @@ import React, { FC, useState, useEffect } from "react";
 import { commentFormValidator } from "src/validator/comment-form-validator";
 import "./index.scss";
 const CommonList: FC = () => {
-  const [commentdata, setCommentData] = useState({ comment: "" });
+  const [commentData, setCommentData] = useState({ comment: "" });
   const [errors, setErrors] = useState({} as any);
-  const [formValid, setformValid] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({
     comment: { touched: false, dirty: false },
   } as any);
@@ -33,7 +33,7 @@ const CommonList: FC = () => {
   ]);
   function handleChange(key: any, value: string) {
     const upcomment = {
-      ...commentdata,
+      ...commentData,
       comment: value,
     };
     setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
@@ -44,7 +44,7 @@ const CommonList: FC = () => {
     switch (key) {
       case "comment":
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
-        setErrors(commentFormValidator(commentdata));
+        setErrors(commentFormValidator(commentData));
         break;
     }
   }
@@ -52,9 +52,9 @@ const CommonList: FC = () => {
     e.preventDefault();
   }
   useEffect(() => {
-    const errors = commentFormValidator(commentdata);
+    const errors = commentFormValidator(commentData);
     const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setformValid(isDisabled);
+    setFormValid(isDisabled);
   }, [errors]);
   return (
     <div className="add-component-container mt-16px">
@@ -64,7 +64,7 @@ const CommonList: FC = () => {
             <div className="form-group">
               <textarea
                 className="form-control"
-                value={commentdata.comment}
+                value={commentData.comment}
                 onBlur={(e) => onBlur("comment", e.target.value)}
                 onChange={(e) => handleChange("comment", e.target.value)}
                 placeholder="5-140个字符，非法字符自动截断。"

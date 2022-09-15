@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
-function Sysparam(props: any) {
+const SysParam: FC = (props: any) => {
   const navigate = useNavigate();
   function cancel() {
     navigate(-1);
@@ -222,5 +222,5 @@ function Sysparam(props: any) {
       </div>
     </div>
   );
-}
-export default Sysparam;
+};
+export default SysParam;

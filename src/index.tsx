@@ -1,3 +1,4 @@
+import "src/platform/register/browser/registerService";
 import App from "./containers";
 import React from "react";
 import { createRoot } from "react-dom/client";

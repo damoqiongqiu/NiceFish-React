@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
-function RoleTable() {
+const RoleTable: FC = () => {
   const columns = [
     {
       title: "序号",
@@ -119,5 +119,5 @@ function RoleTable() {
       </div>
     </div>
   );
-}
+};
 export default RoleTable;

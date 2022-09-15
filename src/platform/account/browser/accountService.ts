@@ -5,10 +5,9 @@ import { injectable, inject, useService } from "src/base/common/injector";
 import Service from "src/base/common/Service";
 @injectable("AccountService")
 class AccountService extends Service {
+  storageService = useService(StorageService);
   useLogin() {
-    const storageService = useService(StorageService);
-    const isLogin = storageService.getKey("user");
-    return isLogin;
+    return this.storageService.getKey("user");
   }
   useHome() {
     const isLogin = this.useLogin();

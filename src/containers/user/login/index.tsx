@@ -2,17 +2,14 @@ import React, { FC, useState, useEffect } from "react";
 import Common from "src/utils/common.util";
 import { useNavigate } from "react-router-dom";
 import { loginFormValidator } from "src/validator/login-form-validator";
-import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 import AccountService from "src/platform/account/browser/accountService";
-const storageService: StorageService = useService(StorageService);
-
 const Login: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const navigate = useNavigate();
-  const [namefill, updateNamefill] = useState("");
-  const [pwdfill, updatePwdfill] = useState("");
+  const [nameFill, updateNameFill] = useState("");
+  const [pwdFill, updatePwdFill] = useState("");
   const [login, updateLogin] = useState({
     name: "",
     pwd: "",
@@ -22,24 +19,24 @@ const Login: FC = () => {
     name: { touched: false, dirty: false },
     pwd: { touched: false, dirty: false },
   } as any);
-  const [formValid, setformValid] = useState(false);
+  const [formValid, setFormValid] = useState(false);
 
   function onBlur(key: any, value: any) {
     switch (key) {
       case "name":
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
         setErrors(loginFormValidator(login));
-        Common.toggleClass(value, updateNamefill, Common.fillClass);
+        Common.toggleClass(value, updateNameFill, Common.fillClass);
         break;
       case "pwd":
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
         setErrors(loginFormValidator(login));
-        Common.toggleClass(value, updatePwdfill, Common.fillClass);
+        Common.toggleClass(value, updatePwdFill, Common.fillClass);
         break;
     }
   }
   function handleChange(key: any, value: any) {
-    const uplogin = {
+    const upLogin = {
       ...login,
       [key]: value,
     };
@@ -51,12 +48,12 @@ const Login: FC = () => {
         setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
         break;
     }
-    updateLogin(uplogin);
-    setErrors(loginFormValidator(uplogin));
+    updateLogin(upLogin);
+    setErrors(loginFormValidator(upLogin));
   }
   function doLogin(e: any) {
     e.preventDefault();
-    storageService.setKeyValue("user", login.name);
+    accountService.storageService.setKeyValue("user", login.name);
     navigate("/home");
   }
   function forgotPwd() {
@@ -65,7 +62,7 @@ const Login: FC = () => {
   useEffect(() => {
     const errors = loginFormValidator(login);
     const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setformValid(isDisabled);
+    setFormValid(isDisabled);
   }, [errors]);
 
   return (
@@ -78,7 +75,7 @@ const Login: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${namefill} ${
+                className={`col input-text ${nameFill} ${
                   (meta.name.touched || meta.name.dirty) && errors.name
                     ? "error"
                     : ""
@@ -98,7 +95,7 @@ const Login: FC = () => {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${pwdfill} ${
+                className={`col input-text ${pwdFill} ${
                   (meta.pwd.touched || meta.pwd.dirty) && errors.pwd
                     ? "error"
                     : ""

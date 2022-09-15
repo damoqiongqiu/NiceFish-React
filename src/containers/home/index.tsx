@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import OnlineContact from "./online-contact";
 import Read from "src/containers/read";
 
-function Home() {
+const Home: FC = () => {
   return (
     <div className="container-xl mtb-16px ">
       <div className="row">
@@ -15,5 +15,5 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 export default Home;

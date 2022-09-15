@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
-function UserTable() {
+const UserTable = () => {
   const columns = [
     {
       title: "序号",
@@ -126,5 +126,5 @@ function UserTable() {
       </div>
     </div>
   );
-}
+};
 export default UserTable;

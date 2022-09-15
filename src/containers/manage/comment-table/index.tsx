@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Table } from "antd";
-function CommentTable() {
+const CommentTable: FC = () => {
   const columns = [
     {
       title: "序号",
@@ -42,7 +42,7 @@ function CommentTable() {
     {
       key: "2",
       content: "这是一条合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2016-07-15 16:22:58",
     },
     {
@@ -54,7 +54,7 @@ function CommentTable() {
     {
       key: "4",
       content: "这是一条合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2014-07-15 16:22:58",
     },
     {
@@ -66,7 +66,7 @@ function CommentTable() {
     {
       key: "6",
       content: "这是一条合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2012-07-15 16:22:58",
     },
     {
@@ -78,7 +78,7 @@ function CommentTable() {
     {
       key: "8",
       content: "这是一条合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2010-07-15 16:22:58",
     },
     {
@@ -90,7 +90,7 @@ function CommentTable() {
     {
       key: "10",
       content: "这是一条合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2008-07-15 16:22:58",
     },
     {
@@ -102,7 +102,7 @@ function CommentTable() {
     {
       key: "12",
       content: "这是一条不合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2006-07-15 16:22:58",
     },
     {
@@ -114,7 +114,7 @@ function CommentTable() {
     {
       key: "14",
       content: "这是一条不合法的评论",
-      userName: "yanyuncahngfeng",
+      userName: "yanyunchangfeng",
       time: "2004-07-15 16:22:58",
     },
   ]);
@@ -147,5 +147,5 @@ function CommentTable() {
       </div>
     </div>
   );
-}
+};
 export default CommentTable;

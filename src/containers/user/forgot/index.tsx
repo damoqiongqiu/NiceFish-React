@@ -8,7 +8,7 @@ import AccountService from "src/platform/account/browser/accountService";
 const Forgot: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
-  const [emailfill, updateEmailfill] = useState("");
+  const [emailFill, updateEmailFill] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({ email: { touched: false, dirty: false } });
   const [errors, setErrors] = useState({} as any);
@@ -21,7 +21,7 @@ const Forgot: FC = () => {
       case "email":
         setErrors(forgotFormValidator(forgot));
         setMeta({ ...meta, [key]: { touched: true } });
-        Common.toggleClass(value, updateEmailfill, Common.fillClass);
+        Common.toggleClass(value, updateEmailFill, Common.fillClass);
     }
   }
   function handleChange(key: any, value: any) {
@@ -52,7 +52,7 @@ const Forgot: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${emailfill} ${
+                className={`col input-text ${emailFill} ${
                   (meta.email.touched || meta.email.dirty) && errors.email
                     ? "error"
                     : ""

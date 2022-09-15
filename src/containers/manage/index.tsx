@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
-function Manage(props: any) {
+const Manage: FC = (props: any) => {
   const user = storageService.getKey("user");
   const navigate = useNavigate();
   useEffect(() => {
@@ -48,5 +48,5 @@ function Manage(props: any) {
       </div>
     </div>
   );
-}
+};
 export default Manage;

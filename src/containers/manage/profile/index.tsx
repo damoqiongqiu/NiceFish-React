@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Transfer, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./index.scss";
 
-function Profile(props: any) {
+const Profile: FC = () => {
   const navigate = useNavigate();
   const formControls = [
     {
@@ -66,7 +66,7 @@ function Profile(props: any) {
   ];
 
   const [mockData, updateMockData] = useState([] as any);
-  const [targetKeys, updatetargetKeys] = useState([] as any);
+  const [targetKeys, updateTargetKeys] = useState([] as any);
   function getMock() {
     let mockData = [] as any;
     let targetKeys = [] as any;
@@ -93,11 +93,11 @@ function Profile(props: any) {
         targetKeys.push(value.key);
       }
     });
-    updatetargetKeys([...targetKeys]);
+    updateTargetKeys([...targetKeys]);
     updateMockData([...mockData]);
   }
   function handleChange(targetKeys: any) {
-    updatetargetKeys(targetKeys);
+    updateTargetKeys(targetKeys);
   }
   function cancel() {
     navigate(-1);
@@ -123,30 +123,22 @@ function Profile(props: any) {
                     <div>
                       {item.controlType === "textbox" ? (
                         <input className="form-control" type={item.type} />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
                       {item.controlType === "file" ? (
                         <Upload>
                           <Button icon={<UploadOutlined />}>上传</Button>
                         </Upload>
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
                       {item.controlType === "textareabox" ? (
                         <textarea
                           className="form-control"
                           placeholder={item.placeholder}
                         />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
 
                       {item.controlType === "image" ? (
                         <div className="react-logo" />
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -192,5 +184,5 @@ function Profile(props: any) {
       </form>
     </div>
   );
-}
+};
 export default Profile;

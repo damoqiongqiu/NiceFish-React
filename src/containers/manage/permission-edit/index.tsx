@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { permissionFormValidator } from "src/validator/permission-form-validator";
-function PermissionEdit(props: any) {
+const PermissionEdit: FC = () => {
   const navigate = useNavigate();
   const [permission, updatePermission] = useState({
     name: "",
   });
   const [errors, setErrors] = useState({} as any);
-  const [formValid, setformValid] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({
     name: { touched: false, dirty: false },
   } as any);
@@ -27,18 +27,18 @@ function PermissionEdit(props: any) {
     navigate(-1);
   }
   function handleChange(key: any, value: any) {
-    const uppermission = {
+    const upPermission = {
       ...permission,
       name: value,
     };
     setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
-    updatePermission(uppermission);
-    setErrors(permissionFormValidator(uppermission));
+    updatePermission(upPermission);
+    setErrors(permissionFormValidator(upPermission));
   }
   useEffect(() => {
     const errors = permissionFormValidator(permission);
     const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setformValid(isDisabled);
+    setFormValid(isDisabled);
   }, [errors]);
 
   return (
@@ -92,5 +92,5 @@ function PermissionEdit(props: any) {
       </div>
     </div>
   );
-}
+};
 export default PermissionEdit;

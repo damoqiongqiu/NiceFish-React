@@ -1,7 +1,7 @@
-import React ,{ useState } from "react";
+import React, { FC, useState } from "react";
 import { Table, Tag } from "antd";
 import { NavLink } from "react-router-dom";
-function PermissionTable() {
+const PermissionTable: FC = () => {
   const columns = [
     {
       title: "序号",
@@ -107,5 +107,5 @@ function PermissionTable() {
       </div>
     </div>
   );
-}
+};
 export default PermissionTable;

@@ -5,12 +5,12 @@ const CopyPlugin = require("copy-webpack-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const smw = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
+const UnusedWebpackPlugin = require("unused-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
-const os = require("os");
 const isDev = process.env.NODE_ENV === "development";
 isAnalyzerMode = process.env.ANALYZE === "1";
 const noop = () => {};
@@ -114,12 +114,6 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "thread-loader",
-            options: {
-              workers: os.cpus().length - 1,
-            },
-          },
-          {
             loader: "ts-loader",
             options: {
               happyPackMode: true,
@@ -127,14 +121,6 @@ module.exports = {
               // 设置为“仅编译”，关闭类型检查
               transpileOnly: true,
             },
-          },
-        ],
-      },
-      {
-        test: /\.html$/i,
-        use: [
-          {
-            loader: "html-loader",
           },
         ],
       },
@@ -182,7 +168,7 @@ module.exports = {
       },
       {
         test: /\.jpg$/,
-        type: "asset", // 不加/ 相当于自动配置 模块大小大于配置走 resource 否则走 source
+        type: "asset", // 不加/ 相当于自动配置 模块大小大于配置走resource 否则走 source
         parser: {
           dataUrlCondition: {
             maxSize: 4 * 1024,
@@ -216,7 +202,14 @@ module.exports = {
   stats: "errors-only", // 只在错误时输出
   plugins: [
     // fork 出子进程，专门用于执行类型检查 这样，既可以获得 Typescript 静态类型检查能力，又能提升整体编译速度。
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+      },
+    }),
     isAnalyzerMode
       ? new BundleAnalyzerPlugin({
           analyzerMode: "disabled", // 不启动展示打包报告的http服务器
@@ -244,6 +237,12 @@ module.exports = {
           options: {
             concurrency: 100,
           },
+        })
+      : noop,
+    !isDev
+      ? new UnusedWebpackPlugin({
+          directories: [path.join(process.cwd(), "src")], //用于指定需要分析的文件目录
+          root: __dirname, // 用于显示相对路径替代原有的绝对路径。
         })
       : noop,
     // IgnorePlugin用于忽略某些特定的模块，让webpack不把这些指定的模块打包进去
