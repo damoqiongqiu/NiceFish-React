@@ -3,11 +3,12 @@ import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
-const Manage: FC = (props: any) => {
+const Manage: FC = () => {
   const user = storageService.getKey("user");
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) navigate("/");
+    if (!user) return navigate("/");
+    navigate("/manage/chart", { replace: true });
   }, []);
   return (
     <div className="container-xl mtb-16px">

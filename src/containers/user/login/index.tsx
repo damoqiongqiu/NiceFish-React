@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { loginFormValidator } from "src/validator/login-form-validator";
 import { useService } from "src/base/common/injector";
 import AccountService from "src/platform/account/browser/accountService";
+const accountService: AccountService = useService(AccountService);
 const Login: FC = () => {
-  const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const navigate = useNavigate();
   const [nameFill, updateNameFill] = useState("");

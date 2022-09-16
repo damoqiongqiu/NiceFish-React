@@ -2,12 +2,9 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "jsx": "react",
-    "rootDir": "src",
     "esModuleInterop": true,
     "lib": [
-      "es5",
-      "es2015",
-      "es2016",
+      "esnext",
       "dom"
     ],
     "module": "esnext",

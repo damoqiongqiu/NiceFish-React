@@ -65,10 +65,11 @@ const inject = function () {
 
     // make it work as usual
     original.call(this, proto, key);
+
     // return link to proto, so own value wont be 'undefined' after component's creation
-    descriptor!.initializer = function () {
-      return proto[key];
-    };
+    // descriptor!.initializer = function () {
+    //   return proto[key];
+    // };
   };
 };
 

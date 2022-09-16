@@ -5,7 +5,12 @@ import Home from "src/containers/home";
 import Exception404 from "src/containers/exception/404";
 import { Spin } from "antd";
 import ErrorBoundary from "./ErrorBoundary";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 const Manage = lazy(() => import(/*webpackChunkName:'manage'*/ "./manage"));
 const Login = lazy(() => import(/*webpackChunkName:'login'*/ "./user/login"));
 const Register = lazy(
@@ -52,7 +57,8 @@ const PostDetailMain = lazy(
 const routes = [
   {
     path: "/",
-    element: Home,
+    element: Navigate,
+    redirect: "/post",
   },
 
   {
@@ -71,10 +77,6 @@ const routes = [
     path: "/manage",
     element: Manage,
     routes: [
-      {
-        path: "",
-        element: Chart,
-      },
       {
         path: "chart",
         element: Chart,
@@ -157,7 +159,13 @@ const renderRoute = (routes: any) => {
       <Route
         key={route.path}
         path={route.path}
-        element={<route.element />}
+        element={
+          route.redirect ? (
+            <route.element to={`${route.redirect}`} replace />
+          ) : (
+            <route.element />
+          )
+        }
       ></Route>
     );
   });

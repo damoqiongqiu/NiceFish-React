@@ -1,5 +1,5 @@
 import React, { FC, useRef } from "react";
-import ChartService from "src/platform/chart/chartService";
+import ChartService from "src/platform/chart/browser/chartService";
 import { useService } from "src/base/common/injector";
 const chartService: ChartService = useService(ChartService);
 const Chart: FC = () => {
