@@ -14,26 +14,26 @@ NiceFish (Mermaid) is a series of projects, the goal is to demonstrate the devel
 ## Installation
 Open your command line terminal and execute the following command:
 
-- git clone https://gitee.com/mumu-osc/NiceFish-React.git 
-- cd NiceFish-React 
-- npm i 
-- npm start 
+```
+   git clone https://gitee.com/mumu-osc/NiceFish-React.git
+   cd NiceFish-React
+   yarn or npm i
+   yarn start or npm start
+```  
 
 ## Instructions
 
-This project is a React version of NiceFish, using React Hooks version 16.8.3, developed using TypeScript, the Ant Design component library, and Bootstrap v4.2.1.
+This project is a React version of NiceFish, using React version 18.0.0, developed using  the Ant Design component library,the inversify library and Bootstrap v4.2.1.
 
 ## Online demo
 
 
-- NiceFish Demo address on Alibaba Cloud: http://118.25.136.164
-- NiceFish-React Demo address on gitee：https://yanyunchangfeng.gitee.io/nicefish-react  
-- NiceFish-ionic：https://damoqiongqiu.github.io/NiceFish-ionic/
+- NiceFish-React Demo address on GitHub Pages: https://yanyunchangfeng.github.io/NiceFish-React  
 
 ## Series project
 
-*  NiceFish: Mermaid, this is a microblogging system with a front end based on Angular 7.0 + PrimeNG 7.1.0. http://gitee.com/mumu-osc/NiceFish/ 
-*  NiceFish-React: This is the implementation of the React version, the interface looks exactly the same. React Hooks version 16.8.3, using TypeScript, Ant Design component library, and Bootstrap v4.2.1 development.
+*  NiceFish: This is a series of projects whose goal is to demonstrate the development mode of front-end and back-end separation: various development modes in front-end browsers, mobile terminals, and Electron environments. There are two versions of the backend: SpringBoot version and SpringCloud version  http://gitee.com/mumu-osc/NiceFish/ 
+*  NiceFish-React: This is the implementation of the React version 18.0.0, developed using Ant Design component library, inversify library, and Bootstrap version 4.2.1 .
 *  NiceBlogElectron: https://github.com/damoqiongqiu/NiceBlogElectron, an Electron-based desktop project that packages NiceFish with Electron as a desktop-running program. This is provided by the front-end friends of ZTE . I have a fork and there are several version numbers of the node module. If you are researching how to use Electron to develop desktop applications, please refer to this project.
 
 

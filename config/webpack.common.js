@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+const webpackBar = require("webpackbar");
 const isDev = process.env.NODE_ENV === "development";
 isAnalyzerMode = process.env.ANALYZE === "1";
 const noop = () => {};
@@ -201,6 +202,7 @@ module.exports = {
     : false,
   stats: "errors-only", // 只在错误时输出
   plugins: [
+    new webpackBar(),
     // fork 出子进程，专门用于执行类型检查 这样，既可以获得 Typescript 静态类型检查能力，又能提升整体编译速度。
     new ForkTsCheckerWebpackPlugin({
       typescript: {
