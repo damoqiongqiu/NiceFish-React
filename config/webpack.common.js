@@ -12,8 +12,10 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const webpackBar = require("webpackbar");
-const isDev = process.env.NODE_ENV === "development";
-isAnalyzerMode = process.env.ANALYZE === "1";
+const { NODE_ENV, ANALYZE, UNUSED } = process.env;
+const isDev = NODE_ENV === "development";
+isAnalyzerMode = ANALYZE === "1";
+isUnusedMode = UNUSED === "1";
 const noop = () => {};
 // module.exports = smw.wrap({ //需要包裹一层配置对象
 module.exports = {
@@ -111,6 +113,14 @@ module.exports = {
   target: "web", //用于配置编译产物的目标运行环境，支持 web、node、electron 等值，不同值最终产物会有所差异
   module: {
     rules: [
+      {
+        test: /\.html$/i,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
       {
         test: /\.tsx?$/,
         use: [
@@ -219,10 +229,10 @@ module.exports = {
         })
       : noop,
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), "public/index.html"),
+      template: path.join(process.cwd(), "src/index.html"),
       filename: "index.html",
       chunks: ["main"], // 指定包含的代码块
-      favicon: path.join(process.cwd(), "/src/assets/images/nice-fish.png"),
+      favicon: path.join(process.cwd(), "src/assets/images/nice-fish.png"),
     }),
     new webpack.DefinePlugin({
       AUTHOR: JSON.stringify("yanyunchangfeng"),
@@ -241,7 +251,7 @@ module.exports = {
           },
         })
       : noop,
-    !isDev
+    isUnusedMode
       ? new UnusedWebpackPlugin({
           directories: [path.join(process.cwd(), "src")], //用于指定需要分析的文件目录
           root: __dirname, // 用于显示相对路径替代原有的绝对路径。
