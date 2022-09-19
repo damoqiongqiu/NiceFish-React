@@ -80,7 +80,7 @@ const Header: FC = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/manage" onClick={() => onToggle()}>
+                  <NavLink to="/manage/chart" onClick={() => onToggle()}>
                     <i className="fa fa-cog" />
                   </NavLink>
                 </li>

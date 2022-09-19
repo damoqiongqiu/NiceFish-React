@@ -147,7 +147,19 @@ const routes = [
 
 const renderSubRoute = (route: any) => {
   return (
-    <Route key={route.path} path={route.path} element={<route.element />}>
+    <Route
+      key={route.path}
+      path={route.path}
+      element={
+        route.redirect ? (
+          <>
+            <Navigate to={`${route.redirect}`} replace />
+          </>
+        ) : (
+          <route.element />
+        )
+      }
+    >
       {renderRoute(route.routes)}
     </Route>
   );
@@ -161,7 +173,9 @@ const renderRoute = (routes: any) => {
         path={route.path}
         element={
           route.redirect ? (
-            <route.element to={`${route.redirect}`} replace />
+            <>
+              <Navigate to={`${route.redirect}`} replace />
+            </>
           ) : (
             <route.element />
           )
