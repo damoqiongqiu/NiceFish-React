@@ -30,6 +30,18 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 
 - NiceFish-React Demo address on GitHub Pages: https://yanyunchangfeng.github.io/NiceFish-React  
 
+## Main Dependency  
+- React 18.0.0
+- Antd 4.19.5
+- Bootstrap 4.2.1
+- Echarts 4.2.1
+- braft-editor 2.2.9
+## Bundle Analyzer
+
+```
+   yarn build-analyzer or npm run build-analyzer  
+```
+
 ## Series project
 
 *  NiceFish: This is a series of projects whose goal is to demonstrate the development mode of front-end and back-end separation: various development modes in front-end browsers, mobile terminals, and Electron environments. There are two versions of the backend: SpringBoot version and SpringCloud version  http://gitee.com/mumu-osc/NiceFish/ 

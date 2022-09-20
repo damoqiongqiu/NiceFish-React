@@ -34,6 +34,12 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 - Echarts 4.2.1
 - braft-editor 2.2.9
 
+## 打包分析
+
+```
+   yarn build-analyzer or npm run build-analyzer  
+```
+
 ## 系列项目
 
 |  名称   | 描述  |

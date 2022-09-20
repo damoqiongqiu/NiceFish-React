@@ -38,7 +38,7 @@ module.exports = {
     mainFiles: ["index"], // 入口文件的名字 默认是index
     alias: {
       // 别名  注意tsconfig.json˙中的paths也要对应配置
-      src: path.resolve(__dirname, "../src"),
+      src: path.resolve("src"),
     },
   },
   resolveLoader: {
@@ -224,7 +224,7 @@ module.exports = {
     }),
     isAnalyzerMode
       ? new BundleAnalyzerPlugin({
-          analyzerMode: "disabled", // 不启动展示打包报告的http服务器
+          analyzerMode: "server", // 启动展示打包报告的http服务器
           generateStatsFile: true, // 是否生成stats.json文件
         })
       : noop,
