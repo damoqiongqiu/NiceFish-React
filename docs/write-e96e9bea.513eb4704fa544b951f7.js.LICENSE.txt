@@ -4,7 +4,7 @@ object-assign
 @license MIT
 */
 
-/*! Copyright By yanyunchangfeng */
+/*! Copyright By damoqiongqiu */
 
 /**
  * @license React

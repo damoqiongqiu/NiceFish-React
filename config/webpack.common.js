@@ -33,7 +33,7 @@ module.exports = {
   mode: process.env.NODE_ENV, //编译模式短语，支持 development、production 等值，可以理解为一种声明环境的短语
   resolve: {
     modules: [path.resolve("node_modules")], // 解析第三方包
-    extensions: [".js", ".ts", ".tsx", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
+    extensions: [".ts", ".tsx", ".js", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
     mainFields: ["browser", "module", "main", "style"], // eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
     mainFiles: ["index"], // 入口文件的名字 默认是index
     alias: {
@@ -53,8 +53,8 @@ module.exports = {
     lazyCompilation: isDev ? true : false, // 按需编译
   },
   optimization: {
-    // moduleIds: 'natural', named  deterministic size // 模块名称的生成规则 deterministic 生产模式默认值
-    // chunkIds:'natural' // named  deterministic size //代码块名称的生成规则
+    // moduleIds: 'natural', // named  deterministic size // 模块名称的生成规则 deterministic 生产模式默认值
+    // chunkIds:'natural' , // named  deterministic size //代码块名称的生成规则
     // runtimeChunk: "single",
     // 自动分割第三方模块和公共模块
     splitChunks: isDev
@@ -64,7 +64,7 @@ module.exports = {
           minSize: 390 * 1024, //默认值是30kb，代码块的最小尺寸 超过这个尺寸的 Chunk 才会正式被分包；
           maxSize: 500 * 1024, //超过这个尺寸的 Chunk 会尝试进一步拆分出更小的 Chunk  设置 maxSize 的值会同时设置 maxAsyncSize 和 maxInitialSize 的值。
           // maxAsyncSize: 500 * 1024, //与 maxSize 功能类似，但只对异步引入的模块生效；
-          // maxInitialSize: 500 * 1024 与 maxSize 类似，但只对 entry 配置的入口模块生效；
+          // maxInitialSize: 500 * 1024, // 与 maxSize 类似，但只对 entry 配置的入口模块生效；
           minChunks: 2, //被多少模块共享，在分割之前模块的被引用次数
           maxAsyncRequests: 2, // 限制异步模块内部的并行最大请求数的，说白了你可以理解为是每个import()它里面的最大并行请求数量
           maxInitialRequests: 4, // 限制入口的拆分数量 用于设置 Initial Chunk 最大并行请求数；
@@ -270,7 +270,7 @@ module.exports = {
           chunkFilename: "[name].[contenthash].css",
         })
       : noop,
-    !isDev ? new webpack.BannerPlugin("Copyright By yanyunchangfeng") : noop,
+    !isDev ? new webpack.BannerPlugin("Copyright By damoqiongqiu") : noop,
   ],
 };
 // })

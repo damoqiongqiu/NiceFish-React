@@ -6,7 +6,7 @@ import Service from "src/base/common/Service";
 
 @injectable("AccountService")
 class AccountService extends Service {
-  @inject() storageService: StorageService;
+  @inject() storageService!: StorageService;
   useLogin() {
     return this.storageService.getKey("user");
   }

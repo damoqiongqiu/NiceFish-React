@@ -11,24 +11,25 @@
     "target": "es6",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "strict": true,
     "strictNullChecks": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "src/*": [
-        "./src/*"
+        "src/*"
+      ],
+      "*": [
+        "src/types/*"
       ]
     }
   },
   "include": [
-    "./src/**/*"
+    "src/**/*",
+    "src/typings/**/*"
   ]
 }
