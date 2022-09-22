@@ -1,36 +1,27 @@
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "rootDir": "src",
-      "outDir": "./components",
-      "declaration": true,
-      "experimentalDecorators": true,
-      "esModuleInterop": true,
-      "lib": [
-        "esnext",
-        "dom"
-      ],
-      "module": "esnext",
-      "target": "es6",
-      "allowSyntheticDefaultImports": true,
-      "sourceMap": true,
-      "moduleResolution": "node",
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true,
-      "strict": true,
-      "strictNullChecks": true,
-      "emitDecoratorMetadata": true,
-      "baseUrl": "./",
-      "paths": {
-        "src/*": [
-          "src/*"
-        ],
-        "*": [
-          "src/types/*"
-        ]
-      }
-    },
-    "include": ["src/**/*"]
-  }
-  
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./components",
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "*": ["src/types/*"]
+    }
+  },
+  "include": ["src/**/*", "src/typings/**/*"]
+}

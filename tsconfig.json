@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "target": "es6",
     "allowSyntheticDefaultImports": true,
@@ -17,19 +13,13 @@
     "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "baseUrl": "./",
     "paths": {
-      "src/*": [
-        "src/*"
-      ],
-      "*": [
-        "src/types/*"
-      ]
+      "src/*": ["src/*"],
+      "*": ["src/types/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "src/typings/**/*"
-  ]
+  "include": ["src/**/*", "src/typings/**/*"]
 }

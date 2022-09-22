@@ -36,11 +36,6 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 - Bootstrap 4.2.1
 - Echarts 4.2.1
 - braft-editor 2.2.9
-## Bundle Analyzer
-
-```
-   yarn build-analyzer or npm run build-analyzer  
-```
 
 ## Series project
 
@@ -48,7 +43,11 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 *  NiceFish-React: This is the implementation of the React version 18.0.0, developed using Ant Design component library, inversify library, and Bootstrap version 4.2.1 .
 *  NiceBlogElectron: https://github.com/damoqiongqiu/NiceBlogElectron, an Electron-based desktop project that packages NiceFish with Electron as a desktop-running program. This is provided by the front-end friends of ZTE . I have a fork and there are several version numbers of the node module. If you are researching how to use Electron to develop desktop applications, please refer to this project.
 
+## Bundle Analyzer
 
+```
+   yarn build-analyzer or npm run build-analyzer  
+```
 ## Associated QQ group
 
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e" class="list-group-item"><i class="fa fa-qq" aria-hidden="true"></i> React Family photo-1 :701149807 </a>
