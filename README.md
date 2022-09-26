@@ -26,6 +26,8 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 - NiceFish-React 在 GitHub Pages 上的演示地址： https://yanyunchangfeng.github.io/NiceFish-React
 
+## 技术架构
+![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
 ## 主要依赖
 
 - React 18.0.0
@@ -50,6 +52,10 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ```
    yarn build-analyzer or npm run build-analyzer  
 ```
+
+## 分析报告
+![NiceFish-REACT](src/assets/images/nice-fish-react-perf-report.png)
+
 ## 关联 QQ 群
 
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e" class="list-group-item"><i class="fa fa-qq" aria-hidden="true"></i> React 全家福一区 :701149807 </a>

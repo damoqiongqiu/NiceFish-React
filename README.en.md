@@ -30,6 +30,9 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 
 - NiceFish-React Demo address on GitHub Pages: https://yanyunchangfeng.github.io/NiceFish-React  
 
+## Technology Architecture
+![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
+
 ## Main Dependency  
 - React 18.0.0
 - Antd 4.19.5
@@ -48,6 +51,10 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 ```
    yarn build-analyzer or npm run build-analyzer  
 ```
+
+## Analysis Report
+![NiceFish-REACT](src/assets/images/nice-fish-react-perf-report.png)
+
 ## Associated QQ group
 
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e" class="list-group-item"><i class="fa fa-qq" aria-hidden="true"></i> React Family photo-1 :701149807 </a>
