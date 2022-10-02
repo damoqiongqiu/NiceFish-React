@@ -11,7 +11,9 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-const Manage = lazy(() => import(/*webpackChunkName:'manage'*/ "./manage"));
+const Manage = lazy(
+  () => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ "./manage")
+);
 const Login = lazy(() => import(/*webpackChunkName:'login'*/ "./user/login"));
 const Register = lazy(
   () => import(/*webpackChunkName:'register'*/ "./user/register")
@@ -19,11 +21,16 @@ const Register = lazy(
 const Forgot = lazy(
   () => import(/*webpackChunkName:'forgot'*/ "./user/forgot")
 );
-const Write = lazy(() => import(/*webpackChunkName:'write'*/ "./write"));
+const Write = lazy(
+  () => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./write")
+);
 const PostTable = lazy(
   () => import(/*webpackChunkName:'post-table'*/ "./manage/post-table")
 );
-const Chart = lazy(() => import(/*webpackChunkName:'chart'*/ "./manage/chart"));
+const Chart = lazy(
+  () =>
+    import(/*webpackChunkName:'chart',webpackPrefetch:true*/ "./manage/chart")
+);
 const CommentTable = lazy(
   () => import(/*webpackChunkName:'comment-table'*/ "./manage/comment-table")
 );
