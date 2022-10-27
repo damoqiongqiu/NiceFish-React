@@ -4,6 +4,11 @@ export interface ItemProps {
   userName: string;
   postTime: string;
   content: string;
+  userId: string;
+  readTimes: string;
+  commentTimes: string;
+  likedTimes: string;
+  isFamous: string;
 }
 export type ListProps = ItemProps[];
 export interface ListItemProps {

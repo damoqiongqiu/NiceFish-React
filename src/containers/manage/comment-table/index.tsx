@@ -1,37 +1,37 @@
 import React, { FC, useState } from "react";
 import { Table } from "antd";
-const CommentTable: FC = () => {
-  const columns = [
-    {
-      title: "序号",
-      dataIndex: "key",
-      filters: [
-        { text: "1", value: "1" },
-        { text: "2", value: "2" },
-      ],
-      onFilter: (value: any, record: any) => record.key.includes(value),
-      sorter: (a: any, b: any) => a.key - b.key,
-    },
-    {
-      title: "内容",
-      dataIndex: "content",
-      sorter: (a: any, b: any) => a.content.length - b.content.length,
-    },
-    {
-      title: "用户",
-      dataIndex: "userName",
-      sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
-    },
-    {
-      title: "日期",
-      dataIndex: "time",
-      width: 182,
-      fixed: "right" as any,
-      sorter: (a: any, b: any) =>
-        new Date(a.time).getTime() - new Date(b.time).getTime(),
-    },
-  ];
+const columns = [
+  {
+    title: "序号",
+    dataIndex: "key",
+    filters: [
+      { text: "1", value: "1" },
+      { text: "2", value: "2" },
+    ],
+    onFilter: (value: any, record: any) => record.key.includes(value),
+    sorter: (a: any, b: any) => a.key - b.key,
+  },
+  {
+    title: "内容",
+    dataIndex: "content",
+    sorter: (a: any, b: any) => a.content.length - b.content.length,
+  },
+  {
+    title: "用户",
+    dataIndex: "userName",
+    sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
+  },
+  {
+    title: "日期",
+    dataIndex: "time",
+    width: 182,
+    fixed: "right" as any,
+    sorter: (a: any, b: any) =>
+      new Date(a.time).getTime() - new Date(b.time).getTime(),
+  },
+];
 
+const CommentTable: FC = () => {
   const [data] = useState([
     {
       key: "1",

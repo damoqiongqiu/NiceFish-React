@@ -12,11 +12,6 @@
     "generateAnalyzerFile": "cross-env NODE_ENV=production webpack --profile --json > stats.json",
     "analyzer": "webpack-bundle-analyzer --port 8888 ./docs/stats.json"
   },
-  "sideEffects": [
-    "*.css",
-    "*.less",
-    "*.scss"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/damoqiongqiu/NiceFish-React.git"

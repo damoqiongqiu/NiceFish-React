@@ -1,4 +1,4 @@
-import React, { useState, Fragment, FC } from "react";
+import React, { useState, Fragment, FC, useCallback } from "react";
 import { message } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import niceFish from "src/assets/images/nice-fish.png";
@@ -8,19 +8,19 @@ const storageService: StorageService = useService(StorageService);
 const Header: FC = () => {
   const navigate = useNavigate();
   const [active, updateActive] = useState(false);
-  function onToggle() {
-    if (isPhone()) updateActive(!active);
-  }
-  function doLogout() {
+  const onToggle = useCallback(() => {
+    if (isPhone()) updateActive((active) => !active);
+  }, []);
+  const doLogout = useCallback(() => {
     onToggle();
     storageService.clearKey("user");
     message.success("退出成功");
     navigate("/");
-  }
-  function isPhone() {
+  }, []);
+  const isPhone = useCallback(() => {
     return window.innerWidth < 768 ? true : false;
-  }
-  const user: any = storageService.getKey("user");
+  }, []);
+  const user = storageService.getKey("user");
 
   return (
     <div
@@ -35,7 +35,7 @@ const Header: FC = () => {
             </a>
             <a
               className="d-flex align-items-center d-md-none  ml-auto"
-              onClick={() => onToggle()}
+              onClick={onToggle}
             >
               <i className="fa fa-bars font-size-30 text-white" />
             </a>
@@ -47,12 +47,12 @@ const Header: FC = () => {
         >
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>
             <li>
-              <NavLink to="/post" onClick={() => onToggle()}>
+              <NavLink to="/post" onClick={onToggle}>
                 阅读
               </NavLink>
             </li>
             <li>
-              <NavLink to="/write" onClick={() => onToggle()}>
+              <NavLink to="/write" onClick={onToggle}>
                 写作
               </NavLink>
             </li>
@@ -61,12 +61,12 @@ const Header: FC = () => {
             {!user ? (
               <Fragment>
                 <li>
-                  <NavLink to="/login" onClick={() => onToggle()}>
+                  <NavLink to="/login" onClick={onToggle}>
                     <i className="fa fa-sign-in" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register" onClick={() => onToggle()}>
+                  <NavLink to="/register" onClick={onToggle}>
                     <i className="fa fa-user-plus" />
                   </NavLink>
                 </li>
@@ -75,17 +75,17 @@ const Header: FC = () => {
             {user ? (
               <Fragment>
                 <li>
-                  <NavLink to="/home" onClick={() => onToggle()}>
+                  <NavLink to="/home" onClick={onToggle}>
                     <i className="fa fa-user" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/manage/chart" onClick={() => onToggle()}>
+                  <NavLink to="/manage/chart" onClick={onToggle}>
                     <i className="fa fa-cog" />
                   </NavLink>
                 </li>
                 <li>
-                  <a onClick={() => doLogout()}>
+                  <a onClick={doLogout}>
                     <i className="fa fa-sign-out" />
                   </a>
                 </li>
