@@ -3,8 +3,22 @@ import Service from "src/base/common/Service";
 import Color from "src/utils/color.util";
 import { useEffect } from "react";
 import echarts from "echarts";
+import type { ECharts, EChartOption } from "echarts";
+interface Chart {
+  pieOptions: Record<string, any>;
+  barOptions: Record<string, any>;
+  lineOptions: Record<string, any>;
+  barInstance: ECharts;
+  lineInstance: ECharts;
+  pieInstance: ECharts;
+  useChart(
+    bar: React.RefObject<HTMLDivElement>,
+    pie: React.RefObject<HTMLDivElement>,
+    line: React.RefObject<HTMLDivElement>
+  ): void;
+}
 @injectable("ChartService")
-class ChartService extends Service {
+class ChartService extends Service implements Chart {
   pieOptions = {
     theme: "",
     event: [
@@ -22,10 +36,10 @@ class ChartService extends Service {
       x: "center",
     },
 
-    tooltip: {
-      trigger: "item",
-      formatter: "{a} <br/>{b} : {c} ({d}%)",
-    },
+    // tooltip: {
+    //   trigger: "item",
+    //   formatter: "{a} <br/>{b} : {c} ({d}%)",
+    // },
     legend: {
       orient: "vertical",
       top: "7%",
@@ -202,9 +216,9 @@ class ChartService extends Service {
       },
     ],
   };
-  barInstance: any = null;
-  pieInstance: any = null;
-  lineInstance: any = null;
+  barInstance!: ECharts;
+  pieInstance!: ECharts;
+  lineInstance!: ECharts;
   useChart(
     barRef: React.RefObject<HTMLDivElement>,
     pieRef: React.RefObject<HTMLDivElement>,
@@ -221,9 +235,9 @@ class ChartService extends Service {
       };
     }, []);
     useEffect(() => {
-      this.barInstance?.setOption(this.barOptions);
-      this.lineInstance?.setOption(this.lineOptions);
-      this.pieInstance?.setOption(this.pieOptions);
+      this.barInstance.setOption(this.barOptions as EChartOption);
+      this.lineInstance.setOption(this.lineOptions as EChartOption);
+      this.pieInstance.setOption(this.pieOptions as EChartOption);
     });
   }
 }
