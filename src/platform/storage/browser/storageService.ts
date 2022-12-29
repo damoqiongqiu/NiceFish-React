@@ -1,21 +1,27 @@
 import { injectable } from "src/base/common/injector";
 import Service from "src/base/common/Service";
 
-interface Storage {
-  setKeyValue(key: string, val: any): void;
-  getKey(key: string): string | null;
-  clearKey(key: string): void;
+/**
+ * 接口隔离原则 ：复用，低偶合，单一职责
+ */
+interface Reading {
+  read(key: string): string | null;
 }
-
+interface Saving {
+  save(key: string, val: any): void;
+}
+interface Clearing {
+  clear(key: string): void;
+}
 @injectable("StorageService")
-class StorageService extends Service implements Storage {
-  setKeyValue(key: string, val: any) {
+class StorageService extends Service implements Saving, Reading, Clearing {
+  save(key: string, val: any) {
     window.localStorage.setItem(key, val);
   }
-  getKey(key: string) {
+  read(key: string) {
     return window.localStorage.getItem(key);
   }
-  clearKey(key: string) {
+  clear(key: string) {
     window.localStorage.removeItem(key);
   }
 }

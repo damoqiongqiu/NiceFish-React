@@ -49,22 +49,18 @@ interface IBabelPropertyDescriptor extends PropertyDescriptor {
 }
 
 // 解决react下无法注入的问题
-const inject = function () {
+const inject = function <T extends new (...args: any[]) => T>() {
   // the 'descriptor' parameter is actually always defined for class fields for Babel, but is considered undefined for TSC
   // so we just hack it with ?/! combination to avoid "TS1240: Unable to resolve signature of property decorator when called as an expression"
-  return function (
-    this: any,
-    proto: any,
-    key: string,
-    descriptor?: IBabelPropertyDescriptor
-  ): void {
+  return (target: any, key: string): void => {
     // 使用反射，在构造时自动获取依赖的原型
-    const serviceIdentifier = Reflect.getMetadata("design:type", proto, key);
+
+    const serviceIdentifier = Reflect.getMetadata("design:type", target, key);
     // 使用延迟注入
     const original = DECORATORS.lazyInject(serviceIdentifier);
 
     // make it work as usual
-    original.call(this, proto, key);
+    original.call(null, target, key);
 
     // return link to proto, so own value wont be 'undefined' after component's creation
     // descriptor!.initializer = function () {

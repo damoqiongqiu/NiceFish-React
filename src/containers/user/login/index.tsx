@@ -53,7 +53,7 @@ const Login: FC = () => {
   }
   function doLogin(e: any) {
     e.preventDefault();
-    accountService.storageService.setKeyValue("user", login.name);
+    accountService.storageService.save("user", login.name);
     navigate("/home");
   }
   function forgotPwd() {

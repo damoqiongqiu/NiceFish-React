@@ -13,14 +13,14 @@ const Header: FC = () => {
   }, []);
   const doLogout = useCallback(() => {
     onToggle();
-    storageService.clearKey("user");
+    storageService.clear("user");
     message.success("退出成功");
     navigate("/");
   }, []);
   const isPhone = useCallback(() => {
     return window.innerWidth < 768 ? true : false;
   }, []);
-  const user = storageService.getKey("user");
+  const user = storageService.read("user");
 
   return (
     <div

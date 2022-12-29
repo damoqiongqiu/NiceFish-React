@@ -64,7 +64,7 @@ const Register: FC = () => {
   }
   function doRegister(e: any) {
     e.preventDefault();
-    accountService.storageService.setKeyValue("user", register.email);
+    accountService.storageService.save("user", register.email);
     navigate("/home");
   }
   useEffect(() => {

@@ -11,9 +11,10 @@ interface Account {
 }
 @injectable("AccountService")
 class AccountService extends Service implements Account {
-  @inject() storageService!: StorageService;
+  @inject()
+  storageService!: StorageService;
   useLogin() {
-    return this.storageService.getKey("user");
+    return this.storageService.read("user");
   }
   useHome() {
     const isLogin = this.useLogin();

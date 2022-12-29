@@ -4,7 +4,7 @@ import StorageService from "src/platform/storage/browser/storageService";
 import { useService } from "src/base/common/injector";
 const storageService: StorageService = useService(StorageService);
 const Manage: FC = () => {
-  const user = storageService.getKey("user");
+  const user = storageService.read("user");
   const navigate = useNavigate();
   const match = useMatch("/manage");
   useEffect(() => {
