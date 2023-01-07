@@ -1,0 +1,415 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  className="layout-warpper"
+>
+  <div
+    className="bd-navbar main-nav navbar no-padding text-white"
+    role="navigation"
+  >
+    <div
+      className="container-xl justify-content-start no-padding"
+    >
+      <div
+        className="d-flex col-sm-12 col-md-auto no-gutters"
+      >
+        <div
+          className="d-flex col-sm"
+        >
+          <a
+            className="navbar-brand-my "
+          >
+            <img
+              src=""
+              width="45"
+            />
+          </a>
+          <a
+            className="d-flex align-items-center d-md-none  ml-auto"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-bars font-size-30 text-white"
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        className="col d-none d-md-flex collapse "
+      >
+        <ul
+          className="navbar-nav bd-navbar-nav flex-row"
+        >
+          <li>
+            <a
+              className=""
+              href="#/post"
+              onClick={[Function]}
+            >
+              阅读
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/write"
+              onClick={[Function]}
+            >
+              写作
+            </a>
+          </li>
+        </ul>
+        <ul
+          className="navbar-nav ml-md-auto flex-row "
+        >
+          <li>
+            <a
+              className=""
+              href="#/login"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-sign-in"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/register"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-user-plus"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    className="main"
+  />
+  <div
+    className="footer bg-secondary text-white pd-16px"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <p>
+            Powered by
+            <a
+              className="ml-5px"
+              href="http://git.oschina.net/mumu-osc/NiceFish"
+              target="_blank"
+            >
+              NiceFish
+            </a>
+          </p>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <a
+            href="https://gitee.com/mumu-osc/NiceFish/stargazers"
+            target="_blank"
+          >
+            <img
+              alt="star"
+              src="https://gitee.com/mumu-osc/NiceFish/badge/star.svg?theme=dark"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`render App Test render App correctly 1`] = `
+<div
+  className="layout-warpper"
+>
+  <div
+    className="bd-navbar main-nav navbar no-padding text-white"
+    role="navigation"
+  >
+    <div
+      className="container-xl justify-content-start no-padding"
+    >
+      <div
+        className="d-flex col-sm-12 col-md-auto no-gutters"
+      >
+        <div
+          className="d-flex col-sm"
+        >
+          <a
+            className="navbar-brand-my "
+          >
+            <img
+              src=""
+              width="45"
+            />
+          </a>
+          <a
+            className="d-flex align-items-center d-md-none  ml-auto"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-bars font-size-30 text-white"
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        className="col d-none d-md-flex collapse "
+      >
+        <ul
+          className="navbar-nav bd-navbar-nav flex-row"
+        >
+          <li>
+            <a
+              className=""
+              href="#/post"
+              onClick={[Function]}
+            >
+              阅读
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/write"
+              onClick={[Function]}
+            >
+              写作
+            </a>
+          </li>
+        </ul>
+        <ul
+          className="navbar-nav ml-md-auto flex-row "
+        >
+          <li>
+            <a
+              className=""
+              href="#/login"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-sign-in"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/register"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-user-plus"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    className="main"
+  />
+  <div
+    className="footer bg-secondary text-white pd-16px"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <p>
+            Powered by
+            <a
+              className="ml-5px"
+              href="http://git.oschina.net/mumu-osc/NiceFish"
+              target="_blank"
+            >
+              NiceFish
+            </a>
+          </p>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <a
+            href="https://gitee.com/mumu-osc/NiceFish/stargazers"
+            target="_blank"
+          >
+            <img
+              alt="star"
+              src="https://gitee.com/mumu-osc/NiceFish/badge/star.svg?theme=dark"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`render App should render App 1`] = `
+<div
+  className="layout-warpper"
+>
+  <div
+    className="bd-navbar main-nav navbar no-padding text-white"
+    role="navigation"
+  >
+    <div
+      className="container-xl justify-content-start no-padding"
+    >
+      <div
+        className="d-flex col-sm-12 col-md-auto no-gutters"
+      >
+        <div
+          className="d-flex col-sm"
+        >
+          <a
+            className="navbar-brand-my "
+          >
+            <img
+              src=""
+              width="45"
+            />
+          </a>
+          <a
+            className="d-flex align-items-center d-md-none  ml-auto"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-bars font-size-30 text-white"
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        className="col d-none d-md-flex collapse "
+      >
+        <ul
+          className="navbar-nav bd-navbar-nav flex-row"
+        >
+          <li>
+            <a
+              className=""
+              href="#/post"
+              onClick={[Function]}
+            >
+              阅读
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/write"
+              onClick={[Function]}
+            >
+              写作
+            </a>
+          </li>
+        </ul>
+        <ul
+          className="navbar-nav ml-md-auto flex-row "
+        >
+          <li>
+            <a
+              className=""
+              href="#/login"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-sign-in"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              href="#/register"
+              onClick={[Function]}
+            >
+              <i
+                className="fa fa-user-plus"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    className="main"
+  />
+  <div
+    className="footer bg-secondary text-white pd-16px"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <p>
+            Powered by
+            <a
+              className="ml-5px"
+              href="http://git.oschina.net/mumu-osc/NiceFish"
+              target="_blank"
+            >
+              NiceFish
+            </a>
+          </p>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-12"
+        >
+          <a
+            href="https://gitee.com/mumu-osc/NiceFish/stargazers"
+            target="_blank"
+          >
+            <img
+              alt="star"
+              src="https://gitee.com/mumu-osc/NiceFish/badge/star.svg?theme=dark"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

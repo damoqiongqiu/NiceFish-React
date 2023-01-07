@@ -46,6 +46,12 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 *  NiceFish-React: This is the implementation of the React version 18.0.0, developed using Ant Design component library, inversify library, and Bootstrap version 4.2.1 .
 *  NiceBlogElectron: https://github.com/damoqiongqiu/NiceBlogElectron, an Electron-based desktop project that packages NiceFish with Electron as a desktop-running program. This is provided by the front-end friends of ZTE . I have a fork and there are several version numbers of the node module. If you are researching how to use Electron to develop desktop applications, please refer to this project.
 
+
+## Unit Test
+
+```
+   yarn test
+```
 ## Bundle Analyzer
 
 ```
