@@ -34,7 +34,7 @@ module.exports = {
   resolve: {
     modules: [path.resolve("node_modules")], // 解析第三方包
     extensions: [".ts", ".tsx", ".js", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
-    mainFields: ["browser", "module", "main", "style"], // eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
+    mainFields: ["jsnext:main", "browser", "module", "main", "style"], // // 优先使用 jsnext:main 中指向的 ES6 模块化语法的文件 eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
     mainFiles: ["index"], // 入口文件的名字 默认是index
     alias: {
       // 别名  注意tsconfig.json˙中的paths也要对应配置

@@ -17,7 +17,6 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     "^src/(.*)$": "<rootDir>/src/$1",
   },
-  moduleFileExtensions: ["ts", "tsx", "png", "js"],
   coverageReporters: ["lcov", "html"],
   testRegex: "/test/.*\\.spec\\.tsx$",
   collectCoverageFrom: ["src/**/*"],
