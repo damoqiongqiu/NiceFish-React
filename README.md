@@ -50,9 +50,14 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ## 单元测试
 
 ```
-   yarn test
+   yarn test or npm run test
 ```
+## 端到端测试
 
+```
+   yarn cypress:open or  npm run cypress:open
+   yarn cypress:run or  npm run cypress:run
+```   
 ## 打包分析
 
 ```

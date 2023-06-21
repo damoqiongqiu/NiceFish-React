@@ -50,7 +50,13 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 ## Unit Test
 
 ```
-   yarn test
+   yarn test or npm run test
+```
+## e2e Test
+
+```
+    yarn cypress:open or  npm run cypress:open
+    yarn cypress:run or  npm run cypress:run
 ```
 ## Bundle Analyzer
 

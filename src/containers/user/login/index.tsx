@@ -75,7 +75,7 @@ const Login: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${nameFill} ${
+                className={`col input-text name ${nameFill} ${
                   (meta.name.touched || meta.name.dirty) && errors.name
                     ? "error"
                     : ""
@@ -95,7 +95,7 @@ const Login: FC = () => {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${pwdFill} ${
+                className={`col input-text pwd${pwdFill} ${
                   (meta.pwd.touched || meta.pwd.dirty) && errors.pwd
                     ? "error"
                     : ""
@@ -115,7 +115,10 @@ const Login: FC = () => {
             </span>
           </div>
           <div className="col-12 text-white ui-fluid">
-            <button className="btn btn-primary col" disabled={formValid}>
+            <button
+              className="btn btn-login btn-primary col"
+              disabled={formValid}
+            >
               登录
             </button>
             <button

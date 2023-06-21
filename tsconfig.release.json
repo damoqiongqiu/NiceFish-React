@@ -1,27 +1,18 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "outDir": "./components",
+    "outDir": "components",
     "declaration": true,
-    "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "module": "esnext",
-    "target": "es6",
+    "target": "es5",
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "baseUrl": "./",
     "paths": {
       "src/*": ["src/*"],
       "*": ["src/types/*"]
     }
   },
-  "include": ["src/**/*", "src/typings/**/*"]
+  "include": ["src/**/*"]
 }

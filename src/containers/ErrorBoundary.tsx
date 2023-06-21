@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-export default class ErrorBoundary extends Component {
-  state: any;
-  constructor(props: any) {
+interface IErrorBoundaryProps {
+  children: React.ReactNode;
+}
+export default class ErrorBoundary extends Component<IErrorBoundaryProps> {
+  state = { hasError: false };
+  constructor(props: IErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
   }
   static getDerivedStateFromError(error: any) {
     // 更新 state 使下一次渲染能够显示降级后的 UI

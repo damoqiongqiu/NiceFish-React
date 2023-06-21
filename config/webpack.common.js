@@ -13,9 +13,9 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const webpackBar = require("webpackbar");
 const { NODE_ENV, ANALYZE, UNUSED } = process.env;
-const isDev = NODE_ENV === "development";
-isAnalyzerMode = ANALYZE === "1";
-isUnusedMode = UNUSED === "1";
+const isDev = NODE_ENV === "development",
+  isAnalyzerMode = ANALYZE === "1",
+  isUnusedMode = UNUSED === "1";
 const noop = () => {};
 // module.exports = smw.wrap({ //需要包裹一层配置对象
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
   resolve: {
     modules: [path.resolve("node_modules")], // 解析第三方包
     extensions: [".ts", ".tsx", ".js", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
-    mainFields: ["jsnext:main", "browser", "module", "main", "style"], // // 优先使用 jsnext:main 中指向的 ES6 模块化语法的文件 eg: bootstrap 先找package.json 的style字段 没有的话再找main字段
+    mainFields: ["jsnext:main", "browser", "module", "main", "style"], // // 优先使用 jsnext:main 中指向的 ES6 模块化语法的文件
     mainFiles: ["index"], // 入口文件的名字 默认是index
     alias: {
       // 别名  注意tsconfig.json˙中的paths也要对应配置
@@ -138,31 +138,31 @@ module.exports = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         type: "asset/resource",
-        use: [
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                // jpeg 压缩配置
-                quality: 80,
-              },
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              webp: {
-                quality: 75,
-              },
-              disable: isDev ? true : false,
-            },
-          },
-        ],
+        // use: [
+        //   {
+        //     loader: "image-webpack-loader",
+        //     options: {
+        //       mozjpeg: {
+        //         // jpeg 压缩配置
+        //         quality: 80,
+        //       },
+        //       optipng: {
+        //         enabled: false,
+        //       },
+        //       pngquant: {
+        //         quality: [0.65, 0.9],
+        //         speed: 4,
+        //       },
+        //       gifsicle: {
+        //         interlaced: false,
+        //       },
+        //       webp: {
+        //         quality: 75,
+        //       },
+        //       disable: isDev ? true : false,
+        //     },
+        //   },
+        // ], // 如需优化压缩图片资源请安装此loader
         // 资源模块 对标file-loader
       },
       {
