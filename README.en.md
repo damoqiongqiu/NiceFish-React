@@ -23,7 +23,7 @@ Open your command line terminal and execute the following command:
 
 ## Instructions
 
-This project is a React version of NiceFish, using React version 18.0.0, developed using  the Ant Design component library,the inversify library and Bootstrap v4.2.1.
+This project is a React version of NiceFish, using React version 18.2.0, developed using  the Ant Design component library,the inversify library and Bootstrap v4.2.1.
 
 ## Online demo
 
@@ -34,16 +34,16 @@ This project is a React version of NiceFish, using React version 18.0.0, develop
 ![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
 
 ## Main Dependency  
-- React 18.0.0
-- Antd 4.19.5
+- React 18.2.0
+- antd 5.6.2
 - Bootstrap 4.2.1
-- Echarts 4.2.1
+- echarts 4.2.1
 - braft-editor 2.2.9
 
 ## Series project
 
 *  NiceFish: This is a series of projects whose goal is to demonstrate the development mode of front-end and back-end separation: various development modes in front-end browsers, mobile terminals, and Electron environments. There are two versions of the backend: SpringBoot version and SpringCloud version  http://gitee.com/mumu-osc/NiceFish/ 
-*  NiceFish-React: This is the implementation of the React version 18.0.0, developed using Ant Design component library, inversify library, and Bootstrap version 4.2.1 .
+*  NiceFish-React: This is the implementation of the React version 18.2.0, developed using Ant Design component library, inversify library, and Bootstrap version 4.2.1 .
 *  NiceBlogElectron: https://github.com/damoqiongqiu/NiceBlogElectron, an Electron-based desktop project that packages NiceFish with Electron as a desktop-running program. This is provided by the front-end friends of ZTE . I have a fork and there are several version numbers of the node module. If you are researching how to use Electron to develop desktop applications, please refer to this project.
 
 

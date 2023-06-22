@@ -10,7 +10,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 ## 介绍
 
-这是 NiceFish 的 React 版本，基于React 18.0.0 ，使用 Antd、Inversify、 定制版 Bootstrap开发。
+这是 NiceFish 的 React 版本，基于React 18.2.0 ，使用 Antd、Inversify、 定制版 Bootstrap开发。
 
 ## 用法
 
@@ -30,10 +30,10 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
 ## 主要依赖
 
-- React 18.0.0
-- Antd 4.19.5
+- React 18.2.0
+- antd 5.6.2
 - Bootstrap 4.2.1
-- Echarts 4.2.1
+- echarts 4.2.1
 - braft-editor 2.2.9
 
 ## 系列项目
@@ -41,7 +41,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 |  名称   | 描述  |
 |  ----  | ----  |
 | NiceFish（美人鱼）  | 这是一个系列项目，目标是示范前后端分离的开发模式:前端浏览器、移动端、Electron 环境中的各种开发模式。后端有两个版本：SpringBoot 版本和 SpringCloud 版本，http://git.oschina.net/mumu-osc/NiceFish/ |
-| NiceFish-React  |  这是 NiceFish 的 React 版本，基于React 18.0.0 ，使用 Antd、Inversify、 定制版 Bootstrap开发。  https://gitee.com/mumu-osc/NiceFish-React|
+| NiceFish-React  |  这是 NiceFish 的 React 版本，基于React 18.2.0 ，使用 Antd、Inversify、 定制版 Bootstrap开发。  https://gitee.com/mumu-osc/NiceFish-React|
 | nicefish-ionic  | 这是一个移动端的 demo，基于 ionic，此项目已支持 PWA。http://git.oschina.net/mumu-osc/nicefish-ionic |
 | NiceBlogElectron  | 这是一个基于 Electron 的桌面端项目，把 NiceFish 用 Electron 打包成了一个桌面端运行的程序。这是由 ZTE 中兴通讯的前端道友提供的，我 fork 了一个，有几个 node 模块的版本号老要改，如果您正在研究如何利用 Electron 开发桌面端应用，请参考这个项目，https://github.com/damoqiongqiu/NiceBlogElectron|
 | OpenWMS  | 用来示范管理后台型系统的最佳实践，https://gitee.com/mumu-osc/OpenWMS-Frontend|
