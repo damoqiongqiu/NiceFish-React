@@ -4,7 +4,7 @@
   "description": "nicefish-react",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest -u",
     "start": "cross-env NODE_ENV=development webpack serve",
     "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
     "start-unused": "cross-env NODE_ENV=development UNUSED=1  webpack serve",
