@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const smw = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
 const UnusedWebpackPlugin = require("unused-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
@@ -195,6 +194,12 @@ module.exports = {
         ],
       },
     ],
+    // noParse: /lodash/, //正则表达式
+    // module.noParse字段，可以用于配置哪些模块文件的内容不需要进行解析
+    // 不需要解析依赖(如无依赖)的第三方大型库等，可以通过这个字段来配置，以提高整体的构建速度
+    noParse(content) {
+      return /lodash/.test(content);
+    },
   },
   performance: !isDev //监控产物体积
     ? {
@@ -237,7 +242,6 @@ module.exports = {
     new webpack.DefinePlugin({
       AUTHOR: JSON.stringify("yanyunchangfeng"),
     }),
-    new FriendlyErrorsWebpackPlugin(), // .日志太多太少都不美观// .可以修改stats
     !isDev
       ? new CopyPlugin({
           patterns: [
@@ -254,7 +258,7 @@ module.exports = {
     isUnusedMode
       ? new UnusedWebpackPlugin({
           directories: [path.join(process.cwd(), "src")], //用于指定需要分析的文件目录
-          root: __dirname, // 用于显示相对路径替代原有的绝对路径。
+          root: path.join(process.cwd(), "src"), // 用于显示相对路径替代原有的绝对路径。
         })
       : noop,
     // IgnorePlugin用于忽略某些特定的模块，让webpack不把这些指定的模块打包进去

@@ -24,7 +24,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 ## 在线演示
 
-- NiceFish-React 在 GitHub Pages 上的演示地址： https://yanyunchangfeng.github.io/NiceFish-React
+- NiceFish-React 在 GitHub Pages 上的演示地址： https://damoqiongqiu.github.io/NiceFish-React
 
 ## 技术架构
 ![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
