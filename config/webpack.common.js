@@ -13,8 +13,19 @@ const { NODE_ENV, ANALYZE, UNUSED } = process.env;
 const isDev = NODE_ENV === "development",
   isAnalyzerMode = ANALYZE === "1",
   isUnusedMode = UNUSED === "1";
-const noop = () => {};
-module.exports = smp.wrap({
+
+class NoopPlugin {
+  apply(compiler) {
+    compiler.hooks.done.tap(
+      "Noop Plugin",
+      (
+        stats /* stats is passed as an argument when done hook is tapped.  */
+      ) => {}
+    );
+  }
+}
+// module.exports = smp.wrap({ //包裹后可以启动服务,然而执行打包有问题,暂时注释掉
+module.exports = {
   context: process.cwd(),
   entry: {
     main: "./src/index.tsx",
@@ -213,7 +224,7 @@ module.exports = smp.wrap({
           analyzerMode: "server", // 启动展示打包报告的http服务器
           generateStatsFile: true, // 是否生成stats.json文件
         })
-      : noop,
+      : new NoopPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), "src/index.html"),
       filename: "index.html",
@@ -235,13 +246,13 @@ module.exports = smp.wrap({
             concurrency: 100,
           },
         })
-      : noop,
+      : new NoopPlugin(),
     isUnusedMode
       ? new UnusedWebpackPlugin({
           directories: [path.join(process.cwd(), "src")], //用于指定需要分析的文件目录
           root: path.join(process.cwd(), "src"), // 用于显示相对路径替代原有的绝对路径。
         })
-      : noop,
+      : new NoopPlugin(),
     // IgnorePlugin用于忽略某些特定的模块，让webpack不把这些指定的模块打包进去
     // 第一个是匹配引入模块路径的正则表达式
     // 第二个是匹配模块的对应上下文，即所在目录名
@@ -254,7 +265,10 @@ module.exports = smp.wrap({
           filename: "[name].[contenthash].css",
           chunkFilename: "[name].[contenthash].css",
         })
-      : noop,
-    !isDev ? new webpack.BannerPlugin("Copyright By damoqiongqiu") : noop,
+      : new NoopPlugin(),
+    !isDev
+      ? new webpack.BannerPlugin("Copyright By damoqiongqiu")
+      : new NoopPlugin(),
   ],
-});
+};
+// });
