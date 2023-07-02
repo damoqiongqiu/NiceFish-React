@@ -3,21 +3,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
-const smw = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
+const smp = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
 const UnusedWebpackPlugin = require("unused-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const webpackBar = require("webpackbar");
 const { NODE_ENV, ANALYZE, UNUSED } = process.env;
 const isDev = NODE_ENV === "development",
   isAnalyzerMode = ANALYZE === "1",
   isUnusedMode = UNUSED === "1";
 const noop = () => {};
-// module.exports = smw.wrap({ //需要包裹一层配置对象
-module.exports = {
+module.exports = smp.wrap({
   context: process.cwd(),
   entry: {
     main: "./src/index.tsx",
@@ -89,22 +86,6 @@ module.exports = {
     concatenateModules: isDev ? false : true, //关闭模块合并;
     usedExports: isDev ? false : true, //关闭 Tree-shaking 功能； // 标记使用到的导出
     //  Tree-shaking   最大粒度优化需要在package.json中配置 "sideEffects":false, 如果是css文件 需要配置sideEffects:["*.css"] // js 就是纯函数 没有副作用
-    minimizer: [
-      // Webpack5 之后，约定使用 `'...'` 字面量保留默认 `minimizer` 配置
-      "...",
-      !isDev ? new CssMinimizerPlugin() : noop,
-      !isDev
-        ? new HtmlMinimizerPlugin({
-            minimizerOptions: {
-              // 折叠 Boolean 型属性
-              collapseBooleanAttributes: true,
-              // 使用精简 `doctype` 定义
-              useShortDoctype: true,
-              // ...
-            },
-          })
-        : noop,
-    ],
   },
   watchOptions: {
     ignored: /node_modules/, //最小化 watch 监控范围
@@ -276,5 +257,4 @@ module.exports = {
       : noop,
     !isDev ? new webpack.BannerPlugin("Copyright By damoqiongqiu") : noop,
   ],
-};
-// })
+});

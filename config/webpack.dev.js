@@ -1,5 +1,4 @@
 const commonConfig = require("./webpack.common");
-const path = require("path");
 const { merge } = require("webpack-merge");
 // 区分环境
 // . --mode 用来设置模块内的process.env.NODE_ENV
