@@ -24,8 +24,7 @@ class NoopPlugin {
     );
   }
 }
-// module.exports = smp.wrap({ //包裹后可以启动服务,然而执行打包有问题,暂时注释掉
-module.exports = {
+const webpackConfig = {
   context: process.cwd(),
   entry: {
     main: "./src/index.tsx",
@@ -271,4 +270,13 @@ module.exports = {
       : new NoopPlugin(),
   ],
 };
-// });
+
+const miniCssExtractIndex = webpackConfig.plugins.findIndex(
+  (e) => e.constructor.name === "MiniCssExtractPlugin"
+);
+const miniCssExtractPlugin = webpackConfig.plugins[miniCssExtractIndex];
+const configToExport = smp.wrap(webpackConfig);
+if (miniCssExtractPlugin) {
+  configToExport.plugins[miniCssExtractIndex] = miniCssExtractPlugin;
+}
+module.exports = webpackConfig;
