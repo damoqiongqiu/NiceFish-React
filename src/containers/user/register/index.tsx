@@ -1,42 +1,42 @@
-import React, { useState, useEffect, FC } from "react";
-import { registerFormValidator } from "src/validator/register-form-validator";
-import { useNavigate } from "react-router-dom";
-import Common from "src/utils/common.util";
-import { useService } from "src/base/common/injector";
-import AccountService from "src/platform/account/browser/accountService";
+import React, { useState, useEffect, FC } from 'react';
+import { registerFormValidator } from 'src/validator/register-form-validator';
+import { useNavigate } from 'react-router-dom';
+import Common from 'src/utils/common.util';
+import { useService } from 'src/base/common/injector';
+import AccountService from 'src/platform/account/browser/accountService';
 const Register: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
   const navigate = useNavigate();
-  const [emailFill, updateEmailFill] = useState("");
-  const [pwdFill, updatePwdFill] = useState("");
-  const [cfPwdFill, updateCfPwdFill] = useState("");
+  const [emailFill, updateEmailFill] = useState('');
+  const [pwdFill, updatePwdFill] = useState('');
+  const [cfPwdFill, updateCfPwdFill] = useState('');
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({
     email: { touched: false, dirty: false },
     pwd: { touched: false, dirty: false },
-    cfPwd: { touched: false, dirty: false },
+    cfPwd: { touched: false, dirty: false }
   });
   const [errors, setErrors] = useState({} as any);
   const [register, updateRegister] = useState({
-    email: "",
-    pwd: "",
-    cfPwd: "",
+    email: '',
+    pwd: '',
+    cfPwd: ''
   });
 
   function onBlur(key: any, value: any) {
     switch (key) {
-      case "email":
+      case 'email':
         setErrors(registerFormValidator(register));
         setMeta({ ...meta, [key]: { touched: true } });
         Common.toggleClass(value, updateEmailFill, Common.fillClass);
         break;
-      case "pwd":
+      case 'pwd':
         setErrors(registerFormValidator(register));
         setMeta({ ...meta, [key]: { touched: true } });
         Common.toggleClass(value, updatePwdFill, Common.fillClass);
         break;
-      case "cfPwd":
+      case 'cfPwd':
         setErrors(registerFormValidator(register));
         setMeta({ ...meta, [key]: { touched: true } });
         Common.toggleClass(value, updateCfPwdFill, Common.fillClass);
@@ -46,16 +46,16 @@ const Register: FC = () => {
   function handleChange(key: any, value: any) {
     const upRegister = {
       ...register,
-      [key]: value,
+      [key]: value
     };
     switch (key) {
-      case "email":
+      case 'email':
         setMeta({ ...meta, [key]: { dirty: true } });
         break;
-      case "pwd":
+      case 'pwd':
         setMeta({ ...meta, [key]: { dirty: true } });
         break;
-      case "cfPwd":
+      case 'cfPwd':
         setMeta({ ...meta, [key]: { dirty: true } });
         break;
     }
@@ -64,8 +64,8 @@ const Register: FC = () => {
   }
   function doRegister(e: any) {
     e.preventDefault();
-    accountService.storageService.save("user", register.email);
-    navigate("/home");
+    accountService.storageService.save('user', register.email);
+    navigate('/home');
   }
   useEffect(() => {
     const errors = registerFormValidator(register);
@@ -83,15 +83,13 @@ const Register: FC = () => {
             <span className="inputfiled">
               <input
                 className={`col input-text ${emailFill} ${
-                  (meta.email.touched || meta.email.dirty) && errors.email
-                    ? "error"
-                    : ""
+                  (meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
                 }`}
                 type="text"
                 autoComplete="off"
                 value={register.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                onBlur={(e) => onBlur("email", e.target.value)}
+                onChange={(e) => handleChange('email', e.target.value)}
+                onBlur={(e) => onBlur('email', e.target.value)}
               />
               <label>Email</label>
               {(meta.email.touched || meta.email.dirty) && errors.email ? (
@@ -103,39 +101,33 @@ const Register: FC = () => {
             <span className="inputfiled">
               <input
                 className={`col input-text ${pwdFill} ${
-                  (meta.pwd.touched || meta.pwd.dirty) && errors.pwd
-                    ? "error"
-                    : ""
+                  (meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''
                 }`}
                 type="password"
                 value={register.pwd}
                 autoComplete="off"
                 onBlur={(e) => {
-                  onBlur("pwd", e.target.value);
+                  onBlur('pwd', e.target.value);
                 }}
-                onChange={(e) => handleChange("pwd", e.target.value)}
+                onChange={(e) => handleChange('pwd', e.target.value)}
               />
               <label>Password</label>
-              {(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? (
-                <div className="text-red">{errors.pwd}</div>
-              ) : null}
+              {(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? <div className="text-red">{errors.pwd}</div> : null}
             </span>
           </div>
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
                 className={`col input-text ${cfPwdFill} ${
-                  (meta.cfPwd.touched || meta.cfPwd.dirty) && errors.cfPwd
-                    ? "error"
-                    : ""
+                  (meta.cfPwd.touched || meta.cfPwd.dirty) && errors.cfPwd ? 'error' : ''
                 }`}
                 type="password"
                 value={register.cfPwd}
                 autoComplete="off"
                 onBlur={(e) => {
-                  onBlur("cfPwd", e.target.value);
+                  onBlur('cfPwd', e.target.value);
                 }}
-                onChange={(e) => handleChange("cfPwd", e.target.value)}
+                onChange={(e) => handleChange('cfPwd', e.target.value)}
               />
               <label>Confirm Password</label>
               {(meta.cfPwd.touched || meta.cfPwd.dirty) && errors.cfPwd ? (

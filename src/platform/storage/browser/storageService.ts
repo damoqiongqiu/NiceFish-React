@@ -1,5 +1,5 @@
-import { injectable } from "src/base/common/injector";
-import Service from "src/base/common/Service";
+import { injectable } from 'src/base/common/injector';
+import Service from 'src/base/common/Service';
 
 /**
  * 接口隔离原则 ：复用，低偶合，单一职责
@@ -13,7 +13,7 @@ interface Saving {
 interface Clearing {
   clear(key: string): void;
 }
-@injectable("StorageService")
+@injectable('StorageService')
 class StorageService extends Service implements Saving, Reading, Clearing {
   save(key: string, val: any) {
     window.localStorage.setItem(key, val);

@@ -9,25 +9,25 @@
   }
   .container-fluid {
     @include make-container();
-  } 
-    // Responsive containers that are 100% wide until a breakpoint
-  @each $breakpoint, $container-max-width in $container-max-widths{
-    .container-#{$breakpoint}{
-        @extend .container-fluid;
+  }
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    .container-#{$breakpoint} {
+      @extend .container-fluid;
     }
     @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-       %responsive-container-#{$breakpoint} {
-           max-width:  $container-max-width;
-       }
-       @each $name,$width in $grid-breakpoints {
-           @if ($container-max-width > $width or $breakpoint == $name) {
-               .container#{breakpoint-infix($name, $grid-breakpoints)} {
-                   @extend %responsive-container-#{$breakpoint};
-               }
-           }
-       }
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+      @each $name, $width in $grid-breakpoints {
+        @if ($container-max-width > $width or $breakpoint == $name) {
+          .container#{breakpoint-infix($name, $grid-breakpoints)} {
+            @extend %responsive-container-#{$breakpoint};
+          }
+        }
+      }
     }
-   }
+  }
 }
 
 // Fluid container
@@ -57,7 +57,7 @@
     margin-left: 0;
 
     > .col,
-    > [class*="col-"] {
+    > [class*='col-'] {
       padding-right: 0;
       padding-left: 0;
     }

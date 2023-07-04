@@ -1,15 +1,15 @@
-import React, { FC, useEffect } from "react";
-import { NavLink, useNavigate, Outlet, useMatch } from "react-router-dom";
-import StorageService from "src/platform/storage/browser/storageService";
-import { useService } from "src/base/common/injector";
+import React, { FC, useEffect } from 'react';
+import { NavLink, useNavigate, Outlet, useMatch } from 'react-router-dom';
+import StorageService from 'src/platform/storage/browser/storageService';
+import { useService } from 'src/base/common/injector';
 const storageService: StorageService = useService(StorageService);
 const Manage: FC = () => {
-  const user = storageService.read("user");
+  const user = storageService.read('user');
   const navigate = useNavigate();
-  const match = useMatch("/manage");
+  const match = useMatch('/manage');
   useEffect(() => {
-    if (!user) return navigate("/");
-    if (match) navigate("/manage/chart", { replace: true });
+    if (!user) return navigate('/');
+    if (match) navigate('/manage/chart', { replace: true });
   });
   return (
     <div className="container-xl mtb-16px">

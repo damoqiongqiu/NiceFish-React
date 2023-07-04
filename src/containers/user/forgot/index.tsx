@@ -1,24 +1,24 @@
-import React, { FC, useState, useEffect } from "react";
-import { message } from "antd";
-import { forgotFormValidator } from "src/validator/forgot-form-validator";
-import Common from "src/utils/common.util";
-import { useService } from "src/base/common/injector";
-import AccountService from "src/platform/account/browser/accountService";
+import React, { FC, useState, useEffect } from 'react';
+import { message } from 'antd';
+import { forgotFormValidator } from 'src/validator/forgot-form-validator';
+import Common from 'src/utils/common.util';
+import { useService } from 'src/base/common/injector';
+import AccountService from 'src/platform/account/browser/accountService';
 
 const Forgot: FC = () => {
   const accountService: AccountService = useService(AccountService);
   accountService.useHome();
-  const [emailFill, updateEmailFill] = useState("");
+  const [emailFill, updateEmailFill] = useState('');
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({ email: { touched: false, dirty: false } });
   const [errors, setErrors] = useState({} as any);
   const [forgot, updateForgot] = useState({
-    email: "",
+    email: ''
   });
 
   function onBlur(key: any, value: any) {
     switch (key) {
-      case "email":
+      case 'email':
         setErrors(forgotFormValidator(forgot));
         setMeta({ ...meta, [key]: { touched: true } });
         Common.toggleClass(value, updateEmailFill, Common.fillClass);
@@ -27,7 +27,7 @@ const Forgot: FC = () => {
   function handleChange(key: any, value: any) {
     const upForgot = {
       ...forgot,
-      [key]: value,
+      [key]: value
     };
     setMeta({ ...meta, [key]: { dirty: true } });
     updateForgot(upForgot);
@@ -35,7 +35,7 @@ const Forgot: FC = () => {
   }
   function retrievePwd(e: any) {
     e.preventDefault();
-    message.success("邮件发送成功，请登录邮箱查看。");
+    message.success('邮件发送成功，请登录邮箱查看。');
   }
   useEffect(() => {
     const errors = forgotFormValidator(forgot);
@@ -53,21 +53,19 @@ const Forgot: FC = () => {
             <span className="inputfiled">
               <input
                 className={`col input-text ${emailFill} ${
-                  (meta.email.touched || meta.email.dirty) && errors.email
-                    ? "error"
-                    : ""
+                  (meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
                 }`}
                 type="text"
                 autoComplete="off"
                 value={forgot.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                onBlur={(e) => onBlur("email", e.target.value)}
+                onChange={(e) => handleChange('email', e.target.value)}
+                onBlur={(e) => onBlur('email', e.target.value)}
               />
               <label>Email</label>
               {(meta.email.touched || meta.email.dirty) && errors.email ? (
                 <div className="text-red">{errors.email}</div>
               ) : (
-                ""
+                ''
               )}
             </span>
           </div>

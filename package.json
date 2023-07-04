@@ -8,14 +8,17 @@
     "start": "cross-env NODE_ENV=development webpack serve",
     "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
     "start-unused": "cross-env NODE_ENV=development UNUSED=1  webpack serve",
+    "start-smp": "cross-env NODE_ENV=development SMP=1  webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
     "build-analyzer": "cross-env NODE_ENV=production ANALYZE=1  webpack",
+    "build-smp": "cross-env NODE_ENV=production SMP=1  webpack",
     "generateAnalyzerFile": "cross-env NODE_ENV=production webpack --profile --json > stats.json",
     "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json",
     "cypress:open": "cypress open",
     "cypress:run": "concurrently  --kill-others  --success=first \" npm start \" \" wait-on http://localhost:8080 && cypress run \" ",
+    "prettier": "prettier -c --write  **/* --cache",
     "prepare": "husky install",
-    "pre-commit": "cross-env CI=true npm test && npm run cypress:run"
+    "pre-commit": "lint-staged && cross-env CI=true npm test && npm run cypress:run"
   },
   "repository": {
     "type": "git",
@@ -62,9 +65,11 @@
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
     "jest": "29.3.1",
+    "lint-staged": "13.2.3",
     "jest-environment-jsdom": "29.3.1",
     "jest-transform-stub": "2.0.0",
     "mini-css-extract-plugin": "2.6.0",
+    "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
     "sass": "1.49.11",
     "sass-loader": "12.6.0",
@@ -84,5 +89,9 @@
     "webpack-dev-server": "4.7.4",
     "webpack-merge": "5.8.0",
     "webpackbar": "5.0.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "prettier --write  --ignore-unknown",
+    "*.{json,less,scss,md}": "prettier --write --ignore-unknown"
   }
 }

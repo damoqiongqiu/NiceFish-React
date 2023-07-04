@@ -1,6 +1,6 @@
-import React, { FC, useState, useEffect } from "react";
-import BraftEditor from "braft-editor";
-import "braft-editor/dist/index.css";
+import React, { FC, useState, useEffect } from 'react';
+import BraftEditor from 'braft-editor';
+import 'braft-editor/dist/index.css';
 const Write: FC = () => {
   const [editorState, updateEditorState] = useState();
   function handleEditorChange(editorState: any) {
@@ -25,18 +25,10 @@ const Write: FC = () => {
         <div className="col-md-12">
           <form role="form">
             <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="标题，2到32个字符"
-              />
+              <input type="text" className="form-control" placeholder="标题，2到32个字符" />
             </div>
             <div className="form-group border-1px-primary">
-              <BraftEditor
-                value={editorState}
-                onChange={handleEditorChange}
-                onSave={submitContent}
-              />
+              <BraftEditor value={editorState} onChange={handleEditorChange} onSave={submitContent} />
             </div>
             <div className="pd-16px">
               <button type="button" className="btn btn-primary">

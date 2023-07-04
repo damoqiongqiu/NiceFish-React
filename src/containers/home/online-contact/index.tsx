@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 const OnlineContact: FC = () => {
   return (
     <div className="online-contact-container sm-mt-16px">
@@ -54,16 +54,14 @@ const OnlineContact: FC = () => {
             href="//shang.qq.com/wpa/qunwpa?idkey=5d6b8c5296e4806142b8422ae7abca6f27b9b9b992a4dac80dc1392644e8970a"
             className="list-group-item border-width-1-0 pd-lr-1rem"
           >
-            <i className="fa fa-qq" aria-hidden="true" />{" "}
-            脚本娃娃-桃花岛:83163037
+            <i className="fa fa-qq" aria-hidden="true" /> 脚本娃娃-桃花岛:83163037
           </a>
           <a
             target="_blank"
             href="//shang.qq.com/wpa/qunwpa?idkey=cbf15a3d8f212076a8de5b6fa4b5a16d750cc5d7f2d55b14ad0ea8bcb6fd976e"
             className="list-group-item border-width-1-0 pd-lr-1rem border-bottom-0"
           >
-            <i className="fa fa-qq" aria-hidden="true" /> React
-            全家福-1区:701149807
+            <i className="fa fa-qq" aria-hidden="true" /> React 全家福-1区:701149807
           </a>
         </div>
       </div>

@@ -1,14 +1,4 @@
-const baseColor = [
-  "#25859e",
-  "#6acece",
-  "#e78816",
-  "#eabc7f",
-  "#12619d",
-  "#ad2532",
-  "#15938d",
-  "#b3aa9b",
-  "#042d4c",
-];
+const baseColor = ['#25859e', '#6acece', '#e78816', '#eabc7f', '#12619d', '#ad2532', '#15938d', '#b3aa9b', '#042d4c'];
 interface GenColorFn<T> {
   (arr: T[]): string[];
 }
@@ -29,5 +19,5 @@ const genColor: GenColor = (arr) => {
 
 export default {
   baseColor,
-  genColor,
+  genColor
 };

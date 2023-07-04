@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
-import listImg from "src/assets/images/list-item.jpg";
-import { ListItemProps } from "../../domain";
+import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import listImg from 'src/assets/images/list-item.jpg';
+import { ListItemProps } from '../../domain';
 const ListItem: FC<ListItemProps> = ({ list }) => {
   return (
     <>
@@ -14,9 +14,7 @@ const ListItem: FC<ListItemProps> = ({ list }) => {
               </div>
               <div className="col-md-10 post-item-text-container sm-mt-16px">
                 <h3 className="font-size-18">
-                  <NavLink to={`/post/post-detail/${item.postId}`}>
-                    {item.title}
-                  </NavLink>
+                  <NavLink to={`/post/post-detail/${item.postId}`}>{item.title}</NavLink>
                 </h3>
                 <div className="user-name-intitle">
                   <div className="row">

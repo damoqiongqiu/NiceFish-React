@@ -1,0 +1,13 @@
+**/*.png
+**/*.svg
+coverage/
+package.json
+dist
+LICENSE
+yarn.lock
+.gitignore
+.npmignore
+.prettierignore
+.DS_Store
+**/*.yml
+src/assets/scss/mixins/_image.scss

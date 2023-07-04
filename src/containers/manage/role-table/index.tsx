@@ -1,33 +1,33 @@
-import React, { FC, useState } from "react";
-import { Table, Tag } from "antd";
-import { NavLink } from "react-router-dom";
+import React, { FC, useState } from 'react';
+import { Table, Tag } from 'antd';
+import { NavLink } from 'react-router-dom';
 const RoleTable: FC = () => {
   const columns = [
     {
-      title: "序号",
-      dataIndex: "key",
+      title: '序号',
+      dataIndex: 'key',
       filters: [
-        { text: "1", value: "1" },
-        { text: "2", value: "2" },
+        { text: '1', value: '1' },
+        { text: '2', value: '2' }
       ],
       onFilter: (value: any, record: any) => record.key.includes(value),
-      sorter: (a: any, b: any) => a.key - b.key,
+      sorter: (a: any, b: any) => a.key - b.key
     },
     {
-      title: "名称",
-      dataIndex: "title",
-      sorter: (a: any, b: any) => a.title.localeCompare(b.title),
+      title: '名称',
+      dataIndex: 'title',
+      sorter: (a: any, b: any) => a.title.localeCompare(b.title)
     },
     {
-      title: "拥有权限",
-      dataIndex: "permission",
-      sorter: (a: any, b: any) => a.permission.localeCompare(b.permission),
+      title: '拥有权限',
+      dataIndex: 'permission',
+      sorter: (a: any, b: any) => a.permission.localeCompare(b.permission)
     },
     {
-      title: "操作",
-      dataIndex: "options",
+      title: '操作',
+      dataIndex: 'options',
       width: 150,
-      fixed: "right" as any,
+      fixed: 'right' as any,
       render: (options: any, props: any) => (
         <div>
           {options.map((option: any, index: any) => {
@@ -50,38 +50,28 @@ const RoleTable: FC = () => {
             }
           })}
         </div>
-      ),
-    },
+      )
+    }
   ];
   const [data] = useState([
     {
-      key: "1",
-      title: "游客",
-      permission: "阅读文章",
-      options: [
-        { icon: "fa fa-pencil-square-o", link: "/manage/role-edit/" },
-        { icon: "fa fa-trash" },
-      ],
+      key: '1',
+      title: '游客',
+      permission: '阅读文章',
+      options: [{ icon: 'fa fa-pencil-square-o', link: '/manage/role-edit/' }, { icon: 'fa fa-trash' }]
     },
     {
-      key: "2",
-      title: "注册用户",
-      permission:
-        "发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码",
-      options: [
-        { icon: "fa fa-pencil-square-o", link: "/manage/role-edit/" },
-        { icon: "fa fa-trash" },
-      ],
+      key: '2',
+      title: '注册用户',
+      permission: '发表文章、删除文章、发表评论、删除评论、更新个人资料、修改自己密码',
+      options: [{ icon: 'fa fa-pencil-square-o', link: '/manage/role-edit/' }, { icon: 'fa fa-trash' }]
     },
     {
-      key: "3",
-      title: "系统管理员",
-      permission: "All",
-      options: [
-        { icon: "fa fa-pencil-square-o", link: "/manage/role-edit/" },
-        { icon: "fa fa-trash" },
-      ],
-    },
+      key: '3',
+      title: '系统管理员',
+      permission: 'All',
+      options: [{ icon: 'fa fa-pencil-square-o', link: '/manage/role-edit/' }, { icon: 'fa fa-trash' }]
+    }
   ]);
   return (
     <div className="role-table-container">
@@ -89,11 +79,7 @@ const RoleTable: FC = () => {
         <div className="row">
           <div className="col-sm-8">
             <div className="input-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="角色名称，角色代码"
-              />
+              <input className="form-control" type="text" placeholder="角色名称，角色代码" />
               <span className="input-group-btn">
                 <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" aria-hidden="true" />

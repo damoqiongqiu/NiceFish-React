@@ -1,9 +1,9 @@
-import React, { useState, Fragment, FC, useCallback } from "react";
-import { message } from "antd";
-import { NavLink, useNavigate } from "react-router-dom";
-import niceFish from "src/assets/images/nice-fish.png";
-import StorageService from "src/platform/storage/browser/storageService";
-import { useService } from "src/base/common/injector";
+import React, { useState, Fragment, FC, useCallback } from 'react';
+import { message } from 'antd';
+import { NavLink, useNavigate } from 'react-router-dom';
+import niceFish from 'src/assets/images/nice-fish.png';
+import StorageService from 'src/platform/storage/browser/storageService';
+import { useService } from 'src/base/common/injector';
 const storageService: StorageService = useService(StorageService);
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -13,38 +13,30 @@ const Header: FC = () => {
   }, []);
   const doLogout = useCallback(() => {
     onToggle();
-    storageService.clear("user");
-    message.success("退出成功");
-    navigate("/");
+    storageService.clear('user');
+    message.success('退出成功');
+    navigate('/');
   }, []);
   const isPhone = useCallback(() => {
     return window.innerWidth < 768 ? true : false;
   }, []);
-  const user = storageService.read("user");
+  const user = storageService.read('user');
 
   return (
-    <div
-      className="bd-navbar main-nav navbar no-padding text-white"
-      role="navigation"
-    >
+    <div className="bd-navbar main-nav navbar no-padding text-white" role="navigation">
       <div className="container-xl justify-content-start no-padding">
         <div className="d-flex col-sm-12 col-md-auto no-gutters">
           <div className="d-flex col-sm">
             <a className="navbar-brand-my ">
               <img width="45" src={niceFish} />
             </a>
-            <a
-              className="d-flex align-items-center d-md-none  ml-auto"
-              onClick={onToggle}
-            >
+            <a className="d-flex align-items-center d-md-none  ml-auto" onClick={onToggle}>
               <i className="fa fa-bars font-size-30 text-white" />
             </a>
           </div>
         </div>
 
-        <div
-          className={`col d-none d-md-flex collapse ${active ? "d-flex" : ""}`}
-        >
+        <div className={`col d-none d-md-flex collapse ${active ? 'd-flex' : ''}`}>
           <ul className={`navbar-nav bd-navbar-nav flex-row`}>
             <li>
               <NavLink to="/post" onClick={onToggle}>

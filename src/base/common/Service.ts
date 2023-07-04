@@ -1,6 +1,6 @@
-import { injectable } from './injector'
+import { injectable } from './injector';
 
 @injectable()
-class Service { }
+class Service {}
 
-export default Service
+export default Service;

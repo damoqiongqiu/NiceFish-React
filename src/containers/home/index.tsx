@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import OnlineContact from "./online-contact";
-import Read from "src/containers/read";
+import React, { FC } from 'react';
+import OnlineContact from './online-contact';
+import Read from 'src/containers/read';
 
 const Home: FC = () => {
   return (

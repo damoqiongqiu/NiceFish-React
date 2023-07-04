@@ -1,62 +1,61 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
-const CopyPlugin = require("copy-webpack-plugin");
-const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
 const smp = new SpeedMeasureWebpackPlugin(); // 费时分析的插件
-const UnusedWebpackPlugin = require("unused-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const webpackBar = require("webpackbar");
-const { NODE_ENV, ANALYZE, UNUSED } = process.env;
-const isDev = NODE_ENV === "development",
-  isAnalyzerMode = ANALYZE === "1",
-  isUnusedMode = UNUSED === "1";
+const UnusedWebpackPlugin = require('unused-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const webpackBar = require('webpackbar');
+const { NODE_ENV, ANALYZE, UNUSED, SMP } = process.env;
+const isDev = NODE_ENV === 'development',
+  isAnalyzerMode = ANALYZE === '1',
+  isUnusedMode = UNUSED === '1',
+  isSmpMode = SMP === '1';
 
 class NoopPlugin {
   apply(compiler) {
     compiler.hooks.done.tap(
-      "Noop Plugin",
-      (
-        stats /* stats is passed as an argument when done hook is tapped.  */
-      ) => {}
+      'Noop Plugin',
+      (stats /* stats is passed as an argument when done hook is tapped.  */) => {}
     );
   }
 }
 const webpackConfig = {
   context: process.cwd(),
   entry: {
-    main: "./src/index.tsx",
+    main: './src/index.tsx'
   },
-  devtool: isDev ? "source-map" : false, //用于配置产物 Sourcemap 生成规则
+  devtool: isDev ? 'source-map' : false, //用于配置产物 Sourcemap 生成规则
   output: {
-    path: path.join(process.cwd(), "dist"),
-    filename: "[name].[contenthash].js", //入口代码块文件名的生成规则
-    chunkFilename: "[name].[contenthash].js", //非入口模块的生成规则
-    clean: true,
+    path: path.join(process.cwd(), 'dist'),
+    filename: '[name].[contenthash].js', //入口代码块文件名的生成规则
+    chunkFilename: '[name].[contenthash].js', //非入口模块的生成规则
+    clean: true
   },
   mode: process.env.NODE_ENV, //编译模式短语，支持 development、production 等值，可以理解为一种声明环境的短语
   resolve: {
-    modules: [path.resolve("node_modules")], // 解析第三方包
-    extensions: [".ts", ".tsx", ".js", ".css", ".less", ".scss", ".json"], // 文件后缀名 先后顺序查找
-    mainFields: ["jsnext:main", "browser", "module", "main", "style"], // // 优先使用 jsnext:main 中指向的 ES6 模块化语法的文件
-    mainFiles: ["index"], // 入口文件的名字 默认是index
+    modules: [path.resolve('node_modules')], // 解析第三方包
+    extensions: ['.ts', '.tsx', '.js', '.css', '.less', '.scss', '.json'], // 文件后缀名 先后顺序查找
+    mainFields: ['jsnext:main', 'browser', 'module', 'main', 'style'], // // 优先使用 jsnext:main 中指向的 ES6 模块化语法的文件
+    mainFiles: ['index'], // 入口文件的名字 默认是index
     alias: {
       // 别名  注意tsconfig.json˙中的paths也要对应配置
-      src: path.resolve("src"),
-    },
+      src: path.resolve('src')
+    }
   },
   resolveLoader: {
     // 用于配置解析loader时的resolve 配置,默认的配置
-    modules: [path.resolve("node_modules")], // 解析第三方包
-    extensions: [".js", ".json"],
-    mainFields: ["loader", "main"],
+    modules: [path.resolve('node_modules')], // 解析第三方包
+    extensions: ['.js', '.json'],
+    mainFields: ['loader', 'main']
   },
   experiments: {
     topLevelAwait: true,
     asyncWebAssembly: true,
-    lazyCompilation: isDev ? true : false, // 按需编译
+    lazyCompilation: isDev ? true : false // 按需编译
   },
   optimization: {
     // moduleIds: 'natural', // named  deterministic size // 模块名称的生成规则 deterministic 生产模式默认值
@@ -66,7 +65,7 @@ const webpackConfig = {
     splitChunks: isDev
       ? false //关闭代码分包；
       : {
-          chunks: "all", // 默认作用于异步chunk，值为 all 全部/initial同步/async异步
+          chunks: 'all', // 默认作用于异步chunk，值为 all 全部/initial同步/async异步
           minSize: 390 * 1024, //默认值是30kb，代码块的最小尺寸 超过这个尺寸的 Chunk 才会正式被分包；
           maxSize: 500 * 1024, //超过这个尺寸的 Chunk 会尝试进一步拆分出更小的 Chunk  设置 maxSize 的值会同时设置 maxAsyncSize 和 maxInitialSize 的值。
           // maxAsyncSize: 500 * 1024, //与 maxSize 功能类似，但只对异步引入的模块生效；
@@ -77,57 +76,57 @@ const webpackConfig = {
           // enforceSizeThreshold: 300 * 1000, //超过这个尺寸的 Chunk 会被强制分包，忽略上述其它 size 限制；
           cacheGroups: {
             default: {
-              idHint: "",
+              idHint: '',
               reuseExistingChunk: true,
               minChunks: 2,
-              priority: -20,
+              priority: -20
             },
             defaultVendors: {
-              idHint: "vendors",
+              idHint: 'vendors',
               reuseExistingChunk: true,
               test: /[\\/]node_modules[\\/]/i,
-              priority: -10,
-            },
-          },
+              priority: -10
+            }
+          }
         },
     removeAvailableModules: isDev ? false : true, // 以下配置项为开发模式下禁止产物优化
     removeEmptyChunks: isDev ? false : true,
     minimize: isDev ? false : true, //关闭代码压缩;
     concatenateModules: isDev ? false : true, //关闭模块合并;
-    usedExports: isDev ? false : true, //关闭 Tree-shaking 功能； // 标记使用到的导出
+    usedExports: isDev ? false : true //关闭 Tree-shaking 功能； // 标记使用到的导出
     //  Tree-shaking   最大粒度优化需要在package.json中配置 "sideEffects":false, 如果是css文件 需要配置sideEffects:["*.css"] // js 就是纯函数 没有副作用
   },
   watchOptions: {
-    ignored: /node_modules/, //最小化 watch 监控范围
+    ignored: /node_modules/ //最小化 watch 监控范围
   },
-  target: "web", //用于配置编译产物的目标运行环境，支持 web、node、electron 等值，不同值最终产物会有所差异
+  target: 'web', //用于配置编译产物的目标运行环境，支持 web、node、electron 等值，不同值最终产物会有所差异
   module: {
     rules: [
       {
         test: /\.html$/i,
         use: [
           {
-            loader: "html-loader",
-          },
-        ],
+            loader: 'html-loader'
+          }
+        ]
       },
       {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
               happyPackMode: true,
               // 跳过 TS 类型检查
               // 设置为“仅编译”，关闭类型检查
-              transpileOnly: true,
-            },
-          },
-        ],
+              transpileOnly: true
+            }
+          }
+        ]
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        type: "asset/resource",
+        type: 'asset/resource'
         // use: [
         //   {
         //     loader: "image-webpack-loader",
@@ -157,40 +156,36 @@ const webpackConfig = {
       },
       {
         test: /\.ico$/,
-        type: "asset/inline", // 对标url-loader 模块大小<limit base64字符串
+        type: 'asset/inline' // 对标url-loader 模块大小<limit base64字符串
       },
       {
         test: /\.txt$/,
-        type: "asset/source", // 对标raw-loader
+        type: 'asset/source' // 对标raw-loader
       },
       {
         test: /\.wasm$/,
-        type: "webassembly/async", // 对标wasm 模块
+        type: 'webassembly/async' // 对标wasm 模块
       },
       {
         test: /\.jpg$/,
-        type: "asset", // 不加/ 相当于自动配置 模块大小大于配置走resource 否则走 source
+        type: 'asset', // 不加/ 相当于自动配置 模块大小大于配置走resource 否则走 source
         parser: {
           dataUrlCondition: {
-            maxSize: 4 * 1024,
-          },
-        },
+            maxSize: 4 * 1024
+          }
+        }
       },
       {
         test: /\.scss|css$/,
-        use: [
-          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
-        ],
-      },
+        use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      }
     ],
     // noParse: /lodash/, //正则表达式
     // module.noParse字段，可以用于配置哪些模块文件的内容不需要进行解析
     // 不需要解析依赖(如无依赖)的第三方大型库等，可以通过这个字段来配置，以提高整体的构建速度
     noParse(content) {
       return /lodash/.test(content);
-    },
+    }
   },
   performance: !isDev //监控产物体积
     ? {
@@ -199,14 +194,14 @@ const webpackConfig = {
         // 设置 entry 产物体积阈值
         maxEntrypointSize: 244 * 1024,
         // 报错方式，支持 `error` | `warning` | false
-        hints: "warning",
+        hints: 'warning',
         // 过滤需要监控的文件类型
         assetFilter: function (assetFilename) {
-          return assetFilename.endsWith(".js");
-        },
+          return assetFilename.endsWith('.js');
+        }
       }
     : false,
-  stats: "errors-only", // 只在错误时输出
+  stats: 'errors-only', // 只在错误时输出
   plugins: [
     new webpackBar(),
     // fork 出子进程，专门用于执行类型检查 这样，既可以获得 Typescript 静态类型检查能力，又能提升整体编译速度。
@@ -214,42 +209,42 @@ const webpackConfig = {
       typescript: {
         diagnosticOptions: {
           semantic: true,
-          syntactic: true,
-        },
-      },
+          syntactic: true
+        }
+      }
     }),
     isAnalyzerMode
       ? new BundleAnalyzerPlugin({
-          analyzerMode: "server", // 启动展示打包报告的http服务器
-          generateStatsFile: true, // 是否生成stats.json文件
+          analyzerMode: 'server', // 启动展示打包报告的http服务器
+          generateStatsFile: true // 是否生成stats.json文件
         })
       : new NoopPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), "src/index.html"),
-      filename: "index.html",
-      chunks: ["main"], // 指定包含的代码块
-      favicon: path.join(process.cwd(), "src/assets/images/nice-fish.png"),
+      template: path.join(process.cwd(), 'src/index.html'),
+      filename: 'index.html',
+      chunks: ['main'], // 指定包含的代码块
+      favicon: path.join(process.cwd(), 'src/assets/images/nice-fish.png')
     }),
     new webpack.DefinePlugin({
-      AUTHOR: JSON.stringify("yanyunchangfeng"),
+      AUTHOR: JSON.stringify('yanyunchangfeng')
     }),
     !isDev
       ? new CopyPlugin({
           patterns: [
             {
-              from: path.resolve(process.cwd(), "src", "assets"),
-              to: path.resolve(process.cwd(), "dist"),
-            },
+              from: path.resolve(process.cwd(), 'src', 'assets'),
+              to: path.resolve(process.cwd(), 'dist')
+            }
           ],
           options: {
-            concurrency: 100,
-          },
+            concurrency: 100
+          }
         })
       : new NoopPlugin(),
     isUnusedMode
       ? new UnusedWebpackPlugin({
-          directories: [path.join(process.cwd(), "src")], //用于指定需要分析的文件目录
-          root: path.join(process.cwd(), "src"), // 用于显示相对路径替代原有的绝对路径。
+          directories: [path.join(process.cwd(), 'src')], //用于指定需要分析的文件目录
+          root: path.join(process.cwd(), 'src') // 用于显示相对路径替代原有的绝对路径。
         })
       : new NoopPlugin(),
     // IgnorePlugin用于忽略某些特定的模块，让webpack不把这些指定的模块打包进去
@@ -257,26 +252,23 @@ const webpackConfig = {
     // 第二个是匹配模块的对应上下文，即所在目录名
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/,
+      contextRegExp: /moment$/
     }),
     !isDev
       ? new MiniCssExtractPlugin({
-          filename: "[name].[contenthash].css",
-          chunkFilename: "[name].[contenthash].css",
+          filename: '[name].[contenthash].css',
+          chunkFilename: '[name].[contenthash].css'
         })
       : new NoopPlugin(),
-    !isDev
-      ? new webpack.BannerPlugin("Copyright By damoqiongqiu")
-      : new NoopPlugin(),
-  ],
+    !isDev ? new webpack.BannerPlugin('Copyright By damoqiongqiu') : new NoopPlugin()
+  ]
 };
-
-const miniCssExtractIndex = webpackConfig.plugins.findIndex(
-  (e) => e.constructor.name === "MiniCssExtractPlugin"
-);
-const miniCssExtractPlugin = webpackConfig.plugins[miniCssExtractIndex];
-const configToExport = smp.wrap(webpackConfig);
-if (miniCssExtractPlugin) {
-  configToExport.plugins[miniCssExtractIndex] = miniCssExtractPlugin;
+if (isSmpMode) {
+  const miniCssExtractIndex = webpackConfig.plugins.findIndex((e) => e.constructor.name === 'MiniCssExtractPlugin');
+  const miniCssExtractPlugin = webpackConfig.plugins[miniCssExtractIndex];
+  const configToExport = smp.wrap(webpackConfig);
+  if (miniCssExtractPlugin) {
+    configToExport.plugins[miniCssExtractIndex] = miniCssExtractPlugin;
+  }
 }
 module.exports = webpackConfig;

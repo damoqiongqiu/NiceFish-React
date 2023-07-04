@@ -1,16 +1,16 @@
-import { Container, injectable } from "inversify";
-import getDecorators from "inversify-inject-decorators";
-import "reflect-metadata";
+import { Container, injectable } from 'inversify';
+import getDecorators from 'inversify-inject-decorators';
+import 'reflect-metadata';
 
 const container = new Container({
-  defaultScope: "Singleton", // 使用单例模式
-  autoBindInjectable: true, // 自动创建实例
+  defaultScope: 'Singleton', // 使用单例模式
+  autoBindInjectable: true // 自动创建实例
 });
 
 const serviceMap = new Map();
 const tagServices = new Set();
 const enhancedInjectable =
-  (serviceName = "") =>
+  (serviceName = '') =>
   (target: any) => {
     if (serviceName) {
       tagServices.add(serviceName);
@@ -24,11 +24,9 @@ const enhancedInjectable =
 
 // 获取并自动创建实例
 const useService = <T>(serviceIdentifier: (new () => T) | string): T => {
-  if (typeof serviceIdentifier === "string") {
+  if (typeof serviceIdentifier === 'string') {
     if (!tagServices.has(serviceIdentifier)) {
-      throw new Error(
-        `service ${serviceIdentifier} dose use injectable with name`
-      );
+      throw new Error(`service ${serviceIdentifier} dose use injectable with name`);
     }
     if (!serviceMap.has(serviceIdentifier)) {
       throw new Error(`can not use un injectable class ${serviceIdentifier}`);
@@ -38,7 +36,7 @@ const useService = <T>(serviceIdentifier: (new () => T) | string): T => {
   return container.get(serviceIdentifier);
 };
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.__useService = useService;
 }
 
@@ -55,7 +53,7 @@ const inject = function <T extends new (...args: any[]) => T>() {
   return (target: any, key: string): void => {
     // 使用反射，在构造时自动获取依赖的原型
 
-    const serviceIdentifier = Reflect.getMetadata("design:type", target, key);
+    const serviceIdentifier = Reflect.getMetadata('design:type', target, key);
     // 使用延迟注入
     const original = DECORATORS.lazyInject(serviceIdentifier);
 
@@ -75,13 +73,13 @@ function createInjectMiddleware(useService: any) {
     // 先经过其他中间件，比如redux记录等
     next(action);
 
-    const { type = "" } = action;
+    const { type = '' } = action;
     const res = type.match(reg);
     if (res !== null) {
       const serviceName = res[1];
       const method = res[2];
       const instance = useService(serviceName);
-      if (typeof instance[method] !== "function") {
+      if (typeof instance[method] !== 'function') {
         throw new Error(`can not find method ${serviceName}.${method}`);
       }
       const { payload = [] } = action;
@@ -96,10 +94,4 @@ function createInjectMiddleware(useService: any) {
 
 const injectMiddleware = createInjectMiddleware(useService);
 
-export {
-  container,
-  useService,
-  enhancedInjectable as injectable,
-  inject,
-  injectMiddleware,
-};
+export { container, useService, enhancedInjectable as injectable, inject, injectMiddleware };

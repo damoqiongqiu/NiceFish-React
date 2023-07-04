@@ -1,122 +1,121 @@
-import React, { FC, useState } from "react";
-import { Table } from "antd";
+import React, { FC, useState } from 'react';
+import { Table } from 'antd';
 const columns = [
   {
-    title: "序号",
-    dataIndex: "key",
+    title: '序号',
+    dataIndex: 'key',
     filters: [
-      { text: "1", value: "1" },
-      { text: "2", value: "2" },
+      { text: '1', value: '1' },
+      { text: '2', value: '2' }
     ],
     onFilter: (value: any, record: any) => record.key.includes(value),
-    sorter: (a: any, b: any) => a.key - b.key,
+    sorter: (a: any, b: any) => a.key - b.key
   },
   {
-    title: "内容",
-    dataIndex: "content",
-    sorter: (a: any, b: any) => a.content.length - b.content.length,
+    title: '内容',
+    dataIndex: 'content',
+    sorter: (a: any, b: any) => a.content.length - b.content.length
   },
   {
-    title: "用户",
-    dataIndex: "userName",
-    sorter: (a: any, b: any) => a.userName.localeCompare(b.userName),
+    title: '用户',
+    dataIndex: 'userName',
+    sorter: (a: any, b: any) => a.userName.localeCompare(b.userName)
   },
   {
-    title: "日期",
-    dataIndex: "time",
+    title: '日期',
+    dataIndex: 'time',
     width: 182,
-    fixed: "right" as any,
-    sorter: (a: any, b: any) =>
-      new Date(a.time).getTime() - new Date(b.time).getTime(),
-  },
+    fixed: 'right' as any,
+    sorter: (a: any, b: any) => new Date(a.time).getTime() - new Date(b.time).getTime()
+  }
 ];
 
 const CommentTable: FC = () => {
   const [data] = useState([
     {
-      key: "1",
-      content: "这是一条不合法的评论",
-      userName: "damoqiongqiu",
-      time: "2017-07-15 16:22:58",
+      key: '1',
+      content: '这是一条不合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2017-07-15 16:22:58'
     },
     {
-      key: "2",
-      content: "这是一条合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2016-07-15 16:22:58",
+      key: '2',
+      content: '这是一条合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2016-07-15 16:22:58'
     },
     {
-      key: "3",
-      content: "这是一条不合法的评论",
-      userName: "damoqiongqiu",
-      time: "2015-07-15 16:22:58",
+      key: '3',
+      content: '这是一条不合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2015-07-15 16:22:58'
     },
     {
-      key: "4",
-      content: "这是一条合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2014-07-15 16:22:58",
+      key: '4',
+      content: '这是一条合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2014-07-15 16:22:58'
     },
     {
-      key: "5",
-      content: "这是一条不合法的评论",
-      userName: "damoqiongqiu",
-      time: "2013-07-15 16:22:58",
+      key: '5',
+      content: '这是一条不合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2013-07-15 16:22:58'
     },
     {
-      key: "6",
-      content: "这是一条合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2012-07-15 16:22:58",
+      key: '6',
+      content: '这是一条合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2012-07-15 16:22:58'
     },
     {
-      key: "7",
-      content: "这是一条不合法的评论",
-      userName: "damoqiongqiu",
-      time: "2011-07-15 16:22:58",
+      key: '7',
+      content: '这是一条不合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2011-07-15 16:22:58'
     },
     {
-      key: "8",
-      content: "这是一条合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2010-07-15 16:22:58",
+      key: '8',
+      content: '这是一条合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2010-07-15 16:22:58'
     },
     {
-      key: "9",
-      content: "这是一条不合法的评论",
-      userName: "damoqiongqiu",
-      time: "2009-07-15 16:22:58",
+      key: '9',
+      content: '这是一条不合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2009-07-15 16:22:58'
     },
     {
-      key: "10",
-      content: "这是一条合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2008-07-15 16:22:58",
+      key: '10',
+      content: '这是一条合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2008-07-15 16:22:58'
     },
     {
-      key: "11",
-      content: "这是一条合法的评论",
-      userName: "damoqiongqiu",
-      time: "2007-07-15 16:22:58",
+      key: '11',
+      content: '这是一条合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2007-07-15 16:22:58'
     },
     {
-      key: "12",
-      content: "这是一条不合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2006-07-15 16:22:58",
+      key: '12',
+      content: '这是一条不合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2006-07-15 16:22:58'
     },
     {
-      key: "13",
-      content: "这是一条合法的评论",
-      userName: "damoqiongqiu",
-      time: "2005-07-15 16:22:58",
+      key: '13',
+      content: '这是一条合法的评论',
+      userName: 'damoqiongqiu',
+      time: '2005-07-15 16:22:58'
     },
     {
-      key: "14",
-      content: "这是一条不合法的评论",
-      userName: "yanyunchangfeng",
-      time: "2004-07-15 16:22:58",
-    },
+      key: '14',
+      content: '这是一条不合法的评论',
+      userName: 'yanyunchangfeng',
+      time: '2004-07-15 16:22:58'
+    }
   ]);
   return (
     <div className="comment-table-container">
@@ -124,11 +123,7 @@ const CommentTable: FC = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="input-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="内容，用户名"
-              />
+              <input className="form-control" type="text" placeholder="内容，用户名" />
               <span className="input-group-btn">
                 <button className="btn btn-primary" type="button">
                   <i className="fa fa-search" />

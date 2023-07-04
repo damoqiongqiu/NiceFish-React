@@ -1,29 +1,27 @@
-
-@import "src/assets/scss/bootstrap.scss";  
+@import 'src/assets/scss/bootstrap.scss';
 @import '~font-awesome/css/font-awesome.min.css';
 
 $navbarBgColor: #3f4b57;
 $navbarBgHoverColor: #303d47;
 
-body{
-    color:#666;
-    font-size: 14px;
-    a{
-      &:focus{
-        text-decoration: none;
-      }
+body {
+  color: #666;
+  font-size: 14px;
+  a {
+    &:focus {
       text-decoration: none;
-      &.active{
-        background-color: $navbarBgHoverColor;
-      }
     }
-  
+    text-decoration: none;
+    &.active {
+      background-color: $navbarBgHoverColor;
+    }
+  }
 }
-.layout-warpper{
+.layout-warpper {
   height: 100%;
 }
-.main{
-  min-height:1024px;
+.main {
+  min-height: 1024px;
 }
 .main-nav {
   background: $navbarBgColor;
@@ -32,16 +30,15 @@ body{
 
 .bd-navbar {
   .navbar-nav {
-    @include media-breakpoint-down("sm", $grid-breakpoints) {
+    @include media-breakpoint-down('sm', $grid-breakpoints) {
       flex-direction: column !important;
     }
     > li {
       display: flex;
       align-items: center;
-      @include media-breakpoint-down("sm", $grid-breakpoints) {
+      @include media-breakpoint-down('sm', $grid-breakpoints) {
         > a {
-          flex:1;
-          
+          flex: 1;
         }
       }
       > a {
@@ -55,33 +52,34 @@ body{
     }
   }
   .collapse {
-    @include media-breakpoint-down("sm", $grid-breakpoints) {
+    @include media-breakpoint-down('sm', $grid-breakpoints) {
       flex-direction: column;
     }
   }
 }
-.react-echart{
-  width:100%;
-  height:400px;
+.react-echart {
+  width: 100%;
+  height: 400px;
 }
-table thead th,table tbody td{
-   text-align: center !important;
+table thead th,
+table tbody td {
+  text-align: center !important;
 }
-.exception-404{
+.exception-404 {
   min-height: 500px;
-  background: url('assets/images/404.svg') no-repeat center / contain
+  background: url('assets/images/404.svg') no-repeat center / contain;
 }
-.loading-container{
-   position: fixed;
-   top:0;
-   left:0;
-   right: 0;
-   bottom:0;
-   background: rgba(0,0,0,0.05);
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.05);
 }
 // 这是login 和register 的通用样式
-.card{
-  box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 .login-panel {
   width: 350px;
@@ -92,9 +90,8 @@ table thead th,table tbody td{
   }
 }
 
-.login-container{
+.login-container {
   background: url('assets/images/login.svg') center 110px / 100%;
- 
 }
 
 .inputfiled {
@@ -103,18 +100,16 @@ table thead th,table tbody td{
   .input-text {
     border-width: 0px;
     background: transparent no-repeat;
-    background-image: linear-gradient(90deg, #00b4cf, #00b4cf),
-      linear-gradient(90deg, #bdbdbd, #bdbdbd);
+    background-image: linear-gradient(90deg, #00b4cf, #00b4cf), linear-gradient(90deg, #bdbdbd, #bdbdbd);
     background-position: 50% 100%, 50% 100%;
     background-size: 0 2px, 100% 2px;
     transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     outline: medium none;
     color: #00b4cf;
     padding: 2px;
-    &.error{
-    
-      & + label{
-        color: #b7302c!important;
+    &.error {
+      & + label {
+        color: #b7302c !important;
       }
     }
     &:focus {
@@ -122,22 +117,21 @@ table thead th,table tbody td{
       background-size: 100% 2px, 100% 1px;
       outline: none;
       padding-bottom: 2px;
-      & ~ label{
-          top: -20px;
-          font-size: 12px;
-          color: #00b4cf;
-
+      & ~ label {
+        top: -20px;
+        font-size: 12px;
+        color: #00b4cf;
       }
     }
     &:-webkit-autofill ~ label {
-      top:-20px;
-      font-size:12px;
-      color:#00b4cf;
-    }
-    &.ui-state-filled ~ label{
       top: -20px;
-          font-size: 12px;
-          color: #00b4cf;
+      font-size: 12px;
+      color: #00b4cf;
+    }
+    &.ui-state-filled ~ label {
+      top: -20px;
+      font-size: 12px;
+      color: #00b4cf;
     }
   }
   label {
@@ -145,8 +139,7 @@ table thead th,table tbody td{
     left: 5px;
     top: 1px;
     color: #999;
-    transition: .3s ease all;
+    transition: 0.3s ease all;
     pointer-events: none;
   }
 }
-

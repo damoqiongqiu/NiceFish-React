@@ -1,12 +1,12 @@
-const toggleClass = (bool: Boolean, fn: Function, cl: string = ""): void => {
+const toggleClass = (bool: Boolean, fn: Function, cl: string = ''): void => {
   if (bool) {
     fn(cl);
   } else {
-    fn("");
+    fn('');
   }
 };
-const fillClass = "ui-state-filled";
+const fillClass = 'ui-state-filled';
 export default {
   fillClass,
-  toggleClass,
+  toggleClass
 };

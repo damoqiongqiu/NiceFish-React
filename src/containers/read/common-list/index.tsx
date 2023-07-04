@@ -1,40 +1,40 @@
-import React, { FC, useState, useEffect } from "react";
-import { commentFormValidator } from "src/validator/comment-form-validator";
-import "./index.scss";
+import React, { FC, useState, useEffect } from 'react';
+import { commentFormValidator } from 'src/validator/comment-form-validator';
+import './index.scss';
 const CommonList: FC = () => {
-  const [commentData, setCommentData] = useState({ comment: "" });
+  const [commentData, setCommentData] = useState({ comment: '' });
   const [errors, setErrors] = useState({} as any);
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({
-    comment: { touched: false, dirty: false },
+    comment: { touched: false, dirty: false }
   } as any);
   const [comments] = useState([
     {
       id: 1,
       postId: 1,
-      content: "这是评论的内容。。。",
-      date: "2016-09-09 12:00:09",
-      username: "大漠",
+      content: '这是评论的内容。。。',
+      date: '2016-09-09 12:00:09',
+      username: '大漠'
     },
     {
       id: 2,
       postId: 1,
-      content: "这是评论的内容。。。",
-      date: "2016-09-09 12:00:09",
-      username: "大漠2",
+      content: '这是评论的内容。。。',
+      date: '2016-09-09 12:00:09',
+      username: '大漠2'
     },
     {
       id: 3,
       postId: 1,
-      content: "这是评论的内容。。。",
-      date: "2016-09-09 12:00:09",
-      username: "大漠3",
-    },
+      content: '这是评论的内容。。。',
+      date: '2016-09-09 12:00:09',
+      username: '大漠3'
+    }
   ]);
   function handleChange(key: any, value: string) {
     const upcomment = {
       ...commentData,
-      comment: value,
+      comment: value
     };
     setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
     setErrors(commentFormValidator(upcomment));
@@ -42,7 +42,7 @@ const CommonList: FC = () => {
   }
   function onBlur(key: any, value: any) {
     switch (key) {
-      case "comment":
+      case 'comment':
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
         setErrors(commentFormValidator(commentData));
         break;
@@ -65,12 +65,11 @@ const CommonList: FC = () => {
               <textarea
                 className="form-control"
                 value={commentData.comment}
-                onBlur={(e) => onBlur("comment", e.target.value)}
-                onChange={(e) => handleChange("comment", e.target.value)}
+                onBlur={(e) => onBlur('comment', e.target.value)}
+                onChange={(e) => handleChange('comment', e.target.value)}
                 placeholder="5-140个字符，非法字符自动截断。"
               />
-              {(meta.comment.touched || meta.comment.dirty) &&
-              errors.comment ? (
+              {(meta.comment.touched || meta.comment.dirty) && errors.comment ? (
                 <div className="text-red">{errors.comment}</div>
               ) : null}
             </div>

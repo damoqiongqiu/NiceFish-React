@@ -1,15 +1,15 @@
-import React, { useState, useEffect, FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { permissionFormValidator } from "src/validator/permission-form-validator";
+import React, { useState, useEffect, FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { permissionFormValidator } from 'src/validator/permission-form-validator';
 const PermissionEdit: FC = () => {
   const navigate = useNavigate();
   const [permission, updatePermission] = useState({
-    name: "",
+    name: ''
   });
   const [errors, setErrors] = useState({} as any);
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({
-    name: { touched: false, dirty: false },
+    name: { touched: false, dirty: false }
   } as any);
   function onSubmit(e: any) {
     e.preventDefault();
@@ -17,7 +17,7 @@ const PermissionEdit: FC = () => {
   }
   function onBlur(key: any, value: any) {
     switch (key) {
-      case "name":
+      case 'name':
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
         setErrors(permissionFormValidator(permission));
         break;
@@ -29,7 +29,7 @@ const PermissionEdit: FC = () => {
   function handleChange(key: any, value: any) {
     const upPermission = {
       ...permission,
-      name: value,
+      name: value
     };
     setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
     updatePermission(upPermission);
@@ -50,39 +50,30 @@ const PermissionEdit: FC = () => {
         <div className="pd-10px ">
           <form onSubmit={onSubmit}>
             <div className="form-group row">
-              <label className="col-md-2 md-text-align-right col-form-label">
-                名称：
-              </label>
+              <label className="col-md-2 md-text-align-right col-form-label">名称：</label>
               <div className="col-md-10">
                 <input
                   name="roleName"
                   type="text"
                   value={permission.name}
                   className="form-control"
-                  onBlur={(e) => onBlur("name", e.target.value)}
-                  onChange={(e) => handleChange("name", e.target.value)}
+                  onBlur={(e) => onBlur('name', e.target.value)}
+                  onChange={(e) => handleChange('name', e.target.value)}
                   placeholder="请输入名称"
                 />
                 {(meta.name.touched || meta.name.dirty) && errors.name ? (
                   <div className="text-red">{errors.name}</div>
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             </div>
             <div className="form-group">
               <div className="col-md-offset-2 col-md-10">
-                <button
-                  className="btn btn-primary btn-margin-1rem"
-                  disabled={formValid}
-                >
+                <button className="btn btn-primary btn-margin-1rem" disabled={formValid}>
                   保存
                 </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary ml-16px"
-                  onClick={cancel}
-                >
+                <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
                   取消
                 </button>
               </div>

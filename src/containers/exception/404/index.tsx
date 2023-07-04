@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
+import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 const Exception404: FC = () => {
   return (
     <div className="container mt-16px">

@@ -1,68 +1,68 @@
-import React, { FC, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Transfer, Upload, Button } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import "./index.scss";
+import React, { FC, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Transfer, Upload, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import './index.scss';
 
 const Profile: FC = () => {
   const navigate = useNavigate();
   const formControls = [
     {
-      controlType: "image",
-      type: "image",
-      label: "",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'image',
+      type: 'image',
+      label: '',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "file",
-      type: "file",
-      label: "头像",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'file',
+      type: 'file',
+      label: '头像',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "textbox",
-      type: "text",
-      label: "用户名",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'textbox',
+      type: 'text',
+      label: '用户名',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "textbox",
-      type: "text",
-      label: "常用邮箱",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'textbox',
+      type: 'text',
+      label: '常用邮箱',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "textbox",
-      type: "password",
-      label: "密码",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'textbox',
+      type: 'password',
+      label: '密码',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "textbox",
-      type: "password",
-      label: "确认密码",
-      key: "",
-      value: "",
-      placeholder: "",
+      controlType: 'textbox',
+      type: 'password',
+      label: '确认密码',
+      key: '',
+      value: '',
+      placeholder: ''
     },
     {
-      controlType: "textareabox",
-      type: "textarea",
-      label: "个人简介",
-      key: "",
-      value: "",
-      placeholder: "",
-    },
+      controlType: 'textareabox',
+      type: 'textarea',
+      label: '个人简介',
+      key: '',
+      value: '',
+      placeholder: ''
+    }
   ];
 
   const [mockData, updateMockData] = useState([] as any);
@@ -72,20 +72,20 @@ const Profile: FC = () => {
     let targetKeys = [] as any;
     mockData = [
       {
-        key: "1",
-        title: "默认权限",
-        chosen: false,
+        key: '1',
+        title: '默认权限',
+        chosen: false
       },
       {
-        key: "2",
-        title: "签约作者",
-        chosen: true,
+        key: '2',
+        title: '签约作者',
+        chosen: true
       },
       {
-        key: "3",
-        title: "系统管理员",
-        chosen: false,
-      },
+        key: '3',
+        title: '系统管理员',
+        chosen: false
+      }
     ];
 
     mockData.map((value: any) => {
@@ -116,29 +116,20 @@ const Profile: FC = () => {
             {formControls.map((item, index) => {
               return (
                 <div className="form-group row " key={index}>
-                  <label className="col-md-2 col-form-label md-text-align-right">
-                    {item.label}
-                  </label>
+                  <label className="col-md-2 col-form-label md-text-align-right">{item.label}</label>
                   <div className="col-md-10">
                     <div>
-                      {item.controlType === "textbox" ? (
-                        <input className="form-control" type={item.type} />
-                      ) : null}
-                      {item.controlType === "file" ? (
+                      {item.controlType === 'textbox' ? <input className="form-control" type={item.type} /> : null}
+                      {item.controlType === 'file' ? (
                         <Upload>
                           <Button icon={<UploadOutlined />}>上传</Button>
                         </Upload>
                       ) : null}
-                      {item.controlType === "textareabox" ? (
-                        <textarea
-                          className="form-control"
-                          placeholder={item.placeholder}
-                        />
+                      {item.controlType === 'textareabox' ? (
+                        <textarea className="form-control" placeholder={item.placeholder} />
                       ) : null}
 
-                      {item.controlType === "image" ? (
-                        <div className="react-logo" />
-                      ) : null}
+                      {item.controlType === 'image' ? <div className="react-logo" /> : null}
                     </div>
                   </div>
                 </div>
@@ -172,11 +163,7 @@ const Profile: FC = () => {
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button
-              type="button"
-              className="btn btn-secondary ml-16px"
-              onClick={cancel}
-            >
+            <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
               取消
             </button>
           </div>
