@@ -17,7 +17,7 @@ Open your command line terminal and execute the following command:
 ```
    git clone https://gitee.com/mumu-osc/NiceFish-React.git
    cd NiceFish-React
-   yarn or npm i
+   yarn
    yarn start or npm start
 ```
 

@@ -19,7 +19,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ```
    git clone https://gitee.com/mumu-osc/NiceFish-React.git
    cd NiceFish-React
-   yarn or npm i
+   yarn install
    yarn start or npm start
 ```
 
