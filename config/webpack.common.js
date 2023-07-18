@@ -28,7 +28,7 @@ const webpackConfig = {
   entry: {
     main: './src/index.tsx'
   },
-  devtool: isDev ? 'source-map' : false, //用于配置产物 Sourcemap 生成规则
+  devtool: isDev ? 'cheap-module-source-map' : false, //用于配置产物 Sourcemap 生成规则
   output: {
     path: path.join(process.cwd(), 'dist'),
     filename: '[name].[contenthash].js', //入口代码块文件名的生成规则
