@@ -35,10 +35,6 @@ This project is a React version of NiceFish, using React version 18.2.0, develop
 
 - NiceFish-React Demo address on GitHub Pages: https://damoqiongqiu.github.io/NiceFish-React
 
-## Technology Architecture
-
-![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
-
 ## Main Dependency
 
 - React: 18.2.0

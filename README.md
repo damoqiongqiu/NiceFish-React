@@ -23,7 +23,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 ## 1.简介
 
-这是 NiceFish 的 React 版前端界面。
+这是 NiceFish 的 React 版前端界面，此项目采用纯 JSX 开发，没有使用 TypeScript 。
 
 ## 2.主要依赖
 
@@ -31,6 +31,8 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 - Bootstrap: 3.3.7
 - echarts: 4.2.1
 - primereact: 9.6.0
+
+**注意：为了防止出现 NodeJS 模块兼容性问题，本项目在 package.json 中锁定了所有 Node 模块版本。如有需要，您可以自己测试兼容版本号（不建议这样做，因为会消耗掉大量的时间）。**
 
 ## 3.用法
 
@@ -48,10 +50,6 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ## 4.在线演示
 
 - NiceFish-React 在 GitHub Pages 上的演示地址： https://damoqiongqiu.github.io/NiceFish-React
-
-## 5.技术架构
-
-![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
 
 ## 6.系列项目
 

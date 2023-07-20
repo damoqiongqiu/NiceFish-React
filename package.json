@@ -3,6 +3,16 @@
   "version": "18.2.0",
   "description": "nicefish-react",
   "main": "index.js",
+  "author": "大漠穷秋",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/mumu-osc/NiceFish-React.git"
+  },
+  "keywords": [
+    "react",
+    "nicefish"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
     "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
@@ -11,29 +21,13 @@
     "build": "cross-env NODE_ENV=production webpack",
     "build-analyzer": "cross-env NODE_ENV=production ANALYZE=1  webpack",
     "build-smp": "cross-env NODE_ENV=production SMP=1  webpack",
-    "test": "jest -u",
-    "cypress:open": "cypress open",
-    "cypress:run": "concurrently  --kill-others  --success=first \" npm start \" \" wait-on http://localhost:8083 && cypress run \" ",
     "generateAnalyzerFile": "cross-env NODE_ENV=production webpack --profile --json > stats.json",
-    "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json",
-    "prettier": "prettier -c --write  **/* --cache",
-    "prepare": "husky install"
+    "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/damoqiongqiu/NiceFish-React.git"
-  },
-  "keywords": [
-    "react",
-    "nicefish"
-  ],
-  "author": "damoqiongqiu",
-  "license": "MIT",
   "dependencies": {
     "echarts": "4.2.1",
     "font-awesome": "4.7.0",
-    "inversify": "6.0.1",
-    "inversify-inject-decorators": "3.1.0",
+    "primeicons": "6.0.1",
     "primereact": "9.6.0",
     "quill": "1.3.7",
     "react": "18.2.0",
@@ -42,29 +36,17 @@
     "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
-    "@types/draft-js": "0.10.31",
-    "@types/echarts": "4.1.8",
-    "@types/jest": "29.2.5",
-    "@types/node": "18.11.18",
-    "@types/react": "18.2.12",
-    "@types/react-dom": "18.2.5",
-    "@types/react-router-dom": "5.3.3",
-    "@types/react-test-renderer": "18.0.0",
-    "@types/webpack-env": "1.16.3",
+    "@babel/preset-env": "7.22.9",
+    "@babel/preset-react": "7.22.5",
+    "babel-loader": "9.1.3",
     "concurrently": "8.2.0",
     "copy-webpack-plugin": "10.2.4",
     "cross-env": "7.0.3",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "4.0.0",
-    "cypress": "12.15.0",
-    "fork-ts-checker-webpack-plugin": "7.2.13",
     "html-loader": "4.1.0",
     "html-minimizer-webpack-plugin": "4.1.0",
     "html-webpack-plugin": "5.5.0",
-    "husky": "8.0.3",
-    "jest": "29.3.1",
-    "jest-environment-jsdom": "29.3.1",
-    "jest-transform-stub": "2.0.0",
     "lint-staged": "13.2.3",
     "mini-css-extract-plugin": "2.6.0",
     "prettier": "2.8.8",
@@ -75,10 +57,6 @@
     "style-loader": "3.3.1",
     "terser-webpack-plugin": "5.3.1",
     "thread-loader": "3.0.4",
-    "ts-jest": "29.1.0",
-    "ts-loader": "9.2.8",
-    "ts-node": "10.9.1",
-    "typescript": "5.1.3",
     "unused-webpack-plugin": "2.4.0",
     "wait-on": "7.0.1",
     "webpack": "5.71.0",
@@ -87,9 +65,5 @@
     "webpack-dev-server": "4.7.4",
     "webpack-merge": "5.8.0",
     "webpackbar": "5.0.2"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "prettier --write  --ignore-unknown",
-    "*.{json,less,scss,md}": "prettier --write --ignore-unknown"
   }
 }
