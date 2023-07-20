@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import { Pagination } from 'antd';
 import PostHeadline from 'src/app/blog/read/post-headline';
-import ListItem from 'src/app/blog/read/post-list/components/list-item';
+import ListItem from 'src/app/blog/read/post-list/list-item';
 import { ItemProps } from 'src/app/blog/read/post-list/domain';
 
 const postLists = {
@@ -152,25 +152,32 @@ const postLists = {
     }
   ]
 };
-const currentPage = 1,
-  itemPerPage = 10;
+
+const currentPage = 1
+const itemPerPage = 10;
+
 const PostList: FC = () => {
   const [list, updateList] = useState<ItemProps[]>([]);
+
   const onChange = useCallback((page: number) => {
     loadData(page);
   }, []);
+
   const ShowSizeChange = useCallback((current: number, pageSize: number) => {
     loadData(current, pageSize);
   }, []);
+
   const loadData = useCallback((page: number = 1, itemPerPage: number = 10) => {
     const offset = (page - 1) * 10;
     const end = page * itemPerPage;
     const data = postLists.items.slice(offset, end > postLists.total ? postLists.total : end);
     updateList(data);
   }, []);
+
   useEffect(() => {
     loadData(currentPage, itemPerPage);
   }, []);
+
   return (
     <div className="post-list-container">
       <div className="row">

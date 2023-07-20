@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import listImg from 'src/assets/images/list-item.jpg';
-import { ListItemProps } from '../../domain';
+import { ListItemProps } from '../domain';
+
 const ListItem: FC<ListItemProps> = ({ list }) => {
   return (
     <>
