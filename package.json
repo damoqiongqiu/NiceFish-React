@@ -2,14 +2,13 @@
   "name": "nicefish-react",
   "version": "18.2.0",
   "description": "nicefish-react",
-  "main": "index.js", 
+  "main": "index.js",
   "engines": {
     "node": "^14.18.0 || ^16.10.0 || >=18.10.0",
     "yarn": ">=1.22.4 <2",
     "npm": "Please use yarn instead of NPM to install dependencies"
   },
   "scripts": {
-    "test": "jest -u",
     "start": "cross-env NODE_ENV=development webpack serve",
     "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
     "start-unused": "cross-env NODE_ENV=development UNUSED=1  webpack serve",
@@ -17,13 +16,13 @@
     "build": "cross-env NODE_ENV=production webpack",
     "build-analyzer": "cross-env NODE_ENV=production ANALYZE=1  webpack",
     "build-smp": "cross-env NODE_ENV=production SMP=1  webpack",
+    "test": "jest -u",
+    "cypress:open": "cypress open",
+    "cypress:run": "concurrently  --kill-others  --success=first \" npm start \" \" wait-on http://localhost:8083 && cypress run \" ",
     "generateAnalyzerFile": "cross-env NODE_ENV=production webpack --profile --json > stats.json",
     "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json",
-    "cypress:open": "cypress open",
-    "cypress:run": "concurrently  --kill-others  --success=first \" npm start \" \" wait-on http://localhost:8080 && cypress run \" ",
     "prettier": "prettier -c --write  **/* --cache",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged && cross-env CI=true npm test && npm run cypress:run"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
