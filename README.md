@@ -1,7 +1,7 @@
 [English](README.en.md) | 简体中文
 
 <p align="center">
-    <img width="150" src="src/assets/images/nice-fish.png">
+    <img width="150" src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/nice-fish.png">
 </p>
 
 <h1 align="center">NiceFish</h1>
@@ -12,15 +12,28 @@
     </a>
 </p>
 
-<div align="left">
-NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离的开发模式，前端浏览器、移动端、Electron 环境中的各种开发模式，后端有两个版本：SpringBoot 版本和 SpringCloud 版本。
-</div>
+<p align="left">
+NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离的开发+部署模式。前端有3个版本：浏览器环境、移动端环境、Electron 环境；后端有2个版本：SpringBoot 版本和 SpringCloud 版本。
+</p>
 
-## 介绍
+<p>
+🚀🚀🚀请不要吝惜你的⭐️ Star ⭐️，星星越多，动力越足。🚀🚀🚀
+</p>
+
+
+## 1.简介
 
 这是 NiceFish 的 React 版本，基于 React 18.2.0 ，使用 Antd、Inversify、 定制版 Bootstrap 开发。
 
-## 用法
+## 2.主要依赖
+
+- React 18.2.0
+- antd 5.6.2
+- Bootstrap 4.2.1
+- echarts 4.2.1
+- braft-editor 2.2.9
+
+## 3.用法
 
 打开你的命令行终端，执行以下命令：
 
@@ -31,23 +44,17 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
    yarn start or npm start
 ```
 
-## 在线演示
+**当前版本使用 npm 安装模块会失败，某个包找不到，正在解决。**
+
+## 4.在线演示
 
 - NiceFish-React 在 GitHub Pages 上的演示地址： https://damoqiongqiu.github.io/NiceFish-React
 
-## 技术架构
+## 5.技术架构
 
 ![NiceFish-REACT](src/assets/images/nice-fish-react-arch.jpg)
 
-## 主要依赖
-
-- React 18.2.0
-- antd 5.6.2
-- Bootstrap 4.2.1
-- echarts 4.2.1
-- braft-editor 2.2.9
-
-## 系列项目
+## 6.系列项目
 
 |  名称   | 描述  | Stars  |
 |  ----  | ----  | ----  |
@@ -59,30 +66,30 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 | [nicefish-spring-cloud](https://gitee.com/mumu-osc/nicefish-spring-cloud)  | 用来示范前后端分离模式下，前端代码与分布式后端服务的对接方式。  | <a href='https://gitee.com/mumu-osc/nicefish-spring-cloud/stargazers'><img src='https://gitee.com/mumu-osc/nicefish-spring-cloud/badge/star.svg?theme=dark' alt='star'></img></a> |
 | [OpenWMS](https://gitee.com/mumu-osc/OpenWMS-Frontend)  | 用来示范管理后台型系统的开发模式。| <a href='https://gitee.com/mumu-osc/OpenWMS-Frontend/stargazers'><img src='https://gitee.com/mumu-osc/OpenWMS-Frontend/badge/star.svg?theme=dark' alt='star'></img></a> |
 
-## 单元测试
+## 7.单元测试
 
 ```
    yarn test or npm run test
 ```
 
-## 端到端测试
+## 8.端到端测试
 
 ```
    yarn cypress:open or  npm run cypress:open
    yarn cypress:run or  npm run cypress:run
 ```
 
-## 打包分析
+## 9.打包分析
 
 ```
    yarn build-analyzer or npm run build-analyzer
 ```
 
-## 分析报告
+## 10.分析报告
 
 ![NiceFish-REACT](src/assets/images/nice-fish-react-perf-report.png)
 
 
-## 开源许可证
+## 11.开源许可证
 
 MIT
