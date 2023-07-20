@@ -1,28 +1,28 @@
 import React, { Suspense, lazy } from 'react';
-import Header from 'src/app/blog/header';
-import Footer from 'src/app/blog/footer';
+import Header from 'src/app/main/header';
+import Footer from 'src/app/main/footer';
 import Home from 'src/app/blog/home';
 import Exception404 from 'src/app/utils/exception/404';
 import { Spin } from 'antd';
-import ErrorBoundary from './utils/ErrorBoundary';
+import ErrorBoundary from '../utils/ErrorBoundary';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ './manage'));
-const Login = lazy(() => import(/*webpackChunkName:'login'*/ './blog/user/login'));
-const Register = lazy(() => import(/*webpackChunkName:'register'*/ './blog/user/register'));
-const Forgot = lazy(() => import(/*webpackChunkName:'forgot'*/ './blog/user/forgot'));
-const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ './blog/write'));
-const PostTable = lazy(() => import(/*webpackChunkName:'post-table'*/ './manage/content-mng/post-table'));
-const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*/ './manage/chart'));
-const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ './manage/content-mng/comment-table'));
-const Profile = lazy(() => import(/*webpackChunkName:'profile'*/ './manage/permission/user-profile'));
-const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-table'));
-const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-edit'));
-const Sysparam = lazy(() => import(/*webpackChunkName:'sysparam'*/ './manage/sysparam'));
-const PermissionTable = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-table'));
-const PermissionEdit = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-edit'));
-const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ './manage/permission/user-table'));
-const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/ './blog/read/post-detail-main'));
+const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ '../manage'));
+const Login = lazy(() => import(/*webpackChunkName:'login'*/ '../blog/user/login'));
+const Register = lazy(() => import(/*webpackChunkName:'register'*/ '../blog/user/register'));
+const Forgot = lazy(() => import(/*webpackChunkName:'forgot'*/ '../blog/user/forgot'));
+const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ '../blog/write'));
+const PostTable = lazy(() => import(/*webpackChunkName:'post-table'*/ '../manage/content-mng/post-table'));
+const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*/ '../manage/chart'));
+const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ '../manage/content-mng/comment-table'));
+const Profile = lazy(() => import(/*webpackChunkName:'profile'*/ '../manage/permission/user-profile'));
+const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ '../manage/permission/role-table'));
+const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ '../manage/permission/role-edit'));
+const Sysparam = lazy(() => import(/*webpackChunkName:'sysparam'*/ '../manage/sysparam'));
+const PermissionTable = lazy(() => import(/*webpackChunkName:'permission-page'*/ '../manage/permission/permission-table'));
+const PermissionEdit = lazy(() => import(/*webpackChunkName:'permission-page'*/ '../manage/permission/permission-edit'));
+const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ '../manage/permission/user-table'));
+const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/ '../blog/read/post-detail-main'));
 
 const routes = [
   {

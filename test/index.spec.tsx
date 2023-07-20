@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import App from 'src/app';
+import App from 'src/app/main';
 describe('render App Test', () => {
   it('render App correctly', () => {
     const testRender = create(<App />);
