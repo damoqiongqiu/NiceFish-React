@@ -12,6 +12,7 @@ module.exports = merge(commonConfig, {
   },
   devServer: {
     compress: true, //启动压缩 gzip
-    open: true // 启动之后自动打开浏览器
+    open: true, // 启动之后自动打开浏览器
+    port: 8091
   }
 });
