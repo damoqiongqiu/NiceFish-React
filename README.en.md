@@ -41,11 +41,10 @@ This project is a React version of NiceFish, using React version 18.2.0, develop
 
 ## Main Dependency
 
-- React 18.2.0
-- Bootstrap 3.3.7
-- echarts 4.2.1
-- @ckeditor/ckeditor5-build-classic: 38.1.1
-- @ckeditor/ckeditor5-react: 6.1.0
+- React: 18.2.0
+- Bootstrap: 3.3.7
+- echarts: 4.2.1
+- primereact: 9.6.0
 
 ## Series project
 

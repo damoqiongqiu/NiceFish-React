@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Transfer, Upload, Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
 import './index.scss';
 
 const Profile: FC = () => {
@@ -122,7 +121,7 @@ const Profile: FC = () => {
                       {item.controlType === 'textbox' ? <input className="form-control" type={item.type} /> : null}
                       {item.controlType === 'file' ? (
                         <Upload>
-                          <Button icon={<UploadOutlined />}>上传</Button>
+                          <Button >上传</Button>
                         </Upload>
                       ) : null}
                       {item.controlType === 'textareabox' ? (

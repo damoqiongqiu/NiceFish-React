@@ -1,19 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Editor } from 'primereact/editor';
 
 const Write: FC = () => {
-  const [editorState, updateEditorState] = useState();
-
-  function handleEditorChange(editorState: any) {
-    updateEditorState(editorState);
-  }
-
-  function submitContent() {
-
-  }
-
-  useEffect(() => { }, []);
+  const [text, setText] = useState('');
 
   return (
     <div className="container-xl write-post-container mtb-16px">
@@ -24,23 +13,7 @@ const Write: FC = () => {
               <input type="text" className="form-control" placeholder="标题，2到32个字符" />
             </div>
             <div className="form-group border-1px-primary">
-              <CKEditor
-                editor={ClassicEditor}
-                data=""
-                onReady={editor => {
-                  console.log('Editor is ready to use!', editor);
-                }}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  console.log({ event, editor, data });
-                }}
-                onBlur={(event, editor) => {
-                  console.log('Blur.', editor);
-                }}
-                onFocus={(event, editor) => {
-                  console.log('Focus.', editor);
-                }}
-              />
+              <Editor value={text} onTextChange={(e) => setText(e.htmlValue)} style={{ height: '320px' }} />
             </div>
             <div className="pd-16px">
               <button type="button" className="btn btn-primary">
