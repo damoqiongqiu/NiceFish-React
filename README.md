@@ -23,7 +23,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 ## 1.简介
 
-这是 NiceFish 的 React 版本，基于 React 18.2.0 ，使用 Antd、Inversify、 定制版 Bootstrap 开发。
+这是 NiceFish 的 React 版前端界面。
 
 ## 2.主要依赖
 
