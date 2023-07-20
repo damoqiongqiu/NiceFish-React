@@ -3,11 +3,6 @@
   "version": "18.2.0",
   "description": "nicefish-react",
   "main": "index.js",
-  "engines": {
-    "node": "^14.18.0 || ^16.10.0 || >=18.10.0",
-    "yarn": ">=1.22.4 <2",
-    "npm": "Please use yarn instead of NPM to install dependencies"
-  },
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
     "start-analyzer": "cross-env NODE_ENV=development ANALYZE=1 webpack serve",
@@ -36,8 +31,9 @@
   "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "5.1.4",
+    "@ckeditor/ckeditor5-build-classic": "^38.1.1",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
     "antd": "5.6.2",
-    "braft-editor": "2.2.9",
     "echarts": "4.2.1",
     "font-awesome": "4.7.0",
     "inversify": "6.0.1",

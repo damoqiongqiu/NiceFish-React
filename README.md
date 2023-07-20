@@ -28,10 +28,10 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ## 2.主要依赖
 
 - React 18.2.0
-- antd 5.6.2
-- Bootstrap 3.4.1
+- Bootstrap 3.3.7
 - echarts 4.2.1
-- braft-editor 2.2.9
+- @ckeditor/ckeditor5-build-classic: 38.1.1
+- @ckeditor/ckeditor5-react: 6.1.0
 
 ## 3.用法
 
