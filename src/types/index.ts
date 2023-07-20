@@ -1,3 +1,5 @@
+//tsconfig.json 会使用此类型定义文件
+
 declare module '*.png';
 declare module '*.gif';
 declare module '*.jpg';
