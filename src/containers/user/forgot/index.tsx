@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { message } from 'antd';
-import { forgotFormValidator } from 'src/validator/forgot-form-validator';
-import Common from 'src/utils/common.util';
+import { forgotFormValidator } from 'src/containers/validator/forgot-form-validator';
+import Common from 'src/containers/utils/common.util';
 import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 

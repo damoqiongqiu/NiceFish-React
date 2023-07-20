@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from 'react';
-import { registerFormValidator } from 'src/validator/register-form-validator';
+import { registerFormValidator } from 'src/containers/validator/register-form-validator';
 import { useNavigate } from 'react-router-dom';
-import Common from 'src/utils/common.util';
+import Common from 'src/containers/utils/common.util';
 import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 const Register: FC = () => {

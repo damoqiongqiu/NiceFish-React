@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
-import Header from 'src/containers/header';
-import Footer from 'src/containers/footer';
+import Header from 'src/containers/blog/header';
+import Footer from 'src/containers/blog/footer';
 import Home from 'src/containers/home';
 import Exception404 from 'src/containers/exception/404';
 import { Spin } from 'antd';

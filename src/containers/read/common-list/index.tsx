@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { commentFormValidator } from 'src/validator/comment-form-validator';
+import { commentFormValidator } from 'src/containers/validator/comment-form-validator';
 import './index.scss';
 const CommonList: FC = () => {
   const [commentData, setCommentData] = useState({ comment: '' });

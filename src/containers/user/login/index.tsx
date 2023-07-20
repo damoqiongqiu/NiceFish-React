@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
-import Common from 'src/utils/common.util';
+import Common from 'src/containers/utils/common.util';
 import { useNavigate } from 'react-router-dom';
-import { loginFormValidator } from 'src/validator/login-form-validator';
+import { loginFormValidator } from 'src/containers/validator/login-form-validator';
 import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 const accountService: AccountService = useService(AccountService);

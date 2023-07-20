@@ -1,6 +1,6 @@
 import { injectable } from 'src/platform/injector';
 import Service from 'src/platform/Service';
-import Color from 'src/utils/color.util';
+import Color from 'src/containers/utils/color.util';
 import { useEffect } from 'react';
 import echarts from 'echarts';
 import type { ECharts, EChartOption } from 'echarts';

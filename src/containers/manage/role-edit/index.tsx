@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { roleFormValidator } from 'src/validator/role-form-validator';
+import { roleFormValidator } from 'src/containers/validator/role-form-validator';
 import { Transfer } from 'antd';
 const RoleEdit: FC = () => {
   const navigate = useNavigate();

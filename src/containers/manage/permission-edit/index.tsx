@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { permissionFormValidator } from 'src/validator/permission-form-validator';
+import { permissionFormValidator } from 'src/containers/validator/permission-form-validator';
 const PermissionEdit: FC = () => {
   const navigate = useNavigate();
   const [permission, updatePermission] = useState({
