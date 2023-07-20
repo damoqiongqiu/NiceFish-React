@@ -43,7 +43,7 @@ This project is a React version of NiceFish, using React version 18.2.0, develop
 
 - React 18.2.0
 - antd 5.6.2
-- Bootstrap 4.2.1
+- Bootstrap 3.4.1
 - echarts 4.2.1
 - braft-editor 2.2.9
 

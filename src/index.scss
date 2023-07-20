@@ -1,145 +1,26 @@
-@import 'src/assets/scss/bootstrap-v4.2.1/bootstrap.scss';
-@import '~font-awesome/css/font-awesome.min.css';
+//PrimeNG 官方样式定制工具：https://primeng.org/
+@import "./assets/css/bootstrap-3.3.7-custom/css/bootstrap.min.css";
+@import "./assets/css/primeng-bootstrap-custom.scss";
+@import "~font-awesome/css/font-awesome.min.css";
 
-$navbarBgColor: #3f4b57;
-$navbarBgHoverColor: #303d47;
+//PrimeNG 提供的图标库 https://primeng.org/icons#download
+@import "./assets/css/primeng-theme/bootstrap-light/theme.css";
+
+
+/* 一些自定义的全局样式 */
+* {
+    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
 
 body {
-  color: #666;
-  font-size: 14px;
-  a {
-    &:focus {
-      text-decoration: none;
+    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #ecf0f1;
+    ::selection {
+        background-color: #f6214b;
+        color: #fff;
     }
-    text-decoration: none;
-    &.active {
-      background-color: $navbarBgHoverColor;
-    }
-  }
-}
-.layout-warpper {
-  height: 100%;
-}
-.main {
-  min-height: 1024px;
-}
-.main-nav {
-  background: $navbarBgColor;
-  box-shadow: 0 2px 5px 0 rgba(248, 56, 56, 0.24);
-}
-
-.bd-navbar {
-  .navbar-nav {
-    @include media-breakpoint-down('sm', $grid-breakpoints) {
-      flex-direction: column !important;
-    }
-    > li {
-      display: flex;
-      align-items: center;
-      @include media-breakpoint-down('sm', $grid-breakpoints) {
-        > a {
-          flex: 1;
-        }
-      }
-      > a {
-        cursor: pointer;
-        color: inherit;
-        padding: 0.6rem 0.8rem;
-        &:hover {
-          background-color: $navbarBgHoverColor;
-        }
-      }
-    }
-  }
-  .collapse {
-    @include media-breakpoint-down('sm', $grid-breakpoints) {
-      flex-direction: column;
-    }
-  }
-}
-.react-echart {
-  width: 100%;
-  height: 400px;
-}
-table thead th,
-table tbody td {
-  text-align: center !important;
-}
-.exception-404 {
-  min-height: 500px;
-  background: url('assets/images/404.svg') no-repeat center / contain;
-}
-.loading-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.05);
-}
-// 这是login 和register 的通用样式
-.card {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
-.login-panel {
-  width: 350px;
-  padding: 50px 20px;
-  margin: 30px auto 30px auto;
-  .col-12 {
-    padding: 25px 40px;
-  }
-}
-
-.login-container {
-  background: url('assets/images/login.svg') center 110px / 100%;
-}
-
-.inputfiled {
-  position: relative;
-  flex: 1;
-  .input-text {
-    border-width: 0px;
-    background: transparent no-repeat;
-    background-image: linear-gradient(90deg, #010208, #010208), linear-gradient(90deg, #bdbdbd, #bdbdbd);
-    background-position: 50% 100%, 50% 100%;
-    background-size: 0 2px, 100% 2px;
-    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    outline: medium none;
-    color: #010208;
-    padding: 2px;
-    &.error {
-      & + label {
-        color: #b7302c !important;
-      }
-    }
-    &:focus {
-      border-width: 0;
-      background-size: 100% 2px, 100% 1px;
-      outline: none;
-      padding-bottom: 2px;
-      & ~ label {
-        top: -20px;
-        font-size: 12px;
-        color: #010208;
-      }
-    }
-    &:-webkit-autofill ~ label {
-      top: -20px;
-      font-size: 12px;
-      color: #010208;
-    }
-    &.ui-state-filled ~ label {
-      top: -20px;
-      font-size: 12px;
-      color: #010208;
-    }
-  }
-  label {
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    color: #999;
-    transition: 0.3s ease all;
-    pointer-events: none;
-  }
 }
