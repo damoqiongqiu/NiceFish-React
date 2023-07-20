@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { NavLink, useNavigate, Outlet, useMatch } from 'react-router-dom';
 import StorageService from 'src/platform/storage/browser/storageService';
-import { useService } from 'src/base/common/injector';
+import { useService } from 'src/platform/injector';
 const storageService: StorageService = useService(StorageService);
 const Manage: FC = () => {
   const user = storageService.read('user');

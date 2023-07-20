@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { message } from 'antd';
 import { forgotFormValidator } from 'src/validator/forgot-form-validator';
 import Common from 'src/utils/common.util';
-import { useService } from 'src/base/common/injector';
+import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 
 const Forgot: FC = () => {
@@ -52,9 +52,8 @@ const Forgot: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${emailFill} ${
-                  (meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
-                }`}
+                className={`col input-text ${emailFill} ${(meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
+                  }`}
                 type="text"
                 autoComplete="off"
                 value={forgot.email}

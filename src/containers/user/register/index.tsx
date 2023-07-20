@@ -2,7 +2,7 @@ import React, { useState, useEffect, FC } from 'react';
 import { registerFormValidator } from 'src/validator/register-form-validator';
 import { useNavigate } from 'react-router-dom';
 import Common from 'src/utils/common.util';
-import { useService } from 'src/base/common/injector';
+import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 const Register: FC = () => {
   const accountService: AccountService = useService(AccountService);
@@ -82,9 +82,8 @@ const Register: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${emailFill} ${
-                  (meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
-                }`}
+                className={`col input-text ${emailFill} ${(meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''
+                  }`}
                 type="text"
                 autoComplete="off"
                 value={register.email}
@@ -100,9 +99,8 @@ const Register: FC = () => {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${pwdFill} ${
-                  (meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''
-                }`}
+                className={`col input-text ${pwdFill} ${(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''
+                  }`}
                 type="password"
                 value={register.pwd}
                 autoComplete="off"
@@ -118,9 +116,8 @@ const Register: FC = () => {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text ${cfPwdFill} ${
-                  (meta.cfPwd.touched || meta.cfPwd.dirty) && errors.cfPwd ? 'error' : ''
-                }`}
+                className={`col input-text ${cfPwdFill} ${(meta.cfPwd.touched || meta.cfPwd.dirty) && errors.cfPwd ? 'error' : ''
+                  }`}
                 type="password"
                 value={register.cfPwd}
                 autoComplete="off"

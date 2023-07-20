@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import niceFish from 'src/assets/images/nice-fish.png';
 import StorageService from 'src/platform/storage/browser/storageService';
-import { useService } from 'src/base/common/injector';
+import { useService } from 'src/platform/injector';
 const storageService: StorageService = useService(StorageService);
 const Header: FC = () => {
   const navigate = useNavigate();

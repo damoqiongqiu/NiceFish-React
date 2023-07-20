@@ -1,5 +1,5 @@
-import { injectable } from 'src/base/common/injector';
-import Service from 'src/base/common/Service';
+import { injectable } from 'src/platform/injector';
+import Service from 'src/platform/Service';
 
 /**
  * 接口隔离原则 ：复用，低偶合，单一职责

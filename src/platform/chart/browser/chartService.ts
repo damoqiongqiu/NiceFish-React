@@ -1,5 +1,5 @@
-import { injectable } from 'src/base/common/injector';
-import Service from 'src/base/common/Service';
+import { injectable } from 'src/platform/injector';
+import Service from 'src/platform/Service';
 import Color from 'src/utils/color.util';
 import { useEffect } from 'react';
 import echarts from 'echarts';

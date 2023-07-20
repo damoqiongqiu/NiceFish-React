@@ -1,11 +1,12 @@
 import React, { Suspense, lazy } from 'react';
-import Header from 'src/components/header';
-import Footer from 'src/components/footer';
+import Header from 'src/containers/header';
+import Footer from 'src/containers/footer';
 import Home from 'src/containers/home';
 import Exception404 from 'src/containers/exception/404';
 import { Spin } from 'antd';
 import ErrorBoundary from './ErrorBoundary';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ './manage'));
 const Login = lazy(() => import(/*webpackChunkName:'login'*/ './user/login'));
 const Register = lazy(() => import(/*webpackChunkName:'register'*/ './user/register'));
@@ -22,6 +23,7 @@ const PermissionTable = lazy(() => import(/*webpackChunkName:'permission-page'*/
 const PermissionEdit = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission-edit'));
 const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ './manage/user-table'));
 const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/ './read/post-detail-main'));
+
 const routes = [
   {
     path: '/',
@@ -152,6 +154,7 @@ const renderRoute = (routes: any) => {
     );
   });
 };
+
 function App() {
   return (
     <div className="layout-warpper">

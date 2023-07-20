@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import StorageService from 'src/platform/storage/browser/storageService';
-import { injectable, inject } from 'src/base/common/injector';
-import Service from 'src/base/common/Service';
+import { injectable, inject } from 'src/platform/injector';
+import Service from 'src/platform/Service';
 
 interface Account {
   storageService: StorageService;

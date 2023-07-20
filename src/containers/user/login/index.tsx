@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import Common from 'src/utils/common.util';
 import { useNavigate } from 'react-router-dom';
 import { loginFormValidator } from 'src/validator/login-form-validator';
-import { useService } from 'src/base/common/injector';
+import { useService } from 'src/platform/injector';
 import AccountService from 'src/platform/account/browser/accountService';
 const accountService: AccountService = useService(AccountService);
 const Login: FC = () => {
@@ -75,9 +75,8 @@ const Login: FC = () => {
           <div className="col-12 d-flex  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text name ${nameFill} ${
-                  (meta.name.touched || meta.name.dirty) && errors.name ? 'error' : ''
-                }`}
+                className={`col input-text name ${nameFill} ${(meta.name.touched || meta.name.dirty) && errors.name ? 'error' : ''
+                  }`}
                 type="text"
                 autoComplete="off"
                 value={login.name}
@@ -93,9 +92,8 @@ const Login: FC = () => {
           <div className="col-12 d-flex justify-content-center  text-white">
             <span className="inputfiled">
               <input
-                className={`col input-text pwd${pwdFill} ${
-                  (meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''
-                }`}
+                className={`col input-text pwd${pwdFill} ${(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''
+                  }`}
                 type="password"
                 value={login.pwd}
                 autoComplete="off"
