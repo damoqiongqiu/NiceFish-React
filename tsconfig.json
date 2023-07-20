@@ -2,7 +2,10 @@
   "compilerOptions": {
     "jsx": "react",
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "module": "esnext",
     "target": "es6",
     "allowSyntheticDefaultImports": true,
@@ -13,9 +16,16 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"],
-      "*": ["src/types/*"]
+      "src/*": [
+        "src/*"
+      ],
+      "*": [
+        "src/types/*"
+      ]
     }
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
 }
