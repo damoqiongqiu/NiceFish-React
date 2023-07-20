@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Common from 'src/app/utils/common.util';
 
 const Register = () => {
-  accountService.useHome();
   const navigate = useNavigate();
   const [emailFill, updateEmailFill] = useState('');
   const [pwdFill, updatePwdFill] = useState('');

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { commentFormValidator } from 'src/app/utils/validator/comment-form-validator';
-
 import './index.scss';
+
 const CommonList = () => {
   const [commentData, setCommentData] = useState({ comment: '' });
   const [errors, setErrors] = useState({});
