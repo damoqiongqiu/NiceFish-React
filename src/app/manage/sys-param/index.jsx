@@ -6,10 +6,6 @@ import './index.scss';
 export default props => {
   const navigate = useNavigate();
 
-  function cancel() {
-    navigate(-1);
-  }
-
   return (
     <div className="sys-param-container">
       <div className="panel panel-default">
@@ -149,7 +145,7 @@ export default props => {
         </div>
       </div>
       <button type="submit" className="btn btn-primary btn-margin-1rem">保存</button>
-      <button type="button" className="btn btn-default" click={cancel()}>取消</button>
+      <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>取消</button>
     </div>
   );
 };

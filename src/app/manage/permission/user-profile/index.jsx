@@ -106,7 +106,7 @@ export default props => {
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button type="button" className="btn btn-default" onClick={navigate(-1)}>
+            <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
               取消
             </button>
           </div>

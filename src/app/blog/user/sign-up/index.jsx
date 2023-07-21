@@ -134,7 +134,7 @@ export default props => {
             </div>
             <div className="form-group">
               <div className="col-md-offset-3 col-md-9">
-                <button type="button" click="doSignUp()" className="btn btn-success" disabled={formValid}>Sign Up</button>
+                <button type="button" onClick={doSignUp} className="btn btn-success" disabled={formValid}>Sign Up</button>
               </div>
             </div>
           </form>
