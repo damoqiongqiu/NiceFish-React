@@ -1,147 +1,118 @@
 import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { useNavigate } from 'react-router-dom';
-import { roleFormValidator } from 'src/app/utils/validator/role-form-validator';
 import './index.scss';
-import postList from "src/mock-data/post-list-mock.json";
+
+import apiPermListMock from "src/mock-data/api-permission-list-mock.json";
+import compPermListMock from "src/mock-data/component-permission-list.json";
 
 export default props => {
   const navigate = useNavigate();
-  const [role, updateRole] = useState({
-    name: '',
-    permission: []
-  });
-  const [formValid, setFormValid] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [meta, setMeta] = useState({
-    name: { touched: false, dirty: false },
-    pwd: { touched: false, dirty: false }
-  });
-  const [mockData, updateMockData] = useState([]);
-  const [targetKeys, updateTargetKeys] = useState([]);
-  function getMock() {
-    let mockData = [];
-    let targetKeys = [];
-    mockData = [
-      {
-        key: '1',
-        title: '发表文章',
-        chosen: true
-      },
-      {
-        key: '2',
-        title: '删除文章',
-        chosen: false
-      },
-      {
-        key: '3',
-        title: '创建用户',
-        chosen: true
-      },
-      {
-        key: '4',
-        title: '删除用户',
-        chosen: false
-      }
-    ];
-    mockData.map((value) => {
-      if (value.chosen) {
-        targetKeys.push(value.key);
-      }
-    });
-    updateRole({ ...role, permission: targetKeys });
-    updateTargetKeys([...targetKeys]);
-    updateMockData([...mockData]);
-  }
-  function handleChange(targetKeys, value) {
-    if (Array.isArray(targetKeys)) {
-      updateTargetKeys(targetKeys);
-      const uprole = {
-        ...role,
-        permission: targetKeys
-      };
-      updateRole(uprole);
-    } else {
-      const uprole = {
-        ...role,
-        name: value
-      };
-      setMeta({ ...meta, [targetKeys]: { ...meta[targetKeys], dirty: true } });
-      updateRole(uprole);
-      setErrors(roleFormValidator(uprole));
-    }
-  }
-  function onSubmit(e) {
-    console.log(role);
-    e.preventDefault();
-  }
-  function onBlur(key, value) {
-    switch (key) {
-      case 'name':
-        setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
-        setErrors(roleFormValidator(role));
-        break;
-    }
-  }
-  function cancel() {
-    navigate(-1);
-  }
+  const [apiList, setApiList] = useState([]);
+  const [compPermList, setCompPermList] = useState([]);
+
   useEffect(() => {
-    const errors = roleFormValidator(role);
-    const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setFormValid(isDisabled);
-  }, [errors]);
-  useEffect(() => {
-    getMock();
+    //FIXME:load data from server.
+    setApiList(apiPermListMock.content);
   }, []);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setCompPermList(compPermListMock.content);
+  }, []);
+
+  const roleListTemplate = (item) => {
+    return (
+      item?.roleEntities?.map(role => (
+        <h5 key={role.roleId}>
+          <span className="label label-success">{role.roleName}</span>
+        </h5>
+      ))
+    );
+  };
+
   return (
-    <div className="role-edit-container font-size-16">
-      <div className="card ">
-        <div className="card-header">
-          <h3 className="font-size-16 m-0">编辑角色</h3>
+    <div className="role-edit-container">
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">创建/编辑角色</h3>
         </div>
-        <div className="pd-10px ">
-          <form onSubmit={onSubmit}>
-            <div className="form-group row">
-              <label className="col-md-2 md-text-align-right col-form-label">名称：</label>
+        <div className="panel-body">
+          <form noValidate className="form-horizontal" role="form">
+            <div className="form-group">
+              <label className="col-md-2 control-label">角色名称：</label>
               <div className="col-md-10">
                 <input
                   name="roleName"
                   type="text"
-                  value={role.name}
                   className="form-control"
-                  onBlur={(e) => onBlur('name', e.target.value)}
-                  onChange={(e) => handleChange('name', e.target.value)}
-                  placeholder="请输入名称"
+                  placeholder="请输入角色名称"
+                  required
+                  minLength="2"
+                  maxLength="32"
                 />
-                {(meta.name.touched || meta.name.dirty) && errors.name ? (
-                  <div className="text-red">{errors.name}</div>
-                ) : (
-                  ''
-                )}
-              </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-md-2 md-text-align-right col-form-label">权限：</label>
-              <div className="col-md-10">
-                {/* <Transfer
-                  dataSource={mockData}
-                  targetKeys={targetKeys}
-                  onChange={handleChange}
-                  render={(item) => item.title}
-                /> */}
               </div>
             </div>
             <div className="form-group">
-              <div className="col-md-offset-2 col-md-10">
-                <button className="btn btn-primary btn-margin-1rem" disabled={formValid}>
-                  保存
-                </button>
-                <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
-                  取消
-                </button>
+              <label className="col-md-2 control-label">是否启用：</label>
+              <div className="col-md-10">
+                <div className="checkbox">
+                  <label>
+                    <input name="roleEnabled" type="checkbox" />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">备注：</label>
+              <div className="col-md-10">
+                <textarea rows="5" name="remark" type="text"
+                  className="form-control" placeholder="备注" maxLength="200">
+                </textarea>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+      {/* 后端接口权限配置表格 */}
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">后端接口权限</h3>
+        </div>
+        <div className="panel-body">
+          <DataTable value={apiList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <Column field="apiName" header="API 名称"></Column>
+            <Column field="url" header="URL"></Column>
+            <Column field="permission" header="权限通配符"></Column>
+            <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>
+            <Column field="roleEntities" body={roleListTemplate} header="已关联角色"></Column>
+          </DataTable>
+        </div>
+      </div>
+      {/* 前端页面权限配置表格 */}
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">前端页面权限</h3>
+        </div>
+        <div className="panel-body">
+          <DataTable value={compPermList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <Column field="componentName" header="组件名称"></Column>
+            <Column field="url" header="URL"></Column>
+            <Column field="displayOrder" header="现实顺序"></Column>
+            <Column field="permission" header="权限通配符" style={{ maxWidth: "120px" }}></Column>
+            <Column field="visiable" header="是否可见"></Column>
+          </DataTable>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-md-12">
+          <button type="button" className="btn btn-success btn-margin-1rem">
+            保存
+          </button>
+          <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
+            取消
+          </button>
         </div>
       </div>
     </div>

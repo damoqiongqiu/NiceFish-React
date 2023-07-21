@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
 
 import roleListMock from "src/mock-data/role-list-mock.json";
 
 export default props => {
+  const navigate = useNavigate();
   const [roleList, setRoleList] = useState([]);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/role-edit/" + item.roleId) }} />&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" />
       </>
     );
@@ -68,7 +70,7 @@ export default props => {
           </div>
           <div className="col-md-1">
             <div className="input-group pull-right">
-              <button className="btn btn-primary" type="button" >
+              <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/role-edit/-1") }}>
                 <i className="pi pi-plus" aria-hidden="true"></i>
               </button>
             </div>
