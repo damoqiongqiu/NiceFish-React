@@ -49,6 +49,8 @@ const CommentList = () => {
           <form onSubmit={onSubmit}>
             <div className="form-group">
               <textarea
+                required minLength="5" maxLength="140"
+                rows="5"
                 className="form-control"
                 value={commentData.comment}
                 onBlur={(e) => onBlur('comment', e.target.value)}
