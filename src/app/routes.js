@@ -11,7 +11,7 @@ const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true
 const PostTable = lazy(() => import(/*webpackChunkName:'post-table'*/ "./manage/content-mng/post-table"));
 const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*/ "./manage/chart"));
 const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ "./manage/content-mng/comment-table"));
-const Profile = lazy(() => import(/*webpackChunkName:'profile'*/ "./manage/permission/user-profile"));
+const UserProfile = lazy(() => import(/*webpackChunkName:'user-profile'*/ "./manage/permission/user-profile"));
 const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ "./manage/permission/role-table"));
 const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ "./manage/permission/role-edit"));
 const SysParam = lazy(() => import(/*webpackChunkName:'sys-param'*/ "./manage/sys-param"));
@@ -65,8 +65,8 @@ const routes = [
                 element: CommentTable,
             },
             {
-                path: "profile",
-                element: Profile,
+                path: "user-profile",
+                element: UserProfile,
             },
             {
                 path: "user-table",
@@ -74,7 +74,7 @@ const routes = [
             },
             {
                 path: "user-table/edituser/:userId",
-                element: Profile,
+                element: UserProfile,
             },
             {
                 path: "role-table",

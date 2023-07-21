@@ -33,7 +33,7 @@ export default props => {
             <NavLink to="comment-table" className="list-group-item">
               评论管理
             </NavLink>
-            <NavLink to="profile" className="list-group-item">
+            <NavLink to="user-profile" className="list-group-item">
               个人设置
             </NavLink>
           </div>
