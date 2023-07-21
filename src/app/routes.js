@@ -71,7 +71,7 @@ const routes = [
     {
         path: "/manage",
         element: Manage,
-        routes: [
+        children: [
             {
                 path: "chart",
                 element: Chart,
@@ -160,7 +160,7 @@ const doRenderRoutes = (routes) => {
                     )
                 }
             >
-                {route.routes && doRenderRoutes(route.routes)}
+                {route.children && doRenderRoutes(route.children)}
             </Route>
         );
     });
