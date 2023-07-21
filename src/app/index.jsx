@@ -8,9 +8,9 @@ import niceFishPNG from 'src/assets/images/nice-fish.png';
 import './index.scss';
 
 const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ './manage'));
-const Login = lazy(() => import(/*webpackChunkName:'login'*/ './blog/user/login'));
-const Register = lazy(() => import(/*webpackChunkName:'register'*/ './blog/user/register'));
-const Forgot = lazy(() => import(/*webpackChunkName:'forgot'*/ './blog/user/forgot'));
+const SignIn = lazy(() => import(/*webpackChunkName:'sign-in'*/ './blog/user/sign-in'));
+const SignUp = lazy(() => import(/*webpackChunkName:'sign-up'*/ './blog/user/sign-up'));
+const RetrievePwd = lazy(() => import(/*webpackChunkName:'retrieve-pwd'*/ './blog/user/retrieve-pwd'));
 const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ './blog/write'));
 const PostTable = lazy(() => import(/*webpackChunkName:'post-table'*/ './manage/content-mng/post-table'));
 const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*/ './manage/chart'));
@@ -94,16 +94,16 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    element: Login
+    path: '/sign-in',
+    element: SignIn
   },
   {
-    path: '/forgot',
-    element: Forgot
+    path: '/retrieve-pwd',
+    element: RetrievePwd
   },
   {
-    path: '/register',
-    element: Register
+    path: '/sign-up',
+    element: SignUp
   },
   {
     path: '/write',
@@ -190,12 +190,12 @@ function App() {
               </li>
               <Fragment>
                 <li>
-                  <NavLink to="/login">
+                  <NavLink to="/sign-in">
                     <i className="fa fa-sign-in" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register">
+                  <NavLink to="/sign-up">
                     <i className="fa fa-user-plus" />
                   </NavLink>
                 </li>
