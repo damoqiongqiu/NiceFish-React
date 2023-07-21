@@ -37,7 +37,7 @@ export default props => {
             </ul >
             <ul className="nav navbar-nav navbar-right">
               <li >
-                <a href="https://gitee.com/mumu-osc/NiceFish" target="_blank"><i className="fa fa-github"></i></a>
+                <a href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank"><i className="fa fa-github"></i></a>
               </li>
               <Fragment>
                 <li>
