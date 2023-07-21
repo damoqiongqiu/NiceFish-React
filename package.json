@@ -39,6 +39,7 @@
     "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
+    "@babel/core": "7.22.9",
     "@babel/preset-env": "7.22.9",
     "@babel/preset-react": "7.22.5",
     "babel-loader": "9.1.3",
