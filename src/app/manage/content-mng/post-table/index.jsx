@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+
 import './index.scss';
 
-import postList from "src/mock-data/post-list-mock.json";
-
-const columns = [
-  {
-    title: '序号',
-    dataIndex: 'postId',
-    width: 100,
-    fixed: 'left',
-    filters: [
-      { text: '1', value: '1' },
-      { text: '2', value: '2' }
-    ],
-    onFilter: (value, record) => record.postId.includes(value),
-    sorter: (a, b) => a.postId - b.postId
-  },
-  {
-    title: '标题',
-    dataIndex: 'title',
-    sorter: (a, b) => a.title.localeCompare(b.title)
-  },
-  {
-    title: '作者',
-    dataIndex: 'userName',
-    sorter: (a, b) => a.userName.localeCompare(b.userName)
-  },
-  {
-    title: '日期',
-    width: 180,
-    fixed: 'right',
-    dataIndex: 'postTime',
-    sorter: (a, b) => new Date(a.postTime).getTime() - new Date(b.postTime).getTime()
-  }
-];
+import postListMock from "src/mock-data/post-list-mock.json";
 
 export default props => {
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setPostList(postListMock.content);
+  }, []);
+
+  const operationTemplate = (item) => {
+    return (
+      <>
+        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-trash" className="p-button-danger" />
+      </>
+    );
+  };
+
   return (
     <div className="post-table-container">
       <form className="form-vertical" role="form">
@@ -55,10 +43,15 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="post-item-container">
-            {/* 数据表格 */}
+            <DataTable value={postList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+              <Column field="title" header="标题"></Column>
+              <Column field="userName" header="作者"></Column>
+              <Column field="time" header="日期"></Column>
+              <Column field="" header="操作" body={operationTemplate}></Column>
+            </DataTable>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
