@@ -1,174 +1,117 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import defaultAvatar from 'src/assets/images/react.svg';
+
 import './index.scss';
 
-export default props=> {
+import userDetailMock from "src/mock-data/user-detail-mock.json";
+
+const genderList = [
+  { label: '女', value: 0 },//value 必须是数值，与服务端的接口类型对应，否则无法选中。
+  { label: '男', value: 1 },
+  { label: '未知', value: 2 }
+];
+
+export default props => {
   const navigate = useNavigate();
-  const formControls = [
-    {
-      controlType: 'image',
-      type: 'image',
-      label: '',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'file',
-      type: 'file',
-      label: '头像',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'textbox',
-      type: 'text',
-      label: '用户名',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'textbox',
-      type: 'text',
-      label: '常用邮箱',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'textbox',
-      type: 'password',
-      label: '密码',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'textbox',
-      type: 'password',
-      label: '确认密码',
-      key: '',
-      value: '',
-      placeholder: ''
-    },
-    {
-      controlType: 'textareabox',
-      type: 'textarea',
-      label: '个人简介',
-      key: '',
-      value: '',
-      placeholder: ''
-    }
-  ];
-
-  const [mockData, updateMockData] = useState([]);
-  const [targetKeys, updateTargetKeys] = useState([]);
-  function getMock() {
-    let mockData = [];
-    let targetKeys = [];
-    mockData = [
-      {
-        key: '1',
-        title: '默认权限',
-        chosen: false
-      },
-      {
-        key: '2',
-        title: '签约作者',
-        chosen: true
-      },
-      {
-        key: '3',
-        title: '系统管理员',
-        chosen: false
-      }
-    ];
-
-    mockData.map((value) => {
-      if (value.chosen) {
-        targetKeys.push(value.key);
-      }
-    });
-    updateTargetKeys([...targetKeys]);
-    updateMockData([...mockData]);
-  }
-  function handleChange(targetKeys) {
-    updateTargetKeys(targetKeys);
-  }
-  function cancel() {
-    navigate(-1);
-  }
-  useEffect(() => {
-    getMock();
-  }, []);
 
   return (
     <div className="user-profile-container">
-      <div className="card">
-        <div className="card-header">
-          <h3 className="font-size-16 m-0">基本资料</h3>
-        </div>
-        <div className="pd-10px">
-          <form role="form">
-            {formControls.map((item, index) => {
-              return (
-                <div className="form-group row " key={index}>
-                  <label className="col-md-2 col-form-label md-text-align-right">{item.label}</label>
-                  <div className="col-md-10">
-                    <div>
-                      {item.controlType === 'textbox' ? <input className="form-control" type={item.type} /> : null}
-                      {item.controlType === 'file' ? (
-                        // <Upload>
-                        //   <Button >上传</Button>
-                        // </Upload>
-                        <></>
-                      ) : null}
-                      {item.controlType === 'textareabox' ? (
-                        <textarea className="form-control" placeholder={item.placeholder} />
-                      ) : null}
-
-                      {item.controlType === 'image' ? <div className="react-logo" /> : null}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </form>
-        </div>
-      </div>
-      <div className="card mt-16px">
-        <div className="card-header">
-          <h3 className="font-size-16 m-0">关联角色</h3>
-        </div>
-        <div className="pd-16px">
-          <form>
+      <div className="panel panel-default">
+        <div className="panel-heading">创建/编辑用户</div>
+        <div className="panel-body">
+          <form className="form-horizontal" role="form">
             <div className="form-group">
-              <div className="col-md-12">
-                {/* <Transfer
-                  dataSource={mockData}
-                  targetKeys={targetKeys}
-                  onChange={handleChange}
-                  render={(item) => item.title}
-                /> */}
+              <label className="col-md-2 control-label">当前头像：</label>
+              <div className="col-md-10">
+                <img src={defaultAvatar} style={{ width: "64px" }} />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">上传头像：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="file" placeholder="上传头像" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">用户名：</label>
+              <div className="col-md-10">
+                <input className="form-control" required="required" type="input" placeholder="用户名" />
+              </div>
+            </div>
+            <div className="form-group" >
+              <label className="col-md-2 control-label">昵称：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="input" placeholder="昵称" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">性别：</label>
+              <div className="col-md-10">
+                {
+                  genderList.map((item, index) => {
+                    <label className="radio-inline">
+                      <input type="radio" name="gender" value={item.value} /> {item.label}
+                    </label>
+                  })
+                }
+              </div>
+            </div>
+            <div className="form-group" >
+              <label className="col-md-2 control-label">常用邮箱：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="input" placeholder="常用邮箱" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">手机号：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="input" placeholder="手机号" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">密码：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="password" placeholder="密码" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">重复密码：</label>
+              <div className="col-md-10">
+                <input className="form-control" type="password" placeholder="重复密码" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">启用：</label>
+              <div className="col-md-10">
+                <div className="checkbox">
+                  <label>
+                    <input name="status" type="checkbox" />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-2 control-label">简介：</label>
+              <div className="col-md-10">
+                <textarea name="remark" rows="5" className="form-control" placeholder="简介"></textarea>
               </div>
             </div>
           </form>
         </div>
-      </div>
-      <form role="form">
-        <div className="form-group row  m-0">
-          <div className="col-md-10 mt-16px">
+      </div >
+      <form className="form-horizontal" role="form">
+        <div className="form-group">
+          <div className="col-md-12">
             <button type="button" className="btn btn-primary btn-margin-1rem">
               保存
             </button>
-            <button type="button" className="btn btn-secondary ml-16px" onClick={cancel}>
+            <button type="button" className="btn btn-default" onClick={navigate(-1)}>
               取消
             </button>
           </div>
         </div>
       </form>
-    </div>
+    </div >
   );
 };
