@@ -17,14 +17,17 @@ const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*
 const CommentTable = lazy(() =>
     import(/*webpackChunkName:'comment-table',webpackPrefetch:true*/ "./manage/content-mng/comment-table")
 );
+const UserTable = lazy(() =>
+    import(/*webpackChunkName:'user-table',webpackPrefetch:true*/ "./manage/permission/user-table")
+);
 const UserProfile = lazy(() =>
     import(/*webpackChunkName:'user-profile',webpackPrefetch:true*/ "./manage/permission/user-profile")
 );
 const RoleTable = lazy(() =>
-    import(/*webpackChunkName:'role-page',webpackPrefetch:true*/ "./manage/permission/role-table")
+    import(/*webpackChunkName:'role-table',webpackPrefetch:true*/ "./manage/permission/role-table")
 );
 const RoleEdit = lazy(() =>
-    import(/*webpackChunkName:'role-page',webpackPrefetch:true*/ "./manage/permission/role-edit")
+    import(/*webpackChunkName:'role-edit',webpackPrefetch:true*/ "./manage/permission/role-edit")
 );
 const SysParam = lazy(() => import(/*webpackChunkName:'sys-param',webpackPrefetch:true*/ "./manage/sys-param"));
 const ApiPermissionTable = lazy(() =>
@@ -42,9 +45,6 @@ const ComponentPermissionEdit = lazy(() =>
     import(
         /*webpackChunkName:'component-permission-edit',webpackPrefetch:true*/ "./manage/permission/component-permission-edit"
     )
-);
-const UserTable = lazy(() =>
-    import(/*webpackChunkName:'user-table',webpackPrefetch:true*/ "./manage/permission/user-table")
 );
 const PostDetailMain = lazy(() =>
     import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/read/post-detail-main")
@@ -85,23 +85,19 @@ const routes = [
                 element: CommentTable,
             },
             {
-                path: "user-profile",
-                element: UserProfile,
-            },
-            {
-                path: "user-table",
+                path: "permission/user-table",
                 element: UserTable,
             },
             {
-                path: "user-table/edituser/:userId",
+                path: "permission/user-profile",
                 element: UserProfile,
             },
             {
-                path: "role-table",
+                path: "permission/role-table",
                 element: RoleTable,
             },
             {
-                path: "role-edit/:roleId",
+                path: "permission/role-edit/:roleId",
                 element: RoleEdit,
             },
             {
@@ -121,7 +117,7 @@ const routes = [
                 element: ComponentPermissionEdit,
             },
             {
-                path: "sysparam",
+                path: "sys-param",
                 element: SysParam,
             },
         ],

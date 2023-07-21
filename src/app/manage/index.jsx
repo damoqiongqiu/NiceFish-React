@@ -33,15 +33,15 @@ export default props => {
             <NavLink to="comment-table" className="list-group-item">
               评论管理
             </NavLink>
-            <NavLink to="user-profile" className="list-group-item">
+            <NavLink to="/manage/permission/user-profile" className="list-group-item">
               个人设置
             </NavLink>
           </div>
           <div className="list-group">
-            <NavLink to="/manage/user-table" className="list-group-item">
+            <NavLink to="/manage/permission/user-table" className="list-group-item">
               用户管理
             </NavLink>
-            <NavLink to="/manage/role-table" className="list-group-item">
+            <NavLink to="/manage/permission/role-table" className="list-group-item">
               角色管理
             </NavLink>
             <NavLink to="/manage/permission/api-permission-table" className="list-group-item">
@@ -50,7 +50,7 @@ export default props => {
             <NavLink to="/manage/permission/component-permission-table" className="list-group-item">
               前端页面权限
             </NavLink>
-            <NavLink to="/manage/sysparam" className="list-group-item">
+            <NavLink to="/manage/sys-param" className="list-group-item">
               系统参数
             </NavLink>
           </div>
