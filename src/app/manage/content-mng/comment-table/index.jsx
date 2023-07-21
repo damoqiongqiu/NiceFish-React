@@ -1,38 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+
 import './index.scss';
-import postList from "src/mock-data/post-list-mock.json";
+import commentListMock from "src/mock-data/comment-list-mock.json";
 
-const columns = [
-  {
-    title: '序号',
-    dataIndex: 'key',
-    filters: [
-      { text: '1', value: '1' },
-      { text: '2', value: '2' }
-    ],
-    onFilter: (value, record) => record.key.includes(value),
-    sorter: (a, b) => a.key - b.key
-  },
-  {
-    title: '内容',
-    dataIndex: 'content',
-    sorter: (a, b) => a.content.length - b.content.length
-  },
-  {
-    title: '用户',
-    dataIndex: 'userName',
-    sorter: (a, b) => a.userName.localeCompare(b.userName)
-  },
-  {
-    title: '日期',
-    dataIndex: 'time',
-    width: 182,
-    fixed: 'right',
-    sorter: (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
-  }
-];
+export default props => {
+  const [commentList, setCommentList] = useState([]);
 
-export default props=> {
+  useEffect(() => {
+    //FIXME:load data from server.
+    setCommentList(commentListMock.content);
+  }, []);
+
+  const operationTemplate = (item) => {
+    return (
+      <>
+        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-trash" className="p-button-danger" />
+      </>
+    );
+  };
+
   return (
     <div className="comment-table-container">
       <form className="form-vertical" role="form">
@@ -52,7 +42,12 @@ export default props=> {
       <div className="row">
         <div className="col-md-12">
           <div className="comment-item-container">
-            {/* 数据表格 */}
+            <DataTable value={commentList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+              <Column field="content" header="内容"></Column>
+              <Column field="userName" header="作者"></Column>
+              <Column field="time" header="日期"></Column>
+              <Column field="" header="操作" body={operationTemplate}></Column>
+            </DataTable>
           </div>
         </div>
       </div>
