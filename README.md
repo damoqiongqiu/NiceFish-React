@@ -1,5 +1,3 @@
-[English](README.en.md) | 简体中文
-
 <p align="center">
     <img width="150" src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/nice-fish.png">
 </p>
@@ -31,6 +29,7 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 - Bootstrap: 3.3.7
 - echarts: 4.2.1
 - primereact: 9.6.0
+- CKEditor 5
 
 **注意：为了防止出现 NodeJS 模块兼容性问题，本项目在 package.json 中锁定了所有 Node 模块版本。如有需要，您可以自己测试兼容版本号（不建议这样做，因为会消耗掉大量的时间）。**
 
@@ -41,11 +40,16 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 ```
    git clone https://gitee.com/mumu-osc/NiceFish-React.git
    cd NiceFish-React
-   yarn 
-   yarn start or npm start
+   npm i 
+   npm start
 ```
 
-**当前版本使用 npm 安装模块会失败，某个包找不到，正在解决。**
+**🚀🚀🚀中文开发者**：网络原因，推荐安装 nrm 来管理 npm 的 registry。
+
+    npm i -g nrm 
+    nrm use taobao
+
+这时候用 npm 安装 node 模块就会使用 taobao 提供的 registry 了。
 
 ## 4.在线演示
 

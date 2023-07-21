@@ -25,8 +25,8 @@
     "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^38.1.1",
-    "@ckeditor/ckeditor5-react": "^6.1.0",
+    "@ckeditor/ckeditor5-build-classic": "38.1.1",
+    "@ckeditor/ckeditor5-react": "6.1.0",
     "echarts": "4.2.1",
     "echarts-for-react": "3.0.2",
     "font-awesome": "4.7.0",
