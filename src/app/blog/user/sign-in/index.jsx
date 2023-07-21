@@ -51,7 +51,7 @@ const SignIn = () => {
     setErrors(loginFormValidator(upLogin));
   }
 
-  function doLogin(e) {
+  function doSignIn(e) {
     e.preventDefault();
     navigate('/home');
   }
@@ -74,7 +74,7 @@ const SignIn = () => {
         </div>
         <div className="panel-body">
           <p className="bg-danger">测试用户: admin@126.com / 12345678</p>
-          <form noValidate className="form-horizontal" role="form" onSubmit={(e) => doLogin(e)}>
+          <form noValidate className="form-horizontal" role="form" onSubmit={(e) => doSignIn(e)}>
             <div className="form-group">
               <label className="col-md-2 control-label">邮箱：</label>
               <div className="col-md-10">

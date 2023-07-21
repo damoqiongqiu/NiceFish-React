@@ -18,7 +18,7 @@ const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ './m
 const Profile = lazy(() => import(/*webpackChunkName:'profile'*/ './manage/permission/user-profile'));
 const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-table'));
 const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-edit'));
-const Sysparam = lazy(() => import(/*webpackChunkName:'sysparam'*/ './manage/sysparam'));
+const Sysparam = lazy(() => import(/*webpackChunkName:'sysparam'*/ './manage/sys-param'));
 const PermissionTable = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-table'));
 const PermissionEdit = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-edit'));
 const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ './manage/permission/user-table'));
@@ -30,7 +30,6 @@ const routes = [
     element: Navigate,
     redirect: '/post'
   },
-
   {
     path: '/post',
     element: Home
@@ -189,6 +188,11 @@ function App() {
                 <a href="https://gitee.com/mumu-osc/NiceFish" target="_blank"><i className="fa fa-github"></i></a>
               </li>
               <Fragment>
+                <li>
+                  <NavLink to="/manage">
+                    <i className="fa fa-cog" />
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink to="/sign-in">
                     <i className="fa fa-sign-in" />

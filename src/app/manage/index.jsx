@@ -1,27 +1,32 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate, Outlet, useMatch } from 'react-router-dom';
 
+import './index.scss';
+
 const Manage = () => {
-  const user = {};
   const navigate = useNavigate();
   const match = useMatch('/manage');
 
   useEffect(() => {
-    if (!user) return navigate('/');
+    // if (!user) return navigate('/');
     if (match) navigate('/manage/chart', { replace: true });
   });
 
   return (
-    <div className="container-xl mtb-16px">
+    <div className="container">
       <div className="row">
-        <div className="col-md-9 col-lg-9">
-          <Outlet />
+        <div className="col-md-9">
+          <div className="mng-main-container">
+            <Outlet />
+          </div>
         </div>
-        <div className="col-md-3 text-align-center sm-mt-16px">
+        <div className="col-md-3">
           <div className="list-group">
             <NavLink to="chart" className="list-group-item">
               统计图表
             </NavLink>
+          </div>
+          <div className="list-group">
             <NavLink to="post-table" className="list-group-item">
               文章管理
             </NavLink>
@@ -32,7 +37,7 @@ const Manage = () => {
               个人设置
             </NavLink>
           </div>
-          <div className="list-group mt-16px">
+          <div className="list-group">
             <NavLink to="/manage/user-table" className="list-group-item">
               用户管理
             </NavLink>

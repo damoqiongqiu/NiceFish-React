@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 
 const Chart = () => {
-  const barRef = useRef < HTMLDivElement > (null);
-  const pieRef = useRef < HTMLDivElement > (null);
-  const lineRef = useRef < HTMLDivElement > (null);
+  const barRef = useRef(null);
+  const pieRef = useRef(null);
+  const lineRef = useRef(null);
 
   return (
     <div>
@@ -13,4 +13,5 @@ const Chart = () => {
     </div>
   );
 };
+
 export default Chart;
