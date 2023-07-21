@@ -25,7 +25,8 @@
     "analyzer": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },
   "dependencies": {
-    "echarts": "4.2.1",
+    "echarts": "^4.2.1",
+    "echarts-for-react": "^3.0.2",
     "font-awesome": "4.7.0",
     "primeicons": "6.0.1",
     "primereact": "9.6.0",
