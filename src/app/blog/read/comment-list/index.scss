@@ -4,7 +4,18 @@
     padding: 20px;
     border-bottom: 1px dashed #d9d9d9;
   }
+
   form {
     margin-bottom: 15px;
+  }
+
+  h5 {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  p {
+    word-wrap: break-word;
+    word-break: break-all;
   }
 }

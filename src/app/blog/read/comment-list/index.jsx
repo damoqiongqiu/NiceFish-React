@@ -2,6 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import { commentFormValidator } from 'src/app/utils/validator/comment-form-validator';
 import './index.scss';
 
+//mock-data
+import commentList from 'src/mock-data/comment-list-mock.json';
+
 const CommentList = () => {
   const [commentData, setCommentData] = useState({ comment: '' });
   const [errors, setErrors] = useState({});
@@ -9,29 +12,8 @@ const CommentList = () => {
   const [meta, setMeta] = useState({
     comment: { touched: false, dirty: false }
   });
-  const [comments] = useState([
-    {
-      id: 1,
-      postId: 1,
-      content: '这是评论的内容。。。',
-      date: '2016-09-09 12:00:09',
-      username: '大漠'
-    },
-    {
-      id: 2,
-      postId: 1,
-      content: '这是评论的内容。。。',
-      date: '2016-09-09 12:00:09',
-      username: '大漠2'
-    },
-    {
-      id: 3,
-      postId: 1,
-      content: '这是评论的内容。。。',
-      date: '2016-09-09 12:00:09',
-      username: '大漠3'
-    }
-  ]);
+
+
   function handleChange(key, value) {
     const upcomment = {
       ...commentData,
@@ -41,6 +23,7 @@ const CommentList = () => {
     setErrors(commentFormValidator(upcomment));
     setCommentData(upcomment);
   }
+
   function onBlur(key, value) {
     switch (key) {
       case 'comment':
@@ -85,13 +68,13 @@ const CommentList = () => {
       </div>
       <div className="row no-gutters">
         <div className="col-md-12">
-          {comments.map((comment, index) => {
+          {commentList.content.map((comment, index) => {
             return (
               <div className="comment-item-container" key={index}>
-                <h5>{comment.content}</h5>
                 <p>
-                  {comment.username} {comment.date}
+                  {comment.userName} {comment.time}
                 </p>
+                <h5>{comment.content}</h5>
               </div>
             );
           })}
