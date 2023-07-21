@@ -1,62 +1,56 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+
 import './index.scss';
 
-const columns = [
-  {
-    title: '序号',
-    dataIndex: 'key',
-    filters: [
-      { text: '1', value: '1' },
-      { text: '2', value: '2' }
-    ],
-    onFilter: (value, record) => record.key.includes(value),
-    sorter: (a, b) => a.key - b.key
-  },
-  {
-    title: '名称',
-    dataIndex: 'title',
-    sorter: (a, b) => a.title.localeCompare(b.title)
-  },
-  {
-    title: '拥有权限',
-    dataIndex: 'permission',
-    sorter: (a, b) => a.permission.localeCompare(b.permission)
-  },
-  {
-    title: '操作',
-    dataIndex: 'options',
-    width: 150,
-    fixed: 'right',
-    render: (options, props) => (
-      <div>
-        {options.map((option, index) => {
-          if (option.link) {
-            return (
-              // <Tag key={index}>
-              //   <NavLink to={`${option.link + props.key}`}>
-              //     <i className={`${option.icon} `} aria-hidden="true" />
-              //   </NavLink>
-              // </Tag>
-              <></>
-            );
-          } else {
-            return (
-              // <Tag key={index}>
-              //   <a>
-              //     <i className={`${option.icon} `} aria-hidden="true" />
-              //   </a>
-              // </Tag>
-              <></>
-            );
-          }
-        })}
-      </div>
-    )
-  }
-];
+import roleListMock from "src/mock-data/role-list-mock.json";
 
 export default props => {
+  const [roleList, setRoleList] = useState([]);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setRoleList(roleListMock.content);
+  }, []);
+
+  const statusTemplate = (item) => {
+    return (
+      item.status == 0 ?
+        <span className="label label-danger">禁用</span> :
+        <span className="label label-success">正常</span>
+    );
+  };
+
+  const apiListTemplate = (item) => {
+    return (
+      item?.apiEntities?.map(api => (
+        <h5 key={api.apiPermissionId}>
+          <span className="label label-success">{api.apiName}</span>
+        </h5>
+      ))
+    );
+  };
+
+  const componentListTemplate = (item) => {
+    return (
+      item?.componentEntities?.map(comp => (
+        <h5 key={comp.compPermId}>
+          <span className="label label-success">{comp.componentName}</span>
+        </h5>
+      ))
+    );
+  };
+
+  const operationTemplate = (item) => {
+    return (
+      <>
+        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-trash" className="p-button-danger" />
+      </>
+    );
+  };
 
   return (
     <div className="role-table-container">
@@ -84,7 +78,14 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="role-item-container">
-            {/* 数据表格 */}
+            <DataTable value={roleList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+              <Column field="roleName" header="角色名称"></Column>
+              <Column field="status" body={statusTemplate} header="状态"></Column>
+              <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>
+              <Column field="apiEntities" body={apiListTemplate} header="后端接口权限"></Column>
+              <Column field="componentEntities" body={componentListTemplate} header="前端页面权限"></Column>
+              <Column field="" header="操作" body={operationTemplate}></Column>
+            </DataTable>
           </div>
         </div>
       </div>
