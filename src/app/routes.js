@@ -3,8 +3,6 @@ import Home from "src/app/blog/home";
 import Exception404 from "src/app/utils/exception/404";
 import { Route, Navigate } from "react-router-dom";
 
-import "./index.scss";
-
 const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ "./manage"));
 const SignIn = lazy(() => import(/*webpackChunkName:'sign-in'*/ "./blog/user/sign-in"));
 const SignUp = lazy(() => import(/*webpackChunkName:'sign-up'*/ "./blog/user/sign-up"));

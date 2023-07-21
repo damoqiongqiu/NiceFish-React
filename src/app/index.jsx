@@ -1,8 +1,6 @@
-import React, { Suspense, lazy, Fragment } from 'react';
-import Home from 'src/app/blog/home';
-import Exception404 from 'src/app/utils/exception/404';
+import React, { Suspense, Fragment } from 'react';
 import ErrorBoundary from './utils/ErrorBoundary';
-import { HashRouter as Router, Route, Routes, Navigate, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Routes, NavLink } from 'react-router-dom';
 import renderRoutes from 'src/app/routes';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
