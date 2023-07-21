@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Editor } from 'primereact/editor';
 
-const Write= () => {
+const Write = () => {
   const [text, setText] = useState('');
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import PostDetail from '../post-detail';
-import CommentList from '../common-list';
-import UserInfo from '../post-detail/user-info';
+import PostDetail from 'src/app/blog/read/post-detail';
+import CommentList from 'src/app/blog/read/comment-list';
+import UserInfo from 'src/app/blog/user/user-info';
 
 const PostDetailMain = props => {
   return (

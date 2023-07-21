@@ -1,13 +1,13 @@
 import React from 'react';
 import OnlineContact from './online-contact';
-import Read from 'src/app/blog/read';
+import PostList from 'src/app/blog/read/post-list';
 
-const Home= () => {
+const Home = () => {
   return (
     <div className="container-xl mtb-16px ">
       <div className="row">
         <div className="col-md-7 col-lg-8 col-xl-9">
-          <Read />
+          <PostList />
         </div>
         <div className="col-md-5 col-lg-4 col-xl-3">
           <OnlineContact />

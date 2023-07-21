@@ -50,11 +50,6 @@ const webpackConfig = {
         extensions: [".js", ".json"],
         mainFields: ["loader", "main"],
     },
-    experiments: {
-        topLevelAwait: true,
-        asyncWebAssembly: true,
-        lazyCompilation: isDev ? true : false,
-    },
     optimization: {
         splitChunks: isDev
             ? false
