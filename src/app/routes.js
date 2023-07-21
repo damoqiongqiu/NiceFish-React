@@ -3,32 +3,52 @@ import Home from "src/app/blog/home";
 import Exception404 from "src/app/utils/exception/404";
 import { Route, Navigate } from "react-router-dom";
 
-const Manage = lazy(() => import(/*webpackChunkName:'manage,webpackPrefetch:true'*/ "./manage"));
-const SignIn = lazy(() => import(/*webpackChunkName:'sign-in'*/ "./blog/user/sign-in"));
-const SignUp = lazy(() => import(/*webpackChunkName:'sign-up'*/ "./blog/user/sign-up"));
-const RetrievePwd = lazy(() => import(/*webpackChunkName:'retrieve-pwd'*/ "./blog/user/retrieve-pwd"));
+const Manage = lazy(() => import(/*webpackChunkName:'manage',webpackPrefetch:true*/ "./manage"));
+const SignIn = lazy(() => import(/*webpackChunkName:'sign-in',webpackPrefetch:true*/ "./blog/user/sign-in"));
+const SignUp = lazy(() => import(/*webpackChunkName:'sign-up',webpackPrefetch:true*/ "./blog/user/sign-up"));
+const RetrievePwd = lazy(() =>
+    import(/*webpackChunkName:'retrieve-pwd',webpackPrefetch:true*/ "./blog/user/retrieve-pwd")
+);
 const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./blog/write"));
-const PostTable = lazy(() => import(/*webpackChunkName:'post-table'*/ "./manage/content-mng/post-table"));
+const PostTable = lazy(() =>
+    import(/*webpackChunkName:'post-table',webpackPrefetch:true*/ "./manage/content-mng/post-table")
+);
 const Chart = lazy(() => import(/*webpackChunkName:'chart',webpackPrefetch:true*/ "./manage/chart"));
-const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ "./manage/content-mng/comment-table"));
-const UserProfile = lazy(() => import(/*webpackChunkName:'user-profile'*/ "./manage/permission/user-profile"));
-const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ "./manage/permission/role-table"));
-const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ "./manage/permission/role-edit"));
-const SysParam = lazy(() => import(/*webpackChunkName:'sys-param'*/ "./manage/sys-param"));
+const CommentTable = lazy(() =>
+    import(/*webpackChunkName:'comment-table',webpackPrefetch:true*/ "./manage/content-mng/comment-table")
+);
+const UserProfile = lazy(() =>
+    import(/*webpackChunkName:'user-profile',webpackPrefetch:true*/ "./manage/permission/user-profile")
+);
+const RoleTable = lazy(() =>
+    import(/*webpackChunkName:'role-page',webpackPrefetch:true*/ "./manage/permission/role-table")
+);
+const RoleEdit = lazy(() =>
+    import(/*webpackChunkName:'role-page',webpackPrefetch:true*/ "./manage/permission/role-edit")
+);
+const SysParam = lazy(() => import(/*webpackChunkName:'sys-param',webpackPrefetch:true*/ "./manage/sys-param"));
 const ApiPermissionTable = lazy(() =>
-    import(/*webpackChunkName:'api-permission-table'*/ "./manage/permission/api-permission-table")
+    import(/*webpackChunkName:'api-permission-table',webpackPrefetch:true*/ "./manage/permission/api-permission-table")
 );
 const ApiPermissionEdit = lazy(() =>
-    import(/*webpackChunkName:'api-permission-edit'*/ "./manage/permission/api-permission-edit")
+    import(/*webpackChunkName:'api-permission-edit',webpackPrefetch:true*/ "./manage/permission/api-permission-edit")
 );
 const ComponentPermissionTable = lazy(() =>
-    import(/*webpackChunkName:'component-permission-table'*/ "./manage/permission/component-permission-table")
+    import(
+        /*webpackChunkName:'component-permission-table',webpackPrefetch:true*/ "./manage/permission/component-permission-table"
+    )
 );
 const ComponentPermissionEdit = lazy(() =>
-    import(/*webpackChunkName:'component-permission-edit'*/ "./manage/permission/component-permission-edit")
+    import(
+        /*webpackChunkName:'component-permission-edit',webpackPrefetch:true*/ "./manage/permission/component-permission-edit"
+    )
 );
-const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ "./manage/permission/user-table"));
-const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/ "./blog/read/post-detail-main"));
+const UserTable = lazy(() =>
+    import(/*webpackChunkName:'user-table',webpackPrefetch:true*/ "./manage/permission/user-table")
+);
+const PostDetailMain = lazy(() =>
+    import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/read/post-detail-main")
+);
 
 const routes = [
     {
