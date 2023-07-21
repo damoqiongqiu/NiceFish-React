@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
 import userListMock from "src/mock-data/user-list-mock.json";
 
 
 export default props => {
+  const navigate = useNavigate();
   const [userList, setUserList] = useState([]);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/user-profile") }} />&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" />
       </>
     );
