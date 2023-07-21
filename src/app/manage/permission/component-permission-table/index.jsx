@@ -26,43 +26,44 @@ export default props => {
     );
   };
 
-  return (<div className="api-permission-table-container">
-    <form className="form-vertical" role="form">
-      <div className="row">
-        <div className="col-md-11">
-          <div className="input-group">
-            <input name="searchStr" className="form-control" type="text" placeholder="API 名称或者权限字符串" />
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="button">
-                <i className="fa fa-search" aria-hidden="true"></i>
+  return (
+    <div className="component-permission-table-container">
+      <form className="form-vertical" role="form">
+        <div className="row">
+          <div className="col-md-11">
+            <div className="input-group">
+              <input name="searchStr" className="form-control" type="text" placeholder="组件名称或者权限字符串" />
+              <span className="input-group-btn">
+                <button className="btn btn-default" type="button">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+          <div className="col-md-1">
+            <div className="input-group pull-right">
+              <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/component-permission-edit/-1") }}>
+                <i className="pi pi-plus" aria-hidden="true"></i>
               </button>
-            </span>
+            </div>
           </div>
         </div>
-        <div className="col-md-1">
-          <div className="input-group pull-right">
-            <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/component-permission-edit/-1") }}>
-              <i className="pi pi-plus" aria-hidden="true"></i>
-            </button>
+      </form>
+      <div className="row">
+        <div className="col-md-12">
+          <div className="permission-item-container">
+            {/* FIXME:组件改成带有层级结构的 TreeTable */}
+            <DataTable value={compPermList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+              <Column field="componentName" header="组件名称"></Column>
+              <Column field="url" header="URL"></Column>
+              <Column field="displayOrder" header="现实顺序"></Column>
+              <Column field="permission" header="权限通配符" style={{ maxWidth: "120px" }}></Column>
+              <Column field="visiable" header="是否可见"></Column>
+              <Column field="" header="操作" body={operationTemplate}></Column>
+            </DataTable>
           </div>
-        </div>
-      </div>
-    </form>
-    <div className="row">
-      <div className="col-md-12">
-        <div className="permission-item-container">
-          {/* FIXME:组件改成带有层级结构的 TreeTable */}
-          <DataTable value={compPermList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
-            <Column field="componentName" header="组件名称"></Column>
-            <Column field="url" header="URL"></Column>
-            <Column field="displayOrder" header="现实顺序"></Column>
-            <Column field="permission" header="权限通配符" style={{ maxWidth: "120px" }}></Column>
-            <Column field="visiable" header="是否可见"></Column>
-            <Column field="" header="操作" body={operationTemplate}></Column>
-          </DataTable>
         </div>
       </div>
     </div>
-  </div>
   );
 };
