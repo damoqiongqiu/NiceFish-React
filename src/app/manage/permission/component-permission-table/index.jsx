@@ -1,101 +1,66 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './index.scss';
-import postList from "src/mock-data/post-list-mock.json";
+import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
 
-const columns = [
-  {
-    title: '序号',
-    dataIndex: 'key',
-    filters: [
-      { text: '1', value: '1' },
-      { text: '2', value: '2' }
-    ],
-    onFilter: (value, record) => {
-      console.log(value, record);
-      return record.key.includes(value);
-    },
-    sorter: (a, b) => a.key - b.key
-  },
-  {
-    title: '用户名',
-    dataIndex: 'userName',
-    sorter: (a, b) => a.userName.localeCompare(b.userName)
-  },
-  {
-    title: '注册时间',
-    dataIndex: 'registerTime',
-    sorter: (a, b) => new Date(a.registerTime).getTime() - new Date(b.registerTime).getTime()
-  },
-  {
-    title: '最后登录',
-    dataIndex: 'lastLoginTime',
-    sorter: (a, b) => new Date(a.lastLoginTime).getTime() - new Date(b.lastLoginTime).getTime()
-  },
-  {
-    title: '操作',
-    dataIndex: 'options',
-    width: 100,
-    fixed: 'right',
-    render: (options, props) => (
-      <div>
-        {options.map((option, index) => {
-          if (option.link) {
-            return (
-              // <Tag key={index} className="mb-1">
-              //   <NavLink to={`${option.link + props.key}`}>
-              //     <i className={`${option.icon} `} aria-hidden="true" />
-              //   </NavLink>
-              // </Tag>
-              <></>
-            );
-          } else {
-            return (
-              // <Tag key={index} className="mb-1">
-              //   <a>
-              //     <i className={`${option.icon} `} aria-hidden="true" />
-              //   </a>
-              // </Tag>
-              <></>
-            );
-          }
-        })}
-      </div>
-    )
-  }
-];
+import './index.scss';
+
+import compPermListMock from "src/mock-data/component-permission-list.json";
 
 export default props => {
-  return (
-    <div className="user-table-container">
-      <form className="form-vertical" role="form">
-        <div className="row">
-          <div className="col-md-11">
-            <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder="用户名，手机号" />
-              <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-          <div className="col-md-1">
-            <div className="input-group pull-right">
-              <button className="btn btn-primary" type="button">
-                <i className="pi pi-plus" aria-hidden="true"></i>
+  const [compPermList, setCompPermList] = useState([]);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setCompPermList(compPermListMock.content);
+  }, []);
+
+  const operationTemplate = (item) => {
+    return (
+      <>
+        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
+        <Button icon="pi pi-trash" className="p-button-danger" />
+      </>
+    );
+  };
+
+  return (<div className="api-permission-table-container">
+    <form className="form-vertical" role="form">
+      <div className="row">
+        <div className="col-md-11">
+          <div className="input-group">
+            <input name="searchStr" className="form-control" type="text" placeholder="API 名称或者权限字符串" />
+            <span className="input-group-btn">
+              <button className="btn btn-default" type="button">
+                <i className="fa fa-search" aria-hidden="true"></i>
               </button>
-            </div>
+            </span>
           </div>
         </div>
-      </form>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="user-item-container">
-            {/* 数据表格 */}
+        <div className="col-md-1">
+          <div className="input-group pull-right">
+            <button className="btn btn-primary" type="button">
+              <i className="pi pi-plus" aria-hidden="true"></i>
+            </button>
           </div>
+        </div>
+      </div>
+    </form>
+    <div className="row">
+      <div className="col-md-12">
+        <div className="permission-item-container">
+          {/* FIXME:组件改成带有层级结构的 TreeTable */}
+          <DataTable value={compPermList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <Column field="componentName" header="组件名称"></Column>
+            <Column field="url" header="URL"></Column>
+            <Column field="displayOrder" header="现实顺序"></Column>
+            <Column field="permission" header="权限通配符" style={{ maxWidth: "120px" }}></Column>
+            <Column field="visiable" header="是否可见"></Column>
+            <Column field="" header="操作" body={operationTemplate}></Column>
+          </DataTable>
         </div>
       </div>
     </div>
+  </div>
   );
 };
