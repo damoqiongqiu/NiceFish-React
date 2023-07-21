@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OnlineContact = () => {
+export default props => {
   return (
     <div className="online-contact-container">
       <div className="panel panel-default">
@@ -16,4 +16,3 @@ const OnlineContact = () => {
     </div>
   );
 };
-export default OnlineContact;

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { roleFormValidator } from 'src/app/utils/validator/role-form-validator';
+import './index.scss';
+import postList from "src/mock-data/post-list-mock.json";
 
-const RoleEdit = () => {
+export default props => {
   const navigate = useNavigate();
   const [role, updateRole] = useState({
     name: '',
@@ -145,4 +147,3 @@ const RoleEdit = () => {
     </div>
   );
 };
-export default RoleEdit;

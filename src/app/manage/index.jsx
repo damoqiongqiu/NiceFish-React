@@ -3,7 +3,7 @@ import { NavLink, useNavigate, Outlet, useMatch } from 'react-router-dom';
 
 import './index.scss';
 
-const Manage = () => {
+export default props => {
   const navigate = useNavigate();
   const match = useMatch('/manage');
 
@@ -44,8 +44,11 @@ const Manage = () => {
             <NavLink to="/manage/role-table" className="list-group-item">
               角色管理
             </NavLink>
-            <NavLink to="/manage/permission-table" className="list-group-item">
-              权限管理
+            <NavLink to="/manage/permission/api-permission-table" className="list-group-item">
+              后端接口权限
+            </NavLink>
+            <NavLink to="/manage/permission/component-permission-table" className="list-group-item">
+              前端页面权限
             </NavLink>
             <NavLink to="/manage/sysparam" className="list-group-item">
               系统参数
@@ -56,5 +59,3 @@ const Manage = () => {
     </div>
   );
 };
-
-export default Manage;

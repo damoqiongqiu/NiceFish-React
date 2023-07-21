@@ -10,7 +10,7 @@ import postLists from "src/mock-data/post-list-mock.json";
 const currentPage = 1
 const itemPerPage = 10;
 
-const PostList = () => {
+export default props => {
   const [list, updateList] = useState([]);
 
   const onChange = useCallback((page) => {
@@ -73,4 +73,3 @@ const PostList = () => {
     </>
   );
 };
-export default PostList;

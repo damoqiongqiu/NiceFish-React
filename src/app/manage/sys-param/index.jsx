@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
 
-const SysParam = props => {
+export default props => {
   const navigate = useNavigate();
 
   function cancel() {
@@ -153,4 +153,3 @@ const SysParam = props => {
     </div>
   );
 };
-export default SysParam; 

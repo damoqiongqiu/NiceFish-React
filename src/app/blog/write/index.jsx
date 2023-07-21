@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Editor } from 'primereact/editor';
 
-const Write = () => {
+export default props=> {
   const [text, setText] = useState('');
 
   return (
@@ -26,4 +26,3 @@ const Write = () => {
     </div>
   );
 };
-export default Write;

@@ -5,7 +5,7 @@ import Common from 'src/app/utils/common.util';
 
 import './index.scss';
 
-const SignUp = () => {
+export default props => {
   const navigate = useNavigate();
   const [emailFill, updateEmailFill] = useState('');
   const [pwdFill, updatePwdFill] = useState('');
@@ -143,4 +143,3 @@ const SignUp = () => {
     </div >
   );
 };
-export default SignUp;

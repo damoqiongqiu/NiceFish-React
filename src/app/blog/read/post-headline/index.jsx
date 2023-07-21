@@ -2,7 +2,7 @@ import React from 'react';
 import headImgNarrow from 'src/assets/images/headline-narrow.png';
 import './index.scss';
 
-const PostHeadline = () => {
+export default props => {
   return (
     <div className="post-headline-container">
       <div className="img-container">
@@ -20,4 +20,3 @@ const PostHeadline = () => {
     </div>
   );
 };
-export default PostHeadline;

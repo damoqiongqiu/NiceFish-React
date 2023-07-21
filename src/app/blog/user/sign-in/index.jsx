@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginFormValidator } from 'src/app/utils/validator/login-form-validator';
 import './index.scss';
 
-const SignIn = () => {
+export default props => {
   const navigate = useNavigate();
   const [nameFill, updateNameFill] = useState('');
   const [pwdFill, updatePwdFill] = useState('');
@@ -149,4 +149,3 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;

@@ -2,7 +2,7 @@ import React from 'react';
 import OnlineContact from './online-contact';
 import PostList from 'src/app/blog/read/post-list';
 
-const Home = () => {
+export default props => {
   return (
     <div className="container-xl mtb-16px ">
       <div className="row">
@@ -16,5 +16,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

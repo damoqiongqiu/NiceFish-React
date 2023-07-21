@@ -5,7 +5,7 @@ import './index.scss';
 //mock-data
 import post from "src/mock-data/post-detail-mock.json";
 
-const PostDetail = () => {
+export default props => {
   return (
     <div className="post-detail-container">
       <div className="img-container">
@@ -37,4 +37,3 @@ const PostDetail = () => {
     </div >
   );
 };
-export default PostDetail;

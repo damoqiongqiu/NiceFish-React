@@ -4,7 +4,7 @@ import ReactEcharts from "echarts-for-react";
 
 import './index.scss';
 
-const Chart = () => {
+export default props=> {
   const pieOptions = {
     theme: '',
     event: [
@@ -225,5 +225,3 @@ const Chart = () => {
     </div>
   );
 };
-
-export default Chart;

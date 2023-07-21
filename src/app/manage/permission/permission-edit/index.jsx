@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { permissionFormValidator } from 'src/app/utils/validator/permission-form-validator';
 
-const PermissionEdit = () => {
+import './index.scss';
+
+export default props=> {
   const navigate = useNavigate();
   const [permission, updatePermission] = useState({
     name: ''
@@ -85,4 +87,3 @@ const PermissionEdit = () => {
     </div>
   );
 };
-export default PermissionEdit;

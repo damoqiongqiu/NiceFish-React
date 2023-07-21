@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const UserInfo = () => {
+export default props => {
   return (
     <div className="user-info-container">
       <div className="panel panel-default">
@@ -22,4 +22,3 @@ const UserInfo = () => {
     </div>
   );
 };
-export default UserInfo;

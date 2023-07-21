@@ -18,9 +18,11 @@ const CommentTable = lazy(() => import(/*webpackChunkName:'comment-table'*/ './m
 const Profile = lazy(() => import(/*webpackChunkName:'profile'*/ './manage/permission/user-profile'));
 const RoleTable = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-table'));
 const RoleEdit = lazy(() => import(/*webpackChunkName:'role-page'*/ './manage/permission/role-edit'));
-const Sysparam = lazy(() => import(/*webpackChunkName:'sysparam'*/ './manage/sys-param'));
-const PermissionTable = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-table'));
-const PermissionEdit = lazy(() => import(/*webpackChunkName:'permission-page'*/ './manage/permission/permission-edit'));
+const SysParam = lazy(() => import(/*webpackChunkName:'sys-param'*/ './manage/sys-param'));
+const ApiPermissionTable = lazy(() => import(/*webpackChunkName:'api-permission-table'*/ './manage/permission/api-permission-table'));
+const ApiPermissionEdit = lazy(() => import(/*webpackChunkName:'api-permission-edit'*/ './manage/permission/api-permission-edit'));
+const ComponentPermissionTable = lazy(() => import(/*webpackChunkName:'component-permission-table'*/ './manage/permission/component-permission-table'));
+const ComponentPermissionEdit = lazy(() => import(/*webpackChunkName:'component-permission-edit'*/ './manage/permission/component-permission-edit'));
 const UserTable = lazy(() => import(/*webpackChunkName:'user-table'*/ './manage/permission/user-table'));
 const PostDetailMain = lazy(() => import(/*webpackChunkName:'post-detail-main'*/ './blog/read/post-detail-main'));
 
@@ -79,16 +81,24 @@ const routes = [
         element: RoleEdit
       },
       {
-        path: 'permission-table',
-        element: PermissionTable
+        path: 'permission/api-permission-table',
+        element: ApiPermissionTable
       },
       {
-        path: 'permission-edit/:permissionId',
-        element: PermissionEdit
+        path: 'permission/api-permission-edit/:permissionId',
+        element: ApiPermissionEdit
+      },
+      {
+        path: 'permission/component-permission-table',
+        element: ComponentPermissionTable
+      },
+      {
+        path: 'permission/component-permission-edit/:compPermId',
+        element: ComponentPermissionEdit
       },
       {
         path: 'sysparam',
-        element: Sysparam
+        element: SysParam
       }
     ]
   },
@@ -133,6 +143,7 @@ const renderSubRoute = (route) => {
     </Route>
   );
 };
+
 const renderRoute = (routes) => {
   return routes.map((route) => {
     if (route.routes) return renderSubRoute(route);
@@ -154,7 +165,7 @@ const renderRoute = (routes) => {
   });
 };
 
-function App() {
+export default props => {
   return (
     <Router>
       <div className="navbar navbar-fixed-top main-nav" role="navigation">
@@ -244,4 +255,3 @@ function App() {
     </Router >
   );
 }
-export default App;

@@ -3,7 +3,7 @@ import { forgotFormValidator } from 'src/app/utils/validator/forgot-form-validat
 import Common from 'src/app/utils/common.util';
 import './index.scss';
 
-const RetrievePwd = () => {
+export default props => {
   const [emailFill, updateEmailFill] = useState('');
   const [formValid, setFormValid] = useState(false);
   const [meta, setMeta] = useState({ email: { touched: false, dirty: false } });
@@ -75,4 +75,3 @@ const RetrievePwd = () => {
     </div>
   );
 };
-export default RetrievePwd;

@@ -4,7 +4,7 @@ import CommentList from 'src/app/blog/read/comment-list';
 import UserInfo from 'src/app/blog/user/user-info';
 import './index.scss';
 
-const PostDetailMain = props => {
+export default props => {
   return (
     <div className="container post-detail-main-container">
       <div className="row">
@@ -19,5 +19,3 @@ const PostDetailMain = props => {
     </div>
   );
 };
-
-export default PostDetailMain;

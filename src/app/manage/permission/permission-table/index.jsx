@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import './index.scss';
 
-const PermissionTable = () => {
+export default props => {
   const columns = [
     {
       title: '序号',
@@ -100,4 +101,3 @@ const PermissionTable = () => {
     </div>
   );
 };
-export default PermissionTable;

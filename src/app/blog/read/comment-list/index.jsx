@@ -5,7 +5,7 @@ import './index.scss';
 //mock-data
 import commentList from 'src/mock-data/comment-list-mock.json';
 
-const CommentList = () => {
+export default props => {
   const [commentData, setCommentData] = useState({ comment: '' });
   const [errors, setErrors] = useState({});
   const [formValid, setFormValid] = useState(false);
@@ -85,4 +85,3 @@ const CommentList = () => {
     </div>
   );
 };
-export default CommentList;

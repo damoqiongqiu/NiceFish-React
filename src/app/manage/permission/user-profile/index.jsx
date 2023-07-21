@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
 
-const Profile = () => {
+export default props=> {
   const navigate = useNavigate();
   const formControls = [
     {
@@ -172,4 +172,3 @@ const Profile = () => {
     </div>
   );
 };
-export default Profile;
