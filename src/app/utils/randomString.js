@@ -1,4 +1,4 @@
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const charactersLength = characters.length;
 
 /**
@@ -6,11 +6,11 @@ const charactersLength = characters.length;
  * @param len
  */
 const randomString = (len) => {
-  let result = '';
-  for (var i = 0; i < len; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
+    let result = "";
+    for (var i = 0; i < len; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 };
 
 export default randomString;
