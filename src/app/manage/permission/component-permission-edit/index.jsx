@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
-import postList from "src/mock-data/post-list-mock.json";
+import compPermDetailMock from "src/mock-data/component-permission-detail-mock.json";
 
 export default props => {
   const navigate = useNavigate();
+  const [compPermDetail, setCompPermDetail] = useState([]);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setCompPermDetail(compPermDetailMock);
+  }, []);
+
   return (
     <div className="role-edit-container">
       <div className="panel panel-default">
@@ -18,43 +25,77 @@ export default props => {
             <div className="form-group">
               <label className="col-md-2 control-label">父层组件：</label>
               <div className="col-md-10">
-                <span
-                  className="label label-danger form-control">{ }</span>
+                <span className="label label-danger form-control">{ }</span>
               </div>
             </div>
             <div className=" form-group">
               <label className="col-md-2 control-label">组件名称：</label>
               <div className="col-md-10">
-                <input name="componentName" type="text"
-                  className="form-control" placeholder="请输入组件名称" required
-                  minLength="2" maxLength="64" />
+                <input
+                  name="componentName"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入组件名称"
+                  required
+                  minLength="2" maxLength="64"
+                  value={compPermDetail.componentName}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">组件图标：</label>
               <div className="col-md-10">
-                <input name="icon" type="text"
-                  className="form-control" placeholder="请输入图标 URL" maxLength="1024" />
+                <input
+                  name="icon"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入图标 URL"
+                  maxLength="1024"
+                  value={compPermDetail.icon}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">组件 URL：</label>
               <div className="col-md-10">
-                <input name="url" type="text" className="form-control" placeholder="请输入 URL" maxLength="512" />
+                <input
+                  name="url"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入 URL"
+                  maxLength="512"
+                  value={compPermDetail.url}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">显示顺序：</label>
               <div className="col-md-10">
-                <input name="displayOrder" type="number" className="form-control" placeholder="请输入显示顺序" required
-                  minLength="1" maxLength="32" />
+                <input
+                  name="displayOrder"
+                  type="number"
+                  className="form-control"
+                  placeholder="请输入显示顺序"
+                  required
+                  minLength="1"
+                  maxLength="32"
+                  value={compPermDetail.displayOrder}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">权限通配符：</label>
               <div className="col-md-10">
-                <input name="permission" type="text" className="form-control" placeholder="请输入权限通配符" required minLength="1"
-                  maxLength="512" />
+                <input
+                  name="permission"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入权限通配符"
+                  required
+                  minLength="1"
+                  maxLength="512"
+                  value={compPermDetail.permission}
+                />
                 <p className="bg-danger">
                   Apache Shiro 通配符权限文档： https://shiro.apache.org/permissions.html
                 </p>
@@ -65,7 +106,14 @@ export default props => {
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
-                    <input name="compVisiable" type="checkbox" required />
+                    <input
+                      name="compVisiable"
+                      type="checkbox"
+                      required
+                      checked={compPermDetail.visiable === 1 ? true : false}
+                      value={compPermDetail.visiable}
+                      onChange={(e) => { console.log(e.target.value) }}
+                    />
                   </label>
                 </div>
               </div>
@@ -73,7 +121,15 @@ export default props => {
             <div className="form-group">
               <label className="col-md-2 control-label">备注：</label>
               <div className="col-md-10">
-                <textarea rows="5" name="remark" type="text" className="form-control" placeholder="备注" maxLength="1024">
+                <textarea
+                  rows="5"
+                  name="remark"
+                  type="text"
+                  className="form-control"
+                  placeholder="备注"
+                  maxLength="1024"
+                  value={compPermDetail.remark}
+                >
                 </textarea>
               </div>
             </div>
