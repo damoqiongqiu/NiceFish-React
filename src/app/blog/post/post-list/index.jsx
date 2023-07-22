@@ -13,7 +13,7 @@ const currentPage = 1
 const itemPerPage = 10;
 
 export default props => {
-  const [list, updateList] = useState([]);
+  const [postList, updatePostList] = useState([]);
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
 
@@ -26,7 +26,7 @@ export default props => {
     const offset = (page - 1) * 10;
     const end = page * itemPerPage;
     const data = postListsMock.content.slice(offset, end > postListsMock.totalElements ? postListsMock.totalElements : end);
-    updateList(data);
+    updatePostList(data);
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default props => {
       <div className="post-list-container">
         <div className="row">
           <div className="col-md-12">
-            {list.map((item, index) => {
+            {postList.map((item, index) => {
               return (
                 <div className="post-item-container" key={item.postId}>
                   <div className="row">
