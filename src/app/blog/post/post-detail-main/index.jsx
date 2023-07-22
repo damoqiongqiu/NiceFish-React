@@ -1,6 +1,6 @@
 import React from 'react';
-import PostDetail from 'src/app/blog/read/post-detail';
-import CommentList from 'src/app/blog/read/comment-list';
+import PostDetail from 'src/app/blog/post/post-detail';
+import CommentList from 'src/app/blog/comment-list';
 import UserInfo from 'src/app/blog/user/user-info';
 import './index.scss';
 

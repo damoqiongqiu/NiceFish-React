@@ -1,6 +1,6 @@
 import React from 'react';
 import OnlineContact from './online-contact';
-import PostList from 'src/app/blog/read/post-list';
+import PostList from 'src/app/blog/post/post-list';
 
 export default props => {
   return (

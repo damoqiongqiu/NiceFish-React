@@ -63,7 +63,7 @@ export default props => {
     setErrors(registerFormValidator(upRegister));
   }
 
-  function doRegister(e) {
+  function doSignUp(e) {
     e.preventDefault();
     navigate('/home');
   }

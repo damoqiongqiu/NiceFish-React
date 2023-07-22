@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import PostHeadline from 'src/app/blog/read/post-headline';
+import PostHeadline from 'src/app/blog/post/post-headline';
 import { NavLink } from 'react-router-dom';
 import { Paginator } from 'primereact/paginator';
 
@@ -7,7 +7,7 @@ import listImg from 'src/assets/images/list-item.jpg';
 import './index.scss';
 
 //mock-data
-import postLists from "src/mock-data/post-list-mock.json";
+import postListsMock from "src/mock-data/post-list-mock.json";
 
 const currentPage = 1
 const itemPerPage = 10;
@@ -22,11 +22,10 @@ export default props => {
     setRows(event.rows);
   };
 
-
   const loadData = useCallback((page = 1, itemPerPage = 10) => {
     const offset = (page - 1) * 10;
     const end = page * itemPerPage;
-    const data = postLists.content.slice(offset, end > postLists.totalElements ? postLists.totalElements : end);
+    const data = postListsMock.content.slice(offset, end > postListsMock.totalElements ? postListsMock.totalElements : end);
     updateList(data);
   }, []);
 
@@ -72,7 +71,7 @@ export default props => {
           </div >
           <div className="row">
             <div className="col-md-12">
-              <Paginator first={first} rows={rows} totalRecords={postLists.totalElements} onPageChange={onPageChange}></Paginator>
+              <Paginator first={first} rows={rows} totalRecords={postListsMock.totalElements} onPageChange={onPageChange}></Paginator>
             </div>
           </div>
         </div >

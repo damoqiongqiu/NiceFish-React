@@ -9,7 +9,7 @@ const SignUp = lazy(() => import(/*webpackChunkName:'sign-up',webpackPrefetch:tr
 const RetrievePwd = lazy(() =>
     import(/*webpackChunkName:'retrieve-pwd',webpackPrefetch:true*/ "./blog/user/retrieve-pwd")
 );
-const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./blog/write"));
+const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./blog/post/write-post"));
 const PostTable = lazy(() =>
     import(/*webpackChunkName:'post-table',webpackPrefetch:true*/ "./manage/content-mng/post-table")
 );
@@ -47,7 +47,7 @@ const ComponentPermissionEdit = lazy(() =>
     )
 );
 const PostDetailMain = lazy(() =>
-    import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/read/post-detail-main")
+    import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/post/post-detail-main")
 );
 
 const routes = [
