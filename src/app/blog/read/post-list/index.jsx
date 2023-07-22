@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PostHeadline from 'src/app/blog/read/post-headline';
 import { NavLink } from 'react-router-dom';
+import { Paginator } from 'primereact/paginator';
+
 import listImg from 'src/assets/images/list-item.jpg';
 import './index.scss';
 
@@ -12,14 +14,14 @@ const itemPerPage = 10;
 
 export default props => {
   const [list, updateList] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
 
-  const onChange = useCallback((page) => {
-    loadData(page);
-  }, []);
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
 
-  const ShowSizeChange = useCallback((current, pageSize) => {
-    loadData(current, pageSize);
-  }, []);
 
   const loadData = useCallback((page = 1, itemPerPage = 10) => {
     const offset = (page - 1) * 10;
@@ -68,6 +70,11 @@ export default props => {
               );
             })}
           </div >
+          <div className="row">
+            <div className="col-md-12">
+              <Paginator first={first} rows={rows} totalRecords={postLists.totalElements} onPageChange={onPageChange}></Paginator>
+            </div>
+          </div>
         </div >
       </div >
     </>
