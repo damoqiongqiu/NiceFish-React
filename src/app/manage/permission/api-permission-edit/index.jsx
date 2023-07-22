@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
-import postList from "src/mock-data/post-list-mock.json";
+import apiPermDetailMock from "src/mock-data/api-permission-detail-mock.json";
 
 export default props => {
   const navigate = useNavigate();
+  const [apiPermDetail, setApiPermDetail] = useState([]);
+
+  useEffect(() => {
+    //FIXME:load data from server.
+    setApiPermDetail(apiPermDetailMock.data);
+  }, []);
+
   return (
     <div className="role-edit-container">
       <div className="panel panel-default">
@@ -18,22 +25,44 @@ export default props => {
             <div className="form-group">
               <label className="col-md-2 control-label">API 名称：</label>
               <div className="col-md-10">
-                <input name="apiName" type="text"
-                  className="form-control" placeholder="请输入 API 名称" required minLength="2" maxLength="64" />
+                <input
+                  name="apiName"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入 API 名称"
+                  required
+                  minLength="2"
+                  maxLength="64"
+                  value={apiPermDetail.apiName}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">API 接口 URL：</label>
               <div className="col-md-10">
-                <input name="url" type="text" className="form-control"
-                  placeholder="请输入 URL" maxLength="1024" />
+                <input
+                  name="url"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入 URL"
+                  maxLength="1024"
+                  value={apiPermDetail.url}
+                />
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">权限通配符：</label>
               <div className="col-md-10">
-                <input name="permission" type="text"
-                  className="form-control" placeholder="请输入权限通配符" required="" minLength="1" maxLength="512" />
+                <input
+                  name="permission"
+                  type="text"
+                  className="form-control"
+                  placeholder="请输入权限通配符"
+                  required=""
+                  minLength="1"
+                  maxLength="512"
+                  value={apiPermDetail.permission}
+                />
                 <p className="bg-danger">
                   Apache Shiro 通配符权限文档： https://shiro.apache.org/permissions.html
                 </p>
@@ -42,20 +71,26 @@ export default props => {
             <div className="form-group">
               <label className="col-md-2 control-label">创建时间：</label>
               <div className="col-md-10">
-                { }
+                {apiPermDetail.createTime}
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">更新时间：</label>
               <div className="col-md-10">
-                { }
+                {apiPermDetail.updateTime}
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">简介：</label>
               <div className="col-md-10">
-                <textarea name="remark" rows="5" className="form-control"
-                  placeholder="简介" maxLength="1024"></textarea>
+                <textarea
+                  name="remark"
+                  rows="5"
+                  className="form-control"
+                  placeholder="简介"
+                  maxLength="1024"
+                  value={apiPermDetail.remark}
+                ></textarea>
               </div>
             </div>
             <div className="form-group">
