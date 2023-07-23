@@ -180,6 +180,10 @@ const webpackConfig = {
                         from: path.resolve(process.cwd(), "src", "assets"),
                         to: path.resolve(process.cwd(), "dist"),
                     },
+                    {
+                        from: path.resolve(process.cwd(), "src", "mock-data"),
+                        to: path.resolve(process.cwd(), "dist"),
+                    },
                 ],
                 options: {
                     concurrency: 100,

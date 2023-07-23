@@ -2,12 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PostHeadline from 'src/app/blog/post/post-headline';
 import { NavLink } from 'react-router-dom';
 import { Paginator } from 'primereact/paginator';
-
 import listImg from 'src/assets/images/list-item.jpg';
-import './index.scss';
 
-//mock-data
-import postListsMock from "src/mock-data/post-list-mock.json";
+import postService from 'src/app/blog/post/post-service';
+import './index.scss';
 
 const currentPage = 1
 const itemPerPage = 10;
@@ -22,15 +20,18 @@ export default props => {
     setRows(event.rows);
   };
 
-  const loadData = useCallback((page = 1, itemPerPage = 10) => {
+  useEffect(() => {
+    //TODO:fix 这些分页参数
+    let page = 1;
+    let itemPerPage = 10
     const offset = (page - 1) * 10;
     const end = page * itemPerPage;
-    const data = postListsMock.content.slice(offset, end > postListsMock.totalElements ? postListsMock.totalElements : end);
-    updatePostList(data);
-  }, []);
-
-  useEffect(() => {
-    loadData(currentPage, itemPerPage);
+    postService.getPostList().then(response => {
+      console.log(response);
+      let data = response.data;
+      data = data.content.slice(offset, end > data.totalElements ? data.totalElements : end);
+      updatePostList(data);
+    });
   }, []);
 
   return (
@@ -71,7 +72,7 @@ export default props => {
           </div >
           <div className="row">
             <div className="col-md-12">
-              <Paginator first={first} rows={rows} totalRecords={postListsMock.totalElements} onPageChange={onPageChange}></Paginator>
+              <Paginator first={first} rows={rows} totalRecords={postList.totalElements} onPageChange={onPageChange}></Paginator>
             </div>
           </div>
         </div >

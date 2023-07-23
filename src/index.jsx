@@ -1,10 +1,10 @@
 import App from './app/';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.scss';
-import environment from "./environments/environment";
 
-console.log(environment);
+import "/src/mock-data/post-list-mock.json";
+
+import './index.scss';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
