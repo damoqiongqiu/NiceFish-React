@@ -36,6 +36,7 @@ module.exports = merge(commonConfig, {
         compress: true,
         open: true,
         port: 8091,
+        //FIXME:需要升级到最新版本 webpack 的写法，@see https://github.com/webpack/webpack-dev-server/issues/4129
         onBeforeSetupMiddleware(devServer) {
             devServer.app.use(nicefishJsonMockMiddleware());
         },

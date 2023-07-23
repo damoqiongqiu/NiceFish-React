@@ -1,14 +1,33 @@
-import React, { Suspense, Fragment } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import ErrorBoundary from './utils/ErrorBoundary';
-import { HashRouter as Router, Routes, NavLink } from 'react-router-dom';
+import { Routes, NavLink, useLocation } from 'react-router-dom';
 import renderRoutes from 'src/app/routes';
+import signService from 'src/app/blog/user/sign-in-service';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
 import './index.scss';
 
-export default props => {
+const App = props => {
+  let [currentUser, setCurrentUser] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    let temp = JSON.parse(localStorage.getItem("currentUser"));
+    setCurrentUser(temp);
+  }, [location]);
+
+  const doSignOut = () => {
+    console.log("退出登录");
+    signService.signOut().then(response => {
+      localStorage.removeItem("currentUser");
+      setCurrentUser(null);
+    }, error => {
+      console.error(error);
+    });
+  }
+
   return (
-    <Router>
+    <>
       <div className="navbar navbar-fixed-top main-nav" role="navigation">
         <div className="container">
           <div className="navbar-header">
@@ -39,23 +58,34 @@ export default props => {
               <li >
                 <a href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank"><i className="fa fa-github"></i></a>
               </li>
-              <Fragment>
-                <li>
-                  <NavLink to="/manage">
-                    <i className="fa fa-cog" />
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/sign-in">
-                    <i className="fa fa-sign-in" />
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/sign-up">
-                    <i className="fa fa-user-plus" />
-                  </NavLink>
-                </li>
-              </Fragment>
+              {
+                currentUser ? <>
+                  <li>
+                    <NavLink to="/home">
+                      <i className="fa fa-user" />
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/manage">
+                      <i className="fa fa-cog" />
+                    </NavLink>
+                  </li>
+                  <li>
+                    <a href="#" onClick={doSignOut}><i className="fa fa-sign-out"></i></a>
+                  </li>
+                </> : <>
+                  <li>
+                    <NavLink to="/sign-in">
+                      <i className="fa fa-sign-in" />
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/sign-up">
+                      <i className="fa fa-user-plus" />
+                    </NavLink>
+                  </li>
+                </>
+              }
             </ul >
           </div >
         </div >
@@ -93,6 +123,8 @@ export default props => {
           </div>
         </div>
       </div>
-    </Router >
+    </>
   );
 }
+
+export default App;

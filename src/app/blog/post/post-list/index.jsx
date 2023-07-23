@@ -27,7 +27,6 @@ export default props => {
     const offset = (page - 1) * 10;
     const end = page * itemPerPage;
     postService.getPostList().then(response => {
-      console.log(response);
       let data = response.data;
       data = data.content.slice(offset, end > data.totalElements ? data.totalElements : end);
       updatePostList(data);

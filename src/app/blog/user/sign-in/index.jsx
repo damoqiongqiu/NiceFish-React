@@ -2,24 +2,26 @@ import React, { FC, useState, useEffect } from 'react';
 import Common from 'src/app/utils/common.util';
 import { useNavigate } from 'react-router-dom';
 import { loginFormValidator } from 'src/app/utils/validator/login-form-validator';
+import signService from 'src/app/blog/user/sign-in-service';
+
 import './index.scss';
 
 export default props => {
   const navigate = useNavigate();
   const [nameFill, updateNameFill] = useState('');
   const [pwdFill, updatePwdFill] = useState('');
+  const [formValid, setFormValid] = useState(false);
+  const [errors, setErrors] = useState({});
   const [login, updateLogin] = useState({
     name: '',
     pwd: ''
   });
-  const [errors, setErrors] = useState({});
   const [meta, setMeta] = useState({
     name: { touched: false, dirty: false },
     pwd: { touched: false, dirty: false }
   });
-  const [formValid, setFormValid] = useState(false);
 
-  function onBlur(key, value) {
+  const onBlur = (key, value) => {
     switch (key) {
       case 'name':
         setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
@@ -34,7 +36,7 @@ export default props => {
     }
   }
 
-  function handleChange(key, value) {
+  const handleChange = (key, value) => {
     const upLogin = {
       ...login,
       [key]: value
@@ -51,19 +53,34 @@ export default props => {
     setErrors(loginFormValidator(upLogin));
   }
 
-  function doSignIn(e) {
-    e.preventDefault();
-    navigate('/home');
+  const doSignIn = (evt) => {
+    //TODO:收集表单数据，提交用户输入的真实数据
+    evt.preventDefault();
+    signService.signIn({ userName: 'mock@126.com' }).then(
+      response => {
+        const data = response.data;
+        if (data.success) {
+          localStorage.setItem("currentUser", JSON.stringify(data.data));
+          navigate('/home');
+        } else {
+          console.error(response.msg);
+        }
+      },
+      error => {
+        //TODO:在全局拦截器中弹出消息框
+        console.error(error);
+      })
   }
 
-  function retrievePwd() {
+  const retrievePwd = (evt) => {
+    evt.preventDefault();
     navigate('/retrieve-pwd');
   }
 
   useEffect(() => {
-    const errors = loginFormValidator(login);
-    const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    setFormValid(isDisabled);
+    // const errors = loginFormValidator(login);
+    // const isDisabled = Object.keys(errors).some((x) => errors[x]);
+    // setFormValid(isDisabled);
   }, [errors]);
 
   return (
