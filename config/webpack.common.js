@@ -1,4 +1,5 @@
 const path = require("path");
+const { resolve } = require('path');
 const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -8,17 +9,17 @@ const UnusedWebpackPlugin = require("unused-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackBar = require("webpackbar");
 
-const { NODE_ENV, ANALYZE, UNUSED, SMP } = process.env;
-const isDev = NODE_ENV === "development";
-const isAnalyzerMode = ANALYZE === "1";
-const isUnusedMode = UNUSED === "1";
-const isSmpMode = SMP === "1";
+const { NODE_ENV, ANALYZE, UNUSED, SMP, DATA_SOURCE } = process.env;
+const isDev = (NODE_ENV === "development");
+const isAnalyzerMode = (ANALYZE === "1");
+const isUnusedMode = (UNUSED === "1");
+const isSmpMode = (SMP === "1");
 
 class NoopPlugin {
     apply(compiler) {
         compiler.hooks.done.tap(
             "Noop Plugin",
-            (stats /* stats is passed as an argument when done hook is tapped.  */) => {}
+            (stats /* stats is passed as an argument when done hook is tapped.  */) => { }
         );
     }
 }
@@ -54,27 +55,27 @@ const webpackConfig = {
         splitChunks: isDev
             ? false
             : {
-                  chunks: "all",
-                  minSize: 390 * 1024,
-                  maxSize: 500 * 1024,
-                  minChunks: 2,
-                  maxAsyncRequests: 2,
-                  maxInitialRequests: 4,
-                  cacheGroups: {
-                      default: {
-                          idHint: "",
-                          reuseExistingChunk: true,
-                          minChunks: 2,
-                          priority: -20,
-                      },
-                      defaultVendors: {
-                          idHint: "vendors",
-                          reuseExistingChunk: true,
-                          test: /[\\/]node_modules[\\/]/i,
-                          priority: -10,
-                      },
-                  },
-              },
+                chunks: "all",
+                minSize: 390 * 1024,
+                maxSize: 500 * 1024,
+                minChunks: 2,
+                maxAsyncRequests: 2,
+                maxInitialRequests: 4,
+                cacheGroups: {
+                    default: {
+                        idHint: "",
+                        reuseExistingChunk: true,
+                        minChunks: 2,
+                        priority: -20,
+                    },
+                    defaultVendors: {
+                        idHint: "vendors",
+                        reuseExistingChunk: true,
+                        test: /[\\/]node_modules[\\/]/i,
+                        priority: -10,
+                    },
+                },
+            },
         removeAvailableModules: isDev ? false : true,
         removeEmptyChunks: isDev ? false : true,
         minimize: isDev ? false : true,
@@ -121,7 +122,7 @@ const webpackConfig = {
                 type: "asset",
                 parser: {
                     dataUrlCondition: {
-                        maxSize: 4 * 1024,
+                        maxSize: 10 * 1024,
                     },
                 },
             },
@@ -134,24 +135,34 @@ const webpackConfig = {
             return /lodash/.test(content);
         },
     },
-    performance: !isDev
-        ? {
-              maxAssetSize: 172 * 1024,
-              maxEntrypointSize: 244 * 1024,
-              hints: "warning",
-              assetFilter: function (assetFilename) {
-                  return assetFilename.endsWith(".js");
-              },
-          }
-        : false,
+    // performance: !isDev
+    //     ? {
+    //         maxAssetSize: 500 * 1024,
+    //         maxEntrypointSize: 500 * 1024,
+    //         hints: "warning",
+    //         assetFilter: function (assetFilename) {
+    //             return assetFilename.endsWith(".js");
+    //         },
+    //     }
+    //     : false,
     stats: "errors-only",
     plugins: [
         new webpackBar(),
+        new webpack.NormalModuleReplacementPlugin(
+            /(.*)environment(\.*)/,
+            function (resource) {
+                let moduleName = `environment.${isDev ? "dev" : "prod"}.${DATA_SOURCE}`;
+                resource.request = resource.request.replace(
+                    /\/environment$/,
+                    `/${moduleName}`
+                );
+            }
+        ),
         isAnalyzerMode
             ? new BundleAnalyzerPlugin({
-                  analyzerMode: "server",
-                  generateStatsFile: true,
-              })
+                analyzerMode: "server",
+                generateStatsFile: true,
+            })
             : new NoopPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(process.cwd(), "src/index.html"),
@@ -164,22 +175,22 @@ const webpackConfig = {
         }),
         !isDev
             ? new CopyPlugin({
-                  patterns: [
-                      {
-                          from: path.resolve(process.cwd(), "src", "assets"),
-                          to: path.resolve(process.cwd(), "dist"),
-                      },
-                  ],
-                  options: {
-                      concurrency: 100,
-                  },
-              })
+                patterns: [
+                    {
+                        from: path.resolve(process.cwd(), "src", "assets"),
+                        to: path.resolve(process.cwd(), "dist"),
+                    },
+                ],
+                options: {
+                    concurrency: 100,
+                },
+            })
             : new NoopPlugin(),
         isUnusedMode
             ? new UnusedWebpackPlugin({
-                  directories: [path.join(process.cwd(), "src")],
-                  root: path.join(process.cwd(), "src"),
-              })
+                directories: [path.join(process.cwd(), "src")],
+                root: path.join(process.cwd(), "src"),
+            })
             : new NoopPlugin(),
         new webpack.IgnorePlugin({
             resourceRegExp: /^\.\/locale$/,
@@ -187,9 +198,9 @@ const webpackConfig = {
         }),
         !isDev
             ? new MiniCssExtractPlugin({
-                  filename: "[name].[contenthash].css",
-                  chunkFilename: "[name].[contenthash].css",
-              })
+                filename: "[name].[contenthash].css",
+                chunkFilename: "[name].[contenthash].css",
+            })
             : new NoopPlugin(),
         !isDev ? new webpack.BannerPlugin("Copyright By damoqiongqiu") : new NoopPlugin(),
     ],

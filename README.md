@@ -51,11 +51,20 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 
 这时候用 npm 安装 node 模块就会使用 taobao 提供的 registry 了。
 
-## 4.在线演示
+## 4.在 Mock 版本和带服务端版本之间切换
+
+为了方便前后端分离开发，本项目提供2种启动模式：
+
+- 带 mock 数据的启动模式：npm run start:dev-mock （或者直接 npm start 启动，默认是 mock 模式），所有 mock 数据都在 src/mock-data 目录中，json 格式，与服务端接口返回的数据格式保持一致。
+- 访问真实的服务端接口的启动模式： npm run start:dev-backend  （使用此模式启动需要有真实的服务端，NiceFish 提供了一个基于 SpringBoot 的服务端接口实现版本，参见： https://gitee.com/mumu-osc/nicefish-spring-boot。）
+
+与启动环境有关的配置项在 environment.* 和 webpack.common.js 中。
+
+## 5.在线演示
 
 - NiceFish-React 在 GitHub Pages 上的演示地址： https://damoqiongqiu.github.io/NiceFish-React
 
-## 5.系列项目
+## 6.系列项目
 
 |  名称   | 描述  | Stars  |
 |  ----  | ----  | ----  |
@@ -67,26 +76,24 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
 | [nicefish-spring-cloud](https://gitee.com/mumu-osc/nicefish-spring-cloud)  | 用来示范前后端分离模式下，前端代码与分布式后端服务的对接方式。  | <a href='https://gitee.com/mumu-osc/nicefish-spring-cloud/stargazers'><img src='https://gitee.com/mumu-osc/nicefish-spring-cloud/badge/star.svg?theme=dark' alt='star'></img></a> |
 | [OpenWMS](https://gitee.com/mumu-osc/OpenWMS-Frontend)  | 用来示范管理后台型系统的开发模式。| <a href='https://gitee.com/mumu-osc/OpenWMS-Frontend/stargazers'><img src='https://gitee.com/mumu-osc/OpenWMS-Frontend/badge/star.svg?theme=dark' alt='star'></img></a> |
 
-## 6.单元测试
+## 7.单元测试
 
 ```
    yarn test or npm run test
 ```
 
-## 7.端到端测试
+## 8.端到端测试
 
 ```
    yarn cypress:open or  npm run cypress:open
    yarn cypress:run or  npm run cypress:run
 ```
 
-## 8.打包分析
+## 9.打包分析
 
 ```
    yarn build-analyzer or npm run build-analyzer
 ```
-
-## 9.分析报告
 
 ![NiceFish-REACT](src/assets/images/nice-fish-react-perf-report.png)
 
