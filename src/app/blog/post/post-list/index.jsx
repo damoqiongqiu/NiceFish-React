@@ -59,7 +59,8 @@ export default props => {
                           </div>
                         </div>
                       </div>
-                      <div className="abs">{(item.content || "").substring(0, 140)}...</div>
+                      <div className="abs"
+                        dangerouslySetInnerHTML={{ __html: (item.content || "").substring(0, 140) + "..." }}></div>
                     </div>
                   </div>
                 </div>

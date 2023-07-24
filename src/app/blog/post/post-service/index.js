@@ -12,7 +12,6 @@ export default {
     },
     getPostDetail(id) {
         let reqURL = _.template(postDetailURL)({ id: id });
-        console.log(reqURL);
         return axiosService.get(reqURL);
     }
 }
