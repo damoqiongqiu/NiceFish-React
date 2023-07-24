@@ -7,11 +7,8 @@ const postDetailURL = environment.dataURL.postDetailURL;
 
 export default {
     getPostList: (page) => {
-        return axiosService.get(postListURL, {
-            params: {
-                id: 12345
-            }
-        });
+        let reqURL = _.template(postListURL)({ page: page });
+        return axiosService.get(reqURL);
     },
     getPostDetail(id) {
         let reqURL = _.template(postDetailURL)({ id: id });

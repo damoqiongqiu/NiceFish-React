@@ -7,29 +7,26 @@ import listImg from 'src/assets/images/list-item.jpg';
 import postService from 'src/app/blog/post/post-service';
 import './index.scss';
 
-const currentPage = 1
-const itemPerPage = 10;
-
 export default props => {
-  const [postList, updatePostList] = useState([]);
+  const [postList, setPostList] = useState([]);
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
+    setPage(event.page + 1);
   };
 
   useEffect(() => {
-    //TODO:fix 这些分页参数
-    let page = 1;
-    let itemPerPage = 10
-    const offset = (page - 1) * 10;
-    const end = page * itemPerPage;
-    postService.getPostList().then(response => {
+    postService.getPostList(page).then(response => {
       let data = response.data;
-      data = data.content.slice(offset, end > data.totalElements ? data.totalElements : end);
-      updatePostList(data);
+      setTotalElements(data.totalElements);
+
+      data = data?.content || [];
+      setPostList(data);
     });
   }, []);
 
@@ -54,15 +51,15 @@ export default props => {
                         <div className="row">
                           <div className="col-md-4 col-lg-3 ">
                             <span className="fa fa-user"></span>
-                            <span className="ml-5px">{item.userName}</span>
+                            <span className="ml-5px">{item.nickName}</span>
                           </div>
                           <div className="col-md-6 col-lg-5">
                             <span className="fa fa-clock-o"></span>
-                            <span className="ml-5px">{item.time}</span>
+                            <span className="ml-5px">{item.postTime}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="abs">{item.content}</div>
+                      <div className="abs">{(item.content || "").substring(0, 140)}...</div>
                     </div>
                   </div>
                 </div>
@@ -71,7 +68,7 @@ export default props => {
           </div >
           <div className="row">
             <div className="col-md-12">
-              <Paginator first={first} rows={rows} totalRecords={postList.totalElements} onPageChange={onPageChange}></Paginator>
+              <Paginator first={first} rows={rows} totalRecords={totalElements} onPageChange={onPageChange}></Paginator>
             </div>
           </div>
         </div >
