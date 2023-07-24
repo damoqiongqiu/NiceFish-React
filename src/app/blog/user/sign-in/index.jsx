@@ -1,62 +1,176 @@
-import React, { FC, useState, useEffect } from 'react';
-import Common from 'src/app/utils/common.util';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginFormValidator } from 'src/app/utils/validator/login-form-validator';
+import environment from "src/environments/environment";
 import signService from 'src/app/blog/user/sign-in-service';
+import Captcha from 'src/app/utils/captcha';
 
 import './index.scss';
 
 export default props => {
   const navigate = useNavigate();
-  const [nameFill, updateNameFill] = useState('');
-  const [pwdFill, updatePwdFill] = useState('');
-  const [formValid, setFormValid] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [login, updateLogin] = useState({
-    name: '',
-    pwd: ''
-  });
-  const [meta, setMeta] = useState({
-    name: { touched: false, dirty: false },
-    pwd: { touched: false, dirty: false }
+  const isMock = environment.isMock;
+
+  const [userInfo, setUserInfo] = useState({
+    userName: "",
+    password: "",
+    captcha: "",
+    rememberMe: true,
   });
 
-  const onBlur = (key, value) => {
-    switch (key) {
-      case 'name':
-        setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
-        setErrors(loginFormValidator(login));
-        Common.toggleClass(value, updateNameFill, Common.fillClass);
-        break;
-      case 'pwd':
-        setMeta({ ...meta, [key]: { ...meta[key], touched: true } });
-        setErrors(loginFormValidator(login));
-        Common.toggleClass(value, updatePwdFill, Common.fillClass);
-        break;
-    }
+  /**
+   * 输入项的校验状态
+   */
+  const [validationResult, setValidationResult] = useState({
+    userName: {
+      valid: true,
+      ruleName: "",//valid 为 true 时，此项为空
+      message: '',//valid 为 true 时，此项为空
+    },
+    password: {
+      valid: true,
+      ruleName: "",
+      message: '',
+    },
+    captcha: {
+      valid: true,
+      ruleName: "",
+      message: '',
+    },
+  });
+
+  /**
+   * 输入项的校验规则
+   */
+  const validators = {
+    userName: [
+      {
+        ruleName: 'required',
+        message: '请输入邮箱或者手机号',
+        fn: (value) => {
+          return value && value.length > 0;
+        }
+      },
+      {
+        ruleName: 'email',
+        message: '请输入正确的邮箱',
+        fn: (value) => {
+          return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(value);
+        }
+      },
+      {
+        ruleName: 'maxLength',
+        message: '用户名最多32位',
+        fn: (value) => {
+          return value && value.length <= 32;
+        }
+      },
+      {
+        ruleName: 'minLength',
+        message: '用户名最少2位',
+        fn: (value) => {
+          return value && value.length >= 2;
+        }
+      }
+    ],
+    password: [
+      {
+        ruleName: 'required',
+        message: '请输入密码',
+        fn: (value) => {
+          return value && value.length > 0;
+        }
+      },
+      {
+        ruleName: 'maxLength',
+        message: '密码最多16位',
+        fn: (value) => {
+          return value && value.length <= 16;
+        }
+      },
+      {
+        ruleName: 'minLength',
+        message: '密码最少8位',
+        fn: (value) => {
+          return value && value.length >= 8;
+        }
+      }
+    ],
+    captcha: [
+      {
+        ruleName: 'required',
+        message: '请输入验证码',
+        fn: (value) => {
+          return value && value.length > 0;
+        }
+      },
+      {
+        ruleName: 'maxLength',
+        message: '验证码最多10位',
+        fn: (value) => {
+          return value && value.length <= 10;
+        }
+      },
+      {
+        ruleName: 'minLength',
+        message: '验证码最少1位',
+        fn: (value) => {
+          return value && value.length >= 1;
+        }
+      }
+    ]
   }
 
-  const handleChange = (key, value) => {
-    const upLogin = {
-      ...login,
+  /**
+   * 失去焦点触发校验
+   * @param {*} key 
+   * @param {*} value 
+   */
+  const onBlurHandler = (key, value) => {
+    const temp = {
+      userName: {
+        valid: true,
+        ruleName: "",
+        message: '',
+      },
+      password: {
+        valid: true,
+        ruleName: "",
+        message: '',
+      },
+      captcha: {
+        valid: true,
+        ruleName: "",
+        message: '',
+      },
+    };
+
+    validators[key].forEach(validator => {
+      if (!validator.fn(value)) {
+        temp[key].valid = false;
+        temp[key].ruleName = validator.ruleName;
+        temp[key].message = validator.message;
+      }
+    });
+
+    setValidationResult(temp);
+  }
+
+  /**
+   * 所有 input 的 onChange 事件的处理函数，对于 checkbox/radio/select 这些组件，需要处理好 value 值再调用此函数。
+   * @param {*} key 
+   * @param {*} value 
+   */
+  const handleInputChange = (key, value) => {
+    const temp = {
+      ...userInfo,
       [key]: value
     };
-    switch (key) {
-      case 'name':
-        setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
-        break;
-      case 'pwd':
-        setMeta({ ...meta, [key]: { ...meta[key], dirty: true } });
-        break;
-    }
-    updateLogin(upLogin);
-    setErrors(loginFormValidator(upLogin));
+    setUserInfo(temp);
   }
 
   const doSignIn = (evt) => {
-    //TODO:收集表单数据，提交用户输入的真实数据
     evt.preventDefault();
-    signService.signIn({ userName: 'mock@126.com' }).then(
+    signService.signIn(userInfo).then(
       response => {
         const data = response.data;
         if (data.success) {
@@ -77,12 +191,6 @@ export default props => {
     navigate('/retrieve-pwd');
   }
 
-  useEffect(() => {
-    // const errors = loginFormValidator(login);
-    // const isDisabled = Object.keys(errors).some((x) => errors[x]);
-    // setFormValid(isDisabled);
-  }, [errors]);
-
   return (
     <div className="user-login-container">
       <div className="panel panel-default">
@@ -91,73 +199,94 @@ export default props => {
         </div>
         <div className="panel-body">
           <p className="bg-danger">测试用户: admin@126.com / 12345678</p>
-          <form noValidate className="form-horizontal" role="form" onSubmit={(e) => doSignIn(e)}>
-            <div className="form-group">
+          <form noValidate className="form-horizontal" role="form">
+            <div className={`form-group ${validationResult.userName.valid ? "" : "has-error"}`}>
               <label className="col-md-2 control-label">邮箱：</label>
               <div className="col-md-10">
                 <input
-                  className={`form-control name ${nameFill} ${(meta.name.touched || meta.name.dirty) && errors.name ? 'error' : ''}`}
+                  className={`form-control`}
                   required
                   name="userName"
-                  value={login.name}
+                  value={userInfo.userName}
                   autoComplete="off"
                   type="text"
                   placeholder="请输入完整邮箱或者手机号"
-                  onChange={(e) => handleChange('name', e.target.value)}
-                  onBlur={(e) => onBlur('name', e.target.value)}
+                  onChange={(e) => handleInputChange('userName', e.target.value)}
+                  onBlur={(e) => onBlurHandler('userName', e.target.value)}
                 />
-                {(meta.name.touched || meta.name.dirty) && errors.name ? (
-                  <div className="text-danger">{errors.name}</div>
-                ) : null}
+                {
+                  !validationResult.userName.valid ? <div className="text-danger">{validationResult.userName.message}</div> : <></>
+                }
               </div>
             </div>
-            <div className="form-group">
+            <div className={`form-group ${validationResult.password.valid ? "" : "has-error"}`}>
               <label className="col-md-2 control-label">密码：</label>
               <div className="col-md-10">
                 <input
-                  className={`form-control pwd${pwdFill} ${(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? 'error' : ''}`}
+                  className={`form-control`}
                   required
                   minLength="8"
                   maxLength="32"
                   name="password"
-                  value={login.pwd}
                   type="password"
                   placeholder="至少8位"
-                  onBlur={(e) => {
-                    onBlur('pwd', e.target.value);
-                  }}
-                  onChange={(e) => handleChange('pwd', e.target.value)}
+                  value={userInfo.password}
+                  onChange={(e) => handleInputChange('password', e.target.value)}
+                  onBlur={(e) => onBlurHandler('password', e.target.value)}
                 />
-                {(meta.pwd.touched || meta.pwd.dirty) && errors.pwd ? <div className="text-danger">{errors.pwd}</div> : null}
+                {
+                  !validationResult.password.valid ? <div className="text-danger">{validationResult.password.message}</div> : <></>
+                }
               </div>
             </div>
-            {/* <div>
-              <div className="form-group">
-                <label className="col-md-2 control-label">验证码：</label>
-                <div className="col-md-10">
-                  <input required maxlength="4" name="captcha" type="text" className="form-control" placeholder="至少1位，最多4位" autocomplete="off" />
-                  <div className="text-danger">至少1位，最多4位</div>
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="col-md-10 col-md-offset-2">
-                </div>
-              </div>
-            </div> */}
+            {
+              isMock ? <></> :
+                <>
+                  <div className={`form-group ${validationResult.captcha.valid ? "" : "has-error"}`}>
+                    <label className="col-md-2 control-label">验证码：</label>
+                    <div className="col-md-10">
+                      <input
+                        className={`form-control`}
+                        required
+                        maxLength="4"
+                        type="text"
+                        placeholder="至少1位，最多4位"
+                        autoComplete="off"
+                        name="captcha"
+                        value={userInfo.captcha}
+                        onChange={(e) => handleInputChange('captcha', e.target.value)}
+                        onBlur={(e) => onBlurHandler('captcha', e.target.value)}
+                      />
+                      {
+                        !validationResult.captcha.valid ? <div className="text-danger">{validationResult.captcha.message}</div> : <></>
+                      }
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="col-md-10 col-md-offset-2">
+                      <Captcha></Captcha>
+                    </div>
+                  </div>
+                </>
+            }
             <div className="form-group" >
               <label className="col-md-2 control-label">记住我：</label>
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
-                    <input name="rememberMe" type="checkbox" />
+                    <input
+                      type="checkbox"
+                      name="rememberMe"
+                      value={userInfo.rememberMe}
+                      onChange={(e) => handleInputChange('rememberMe', e.target.checked)} />
                   </label>
                 </div>
               </div>
             </div>
             <div className="form-group">
               <div className="col-md-offset-2 col-md-10">
-                <button type="submit" className="btn btn-primary btn-margin-1rem" disabled={formValid}>登录</button>
-                <button type="button" className="btn btn-default" onClick={() => retrievePwd()}>忘记密码？</button>
+                <button type="button" className="btn btn-primary btn-margin-1rem" onClick={doSignIn}>登录</button>
+                <button type="button" className="btn btn-default" onClick={retrievePwd}>忘记密码？</button>
               </div>
             </div>
           </form>
