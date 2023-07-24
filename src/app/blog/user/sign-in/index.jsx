@@ -169,7 +169,6 @@ export default props => {
   }
 
   const doSignIn = (evt) => {
-    evt.preventDefault();
     signService.signIn(userInfo).then(
       response => {
         const data = response.data;
@@ -177,7 +176,7 @@ export default props => {
           localStorage.setItem("currentUser", JSON.stringify(data.data));
           navigate('/home');
         } else {
-          console.error(response.msg);
+          console.error(data && data.msg);
         }
       },
       error => {

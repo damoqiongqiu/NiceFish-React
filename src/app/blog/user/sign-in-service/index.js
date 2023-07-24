@@ -8,9 +8,9 @@ const getSessionUserURL = environment.dataURL.getSessionUserURL;
 
 export default {
     signIn(user) {
-        return axiosService.post(signInURL, {
-            params: user
-        });
+        return axiosService.post(
+            `${signInURL}?userName=${user.userName}&password=${user.password}&validateCode=${user.captcha}&rememberMe=${user.rememberMe}`
+        );
     },
     signOut() {
         return axiosService.get(signOutURL);
