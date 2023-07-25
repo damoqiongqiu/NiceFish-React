@@ -88,13 +88,21 @@ NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离�
    yarn cypress:run or  npm run cypress:run
 ```
 
-## 9.打包分析
+## 9.界面截图
 
-```
-   yarn build-analyzer or npm run build-analyzer
-```
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/1.png">
 
-![NiceFish-REACT](src/assets/images/nice-fish-react-perf-report.png)
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/2.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/3.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/4.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/5.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/6.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/7.png">
 
 ## 10.开源许可证
 
