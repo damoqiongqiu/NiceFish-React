@@ -3,19 +3,67 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { confirmDialog } from 'primereact/confirmdialog';
+import roleSercice from "src/app/service/role-service";
 
 import './index.scss';
-
-import roleListMock from "src/mock-data/role-list-mock.json";
 
 export default props => {
   const navigate = useNavigate();
   const [roleList, setRoleList] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
 
-  useEffect(() => {
-    //FIXME:load data from server.
-    setRoleList(roleListMock.content);
-  }, []);
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+    setPage(event.page + 1);
+  };
+
+  const loadData = () => {
+    roleSercice.getRoleTable(page, "").then(response => {
+      let data = response.data;
+      setTotalElements(data.totalElements);
+
+      data = data?.content || [];
+      setRoleList(data);
+    });
+  };
+
+  useEffect(loadData, []);
+
+  const delRole = (rowData, ri) => {
+    confirmDialog({
+      message: '确定要删除吗？',
+      header: '确认',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        roleSercice.deleteRole(rowData.roleId)
+          .then(
+            response => {
+              niceFishToast({
+                severity: 'success',
+                summary: 'Success',
+                detail: '删除成功',
+              });
+            },
+            error => {
+              niceFishToast({
+                severity: 'error',
+                summary: 'Error',
+                detail: '删除失败',
+              });
+            }
+          )
+          .finally(loadData);
+      },
+      reject: () => {
+        console.log("reject");
+      }
+    });
+  }
 
   const statusTemplate = (item) => {
     return (
@@ -49,7 +97,7 @@ export default props => {
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/role-edit/" + item.roleId) }} />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" />
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delRole(item) }} />
       </>
     );
   };
@@ -80,7 +128,18 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="role-item-container">
-            <DataTable value={roleList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <DataTable
+              showGridlines
+              stripedRows
+              tableStyle={{ width: "100%" }}
+              value={roleList}
+              rows={rows}
+              first={first}
+              paginator={{
+                totalRecords: totalElements,
+                onPageChange: onPageChange
+              }}
+            >
               <Column field="roleName" header="角色名称"></Column>
               <Column field="status" body={statusTemplate} header="状态"></Column>
               <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>

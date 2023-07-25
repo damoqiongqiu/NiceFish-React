@@ -12,7 +12,6 @@ export default {
     },
     delComment(id) {
         let reqURL = _.template(delCommentURL)({ id: id });
-        console.log(reqURL);
         return axiosService.delete(reqURL);
     }
 }
