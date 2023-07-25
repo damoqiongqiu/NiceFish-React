@@ -1,13 +1,16 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState, useRef } from 'react';
 import ErrorBoundary from './utils/ErrorBoundary';
 import { Routes, NavLink, useLocation } from 'react-router-dom';
 import renderRoutes from 'src/app/routes';
 import signService from 'src/app/service/sign-in-service';
+import { ConfirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
 import './index.scss';
 
 const App = props => {
+  const toast = useRef(null);
   let [currentUser, setCurrentUser] = useState([]);
   const location = useLocation();
 
@@ -15,6 +18,13 @@ const App = props => {
     let temp = JSON.parse(localStorage.getItem("currentUser"));
     setCurrentUser(temp);
   }, [location]);
+
+  useEffect(() => {
+    //FIXME:全局公用方法有更好的封装？？？
+    window.niceFishToast = (params) => {
+      toast.current.show(params);
+    };
+  }, []);
 
   const doSignOut = () => {
     console.log("退出登录");
@@ -28,6 +38,12 @@ const App = props => {
 
   return (
     <>
+      {/* 全局公用的弹出消息 */}
+      <Toast ref={toast} position="top-center" />
+
+      {/* 全局公用的确认框 */}
+      <ConfirmDialog dismissableMask />
+
       <div className="navbar navbar-fixed-top main-nav" role="navigation">
         <div className="container">
           <div className="navbar-header">
