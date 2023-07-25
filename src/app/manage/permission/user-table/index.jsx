@@ -3,19 +3,67 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { confirmDialog } from 'primereact/confirmdialog';
+import userSercice from "src/app/service/user-service";
 
 import './index.scss';
-import userListMock from "src/mock-data/user-list-mock.json";
-
 
 export default props => {
   const navigate = useNavigate();
   const [userList, setUserList] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
 
-  useEffect(() => {
-    //FIXME:load data from server.
-    setUserList(userListMock.content);
-  }, []);
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+    setPage(event.page + 1);
+  };
+
+  const loadData = () => {
+    userSercice.getUserTable(page, "").then(response => {
+      let data = response.data;
+      setTotalElements(data.totalElements);
+
+      data = data?.content || [];
+      setUserList(data);
+    });
+  };
+
+  useEffect(loadData, []);
+
+  const delUser = (rowData, ri) => {
+    confirmDialog({
+      message: '确定要删除吗？',
+      header: '确认',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        userSercice.del(rowData.userId)
+          .then(
+            response => {
+              niceFishToast({
+                severity: 'success',
+                summary: 'Success',
+                detail: '删除成功',
+              });
+            },
+            error => {
+              niceFishToast({
+                severity: 'error',
+                summary: 'Error',
+                detail: '删除失败',
+              });
+            }
+          )
+          .finally(loadData);
+      },
+      reject: () => {
+        console.log("reject");
+      }
+    });
+  }
 
   const statusTemplate = (item) => {
     return (
@@ -39,7 +87,7 @@ export default props => {
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/user-profile") }} />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" />
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delUser(item) }} />
       </>
     );
   };
@@ -70,7 +118,18 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="user-item-container">
-            <DataTable value={userList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <DataTable
+              showGridlines
+              stripedRows
+              tableStyle={{ width: "100%" }}
+              value={userList}
+              rows={rows}
+              first={first}
+              paginator={{
+                totalRecords: totalElements,
+                onPageChange: onPageChange
+              }}
+            >
               <Column field="userName" header="用户名"></Column>
               <Column field="nickName" header="昵称"></Column>
               <Column field="status" body={statusTemplate} header="状态"></Column>
