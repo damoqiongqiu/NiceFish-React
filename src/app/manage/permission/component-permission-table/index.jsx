@@ -1,27 +1,115 @@
 import React, { useState, useEffect } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { TreeTable } from 'primereact/treetable';
+import { Column } from 'primereact/column';
+import * as _ from 'lodash';
+import { confirmDialog } from 'primereact/confirmdialog';
+import compPermService from "src/app/service/component-permission-service";
 
 import './index.scss';
 
-import compPermListMock from "src/mock-data/component-permission-list.json";
-
 export default props => {
   const navigate = useNavigate();
+  // tree 形的数据，服务端接口已经整理好
   const [compPermList, setCompPermList] = useState([]);
+  //TODO: tree 目前没有带分页，这些分页参数目前没有作用，后续需要修改。
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
+
+  const cols = [
+    { field: "componentName", header: "组件名称", expander: true },
+    { field: "url", header: "URL" },
+    { field: "displayOrder", header: "显示顺序" },
+    { field: "permission", header: "权限通配符" },
+    { field: "visiable", header: "是否可见" },
+  ];
+
+  /**
+   * PrimeReact 组件需要的数据格式与服务端返回的数据格式不一致。
+   * 这里 tree 递归，整理成 PrimeReact 组件需要的数据格式
+   * @param node 
+   * @returns 
+   */
+  const treeDataTransformer = (node) => {
+    let data = {};
+    cols.forEach((col) => {
+      data[col.field] = node[col.field];
+    });
+    // 为了方便接口调用，将 compPermId 和父层的 compPermId 保存在 data 中
+    data.compPermId = node.compPermId;
+    let pId = -1;
+    if (_.isNumber(node.parentEntity)) {
+      pId = node.parentEntity;
+    } else if (_.isObject(node.parentEntity)) {
+      pId = node.parentEntity.compPermId;
+    }
+    data.parentEntity = { compPermId: pId };
+    node.data = data;
+    node.expanded = true;
+    if (node.children) {
+      node.children.forEach((child) => {
+        treeDataTransformer(child);
+      });
+    }
+    return node;
+  }
+
+  const getCompPermListByPage = () => {
+    return compPermService
+      .getCompPermTable(page, "")
+      .then((response) => {
+        let data = response.data;
+        data.content.forEach((node) => {
+          treeDataTransformer(node);
+        });
+        setCompPermList(data.content);
+        setTotalElements(data.totalElements);
+      });
+  }
+
+  const delComponentPermission = (rowData) => {
+    confirmDialog({
+      message: '确定要删除吗？',
+      header: '确认',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        let compPermId = rowData.compPermId;
+        compPermService
+          .deleteByCompPermId(compPermId)
+          .then(
+            response => {
+              niceFishToast({
+                severity: 'success',
+                summary: 'Success',
+                detail: '删除成功',
+              });
+            },
+            error => {
+              niceFishToast({
+                severity: 'error',
+                summary: 'Error',
+                detail: '删除失败',
+              });
+            }
+          )
+          .finally(getCompPermListByPage);
+      },
+    });
+  }
+
 
   useEffect(() => {
-    //FIXME:load data from server.
-    setCompPermList(compPermListMock.content);
+    getCompPermListByPage();
   }, []);
 
   const operationTemplate = (item) => {
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/component-permission-edit/" + item.compPermId) }} />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" />
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
       </>
     );
   };
@@ -52,15 +140,23 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="permission-item-container">
-            {/* FIXME:组件改成带有层级结构的 TreeTable */}
-            <DataTable value={compPermList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
-              <Column field="componentName" header="组件名称"></Column>
-              <Column field="url" header="URL"></Column>
-              <Column field="displayOrder" header="现实顺序"></Column>
-              <Column field="permission" header="权限通配符" style={{ maxWidth: "120px" }}></Column>
-              <Column field="visiable" header="是否可见"></Column>
+            {/* TODO:默认展开所有节点 */}
+            <TreeTable
+              value={compPermList}
+              tableStyle={{ minWidth: '100' }}>
+              {
+                cols.map((col) => {
+                  return <Column
+                    key={col.field}
+                    field={col.field}
+                    header={col.header}
+                    expander={col.expander}
+                  >
+                  </Column>
+                })
+              }
               <Column field="" header="操作" body={operationTemplate}></Column>
-            </DataTable>
+            </TreeTable>
           </div>
         </div>
       </div>
