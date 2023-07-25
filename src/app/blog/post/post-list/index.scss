@@ -17,6 +17,18 @@ $postListContainerBgColor: #ecf0f1;
                 font-size: 18px;
                 margin: 0px 0px 10px 0px;
                 font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                white-space: pre-wrap;
+                /* CSS3 */
+                white-space: -moz-pre-wrap;
+                /* Firefox */
+                white-space: -pre-wrap;
+                /* Opera <7 */
+                white-space: -o-pre-wrap;
+                /* Opera 7 */
+                word-wrap: break-word;
+                /* IE */
             }
 
             .user-name-intitle {

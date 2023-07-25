@@ -13,5 +13,8 @@ export default {
     getPostDetail(id) {
         let reqURL = _.template(postDetailURL)({ id: id });
         return axiosService.get(reqURL);
+    },
+    writePost(post) {
+        return axiosService.post("/cms/post/write-post", post);
     }
 }

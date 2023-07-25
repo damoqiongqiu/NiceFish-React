@@ -6,10 +6,10 @@ export default props => {
   return (
     <div className="container-xl mtb-16px ">
       <div className="row">
-        <div className="col-md-7 col-lg-8 col-xl-9">
+        <div className="col-md-9 col-lg-9 col-xl-9">
           <PostList />
         </div>
-        <div className="col-md-5 col-lg-4 col-xl-3">
+        <div className="col-md-3 col-lg-3 col-xl-3">
           <OnlineContact />
         </div>
       </div>
