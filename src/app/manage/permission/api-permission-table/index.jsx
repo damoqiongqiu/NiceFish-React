@@ -3,19 +3,67 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { confirmDialog } from 'primereact/confirmdialog';
+import apiPermissionService from "src/app/service/api-permission-service";
 
 import './index.scss';
-
-import apiPermListMock from "src/mock-data/api-permission-list-mock.json";
 
 export default props => {
   const navigate = useNavigate();
   const [apiList, setApiList] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
 
-  useEffect(() => {
-    //FIXME:load data from server.
-    setApiList(apiPermListMock.content);
-  }, []);
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+    setPage(event.page + 1);
+  };
+
+  const loadData = () => {
+    apiPermissionService.getApiPermissionTable(page, "").then(response => {
+      let data = response.data;
+      setTotalElements(data.totalElements);
+
+      data = data?.content || [];
+      setApiList(data);
+    });
+  };
+
+  useEffect(loadData, []);
+
+  const delApiPermission = (rowData, ri) => {
+    confirmDialog({
+      message: '确定要删除吗？',
+      header: '确认',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        apiPermissionService.deleteByApiId(rowData.apiPermissionId)
+          .then(
+            response => {
+              niceFishToast({
+                severity: 'success',
+                summary: 'Success',
+                detail: '删除成功',
+              });
+            },
+            error => {
+              niceFishToast({
+                severity: 'error',
+                summary: 'Error',
+                detail: '删除失败',
+              });
+            }
+          )
+          .finally(loadData);
+      },
+      reject: () => {
+        console.log("reject");
+      }
+    });
+  };
 
   const roleListTemplate = (item) => {
     return (
@@ -31,7 +79,7 @@ export default props => {
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/api-permission-edit/" + item.apiPermissionId) }} />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" />
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delApiPermission(item) }} />
       </>
     );
   };
@@ -61,7 +109,18 @@ export default props => {
     <div className="row">
       <div className="col-md-12">
         <div className="permission-item-container">
-          <DataTable value={apiList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+          <DataTable
+            showGridlines
+            stripedRows
+            tableStyle={{ width: "100%" }}
+            value={apiList}
+            rows={rows}
+            first={first}
+            paginator={{
+              totalRecords: totalElements,
+              onPageChange: onPageChange
+            }}
+          >
             <Column field="apiName" header="API 名称"></Column>
             <Column field="url" header="URL"></Column>
             <Column field="permission" header="权限通配符"></Column>
