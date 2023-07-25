@@ -1,5 +1,5 @@
 import axios from "axios";
-import environment from "../../environments/environment";
+import environment from "../../../environments/environment";
 
 /**
  * 默认加上 request 和 response 拦截器。
@@ -19,6 +19,15 @@ axiosService.interceptors.request.use((request) => {
 axiosService.interceptors.response.use((response) => {
     return response;
 }, function (error) {
+    //TODO:发现 session 超时前端做退出动作，删掉浏览器缓存，跳转到首页。
+    let errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+    niceFishToast({
+        severity: 'error',
+        summary: 'HTTP ERROR',
+        detail: errorMsg,
+        sticky: false,
+        life: 5000
+    });
     return Promise.reject(error);
 });
 

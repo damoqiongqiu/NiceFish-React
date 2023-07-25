@@ -1,4 +1,4 @@
-import axiosService from "src/app/utils/nicefish.axios.service";
+import axiosService from "src/app/service/nicefish-axios-service";
 import * as _ from 'lodash';
 import environment from "src/environments/environment";
 
