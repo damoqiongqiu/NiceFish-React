@@ -75,7 +75,6 @@ export default props => {
 
   return (
     <div className="post-table-container">
-
       <form className="form-vertical" role="form">
         <div className="row">
           <div className="col-md-12">

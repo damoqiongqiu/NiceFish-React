@@ -2,23 +2,72 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
+import { confirmDialog } from 'primereact/confirmdialog';
+import commentService from "src/app/service/comment-service";
 
 import './index.scss';
-import commentListMock from "src/mock-data/comment-list-mock.json";
 
 export default props => {
   const [commentList, setCommentList] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
 
-  useEffect(() => {
-    //FIXME:load data from server.
-    setCommentList(commentListMock.content);
-  }, []);
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+    setPage(event.page + 1);
+  };
+
+  const loadData = () => {
+    commentService.getCommentTable(page).then(response => {
+      let data = response.data;
+      setTotalElements(data.totalElements);
+
+      data = data?.content || [];
+      setCommentList(data);
+    });
+  };
+
+  useEffect(loadData, []);
+
+  const delComment = (rowData, ri) => {
+    confirmDialog({
+      message: '确定要删除吗？',
+      header: '确认',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        commentService.delComment(rowData.id)
+          .then(
+            response => {
+              niceFishToast({
+                severity: 'success',
+                summary: 'Success',
+                detail: '删除成功',
+              });
+            },
+            error => {
+              niceFishToast({
+                severity: 'error',
+                summary: 'Error',
+                detail: '删除失败',
+              });
+            }
+          )
+          .finally(loadData);
+      },
+      reject: () => {
+        console.log("reject");
+      }
+    });
+  }
 
   const operationTemplate = (item) => {
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" />
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComment(item) }} />
       </>
     );
   };
@@ -42,9 +91,20 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="comment-item-container">
-            <DataTable value={commentList} paginator rows={20} showGridlines stripedRows tableStyle={{ width: "100%" }}>
+            <DataTable
+              showGridlines
+              stripedRows
+              tableStyle={{ width: "100%" }}
+              value={commentList}
+              rows={rows}
+              first={first}
+              paginator={{
+                totalRecords: totalElements,
+                onPageChange: onPageChange
+              }}
+            >
               <Column field="content" header="内容"></Column>
-              <Column field="userName" header="作者"></Column>
+              <Column field="nickName" header="作者"></Column>
               <Column field="time" header="日期"></Column>
               <Column field="" header="操作" body={operationTemplate}></Column>
             </DataTable>
