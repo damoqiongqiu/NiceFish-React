@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import headImgNarrow from 'src/assets/images/headline-narrow.png';
-import postService from 'src/app/blog/post/post-service';
+import postService from 'src/app/service/post-service';
 import './index.scss';
 
 export default props => {

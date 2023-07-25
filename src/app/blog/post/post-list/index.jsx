@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Paginator } from 'primereact/paginator';
 import listImg from 'src/assets/images/list-item.jpg';
 
-import postService from 'src/app/blog/post/post-service';
+import postService from 'src/app/service/post-service';
 import './index.scss';
 
 export default props => {

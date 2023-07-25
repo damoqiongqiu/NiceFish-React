@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import ErrorBoundary from './utils/ErrorBoundary';
 import { Routes, NavLink, useLocation } from 'react-router-dom';
 import renderRoutes from 'src/app/routes';
-import signService from 'src/app/blog/user/sign-in-service';
+import signService from 'src/app/service/sign-in-service';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
 import './index.scss';

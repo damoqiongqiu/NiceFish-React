@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Captcha from 'src/app/utils/captcha';
-import postService from 'src/app/blog/post/post-service';
+import postService from 'src/app/service/post-service';
 import environment from "src/environments/environment";
 
 import './index.scss';
