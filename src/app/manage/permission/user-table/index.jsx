@@ -86,7 +86,7 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/user-profile") }} />&nbsp;&nbsp;
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate(`/manage/permission/user-profile/${item.userId}`) }} />&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delUser(item) }} />
       </>
     );
@@ -108,7 +108,7 @@ export default props => {
           </div>
           <div className="col-md-1">
             <div className="input-group pull-right">
-              <button className="btn btn-primary" type="button">
+              <button className="btn btn-primary" type="button" onClick={() => { navigate(`/manage/permission/user-profile/-1`) }}>
                 <i className="pi pi-plus" aria-hidden="true"></i>
               </button>
             </div>

@@ -547,9 +547,11 @@ export default props => {
                     <input
                       type="checkbox"
                       name="status"
-                      value={formValue.status}
-                      checked={formValue.status === 1 ? true : false}
-                      onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+                      checked={(formValue.status === 1) ? true : false}
+                      onChange={(e) => {
+                        let status = e.target.checked ? 1 : 0;
+                        handleInputChange(e.target.name, status);
+                      }}
                     />
                   </label>
                 </div>
@@ -564,7 +566,9 @@ export default props => {
                   placeholder="简介"
                   name="remark"
                   value={formValue.remark}
-                  onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   onBlur={(e) => validateField(e.target.name, e.target.value)}
                 ></textarea>
                 {
