@@ -145,6 +145,10 @@ export default props => {
     };
 
     validators[key].forEach(validator => {
+      //非必填且值为空时，不校验
+      if (validator.ruleName === 'required' && value.length === 0) {
+        return;
+      }
       if (!validator.fn(value)) {
         temp[key].valid = false;
         temp[key].ruleName = validator.ruleName;

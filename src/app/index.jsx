@@ -11,12 +11,12 @@ import './index.scss';
 
 const App = props => {
   const toast = useRef(null);
-  let [currentUser, setCurrentUser] = useState([]);
   const location = useLocation();
+  let [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
-    let temp = JSON.parse(localStorage.getItem("currentUser"));
-    setCurrentUser(temp);
+    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
+    setCurrentUser(userInfo);
   }, [location]);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const App = props => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/manage">
+                    <NavLink to="/manage/chart">
                       <i className="fa fa-cog" />
                     </NavLink>
                   </li>

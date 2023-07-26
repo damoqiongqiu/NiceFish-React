@@ -89,7 +89,7 @@ const routes = [
                 element: UserTable,
             },
             {
-                path: "permission/user-profile",
+                path: "permission/user-profile/:userId",
                 element: UserProfile,
             },
             {

@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
-import { NavLink, useNavigate, Outlet, useMatch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 
 import './index.scss';
 
 export default props => {
-  const navigate = useNavigate();
-  const match = useMatch('/manage');
+  let [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
-    // if (!user) return navigate('/');
-    if (match) navigate('/manage/chart', { replace: true });
-  });
+    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
+    setCurrentUser(userInfo);
+  }, [location]);
 
   return (
     <div className="container">
@@ -33,7 +32,7 @@ export default props => {
             <NavLink to="comment-table" className="list-group-item">
               评论管理
             </NavLink>
-            <NavLink to="/manage/permission/user-profile" className="list-group-item">
+            <NavLink to={`/manage/permission/user-profile/${currentUser.userId}`} className="list-group-item">
               个人设置
             </NavLink>
           </div>
@@ -56,6 +55,6 @@ export default props => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
