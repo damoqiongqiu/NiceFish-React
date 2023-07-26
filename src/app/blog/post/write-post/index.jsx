@@ -9,10 +9,17 @@ import environment from "src/environments/environment";
 import './index.scss';
 
 export default props => {
-  const [text, setText] = useState('');
   const navigate = useNavigate();
-  const isMock = environment.isMock;
 
+  //FIXME:改成路由守卫的方式实现。
+  useEffect(() => {
+    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
+    if (!userInfo) {
+      navigate('/sign-in');
+    }
+  }, [location]);
+
+  const isMock = environment.isMock;
   const [post, setPost] = useState({
     title: "",
     content: "",
