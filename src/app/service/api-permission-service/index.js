@@ -38,7 +38,7 @@ export default {
      * 获取角色对应的 API 权限，TODO:带分页？？？
      * @returns 
      */
-    getApiPermissionListAllByRole(roleEntity = {}) {
+    getApiPermissionListAllByRole(roleEntity) {
         let reqURL = _.template(apiPermissionListAllByRole)();
         return axiosService.post(reqURL, roleEntity);
     },
