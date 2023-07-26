@@ -5,6 +5,8 @@ import renderRoutes from 'src/app/routes';
 import signService from 'src/app/service/sign-in-service';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
+import { BlockUI } from 'primereact/blockui';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
 import './index.scss';
@@ -12,6 +14,7 @@ import './index.scss';
 const App = props => {
   const toast = useRef(null);
   const location = useLocation();
+  const [blocked, setBlocked] = useState(false);
   let [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
@@ -24,6 +27,12 @@ const App = props => {
     window.niceFishToast = (params) => {
       toast.current.show(params);
     };
+    window.showGlobalSpin = () => {
+      setBlocked(true);
+    }
+    window.hideGlobalSpin = () => {
+      setBlocked(false);
+    }
   }, []);
 
   const doSignOut = () => {
@@ -43,6 +52,21 @@ const App = props => {
 
       {/* 全局公用的确认框 */}
       <ConfirmDialog dismissableMask />
+
+      {/* 全局遮罩 */}
+      <>
+        <ProgressSpinner style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          zIndex: 10000000,
+          marginLeft: "-50px",
+          marginTop: "-50px",
+          display: blocked ? "block" : "none"
+        }}></ProgressSpinner>
+        <BlockUI blocked={blocked} fullScreen >
+        </BlockUI >
+      </>
 
       <div className="navbar navbar-fixed-top main-nav" role="navigation">
         <div className="container">
