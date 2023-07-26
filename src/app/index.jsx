@@ -112,7 +112,6 @@ const App = props => {
           <Suspense
             fallback={
               <div className="loading-container d-flex align-items-center justify-content-center">
-                {/* <Spin size="large" /> */}
               </div>
             }
           >

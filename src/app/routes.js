@@ -105,7 +105,7 @@ const routes = [
                 element: ApiPermissionTable,
             },
             {
-                path: "permission/api-permission-edit/:permissionId",
+                path: "permission/api-permission-edit/:apiPermissionId",
                 element: ApiPermissionEdit,
             },
             {
