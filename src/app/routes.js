@@ -113,7 +113,7 @@ const routes = [
                 element: ComponentPermissionTable,
             },
             {
-                path: "permission/component-permission-edit/:compPermId",
+                path: "permission/component-permission-edit/:compPermId/:pId",
                 element: ComponentPermissionEdit,
             },
             {

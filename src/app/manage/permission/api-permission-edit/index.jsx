@@ -17,8 +17,8 @@ export default props => {
     url: "",
     permission: "",
     remark: "",
-    createTime: "",
-    updateTime: "",
+    createTime: new Date().toLocaleString(),
+    updateTime: new Date().toLocaleString(),
   });
 
   /**

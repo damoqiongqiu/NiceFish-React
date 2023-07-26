@@ -108,7 +108,13 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/component-permission-edit/" + item.compPermId) }} />&nbsp;&nbsp;
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => {
+          let pId = item.parentEntity ? item.parentEntity.compPermId : "-1";
+          navigate("/manage/permission/component-permission-edit/" + item.compPermId + "/" + pId)
+        }} />&nbsp;&nbsp;
+        <Button icon="pi pi-plus" className="p-button-warning" onClick={() => {
+          navigate("/manage/permission/component-permission-edit/-1/ " + item.compPermId)
+        }}></Button>&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
       </>
     );
@@ -130,7 +136,7 @@ export default props => {
           </div>
           <div className="col-md-1">
             <div className="input-group pull-right">
-              <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/component-permission-edit/-1") }}>
+              <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/component-permission-edit/-1/-1") }}>
                 <i className="pi pi-plus" aria-hidden="true"></i>
               </button>
             </div>
