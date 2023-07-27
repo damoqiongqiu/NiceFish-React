@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import './index.scss';
 
 export default props => {
-  let [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     let userInfo = JSON.parse(localStorage.getItem("currentUser"));

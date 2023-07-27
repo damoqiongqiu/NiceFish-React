@@ -1,7 +1,7 @@
-import React, { lazy } from "react";
+import React, { lazy, useState, useEffect } from "react";
 import Home from "src/app/blog/home";
 import Exception404 from "src/app/utils/exception/404";
-import { Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 const Manage = lazy(() => import(/*webpackChunkName:'manage',webpackPrefetch:true*/ "./manage"));
 const SignIn = lazy(() => import(/*webpackChunkName:'sign-in',webpackPrefetch:true*/ "./blog/user/sign-in"));
@@ -50,124 +50,141 @@ const PostDetailMain = lazy(() =>
     import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/post/post-detail-main")
 );
 
-const routes = [
-    {
-        path: "/",
-        element: Navigate,
-        redirect: "/post",
-    },
-    {
-        path: "/post",
-        element: Home,
-    },
-    {
-        path: "/post/post-detail/:id",
-        element: PostDetailMain,
-    },
-    {
-        path: "/home",
-        element: Home,
-    },
-    {
-        path: "/manage",
-        element: Manage,
-        children: [
-            {
-                path: "chart",
-                element: Chart,
-            },
-            {
-                path: "post-table",
-                element: PostTable,
-            },
-            {
-                path: "comment-table",
-                element: CommentTable,
-            },
-            {
-                path: "permission/user-table",
-                element: UserTable,
-            },
-            {
-                path: "permission/user-profile/:userId",
-                element: UserProfile,
-            },
-            {
-                path: "permission/role-table",
-                element: RoleTable,
-            },
-            {
-                path: "permission/role-edit/:roleId",
-                element: RoleEdit,
-            },
-            {
-                path: "permission/api-permission-table",
-                element: ApiPermissionTable,
-            },
-            {
-                path: "permission/api-permission-edit/:apiPermissionId",
-                element: ApiPermissionEdit,
-            },
-            {
-                path: "permission/component-permission-table",
-                element: ComponentPermissionTable,
-            },
-            {
-                path: "permission/component-permission-edit/:compPermId/:pId",
-                element: ComponentPermissionEdit,
-            },
-            {
-                path: "sys-param",
-                element: SysParam,
-            },
-        ],
-    },
-    {
-        path: "/sign-in",
-        element: SignIn,
-    },
-    {
-        path: "/retrieve-pwd",
-        element: RetrievePwd,
-    },
-    {
-        path: "/sign-up",
-        element: SignUp,
-    },
-    {
-        path: "/write",
-        element: Write,
-    },
-    {
-        path: "*",
-        element: Exception404,
-    },
-];
+export default props => {
+    //某些路由需要登录才能访问，currentUser 用来获取当前登录用户信息。
+    const [currentUser, setCurrentUser] = useState({});
 
-const doRenderRoutes = (routes) => {
-    return routes.map((route) => {
-        return (
-            <Route
-                key={route.path}
-                path={route.path}
-                element={
-                    route.redirect ? (
-                        <>
-                            <Navigate to={`${route.redirect}`} replace />
-                        </>
-                    ) : (
-                        <route.element />
-                    )
-                }
-            >
-                {route.children && doRenderRoutes(route.children)}
-            </Route>
-        );
-    });
-};
+    useEffect(() => {
+        let userInfo = JSON.parse(localStorage.getItem("currentUser"));
+        setCurrentUser(userInfo);
+    }, [location]);
 
-const renderRoutes = () => {
-    return doRenderRoutes(routes);
-};
+    const routes = [
+        {
+            path: "/",
+            element: Navigate,
+            redirect: "/post",
+        },
+        {
+            path: "/post",
+            element: Home,
+        },
+        {
+            path: "/post/post-detail/:id",
+            element: PostDetailMain,
+        },
+        {
+            path: "/home",
+            element: Home,
+        },
+        {
+            path: "/manage",
+            element: Manage,
+            redirect: !currentUser ? "/sign-in" : null,
+            children: [
+                {
+                    path: "chart",
+                    element: Chart,
+                },
+                {
+                    path: "post-table",
+                    element: PostTable,
+                },
+                {
+                    path: "comment-table",
+                    element: CommentTable,
+                },
+                {
+                    path: "permission/user-table",
+                    element: UserTable,
+                },
+                {
+                    path: "permission/user-profile/:userId",
+                    element: UserProfile,
+                },
+                {
+                    path: "permission/role-table",
+                    element: RoleTable,
+                },
+                {
+                    path: "permission/role-edit/:roleId",
+                    element: RoleEdit,
+                },
+                {
+                    path: "permission/api-permission-table",
+                    element: ApiPermissionTable,
+                },
+                {
+                    path: "permission/api-permission-edit/:apiPermissionId",
+                    element: ApiPermissionEdit,
+                },
+                {
+                    path: "permission/component-permission-table",
+                    element: ComponentPermissionTable,
+                },
+                {
+                    path: "permission/component-permission-edit/:compPermId/:pId",
+                    element: ComponentPermissionEdit,
+                },
+                {
+                    path: "sys-param",
+                    element: SysParam,
+                },
+            ],
+        },
+        {
+            path: "/sign-in",
+            element: SignIn,
+        },
+        {
+            path: "/retrieve-pwd",
+            element: RetrievePwd,
+        },
+        {
+            path: "/sign-up",
+            element: SignUp,
+        },
+        {
+            path: "/write",
+            element: Write,
+            redirect: !currentUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
+        },
+        {
+            path: "*",
+            element: Exception404,
+        },
+    ];
 
-export default renderRoutes;
+    /**
+     * 递归渲染路由。
+     * @param {*} routes Tree node, with children to be rendered recursively.
+     * @returns 
+     */
+    const doRenderRoutes = (routes) => {
+        return routes.map((route) => {
+            return (
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    element={
+                        route.redirect ? (
+                            <>
+                                <Navigate to={`${route.redirect}`} replace />
+                            </>
+                        ) : (
+                            <route.element />
+                        )
+                    }
+                >
+                    {route.children && doRenderRoutes(route.children)}
+                </Route>
+            );
+        });
+    };
+
+    return (
+        <Routes>
+            {doRenderRoutes(routes)}
+        </Routes>
+    );
+}

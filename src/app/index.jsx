@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState, useRef } from 'react';
 import ErrorBoundary from './utils/ErrorBoundary';
-import { Routes, NavLink, useLocation } from 'react-router-dom';
-import renderRoutes from 'src/app/routes';
+import { NavLink, useLocation } from 'react-router-dom';
+import NiceFishRoutes from 'src/app/routes';
 import signService from 'src/app/service/sign-in-service';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
@@ -139,7 +139,7 @@ const App = props => {
               </div>
             }
           >
-            <Routes>{renderRoutes()}</Routes>
+            <NiceFishRoutes />
           </Suspense>
         </ErrorBoundary>
       </div>
