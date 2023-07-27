@@ -10,15 +10,6 @@ import './index.scss';
 
 export default props => {
   const navigate = useNavigate();
-
-  //FIXME:改成路由守卫的方式实现。
-  useEffect(() => {
-    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
-    if (!userInfo) {
-      navigate('/sign-in');
-    }
-  }, [location]);
-
   const isMock = environment.isMock;
   const [post, setPost] = useState({
     title: "",

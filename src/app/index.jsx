@@ -15,11 +15,10 @@ const App = props => {
   const toast = useRef(null);
   const location = useLocation();
   const [blocked, setBlocked] = useState(false);
-  let [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
-    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
-    setCurrentUser(userInfo);
+    setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
   }, [location]);
 
   useEffect(() => {

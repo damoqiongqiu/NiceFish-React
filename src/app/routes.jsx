@@ -55,9 +55,8 @@ export default props => {
     const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
-        let userInfo = JSON.parse(localStorage.getItem("currentUser"));
-        setCurrentUser(userInfo);
-    }, [location]);
+        setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+    }, [window.history]);
 
     const routes = [
         {
