@@ -26,13 +26,15 @@ axiosService.interceptors.response.use(
     },
     (error) => {
         window.hideGlobalSpin();
+        console.error(error);
         //TODO:发现 session 超时前端做退出动作，删掉浏览器缓存，跳转到首页。
-        let errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+        let errorMsg = `Error Code: ${error.response.status},  Message: ${error.message}`;
+        console.error(errorMsg);
         niceFishToast({
             severity: 'error',
             summary: 'HTTP ERROR',
             detail: errorMsg,
-            sticky: false,
+            sticky: true,
             life: 5000
         });
         return Promise.reject(error);

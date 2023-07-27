@@ -354,7 +354,7 @@ export default props => {
             niceFishToast({
               severity: 'error',
               summary: 'Error',
-              detail: '创建成功',
+              detail: data?.msg || '创建失败',
             });
           }
         },
