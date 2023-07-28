@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
-import defaultImg from 'src/assets/images/1.jpg';
 import './index.scss';
 
 export default props => {
@@ -13,11 +12,17 @@ export default props => {
       <NavLink
         to={`/post/post-detail/${postDetail.postId}`}
       >
-        <img
-          alt={imgFile0?.name || "图片"}
-          role="presentation"
-          src={`${titleImgURL || defaultImg}`}
-        />
+        {
+          titleImgURL ?
+            <img
+              alt={imgFile0?.name || "图片"}
+              role="presentation"
+              src={`${titleImgURL}`}
+            />
+            :
+            <></>
+        }
+
       </NavLink>
       <div className='list-item-footer'>
         <NavLink to={`/post/post-detail/${postDetail.postId}`}>{postDetail.title}</NavLink>
