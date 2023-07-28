@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import PostHeadline from 'src/app/blog/post/post-headline';
 import { NavLink } from 'react-router-dom';
 import { Paginator } from 'primereact/paginator';
 import listImg from 'src/assets/images/list-item.jpg';
+import PostListItem from 'src/app/blog/post/post-list-item';
 
 import postService from 'src/app/service/post-service';
 import './index.scss';
@@ -32,48 +32,43 @@ export default props => {
 
   return (
     <>
-      <PostHeadline />
-      <div className="post-list-container">
-        <div className="row">
-          <div className="col-md-12">
-            {postList.map((item, index) => {
-              return (
-                <div className="post-item-container" key={item.postId}>
-                  <div className="row">
-                    <div className="col-md-2">
-                      <img src={listImg} alt="..." className="img-thumbnail" />
-                    </div>
-                    <div className="col-md-10 post-item-text-container">
-                      <h3>
-                        <NavLink to={`/post/post-detail/${item.postId}`}>{item.title}</NavLink>
-                      </h3>
-                      <div className="user-name-intitle">
-                        <div className="row">
-                          <div className="col-md-4 col-lg-3 ">
-                            <span className="fa fa-user"></span>
-                            <span className="ml-5px">{item.nickName}</span>
-                          </div>
-                          <div className="col-md-6 col-lg-5">
-                            <span className="fa fa-clock-o"></span>
-                            <span className="ml-5px">{item.postTime}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="abs"
-                        dangerouslySetInnerHTML={{ __html: (item.content || "").substring(0, 140) + "..." }}></div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div >
-          <div className="row">
-            <div className="col-md-12">
-              <Paginator first={first} rows={rows} totalRecords={totalElements} onPageChange={onPageChange}></Paginator>
-            </div>
-          </div>
-        </div >
-      </div >
+      <div className='tag-list-container'>
+        <h4>
+          <a className="label label-default">推荐</a>
+        </h4>
+        <h4>
+          <a className="label label-default">美食</a>
+        </h4>
+        <h4>
+          <a className="label label-default">电影</a>
+        </h4>
+        <h4>
+          <a className="label label-default">音乐</a>
+        </h4>
+        <h4>
+          <a className="label label-default">健身</a>
+        </h4>
+        <h4>
+          <a className="label label-default">旅行</a>
+        </h4>
+      </div>
+      <div className='post-list-container'>
+        {postList.map((item, index) => {
+          return (
+            <PostListItem postDetail={item} key={index}></PostListItem>
+          );
+        })}
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
     </>
   );
 };

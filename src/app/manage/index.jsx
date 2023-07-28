@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import OnlineContact from 'src/app/manage/online-contact';
 
 import './index.scss';
 
@@ -12,14 +13,14 @@ export default props => {
   }, [location]);
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-md-10">
           <div className="mng-main-container">
             <Outlet />
           </div>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-2">
           <div className="list-group">
             <NavLink to="chart" className="list-group-item">
               统计图表
@@ -53,6 +54,7 @@ export default props => {
               系统参数
             </NavLink>
           </div>
+          <OnlineContact />
         </div>
       </div>
     </div >

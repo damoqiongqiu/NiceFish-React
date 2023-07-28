@@ -6,7 +6,11 @@ export default props => {
 
     const refreshCaptchaURL = () => {
         setCapchaURL(`${capchaURL}&kill_cache=${new Date().getTime()}`);
-    }
+    };
+
+    useEffect(() => {
+        refreshCaptchaURL();
+    }, []);
 
     return (
         <img src={capchaURL} style={{ cursor: "pointer", width: "160px", height: "60px" }} onClick={refreshCaptchaURL} />

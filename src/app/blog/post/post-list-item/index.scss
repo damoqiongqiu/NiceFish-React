@@ -1,0 +1,71 @@
+.post-list-item {
+    display: block;
+    height: 380px;
+    width: 245px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+
+    a {
+        text-decoration: none;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:active {
+        text-decoration: none;
+    }
+
+    >a {
+        display: block;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .list-item-footer {
+        padding: 12px;
+        overflow: hidden;
+        height: 80px;
+        background: #04091e;
+
+        a {
+            display: block ruby;
+            white-space: nowrap;
+            overflow: hidden;
+            white-space: pre-wrap;
+            /* CSS3 */
+            white-space: -moz-pre-wrap;
+            /* Firefox */
+            white-space: -pre-wrap;
+            /* Opera <7 */
+            white-space: -o-pre-wrap;
+            /* Opera 7 */
+            word-wrap: break-word;
+            /* IE */
+        }
+
+        >a:first-child {
+            color: #fff;
+            // display: block;
+            font-size: 16px;
+        }
+
+        >a:last-child {
+            color: #aaa;
+            // display: block;
+            font-size: 12px;
+            padding-top: 8px;
+        }
+    }
+}

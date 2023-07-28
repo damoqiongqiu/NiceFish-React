@@ -68,7 +68,7 @@ const App = props => {
       </>
 
       <div className="navbar navbar-fixed-top main-nav" role="navigation">
-        <div className="container">
+        <div className="container-fluid">
           <div className="navbar-header">
             <button className="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
               <span className="sr-only">Toggle Navigation</span>
@@ -84,12 +84,12 @@ const App = props => {
             <ul className="nav navbar-nav">
               <li >
                 <NavLink to="/post">
-                  阅读
+                  发现
                 </NavLink>
               </li>
               <li >
                 <NavLink to="/write">
-                  写作
+                  创作
                 </NavLink>
               </li>
             </ul >
@@ -130,7 +130,7 @@ const App = props => {
         </div >
       </div >
 
-      <div className="container main-container main">
+      <div className="container-fluid main-container">
         <ErrorBoundary>
           <Suspense
             fallback={
@@ -144,7 +144,7 @@ const App = props => {
       </div>
 
       <div className="footer bs-footer">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
               <p>
