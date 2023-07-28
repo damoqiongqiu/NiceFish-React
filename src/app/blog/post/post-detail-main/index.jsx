@@ -6,7 +6,7 @@ import './index.scss';
 
 export default props => {
   return (
-    <div className="container post-detail-main-container">
+    <div className="post-detail-main-container">
       <div className="row">
         <div className="col-md-9">
           <PostDetail {...props} />
