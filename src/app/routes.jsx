@@ -9,7 +9,7 @@ const SignUp = lazy(() => import(/*webpackChunkName:'sign-up',webpackPrefetch:tr
 const RetrievePwd = lazy(() =>
     import(/*webpackChunkName:'retrieve-pwd',webpackPrefetch:true*/ "./blog/user/retrieve-pwd")
 );
-const Write = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./blog/post/write-post"));
+const WritePostImg = lazy(() => import(/*webpackChunkName:'write', webpackPrefetch:true*/ "./blog/post/write-post-image"));
 const PostTable = lazy(() =>
     import(/*webpackChunkName:'post-table',webpackPrefetch:true*/ "./manage/content-mng/post-table")
 );
@@ -145,7 +145,7 @@ export default props => {
         },
         {
             path: "/write",
-            element: Write,
+            element: WritePostImg,
             redirect: !currentUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
         },
         {

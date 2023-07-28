@@ -7,17 +7,25 @@ import './index.scss';
 export default props => {
   const { id } = useParams()
   const [postDetail, setPostDetail] = useState({});
+  const [imgFile0, setImgFile0] = useState({});
+  const [titleImgURL, setTitleImgURL] = useState("");
 
   useEffect(() => {
     postService.getPostDetail(id).then(response => {
-      setPostDetail(response.data);
+      let postDetailTemp = response.data;
+      setPostDetail(postDetailTemp);
+
+      const imgFile0 = postDetailTemp?.fileUploadEntities[0];
+      const titleImgURL = imgFile0?.id ? `/cms/file/download/${imgFile0.id}` : "";
+      setImgFile0(imgFile0);
+      setTitleImgURL(titleImgURL);
     });
   }, []);
 
   return (
     <div className="post-detail-container">
       <div className="img-container">
-        <img src={headImgNarrow} alt="光刻机" />
+        <img src={titleImgURL || headImgNarrow} alt={imgFile0?.fileName} />
       </div>
       <div className="row">
         <div className="col-md-12">
