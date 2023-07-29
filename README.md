@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="150" src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/nice-fish.png">
+    <img width="150" src="/src/assets/imgs/nice-fish.png">
 </p>
 
 <h1 align="center">NiceFish-React</h1>
