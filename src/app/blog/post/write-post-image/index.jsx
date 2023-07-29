@@ -368,7 +368,7 @@ export default props => {
               ref={fileUploadRef}
               multiple
               accept="image/*"
-              maxFileSize={1000000}
+              maxFileSize={10 * 1000 * 1000}//字节
               customUpload={true} //自己手动处理上传
               mode="basic"
               onUpload={

@@ -4,10 +4,13 @@
     margin-bottom: 15px;
 
     .img-container {
-        height: 400px;
-        background: #ccc;
+        background: #555;
         overflow: hidden;
         position: relative;
+        width: 100%;
+        height: 0;
+        padding: 0;
+        padding-bottom: calc(100%*9/16);
 
         img {
             max-height: 100%;

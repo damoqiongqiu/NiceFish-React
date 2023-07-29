@@ -1,12 +1,17 @@
+$rate: 16/9;
+$cardWidth: 245px;
+$cardHeight: $cardWidth * $rate;
+
 .post-list-item {
     display: block;
-    height: 380px;
-    width: 245px;
+    width: $cardWidth;
+    height: $cardHeight;
     margin-bottom: 15px;
     margin-right: 15px;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    background-color: #ccc;
+    background-color: #555;
+    position: relative;
 
     a {
         display: block;
@@ -45,15 +50,19 @@
 
     >a {
         display: block;
-        height: 300px;
+        height: $cardHeight;
         overflow: hidden;
     }
 
     .list-item-footer {
         padding: 12px;
         overflow: hidden;
+        width: 100%;
         height: 80px;
-        background: #04091e;
+        // background: #04091e;
+        position: absolute;
+        left: 0;
+        bottom: 0;
 
         a {
             display: block ruby;
@@ -78,7 +87,7 @@
         }
 
         >a:last-child {
-            color: #aaa;
+            color: #b3b3b3;
             // display: block;
             font-size: 12px;
             padding-top: 8px;
