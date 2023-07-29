@@ -94,19 +94,23 @@ NiceFish-React 在 GitHub Pages 上的演示地址（Mock 数据，无后端）�
 
 ## 8.界面截图
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/1.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/1.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/2.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/2.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/3.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/3.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/4.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/4.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/5.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/5.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/6.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/6.png">
 
-<img src="https://gitee.com/mumu-osc/NiceFish/raw/master/src/assets/imgs/7.png">
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/7.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/8.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/9.png">
 
 ## 9.开源许可证
 

@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Paginator } from 'primereact/paginator';
-import listImg from 'src/assets/images/list-item.jpg';
 import PostListItem from 'src/app/blog/post/post-list-item';
 
 import postService from 'src/app/service/post-service';

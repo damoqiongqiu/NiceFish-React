@@ -5,9 +5,14 @@ import './index.scss';
 
 export default props => {
   const { id } = useParams()
-  const [postDetail, setPostDetail] = useState({});
   const [imgFile0, setImgFile0] = useState({});
   const [titleImgURL, setTitleImgURL] = useState("");
+  const [postDetail, setPostDetail] = useState(
+    {
+      nickName: "",
+      content: "",
+    }
+  );
 
   useEffect(() => {
     postService.getPostDetail(id).then(response => {
@@ -28,27 +33,16 @@ export default props => {
           titleImgURL ? <img src={titleImgURL} alt={imgFile0?.fileName} /> : <></>
         }
       </div>
-      <div className="row">
-        <div className="col-md-12">
-          <h3>{postDetail.title}</h3>
+      <div className='content-container'>
+        <h4>
+          @{(postDetail.nickName + "").trim().substring(0, 16)}
+        </h4>
+        <div className="post-content"
+          dangerouslySetInnerHTML={
+            { __html: (postDetail.content + "").trim().substring(0, 120) }
+          }
+        >
         </div>
-      </div>
-      <div className="row post-info">
-        <div className="col-md-3">
-          <span className="fa fa-user"></span>{postDetail.nickName}
-        </div>
-        <div className="col-md-3">
-          <span className="fa fa-clock-o"></span>{postDetail.postTime}
-        </div>
-        <div className="col-md-3">
-          <span className="fa fa-hand-pointer-o"></span>点击：{postDetail.readTimes}
-        </div>
-        <div className="col-md-3">
-          <span className="fa fa-comment"></span>评论：{postDetail.commentTimes}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12 post-content" dangerouslySetInnerHTML={{ __html: postDetail.content }}></div>
       </div>
     </div >
   );
