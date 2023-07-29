@@ -16,6 +16,7 @@ import './index.scss';
 export default props => {
   const navigate = useNavigate();
   const isMock = environment.isMock;
+  const fileMaxSize = 1 * 1000 * 1000;//文件最大尺寸，字节
   const [totalSize, setTotalSize] = useState(0);
   const fileUploadRef = useRef(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -368,7 +369,7 @@ export default props => {
               ref={fileUploadRef}
               multiple
               accept="image/*"
-              maxFileSize={10 * 1000 * 1000}//字节
+              maxFileSize={fileMaxSize}
               customUpload={true} //自己手动处理上传
               mode="basic"
               onUpload={
@@ -396,12 +397,17 @@ export default props => {
                 }
               }
               onError={
-                () => {
+                (e) => {
+                  niceFishToast({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: e,
+                  });
                   setTotalSize(0);
                 }
               }
               onClear={
-                () => {
+                (e) => {
                   setTotalSize(0);
                 }
               }
