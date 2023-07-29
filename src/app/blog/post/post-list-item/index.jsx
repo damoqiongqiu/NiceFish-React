@@ -25,7 +25,7 @@ export default props => {
 
       </NavLink>
       <div className='list-item-footer'>
-        <NavLink to={`/post/post-detail/${postDetail.postId}`}>{postDetail.title}</NavLink>
+        <NavLink to={`/post/post-detail/${postDetail.postId}`}>{(postDetail.content + "").trim().substring(0, 16)}</NavLink>
         <NavLink to={`/post/post-detail/${postDetail.postId}`}>@{postDetail.nickName}</NavLink>
       </div>
     </section>

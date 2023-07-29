@@ -16,7 +16,7 @@ import './index.scss';
 export default props => {
   const navigate = useNavigate();
   const isMock = environment.isMock;
-  const fileMaxSize = 1 * 1000 * 1000;//文件最大尺寸，字节
+  const fileMaxSize = 10 * 1000 * 1000;//文件最大尺寸，字节
   const [totalSize, setTotalSize] = useState(0);
   const fileUploadRef = useRef(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -31,11 +31,6 @@ export default props => {
    * 输入项的校验状态
    */
   const [validationResult, setValidationResult] = useState({
-    title: {
-      valid: true,
-      ruleName: "",//valid 为 true 时，此项为空
-      message: '',//valid 为 true 时，此项为空
-    },
     content: {
       valid: true,
       ruleName: "",
@@ -52,29 +47,6 @@ export default props => {
    * 输入项的校验规则
    */
   const validators = {
-    title: [
-      {
-        ruleName: 'required',
-        message: '请输入标题',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '标题最多 32 个字符',
-        fn: (value) => {
-          return value && value.length <= 32;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '标题最少 1 个字符的',
-        fn: (value) => {
-          return value && value.length >= 1;
-        }
-      }
-    ],
     content: [
       {
         ruleName: 'required',
@@ -130,11 +102,6 @@ export default props => {
    */
   const onBlurHandler = (key, value) => {
     const temp = {
-      title: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
       content: {
         valid: true,
         ruleName: "",
@@ -422,26 +389,9 @@ export default props => {
           <div className="row">
             <div className="col-md-12">
               <form role="form" noValidate className="form-horizontal">
-                <div className={`form-group ${validationResult.title.valid ? "" : "has-error"}`}>
-                  <input
-                    className="form-control"
-                    type="text"
-                    required
-                    minLength="2"
-                    maxLength="128"
-                    placeholder="标题，1 到 32 个字符"
-                    name="title"
-                    value={post.title}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                    onBlur={(e) => onBlurHandler('title', e.target.value)}
-                  />
-                  {
-                    !validationResult.title.valid ? <div className="text-danger">{validationResult.title.message}</div> : <></>
-                  }
-                </div>
                 <div className={`form-group ${validationResult.content.valid ? "" : "has-error"}`}>
                   <textarea
-                    rows="5"
+                    rows="10"
                     className="form-control"
                     placeholder="说点什么吧，让大家更了解你"
                     name="content"
