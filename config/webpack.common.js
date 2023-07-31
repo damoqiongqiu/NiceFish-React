@@ -36,7 +36,7 @@ const webpackConfig = {
         filename: "[name].[contenthash].js",
         chunkFilename: "[name].[contenthash].js",
         clean: true,
-        publicPath: "/",
+        publicPath: "",
     },
     mode: process.env.NODE_ENV,
     resolve: {
