@@ -4,12 +4,6 @@
 
 <h1 align="center">NiceFish-React</h1>
 
-<p align="center">
-    <a href="https://github.com/damoqiongqiu/NiceFish-React/actions">
-      <img src="https://github.com/damoqiongqiu/NiceFish-React/workflows/Deploy/badge.svg" alt="Deploy Status">
-    </a>
-</p>
-
 <p align="left">
 NiceFish（美人鱼） 是一个系列项目，目标是示范前后端分离的开发+部署模式。前端有3个版本：浏览器环境、移动端环境、Electron 环境；后端有2个版本：SpringBoot 版本和 SpringCloud 版本。
 </p>
