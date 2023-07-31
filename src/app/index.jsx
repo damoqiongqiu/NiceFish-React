@@ -18,6 +18,7 @@ const App = props => {
   const [currentUser, setCurrentUser] = useState([]);
 
   useEffect(() => {
+    //TODO:把 currentUser 移动到 Context 中。
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
   }, [location]);
 
