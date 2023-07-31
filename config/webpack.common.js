@@ -176,23 +176,21 @@ const webpackConfig = {
         new webpack.DefinePlugin({
             AUTHOR: JSON.stringify("yanyunchangfeng"),
         }),
-        !isDev
-            ? new CopyPlugin({
-                patterns: [
-                    {
-                        from: path.resolve(process.cwd(), "src", "assets"),
-                        to: path.resolve(process.cwd(), "docs"),
-                    },
-                    {
-                        from: path.resolve(process.cwd(), "src", "mock-data"),
-                        to: path.resolve(process.cwd(), "docs"),
-                    },
-                ],
-                options: {
-                    concurrency: 100,
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(process.cwd(), "src", "assets"),
+                    to: path.resolve(process.cwd(), "docs/assets/"),
                 },
-            })
-            : new NoopPlugin(),
+                {
+                    from: path.resolve(process.cwd(), "src", "mock-data"),
+                    to: path.resolve(process.cwd(), "docs/mock-data/"),
+                },
+            ],
+            options: {
+                concurrency: 100,
+            },
+        }),
         isUnusedMode
             ? new UnusedWebpackPlugin({
                 directories: [path.join(process.cwd(), "src")],
