@@ -4,8 +4,8 @@ import './index.scss';
 
 export default props => {
   const [postDetail, setPostDetail] = useState(props.postDetail);
-  const imgFile0 = postDetail.fileUploadEntities[0];
-  const titleImgURL = imgFile0?.id ? `/cms/file/download/${imgFile0.id}` : "";
+  const imgFile0 = postDetail?.fileUploadEntities[0];
+  const titleImgURL = imgFile0?.id ? `/cms/file/download/${imgFile0?.id}` : "";
 
   return (
     <section className='post-list-item'>

@@ -31,11 +31,11 @@ const webpackConfig = {
     },
     devtool: isDev ? "cheap-module-source-map" : false,
     output: {
-        path: path.join(process.cwd(), "dist"),
+        path: path.join(process.cwd(), "docs"),
         filename: "[name].[contenthash].js",
         chunkFilename: "[name].[contenthash].js",
         clean: true,
-        publicPath: "/dist",
+        publicPath: "/docs",
     },
     mode: process.env.NODE_ENV,
     resolve: {
@@ -179,11 +179,11 @@ const webpackConfig = {
                 patterns: [
                     {
                         from: path.resolve(process.cwd(), "src", "assets"),
-                        to: path.resolve(process.cwd(), "dist"),
+                        to: path.resolve(process.cwd(), "docs"),
                     },
                     {
                         from: path.resolve(process.cwd(), "src", "mock-data"),
-                        to: path.resolve(process.cwd(), "dist"),
+                        to: path.resolve(process.cwd(), "docs"),
                     },
                 ],
                 options: {
