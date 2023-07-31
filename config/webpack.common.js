@@ -11,6 +11,7 @@ const webpackBar = require("webpackbar");
 
 const { NODE_ENV, ANALYZE, UNUSED, SMP, DATA_SOURCE } = process.env;
 const isDev = (NODE_ENV === "development");
+const baseUrl = isDev ? '/' : '/NiceFish-React/';//开发态默认指向根目录，构建指向 /NiceFish-React/ ，请根据项目情况修改这里的值。
 const isAnalyzerMode = (ANALYZE === "1");
 const isUnusedMode = (UNUSED === "1");
 const isSmpMode = (SMP === "1");
@@ -31,11 +32,11 @@ const webpackConfig = {
     },
     devtool: isDev ? "cheap-module-source-map" : false,
     output: {
-        path: path.join(process.cwd(), "docs"),
+        path: path.join(process.cwd(), "docs"),//编译结果输入到根目录下的 docs 文件夹
         filename: "[name].[contenthash].js",
         chunkFilename: "[name].[contenthash].js",
         clean: true,
-        publicPath: "/docs",
+        publicPath: "/",
     },
     mode: process.env.NODE_ENV,
     resolve: {
@@ -166,6 +167,7 @@ const webpackConfig = {
             })
             : new NoopPlugin(),
         new HtmlWebpackPlugin({
+            base: { href: baseUrl },
             template: path.join(process.cwd(), "src/index.html"),
             filename: "index.html",
             chunks: ["main"],

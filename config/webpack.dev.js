@@ -37,9 +37,7 @@ module.exports = merge(commonConfig, {
         type: "memory",
     },
     devServer: {
-        historyApiFallback: {
-            index: '/docs/',//支持 react-router-dom 的 pushState 模式，这里的 /docs/ 与 output.publicPath 对应。
-        },
+        historyApiFallback: true,
         compress: true,
         open: true,
         port: 8091,
