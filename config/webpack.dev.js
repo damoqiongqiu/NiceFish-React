@@ -40,6 +40,7 @@ module.exports = merge(commonConfig, {
         // historyApiFallback: {
         //     index: 'docs',//支持 react-router-dom 的 pushState 模式，这里的 /docs/ 与 output.publicPath 对应。
         // },
+        static: path.resolve("./docs/"),
         historyApiFallback: true,
         compress: true,
         open: true,

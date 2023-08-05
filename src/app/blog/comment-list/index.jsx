@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { commentFormValidator } from 'src/app/utils/validator/comment-form-validator';
+import { commentFormValidator } from 'src/app/shared/validator/comment-form-validator';
 import './index.scss';
 
 //mock-data

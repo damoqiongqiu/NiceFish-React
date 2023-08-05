@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postService from 'src/app/service/post-service';
 import fileUploadService from 'src/app/service/file-upload-service';
-import Captcha from 'src/app/utils/captcha';
+import Captcha from 'src/app/shared/captcha';
 
 import environment from "src/environments/environment";
 

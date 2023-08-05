@@ -1,6 +1,6 @@
 import React, { lazy, useState, useEffect } from "react";
 import Home from "src/app/blog/home";
-import Exception404 from "src/app/utils/exception/404";
+import Exception404 from "src/app/shared/exception/404";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 const Manage = lazy(() => import(/*webpackChunkName:'manage',webpackPrefetch:true*/ "./manage"));

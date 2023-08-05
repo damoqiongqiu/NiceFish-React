@@ -1,5 +1,4 @@
 const path = require("path");
-const { resolve } = require('path');
 const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -185,6 +184,10 @@ const webpackConfig = {
                 {
                     from: path.resolve(process.cwd(), "src", "mock-data"),
                     to: path.resolve(process.cwd(), "docs/mock-data/"),
+                },
+                {
+                    from: path.resolve(process.cwd(), "src", "locales"),
+                    to: path.resolve(process.cwd(), "docs/locales/"),
                 },
             ],
             options: {

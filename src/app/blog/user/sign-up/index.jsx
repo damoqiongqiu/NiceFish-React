@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from 'react';
-import { registerFormValidator } from 'src/app/utils/validator/register-form-validator';
+import { registerFormValidator } from 'src/app/shared/validator/register-form-validator';
 import { useNavigate } from 'react-router-dom';
-import Common from 'src/app/utils/common.util';
+import Common from 'src/app/shared/common.util';
 
 import './index.scss';
 

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Color from 'src/app/utils/color.util';
+import Color from 'src/app/shared/color.util';
 import ReactEcharts from "echarts-for-react";
 
 import './index.scss';
 
-export default props=> {
+export default props => {
   const pieOptions = {
     theme: '',
     event: [

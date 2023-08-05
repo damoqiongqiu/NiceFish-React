@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
-import { forgotFormValidator } from 'src/app/utils/validator/forgot-form-validator';
-import Common from 'src/app/utils/common.util';
+import { forgotFormValidator } from 'src/app/shared/validator/forgot-form-validator';
+import Common from 'src/app/shared/common.util';
 import './index.scss';
 
 export default props => {

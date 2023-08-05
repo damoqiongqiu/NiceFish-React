@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Captcha from 'src/app/utils/captcha';
+import Captcha from 'src/app/shared/captcha';
 import postService from 'src/app/service/post-service';
 import environment from "src/environments/environment";
 
