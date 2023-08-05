@@ -26,7 +26,7 @@
     "build-analyzer": "cross-env NODE_ENV=production ANALYZE=1  DATA_SOURCE=mock NODE_OPTIONS=--max_old_space_size=4096 webpack",
     "build-smp": "cross-env NODE_ENV=production SMP=1 DATA_SOURCE=mock NODE_OPTIONS=--max_old_space_size=4096 webpack",
     "generateAnalyzerFile": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --profile --json > stats.json",
-    "analyzer": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack-bundle-analyzer --port 8888 ./dist/stats.json"
+    "analyzer": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack-bundle-analyzer --port 8888 ./docs/stats.json"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "38.1.1",
