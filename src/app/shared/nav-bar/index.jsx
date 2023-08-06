@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from 'src/app/shared/session/';
 
 import NiceFishDropDown from 'src/app/shared/drop-down';
 import signService from 'src/app/service/sign-in-service';
@@ -14,8 +16,10 @@ const languages = [
 ];
 
 const NavBar = props => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
     const { t, i18n } = useTranslation();
-    const [currentUser, setCurrentUser] = useState([]);
     const [selectedLanguage, setSelectedLanguage] = useState(
         () => {
             let lng = i18n.language;
@@ -32,8 +36,8 @@ const NavBar = props => {
     const doSignOut = () => {
         console.log("退出登录");
         signService.signOut().then(response => {
-            localStorage.removeItem("currentUser");
-            setCurrentUser(null);
+            dispatch(signOut());
+            navigate('/home');
         }, error => {
             console.error(error);
         });
@@ -79,7 +83,7 @@ const NavBar = props => {
                             <a href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank"><i className="fa fa-github"></i></a>
                         </li>
                         {
-                            currentUser ? <>
+                            sessionUser ? <>
                                 <li>
                                     <NavLink to="/home">
                                         <i className="fa fa-user" />
@@ -91,7 +95,9 @@ const NavBar = props => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={doSignOut}><i className="fa fa-sign-out"></i></a>
+                                    <NavLink onClick={doSignOut}>
+                                        <i className="fa fa-sign-out"></i>
+                                    </NavLink>
                                 </li>
                             </> : <>
                                 <li>

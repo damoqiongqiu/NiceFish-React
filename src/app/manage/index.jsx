@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import OnlineContact from 'src/app/manage/online-contact';
 
 import './index.scss';
 
 export default props => {
-  const [currentUser, setCurrentUser] = useState({});
-
-  useEffect(() => {
-    let userInfo = JSON.parse(localStorage.getItem("currentUser"));
-    setCurrentUser(userInfo);
-  }, [location]);
+  const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <div className="container-fluid">
@@ -33,7 +29,7 @@ export default props => {
             <NavLink to="comment-table" className="list-group-item">
               评论管理
             </NavLink>
-            <NavLink to={`/manage/permission/user-profile/${currentUser.userId}`} className="list-group-item">
+            <NavLink to={`/manage/permission/user-profile/${sessionUser.userId}`} className="list-group-item">
               个人设置
             </NavLink>
           </div>

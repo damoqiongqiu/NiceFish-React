@@ -2,6 +2,7 @@ import React, { lazy, useState, useEffect } from "react";
 import Home from "src/app/blog/home";
 import Exception404 from "src/app/shared/exception/404";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const Manage = lazy(() => import(/*webpackChunkName:'manage',webpackPrefetch:true*/ "./manage"));
 const SignIn = lazy(() => import(/*webpackChunkName:'sign-in',webpackPrefetch:true*/ "./blog/user/sign-in"));
@@ -51,12 +52,7 @@ const PostDetailMain = lazy(() =>
 );
 
 export default props => {
-    //某些路由需要登录才能访问，currentUser 用来获取当前登录用户信息。
-    const [currentUser, setCurrentUser] = useState({});
-
-    useEffect(() => {
-        setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
-    }, [window.history]);
+    const sessionUser = useSelector((state) => state.session.user);
 
     const routes = [
         {
@@ -79,7 +75,7 @@ export default props => {
         {
             path: "/manage",
             element: Manage,
-            redirect: !currentUser ? "/sign-in" : null,
+            redirect: !sessionUser ? "/sign-in" : null,
             children: [
                 {
                     path: "chart",
@@ -146,7 +142,7 @@ export default props => {
         {
             path: "/write",
             element: WritePostImg,
-            redirect: !currentUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
+            redirect: !sessionUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
         },
         {
             path: "*",

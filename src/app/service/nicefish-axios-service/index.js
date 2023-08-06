@@ -39,7 +39,6 @@ axiosService.interceptors.response.use(
     },
     (error) => {
         window.hideGlobalSpin();
-        console.error(error);
         let errorMsg = errorMsgMap[error?.response?.status] || `Error Code: ${error.response.status},  Message: ${error.message}`;
         console.error(errorMsg);
         //TODO:发现 session 超时前端做退出动作，删掉浏览器缓存，跳转到首页。

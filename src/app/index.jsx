@@ -1,6 +1,4 @@
 import React, { Suspense, useEffect, useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
@@ -11,21 +9,12 @@ import ErrorBoundary from 'src/app/shared/ErrorBoundary';
 import NavBar from 'src/app/shared/nav-bar';
 import Footer from 'src/app/shared/footer';
 import NiceFishRoutes from 'src/app/routes';
-import signService from 'src/app/service/sign-in-service';
 
 import './index.scss';
 
 const App = props => {
-  const { t } = useTranslation();
   const toast = useRef(null);
-  const location = useLocation();
   const [blocked, setBlocked] = useState(false);
-  const [currentUser, setCurrentUser] = useState([]);
-
-  useEffect(() => {
-    //TODO:把 currentUser 移动到 Context 中。
-    setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
-  }, [location]);
 
   useEffect(() => {
     //FIXME:全局公用方法有更好的封装？？？
@@ -39,16 +28,6 @@ const App = props => {
       setBlocked(false);
     }
   }, []);
-
-  const doSignOut = () => {
-    console.log("退出登录");
-    signService.signOut().then(response => {
-      localStorage.removeItem("currentUser");
-      setCurrentUser(null);
-    }, error => {
-      console.error(error);
-    });
-  }
 
   return (
     <>

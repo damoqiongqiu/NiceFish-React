@@ -29,6 +29,7 @@
     "analyzer": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack-bundle-analyzer --port 8888 ./docs/stats.json"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "1.9.5",
     "@ckeditor/ckeditor5-build-classic": "38.1.1",
     "@ckeditor/ckeditor5-react": "6.1.0",
     "axios": "1.4.0",
@@ -41,12 +42,11 @@
     "primeflex": "3.3.0",
     "primeicons": "6.0.1",
     "primereact": "9.6.0",
-    "quill": "1.3.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "13.0.3",
     "react-router-dom": "6.13.0",
-    "reflect-metadata": "0.1.13"
+    "react-redux": "8.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.22.9",

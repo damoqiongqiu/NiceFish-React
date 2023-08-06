@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { signIn } from 'src/app/shared/session/';
+
 import environment from "src/environments/environment";
 import signService from 'src/app/service/sign-in-service';
 import Captcha from 'src/app/shared/captcha';
@@ -7,6 +10,7 @@ import Captcha from 'src/app/shared/captcha';
 import './index.scss';
 
 export default props => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isMock = environment.isMock;
 
@@ -177,7 +181,7 @@ export default props => {
       response => {
         const data = response.data;
         if (data.success) {
-          localStorage.setItem("currentUser", JSON.stringify(data.data));
+          dispatch(signIn(data.data));
           navigate('/home');
         } else {
           console.error(data && data.msg);

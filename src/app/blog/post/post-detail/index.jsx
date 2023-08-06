@@ -30,7 +30,6 @@ export default props => {
           title: item.displayName,
         });
       });
-      console.log(temp);
       setImages(temp);
     });
   }, []);
