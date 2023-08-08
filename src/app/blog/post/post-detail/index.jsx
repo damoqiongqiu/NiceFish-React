@@ -6,7 +6,7 @@ import { Galleria } from 'primereact/galleria';
 import './index.scss';
 
 export default props => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [images, setImages] = useState(null);
   const [postDetail, setPostDetail] = useState(
     {

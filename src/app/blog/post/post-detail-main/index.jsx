@@ -10,7 +10,7 @@ export default props => {
       <div className="row">
         <div className="col-md-9">
           <PostDetail {...props} />
-          <CommentList />
+          <CommentList {...props} />
         </div>
         <div className="col-md-3">
           <UserInfo />
