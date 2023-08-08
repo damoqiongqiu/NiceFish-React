@@ -11,7 +11,7 @@ const roleDetailURL = environment.dataURL.roleDetailURL;
 const updateUserRoleRelationURL = environment.dataURL.updateUserRoleRelationURL;
 
 export default {
-    getRoleTable(page, searchStr) {
+    getRoleTable: (page, searchStr) => {
         let reqURL = _.template(roleTableURL)({ page: page });
         return axiosService.post(reqURL, {
             roleName: searchStr
@@ -23,29 +23,29 @@ export default {
      * @param userId 
      * @returns 
      */
-    getRoleListAllByUserId(userId) {
+    getRoleListAllByUserId: (userId) => {
         let reqURL = _.template(roleListByUserIdURL)({ userId: userId });
         return axiosService.get(reqURL);
     },
 
-    saveUserRoleRelation(userId, roles) {
+    saveUserRoleRelation: (userId, roles) => {
         return axiosService.post(updateUserRoleRelationURL, { userId: userId, roleEntities: roles });
     },
 
-    getRoleInfo(roleId) {
+    getRoleInfo: (roleId) => {
         let reqURL = _.template(roleDetailURL)({ id: roleId });
         return axiosService.get(reqURL);
     },
 
-    newRole(roleInfo) {
+    newRole: (roleInfo) => {
         return axiosService.post(newRoleURL, roleInfo);
     },
 
-    updateRole(roleInfo) {
+    updateRole: (roleInfo) => {
         return axiosService.post(updateRoleURL, roleInfo);
     },
 
-    deleteRole(id) {
+    deleteRole: (id) => {
         let reqURL = _.template(delRoleURL)({ id: id });
         return axiosService.delete(reqURL);
     }

@@ -7,15 +7,15 @@ const signOutURL = environment.dataURL.signOutURL;
 const getSessionUserURL = environment.dataURL.getSessionUserURL;
 
 export default {
-    signIn(user) {
+    signIn: (user) => {
         return axiosService.post(
             `${signInURL}?userName=${user.userName}&password=${user.password}&validateCode=${user.captcha}&rememberMe=${user.rememberMe}`
         );
     },
-    signOut() {
+    signOut: () => {
         return axiosService.get(signOutURL);
     },
-    getSessionUser() {
+    getSessionUser: () => {
         return axiosService.get(getSessionUserURL);
     }
 }

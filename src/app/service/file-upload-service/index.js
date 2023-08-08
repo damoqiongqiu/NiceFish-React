@@ -10,7 +10,7 @@ export default {
      * @param {*} files 
      * @returns 
      */
-    async uploadFiles(files) {
+    uploadFiles: async (files) => {
         const formData = new FormData();
         for (let i = 0; i < files.length; i++) {
             formData.append('files', files[i]);

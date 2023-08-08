@@ -11,38 +11,38 @@ const updateCompPermURL = environment.dataURL.updateCompPermURL;
 const compRoleListURL = environment.dataURL.compRoleListURL;
 
 export default {
-    getCompPermTable(page, searchStr) {
+    getCompPermTable: (page, searchStr) => {
         let reqURL = _.template(compPermListURL)({ page: page });
         return axiosService.post(reqURL, {
             componentName: searchStr,
         });
     },
 
-    getCompPermListByRoleId(roleEntity = {}) {
+    getCompPermListByRoleId: (roleEntity) => {
         let reqURL = _.template(compPermissionListAllByRole)();
         return axiosService.post(reqURL, roleEntity);
     },
 
-    getRolesByCompId(compPermId) {
+    getRolesByCompId: (compPermId) => {
         let reqURL = _.template(compRoleListURL)({ id: compPermId });
         return axiosService.get(reqURL);
     },
 
-    getCompPermDetails(compPermId) {
+    getCompPermDetails: (compPermId) => {
         let reqURL = _.template(compPermDetailURL)({ id: compPermId });
         return axiosService.get(reqURL);
     },
 
-    deleteByCompPermId(compPermId) {
+    deleteByCompPermId: (compPermId) => {
         let reqURL = _.template(delCompPermURL)({ id: compPermId });
         return axiosService.delete(reqURL);
     },
 
-    newCompPerm(componentPermission) {
+    newCompPerm: (componentPermission) => {
         return axiosService.post(newCompPermURL, componentPermission);
     },
 
-    updateCompPerm(componentPermission) {
+    updateCompPerm: (componentPermission) => {
         return axiosService.post(updateCompPermURL, componentPermission);
     }
 }

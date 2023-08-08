@@ -8,19 +8,19 @@ const commentListByPostIdURL = environment.dataURL.commentListByPostIdURL;
 const writeCommentURL = environment.dataURL.writeCommentURL;
 
 export default {
-    getCommentTable(page) {
+    getCommentTable: (page) => {
         let reqURL = _.template(commentListURL)({ page: page });
         return axiosService.get(reqURL);
     },
-    delComment(id) {
+    delComment: (id) => {
         let reqURL = _.template(delCommentURL)({ id: id });
         return axiosService.delete(reqURL);
     },
-    getCommentList(postId, page) {
+    getCommentList: (postId, page) => {
         let reqURL = _.template(commentListByPostIdURL)({ postId: postId, page: page });
         return axiosService.get(reqURL);
     },
-    writeComment(comment) {
+    writeComment: (comment) => {
         let reqURL = _.template(writeCommentURL)();
         return axiosService.post(reqURL, comment);
     }

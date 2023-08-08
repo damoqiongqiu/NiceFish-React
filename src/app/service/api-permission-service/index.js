@@ -18,7 +18,7 @@ export default {
      * @param searchStr 
      * @returns 
      */
-    getApiPermissionTable(page, searchStr) {
+    getApiPermissionTable: (page, searchStr) => {
         let reqURL = _.template(apiPermissionTableURL)({ page: page });
         return axiosService.post(reqURL, {
             apiName: searchStr
@@ -29,7 +29,7 @@ export default {
      * 获取所有的 API 权限，TODO:带分页？？？
      * @returns 
      */
-    getApiPermissionListAll() {
+    getApiPermissionListAll: () => {
         let reqURL = _.template(apiPermissionListAll)();
         return axiosService.post(reqURL, {});
     },
@@ -38,31 +38,31 @@ export default {
      * 获取角色对应的 API 权限，TODO:带分页？？？
      * @returns 
      */
-    getApiPermissionListAllByRole(roleEntity) {
+    getApiPermissionListAllByRole: (roleEntity) => {
         let reqURL = _.template(apiPermissionListAllByRole)();
         return axiosService.post(reqURL, roleEntity);
     },
 
-    getRolesByApiId(apiPermissionId) {
+    getRolesByApiId: (apiPermissionId) => {
         let reqURL = _.template(apiRoleListURL)({ id: apiPermissionId });
         return axiosService.get(reqURL);
     },
 
-    getApiPermDetails(apiPermissionId) {
+    getApiPermDetails: (apiPermissionId) => {
         let reqURL = _.template(apiPermissionDetailURL)({ id: apiPermissionId });
         return axiosService.get(reqURL);
     },
 
-    deleteByApiId(id) {
+    deleteByApiId: (id) => {
         let reqURL = _.template(delApiPermissionURL)({ id: id });
         return axiosService.delete(reqURL);
     },
 
-    newApiPermission(apiPermission) {
+    newApiPermission: (apiPermission) => {
         return axiosService.post(newApiPermissionURL, apiPermission);
     },
 
-    updateApiPermission(apiPermission) {
+    updateApiPermission: (apiPermission) => {
         return axiosService.post(updateApiPermissionURL, apiPermission);
     }
 }

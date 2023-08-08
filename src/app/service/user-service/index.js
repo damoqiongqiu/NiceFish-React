@@ -10,26 +10,31 @@ const updateUserURL = environment.dataURL.updateUserURL;
 const userMenuListURL = environment.dataURL.userMenuListURL;
 
 export default {
-    getUserTable(page, searchStr) {
+    //管理后台用的用户列表
+    getUserTable: (page, searchStr) => {
         let reqURL = _.template(userListURL)({ page: page });
         return axiosService.post(reqURL, { userName: searchStr });
     },
 
-    del(id) {
+    //删除用户
+    del: (id) => {
         let reqURL = _.template(delUserURL)({ id: id });
         return axiosService.delete(reqURL);
     },
 
-    getUserDetails(userId) {
+    //根据 userId 加载用户信息
+    getUserDetails: (userId) => {
         let reqURL = _.template(userDetailURL)({ id: userId });
         return axiosService.get(reqURL);
     },
 
-    newUser(user) {
+    //注册新用户
+    newUser: (user) => {
         return axiosService.post(signUpURL, user);
     },
 
-    updateUser(user) {
+    //更新用户信息
+    updateUser: (user) => {
         return axiosService.post(updateUserURL, user);
     },
 
@@ -38,7 +43,7 @@ export default {
      * @param userId 
      * @returns 
      */
-    getMenuByUser(userId) {
+    getMenuByUser: (userId) => {
         let reqURL = _.template(userMenuListURL)({ id: userId });
         return axiosService.get(reqURL);
     }

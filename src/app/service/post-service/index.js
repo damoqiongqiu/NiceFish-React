@@ -13,19 +13,22 @@ export default {
         let reqURL = _.template(postListURL)({ page: page });
         return axiosService.get(reqURL);
     },
-    getPostDetail(id) {
+    //文章详情
+    getPostDetail: (id) => {
         let reqURL = _.template(postDetailURL)({ id: id });
         return axiosService.get(reqURL);
     },
-    writePost(post) {
+    //写文章
+    writePost: (post) => {
         return axiosService.post("/cms/post/write-post", post);
     },
     //管理后台用的文章列表
-    getPostTable(page) {
+    getPostTable: (page) => {
         let reqURL = _.template(postTableURL)({ page: page });
         return axiosService.get(reqURL);
     },
-    del(id) {
+    //删除文章
+    del: (id) => {
         let reqURL = _.template(delPostURL)({ id: id });
         return axiosService.delete(reqURL);
     }
