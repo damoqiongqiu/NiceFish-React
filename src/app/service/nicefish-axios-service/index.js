@@ -32,6 +32,7 @@ const errorMsgMap = {
     504: '后端服务异常',
     600: '网络异常，请稍后重试',
 }
+
 axiosService.interceptors.response.use(
     (response) => {
         window.hideGlobalSpin();

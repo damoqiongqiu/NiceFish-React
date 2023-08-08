@@ -43,25 +43,50 @@ export default {
         return axiosService.post(reqURL, roleEntity);
     },
 
+    /**
+     * 获取角色对应的 API 权限，TODO:带分页？？？
+     * @param {*} apiPermissionId 
+     * @returns 
+     */
     getRolesByApiId: (apiPermissionId) => {
         let reqURL = _.template(apiRoleListURL)({ id: apiPermissionId });
         return axiosService.get(reqURL);
     },
 
+    /**
+     * 获取角色对应的 API 权限，TODO:带分页？？？
+     * @param {*} apiPermissionId 
+     * @returns 
+     */
     getApiPermDetails: (apiPermissionId) => {
         let reqURL = _.template(apiPermissionDetailURL)({ id: apiPermissionId });
         return axiosService.get(reqURL);
     },
 
+    /**
+     * 删除 API 权限
+     * @param {*} id 
+     * @returns 
+     */
     deleteByApiId: (id) => {
         let reqURL = _.template(delApiPermissionURL)({ id: id });
         return axiosService.delete(reqURL);
     },
 
+    /**
+     * 新增 API 权限
+     * @param {*} apiPermission 
+     * @returns 
+     */
     newApiPermission: (apiPermission) => {
         return axiosService.post(newApiPermissionURL, apiPermission);
     },
 
+    /**
+     * 更新 API 权限
+     * @param {*} apiPermission 
+     * @returns 
+     */
     updateApiPermission: (apiPermission) => {
         return axiosService.post(updateApiPermissionURL, apiPermission);
     }
