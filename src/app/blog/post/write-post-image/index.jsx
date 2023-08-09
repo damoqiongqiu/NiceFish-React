@@ -16,7 +16,7 @@ import './index.scss';
 export default props => {
   const navigate = useNavigate();
   const isMock = environment.isMock;
-  const fileMaxSize = 10 * 1000 * 1000;//文件最大尺寸，字节
+  const fileMaxSize = 1000 * 1000 * 1000;//文件最大尺寸，字节
   const [totalSize, setTotalSize] = useState(0);
   const fileUploadRef = useRef(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -288,11 +288,24 @@ export default props => {
                   uploadedFiles.map((file, index) => (
                     <div className='p-fileupload-row' key={index}>
                       <div>
-                        <img
-                          alt={file.name}
-                          role="presentation"
-                          src={`/cms/file/download/${file.id}`}
-                        />
+                        {
+                          file.fileSuffix === "mp4" ?
+                            <video controls style={{
+                              width: " 100%",
+                              height: "100%",
+                              position: "absolute",
+                              top: 0,
+                              left: 0
+                            }}>
+                              <source src={`/cms/file/download/${file.id}`} />
+                            </video>
+                            :
+                            <img
+                              alt={file.name}
+                              role="presentation"
+                              src={`/cms/file/download/${file.id}`}
+                            />
+                        }
                         <Tag
                           value={file.fileSize + " Bytes"}
                           severity="warning"
@@ -335,7 +348,7 @@ export default props => {
               className="file-uploader"
               ref={fileUploadRef}
               multiple
-              accept="image/*"
+              accept="image/*,video/mp4"
               maxFileSize={fileMaxSize}
               customUpload={true} //自己手动处理上传
               mode="basic"
@@ -382,10 +395,13 @@ export default props => {
                 icon: 'pi pi-fw pi-images',
                 iconOnly: false,
                 className: 'custom-choose-btn p-button-rounded p-button-outlined',
-                label: '选择图片',
+                label: '选择图片或视频文件',
               }}
             />
           </>
+          <div className='row'>
+            <p className='text-danger'>上传视频时，只能上传一个视频文件，如果上传多个，系统会自动忽略，只展示第一个视频。</p>
+          </div>
           <div className="row">
             <div className="col-md-12">
               <form role="form" noValidate className="form-horizontal">

@@ -2,13 +2,21 @@
     margin-bottom: 15px;
     position: relative;
 
-    .img-container {
+    .media-container {
         background: #555;
         overflow: hidden;
         position: relative;
         width: 100%;
         height: 0;
         padding-bottom: calc(100%*9/16);
+
+        .video-root {
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
         //以下覆盖 Galleria 组件内部的样式。
         .galleria-root {

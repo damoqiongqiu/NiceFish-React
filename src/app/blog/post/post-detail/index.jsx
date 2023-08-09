@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import postService from 'src/app/service/post-service';
+import ReactPlayer from 'react-player'
 import { Galleria } from 'primereact/galleria';
 
 import './index.scss';
 
 export default props => {
   const { id } = useParams();
+  const [videoURL, setVideoURL] = useState(null);
   const [images, setImages] = useState(null);
   const [postDetail, setPostDetail] = useState(
     {
@@ -19,17 +21,21 @@ export default props => {
     postService.getPostDetail(id).then(response => {
       setPostDetail(response.data);
 
-      //整理成 Galleria 组件需要的数据格式
       let imgs = response.data.fileUploadEntities;
       let temp = [];
-      imgs && imgs.map((item, index) => {
-        temp.push({
-          itemImageSrc: `/cms/file/download/${item.id}`,
-          thumbnailImageSrc: `/cms/file/download/${item.id}`,
-          alt: item.displayName,
-          title: item.displayName,
-        });
-      });
+      for (let item of imgs) {
+        if (item.fileSuffix === 'mp4') {//TODO: 增加视频格式
+          setVideoURL(`/cms/file/download/${item.id}`);
+        } else {
+          //整理成 Galleria 组件需要的数据格式
+          temp.push({
+            itemImageSrc: `/cms/file/download/${item.id}`,
+            thumbnailImageSrc: `/cms/file/download/${item.id}`,
+            alt: item.displayName,
+            title: item.displayName,
+          });
+        }
+      }
       setImages(temp);
     });
   }, []);
@@ -45,19 +51,24 @@ export default props => {
 
   return (
     <div className="post-detail-container">
-      <div className="img-container">
-        <Galleria
-          value={images}
-          numVisible={5}
-          showThumbnails={false}
-          circular
-          showItemNavigators
-          autoPlay
-          transitionInterval={2000}
-          item={itemTemplate}
-          thumbnail={thumbnailTemplate}
-          className='galleria-root'
-        />
+      <div className="media-container">
+        {
+          videoURL ?
+            <ReactPlayer url={videoURL} controls className='video-root' />
+            :
+            <Galleria
+              value={images}
+              numVisible={5}
+              showThumbnails={false}
+              circular
+              showItemNavigators
+              // autoPlay
+              transitionInterval={2000}
+              item={itemTemplate}
+              thumbnail={thumbnailTemplate}
+              className='galleria-root'
+            />
+        }
       </div>
       <div className='content-container'>
         <h4>
