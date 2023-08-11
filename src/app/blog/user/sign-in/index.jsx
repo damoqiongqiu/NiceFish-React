@@ -10,7 +10,6 @@ import ajv from "src/app/service/ajv-validate-service";
 
 import './index.scss';
 
-
 // 表单输入项数据规格定义
 const schema = {
   "type": "object",
@@ -38,13 +37,6 @@ const schema = {
   },
   "required": ["userName", "password", "captcha"]
 }
-
-// 使用正则表达式来验证邮箱格式
-ajv.addFormat('email', (data) => {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailRegex.test(data);
-});
-
 const ajvValidate = ajv.compile(schema);
 
 
@@ -100,7 +92,6 @@ export default props => {
       console.log(fieldErrors);
       return;
     }
-
 
     signService.signIn(userInfo).then(
       response => {
