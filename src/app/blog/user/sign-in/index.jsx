@@ -6,162 +6,60 @@ import { signIn } from 'src/app/shared/session/';
 import environment from "src/environments/environment";
 import signService from 'src/app/service/sign-in-service';
 import Captcha from 'src/app/shared/captcha';
+import ajv from "src/app/service/ajv-validate-service";
 
 import './index.scss';
+
+
+// 表单输入项数据规格定义
+const schema = {
+  "type": "object",
+  "properties": {
+    "userName": {
+      "type": "string",
+      "format": 'email',
+      "errorMessage": "请输入合法的邮箱格式。"
+    },
+    "password": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 16,
+      "errorMessage": "密码长度在 8 到 16 个字符之间。"
+    },
+    "captcha": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4,
+      "errorMessage": "验证码必须为字符串，长度在 1 到 4 个字符之间。"
+    },
+    "rememberMe": {
+      "type": "boolean"
+    }
+  },
+  "required": ["userName", "password", "captcha"]
+}
+
+// 使用正则表达式来验证邮箱格式
+ajv.addFormat('email', (data) => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(data);
+});
+
+const ajvValidate = ajv.compile(schema);
+
 
 export default props => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isMock = environment.isMock;
-
+  //表单校验状态
+  const [errors, setErrors] = useState({});
   const [userInfo, setUserInfo] = useState({
     userName: "",
     password: "",
     captcha: "",
     rememberMe: true,
   });
-
-  /**
-   * 输入项的校验状态
-   */
-  const [validationResult, setValidationResult] = useState({
-    userName: {
-      valid: true,
-      ruleName: "",//valid 为 true 时，此项为空
-      message: '',//valid 为 true 时，此项为空
-    },
-    password: {
-      valid: true,
-      ruleName: "",
-      message: '',
-    },
-    captcha: {
-      valid: true,
-      ruleName: "",
-      message: '',
-    },
-  });
-
-  /**
-   * 输入项的校验规则
-   */
-  const validators = {
-    userName: [
-      {
-        ruleName: 'required',
-        message: '请输入邮箱或者手机号',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'email',
-        message: '请输入正确的邮箱',
-        fn: (value) => {
-          return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(value);
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '用户名最多32位',
-        fn: (value) => {
-          return value && value.length <= 32;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '用户名最少2位',
-        fn: (value) => {
-          return value && value.length >= 2;
-        }
-      }
-    ],
-    password: [
-      {
-        ruleName: 'required',
-        message: '请输入密码',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '密码最多16位',
-        fn: (value) => {
-          return value && value.length <= 16;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '密码最少8位',
-        fn: (value) => {
-          return value && value.length >= 8;
-        }
-      }
-    ],
-    captcha: [
-      {
-        ruleName: 'required',
-        message: '请输入验证码',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '验证码最多10位',
-        fn: (value) => {
-          return value && value.length <= 10;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '验证码最少1位',
-        fn: (value) => {
-          return value && value.length >= 1;
-        }
-      }
-    ]
-  }
-
-  /**
-   * 失去焦点触发校验
-   * @param {*} key 
-   * @param {*} value 
-   */
-  const onBlurHandler = (key, value) => {
-    const temp = {
-      userName: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
-      password: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
-      captcha: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
-    };
-
-    validators[key].forEach(validator => {
-      //非必填且值为空时，不校验
-      if (validator.ruleName === 'required' && value.length === 0) {
-        return;
-      }
-      if (!validator.fn(value)) {
-        temp[key].valid = false;
-        temp[key].ruleName = validator.ruleName;
-        temp[key].message = validator.message;
-      }
-    });
-
-    setValidationResult(temp);
-  }
 
   /**
    * 所有 input 的 onChange 事件的处理函数，对于 checkbox/radio/select 这些组件，需要处理好 value 值再调用此函数。
@@ -176,7 +74,34 @@ export default props => {
     setUserInfo(temp);
   }
 
+  /**
+   * 登录
+   * @param {*} evt 
+   * @returns 
+   */
   const doSignIn = (evt) => {
+    evt.preventDefault();
+
+    //mock 状态无法从服务端加载验证码，这里提供一个假的默认值
+    if (isMock) {
+      userInfo.captcha = "0000";
+    }
+
+    const isValid = ajvValidate(userInfo);
+    setErrors({});
+
+    if (!isValid) {
+      const fieldErrors = {};
+      ajvValidate?.errors.forEach((error) => {
+        const field = error.instancePath.substring(1);
+        fieldErrors[field] = error.message;
+      });
+      setErrors(fieldErrors);
+      console.log(fieldErrors);
+      return;
+    }
+
+
     signService.signIn(userInfo).then(
       response => {
         const data = response.data;
@@ -193,6 +118,11 @@ export default props => {
       })
   }
 
+  /**
+   * 找回密码
+   * TODO:需要实现
+   * @param {*} evt 
+   */
   const retrievePwd = (evt) => {
     evt.preventDefault();
     navigate('/retrieve-pwd');
@@ -207,7 +137,7 @@ export default props => {
         <div className="panel-body">
           <p className="bg-danger">测试用户: admin@126.com / 12345678</p>
           <form noValidate className="form-horizontal" role="form">
-            <div className={`form-group ${validationResult.userName.valid ? "" : "has-error"}`}>
+            <div className={`form-group ${errors.userName ? "has-error" : ""}`}>
               <label className="col-md-2 control-label">邮箱：</label>
               <div className="col-md-10">
                 <input
@@ -219,14 +149,13 @@ export default props => {
                   type="text"
                   placeholder="请输入完整邮箱或者手机号"
                   onChange={(e) => handleInputChange('userName', e.target.value)}
-                  onBlur={(e) => onBlurHandler('userName', e.target.value)}
                 />
                 {
-                  !validationResult.userName.valid ? <div className="text-danger">{validationResult.userName.message}</div> : <></>
+                  errors.userName ? <div className="text-danger">{errors.userName}</div> : <></>
                 }
               </div>
             </div>
-            <div className={`form-group ${validationResult.password.valid ? "" : "has-error"}`}>
+            <div className={`form-group ${errors.password ? "has-error" : ""}`}>
               <label className="col-md-2 control-label">密码：</label>
               <div className="col-md-10">
                 <input
@@ -239,17 +168,16 @@ export default props => {
                   placeholder="至少8位"
                   value={userInfo.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
-                  onBlur={(e) => onBlurHandler('password', e.target.value)}
                 />
                 {
-                  !validationResult.password.valid ? <div className="text-danger">{validationResult.password.message}</div> : <></>
+                  errors.password ? <div className="text-danger">{errors.password}</div> : <></>
                 }
               </div>
             </div>
             {
               isMock ? <></> :
                 <>
-                  <div className={`form-group ${validationResult.captcha.valid ? "" : "has-error"}`}>
+                  <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
                     <label className="col-md-2 control-label">验证码：</label>
                     <div className="col-md-10">
                       <input
@@ -262,10 +190,9 @@ export default props => {
                         name="captcha"
                         value={userInfo.captcha}
                         onChange={(e) => handleInputChange('captcha', e.target.value)}
-                        onBlur={(e) => onBlurHandler('captcha', e.target.value)}
                       />
                       {
-                        !validationResult.captcha.valid ? <div className="text-danger">{validationResult.captcha.message}</div> : <></>
+                        errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
                       }
                     </div>
                   </div>

@@ -22,11 +22,19 @@ NiceFish-React 在 GitHub Pages 上的演示地址（Mock 数据，无后端）�
 
 ## 2.主要依赖
 
--   React: 18.2.0
--   Bootstrap: 3.3.7
--   echarts: 4.2.1
--   primereact: 9.6.0
--   CKEditor 5
+| 名称             | 版本   | 描述                                      |
+| ---------------- | ------ | ----------------------------------------- |
+| React            | 18.2.0 | React 核心库。                            |
+| Bootstrap        | 3.3.7  | 用来做响应式布局。                        |
+| echarts          | 4.2.1  | 百度开源的数据可视化工具。                |
+| primereact       | 9.6.0  | PrimeReact 是一个开源的 React UI 组件库。 |
+| CKEditor 5       | 27.1.0 | CKEditor 是一个开源的富文本编辑器。       |
+| ajv              | 8.12.0 | ajv 是一个 JSON Schema 校验工具。         |
+| i18next          | 23.4.1 | i18next 是一个国际化工具。                |
+| react-player     | 2.12.0 | 视频播放器。                              |
+| react-redux      | 8.1.2  | 状态管理。                                |
+| axios            | 1.4.0  | 发送 HTTP 请求。                          |
+| react-router-dom | 6.13.0 | 路由。                                    |
 
 **注意：为了防止出现 NodeJS 模块兼容性问题，本项目在 package.json 中锁定了所有 Node 模块版本。如有需要，您可以自己测试兼容版本号（不建议这样做，因为会消耗掉大量的时间）。**
 
