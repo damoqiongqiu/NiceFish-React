@@ -8,18 +8,28 @@ import commentService from "src/app/service/comment-service";
 import './index.scss';
 
 export default props => {
+  //评论列表
   const [commentList, setCommentList] = useState([]);
+
+  //分页参数
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  /**
+   * 分页事件
+   * @param {*} event 
+   */
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
     setPage(event.page + 1);
   };
 
+  /**
+   * 加载评论列表
+   */
   const loadData = () => {
     commentService.getCommentTable(page).then(response => {
       let data = response.data;
@@ -32,6 +42,11 @@ export default props => {
 
   useEffect(loadData, []);
 
+  /**
+   * 删除评论
+   * @param {*} rowData 
+   * @param {*} ri 
+   */
   const delComment = (rowData, ri) => {
     confirmDialog({
       message: '确定要删除吗？',
@@ -63,6 +78,11 @@ export default props => {
     });
   }
 
+  /**
+   * 表格中的操作按钮模板
+   * @param {*} item
+   * @returns
+   */
   const operationTemplate = (item) => {
     return (
       <>

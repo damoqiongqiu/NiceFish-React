@@ -6,9 +6,13 @@ import compPermService from "src/app/service/component-permission-service";
 import './index.scss';
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
   //前端组件权限是 tree 形结构，这里需要把父层节点的 pId 也传进来，没有父层时传 -1 。
   const { compPermId, pId } = useParams();
+
+  //表单校验错误信息
   const [isFormValid, setFormValid] = useState(true);
 
   //formValue 里面的 k-v 与服务端接口对应，方便提交和加载数据。
@@ -251,6 +255,11 @@ export default props => {
     setFormValid(flag);
   }
 
+  /**
+   * 保存数据到服务端
+   * @param {*} e 
+   * @returns 
+   */
   const save = (e) => {
     e.preventDefault();
 

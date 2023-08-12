@@ -7,9 +7,16 @@ import { Galleria } from 'primereact/galleria';
 import './index.scss';
 
 export default props => {
+  //postId ，从路由参数中获取
   const { id } = useParams();
+
+  //视频 URL 地址
   const [videoURL, setVideoURL] = useState(null);
+
+  //图片列表
   const [images, setImages] = useState(null);
+
+  //文章详情
   const [postDetail, setPostDetail] = useState(
     {
       nickName: "",

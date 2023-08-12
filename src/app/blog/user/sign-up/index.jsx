@@ -36,8 +36,13 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
+  //表单校验错误信息
   const [errors, setErrors] = useState({});
+
+  //userInfo Entity
   const [userInfo, setUserInfo] = useState({
     avatarURL: "",
     userName: "",

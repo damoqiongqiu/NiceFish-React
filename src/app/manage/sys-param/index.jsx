@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './index.scss';
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
 
+  //TODO:实现业务逻辑，与服务端对接。
   return (
     <div className="sys-param-container">
       <div className="panel panel-default">

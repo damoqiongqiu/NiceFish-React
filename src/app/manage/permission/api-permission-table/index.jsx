@@ -9,19 +9,31 @@ import apiPermissionService from "src/app/service/api-permission-service";
 import './index.scss';
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
+  //API 权限列表
   const [apiList, setApiList] = useState([]);
+
+  //分页参数
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  /**
+   * 分页事件
+   * @param {*} event 
+   */
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
     setPage(event.page + 1);
   };
 
+  /**
+   * 加载 API 权限列表
+   */
   const loadData = () => {
     apiPermissionService.getApiPermissionTable(page, "").then(response => {
       let data = response.data;
@@ -34,6 +46,11 @@ export default props => {
 
   useEffect(loadData, []);
 
+  /**
+   * 删除 API 权限
+   * @param {*} rowData 
+   * @param {*} ri 
+   */
   const delApiPermission = (rowData, ri) => {
     confirmDialog({
       message: '确定要删除吗？',
@@ -65,6 +82,11 @@ export default props => {
     });
   };
 
+  /**
+   * 角色列表模板
+   * @param {*} item 
+   * @returns 
+   */
   const roleListTemplate = (item) => {
     return (
       item?.roleEntities?.map(role => (
@@ -75,6 +97,11 @@ export default props => {
     );
   };
 
+  /**
+   * 操作按钮模板
+   * @param {*} item 
+   * @returns 
+   */
   const operationTemplate = (item) => {
     return (
       <>

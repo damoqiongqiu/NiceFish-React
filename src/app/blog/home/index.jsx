@@ -10,7 +10,7 @@ export default props => {
         </div>
         <div className="col-md-2 col-lg-2 col-xl-2">
 
-          {/* 榜单抽成一个组件 */}
+          {/* TODO:榜单抽成一个组件 */}
           <div className="online-contact-container">
             <div className="panel panel-default">
               <div className="panel-heading">
@@ -26,7 +26,7 @@ export default props => {
             </div>
           </div>
 
-          {/* 推荐关注抽成一个组件 */}
+          {/* TODO:推荐关注抽成一个组件 */}
           <div className="online-contact-container">
             <div className="panel panel-default">
               <div className="panel-heading">

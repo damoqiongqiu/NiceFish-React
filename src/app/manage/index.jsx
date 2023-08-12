@@ -6,6 +6,7 @@ import OnlineContact from 'src/app/manage/online-contact';
 import './index.scss';
 
 export default props => {
+  // 从 redux 中获取当前登录用户
   const sessionUser = useSelector((state) => state.session.user);
 
   return (

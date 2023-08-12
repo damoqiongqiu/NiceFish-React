@@ -42,11 +42,19 @@ const ajvValidate = ajv.compile(schema);
 
 
 export default props => {
+  //redux hooks
   const dispatch = useDispatch();
+
+  //导航对象
   const navigate = useNavigate();
+
+  //mock 状态
   const isMock = environment.isMock;
-  //表单校验状态
+
+  //表单校验错误信息
   const [errors, setErrors] = useState({});
+
+  //userInfo Entity
   const [userInfo, setUserInfo] = useState({
     userName: "",
     password: "",
@@ -167,6 +175,7 @@ export default props => {
               </div>
             </div>
             {
+              //mock 状态下不显示验证码
               isMock ? <></> :
                 <>
                   <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>

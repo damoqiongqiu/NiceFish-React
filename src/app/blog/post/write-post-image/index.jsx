@@ -37,7 +37,10 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
+  //mock 状态
   const isMock = environment.isMock;
 
   //文件最大尺寸，字节
@@ -62,6 +65,11 @@ export default props => {
     captcha: ""
   });
 
+  /**
+   * 处理表单输入项变化
+   * @param {*} key 
+   * @param {*} value 
+   */
   const handleInputChange = (key, value) => {
     const temp = {
       ...post,
@@ -310,6 +318,7 @@ export default props => {
                   }
                 </div>
                 {
+                  // 如果是 mock 模式，不需要验证码
                   isMock ? <></> :
                     <>
                       <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>

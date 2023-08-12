@@ -10,18 +10,27 @@ import compPermService from "src/app/service/component-permission-service";
 import './index.scss';
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
+  //角色 ID
   const { roleId } = useParams();
+
   //所有 API 权限列表
   const [apiPermissionListAll, setApiPermissionListAll] = useState([]);
+
   //当前角色拥有的全部 API 权限列表
   const [apiPermissionListByRole, setApiPermissionListByRole] = useState([]);
+
   //API 权限表格中当前被点击的行
   const [rowClick, setRowClick] = useState(true);
+
   //所有前端页面权限列表
   const [compPermList, setCompPermList] = useState([]);
+
   //当前角色拥有的全部前端页面权限列表
   const [selectedComp, setSelectedComp] = useState([]);
+
   //角色自身的详情
   const [roleDetail, setRoleDetail] = useState({
     roleId,
@@ -29,6 +38,7 @@ export default props => {
     status: 1,
     remark: "",
   });
+
   //角色详情表单是否合法
   const [isFormValid, setFormValid] = useState(true);
 
@@ -272,6 +282,9 @@ export default props => {
       });
   }
 
+  /**
+   * TODO:这里看起来应该重构，按照顺序加载，第一个加载完成之后再发起第二个请求。
+   */
   useEffect(() => {
     getRoleInfo();
     getApiPermListAll();

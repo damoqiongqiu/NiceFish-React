@@ -13,7 +13,10 @@ import NiceFishRoutes from 'src/app/routes';
 import './index.scss';
 
 const App = props => {
+  // 全局公用的弹出消息
   const toast = useRef(null);
+
+  // 全局遮罩
   const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {

@@ -9,18 +9,28 @@ import postService from 'src/app/service/post-service';
 import './index.scss';
 
 export default props => {
+  //文章列表
   const [postList, setPostList] = useState([]);
+
+  //分页参数
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  /**
+   * 分页事件
+   * @param {*} event 
+   */
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
     setPage(event.page + 1);
   };
 
+  /**
+   * 加载文章列表
+   */
   const loadData = () => {
     postService.getPostTable(page).then(response => {
       let data = response.data;
@@ -33,6 +43,11 @@ export default props => {
 
   useEffect(loadData, []);
 
+  /**
+   * 删除文章
+   * @param {*} rowData 
+   * @param {*} ri 
+   */
   const delPost = (rowData, ri) => {
     confirmDialog({
       message: '确定要删除吗？',
@@ -64,6 +79,11 @@ export default props => {
     });
   }
 
+  /**
+   * 表格中的操作按钮模板
+   * @param {*} item 
+   * @returns 
+   */
   const operationTemplate = (item) => {
     return (
       <>

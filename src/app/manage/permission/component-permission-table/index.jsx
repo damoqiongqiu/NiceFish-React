@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+
+import { Button } from 'primereact/button';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
-import * as _ from 'lodash';
 import { confirmDialog } from 'primereact/confirmdialog';
-import compPermService from "src/app/service/component-permission-service";
+import * as _ from 'lodash';
 
+import compPermService from "src/app/service/component-permission-service";
 import './index.scss';
 
 export default props => {
+  // 导航对象
   const navigate = useNavigate();
+
   // tree 形的数据，服务端接口已经整理好
   const [compPermList, setCompPermList] = useState([]);
+
   //TODO: tree 目前没有带分页，这些分页参数目前没有作用，后续需要修改。
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  // 表格列定义
   const cols = [
     { field: "componentName", header: "组件名称", expander: true },
     { field: "url", header: "URL" },
@@ -57,6 +62,10 @@ export default props => {
     return node;
   }
 
+  /**
+   * 加载组件权限列表
+   * @returns 
+   */
   const getCompPermListByPage = () => {
     return compPermService
       .getCompPermTable(page, "")
@@ -70,6 +79,10 @@ export default props => {
       });
   }
 
+  /**
+   * 删除组件权限
+   * @param {*} rowData 
+   */
   const delComponentPermission = (rowData) => {
     confirmDialog({
       message: '确定要删除吗？',
@@ -100,11 +113,15 @@ export default props => {
     });
   }
 
-
   useEffect(() => {
     getCompPermListByPage();
   }, []);
 
+  /**
+   * 表格中的操作按钮模板
+   * @param {*} item 
+   * @returns 
+   */
   const operationTemplate = (item) => {
     return (
       <>

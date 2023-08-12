@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss';
 
 export default props => {
+  //TODO:实现业务逻辑，与服务端对接。
   return (
     <div className="user-info-container">
       <div className="panel panel-default">

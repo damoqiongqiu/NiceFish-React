@@ -4,30 +4,49 @@ import Common from 'src/app/shared/common.util';
 import './index.scss';
 
 export default props => {
-  const [emailFill, updateEmailFill] = useState('');
+  //邮箱地址
+  const [email, setEmail] = useState('');
+
+  //表单是否有效
   const [formValid, setFormValid] = useState(false);
+
+  //表单元数据
   const [meta, setMeta] = useState({ email: { touched: false, dirty: false } });
+
+  //表单错误信息
   const [errors, setErrors] = useState({});
-  const [forgot, updateForgot] = useState({
+
+  //表单数据
+  const [formData, setFormData] = useState({
     email: ''
   });
 
+  /**
+   * 失去焦点事件
+   * @param {*} key 
+   * @param {*} value 
+   */
   function onBlur(key, value) {
     switch (key) {
       case 'email':
-        setErrors(forgotFormValidator(forgot));
+        setErrors(forgotFormValidator(formData));
         setMeta({ ...meta, [key]: { touched: true } });
-        Common.toggleClass(value, updateEmailFill, Common.fillClass);
+        Common.toggleClass(value, setEmail, Common.fillClass);
     }
   }
 
+  /**
+   * 表单值改变事件
+   * @param {*} key 
+   * @param {*} value 
+   */
   function handleChange(key, value) {
     const upForgot = {
-      ...forgot,
+      ...formData,
       [key]: value
     };
     setMeta({ ...meta, [key]: { dirty: true } });
-    updateForgot(upForgot);
+    setFormData(upForgot);
     setErrors(forgotFormValidator(upForgot));
   }
 
@@ -36,7 +55,7 @@ export default props => {
   }
 
   useEffect(() => {
-    const errors = forgotFormValidator(forgot);
+    const errors = forgotFormValidator(formData);
     const isDisabled = Object.keys(errors).some((x) => errors[x]);
     setFormValid(isDisabled);
   }, [errors]);
@@ -53,10 +72,10 @@ export default props => {
               <label className="col-md-2 control-label">邮箱：</label>
               <div className="col-md-10">
                 <input
-                  className={`form-control ${emailFill} ${(meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''}`}
+                  className={`form-control ${email} ${(meta.email.touched || meta.email.dirty) && errors.email ? 'error' : ''}`}
                   type="text"
                   autoComplete="off"
-                  value={forgot.email}
+                  value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
                   onBlur={(e) => onBlur('email', e.target.value)}
                 />

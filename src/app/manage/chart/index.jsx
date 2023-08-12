@@ -5,6 +5,7 @@ import ReactEcharts from "echarts-for-react";
 import './index.scss';
 
 export default props => {
+  //Echarts 饼图配置项
   const pieOptions = {
     theme: '',
     event: [
@@ -72,6 +73,7 @@ export default props => {
     ]
   };
 
+  //Echarts 柱状图配置项
   const barOptions = {
     title: {
       text: 'NiceFish月访问量统计',
@@ -116,6 +118,7 @@ export default props => {
     ]
   };
 
+  //Echarts 折线图配置项
   const lineOptions = {
     title: {
       text: 'NiceFish月访问趋势图',
@@ -197,7 +200,6 @@ export default props => {
 
   useEffect(() => {
   }, []);
-
 
   return (
     <div>

@@ -31,9 +31,16 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
-  const { id } = useParams();//postId
+  //postId ，从路由参数中获取
+  const { id } = useParams();
+
+  //mock 状态
   const isMock = environment.isMock;
+
+  //评论列表
   const [commentList, setCommentList] = useState([]);
+
+  //分页参数
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
@@ -129,6 +136,7 @@ export default props => {
               }
             </div>
             {
+              // mock 状态不需要验证码
               isMock ? <></> :
                 <>
                   <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>

@@ -5,12 +5,19 @@ import postService from 'src/app/service/post-service';
 import './index.scss';
 
 export default props => {
+  //文章列表
   const [postList, setPostList] = useState([]);
+
+  //分页参数
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  /**
+   * 分页事件
+   * @param {*} event 
+   */
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
@@ -29,6 +36,7 @@ export default props => {
 
   return (
     <>
+      {/* TODO:抽成组件，实现业务逻辑 */}
       <div className='tag-list-container'>
         <h4>
           <a className="label label-default">推荐</a>

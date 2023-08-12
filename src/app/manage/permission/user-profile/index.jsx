@@ -5,8 +5,12 @@ import defaultAvatar from 'src/assets/images/react.svg';
 
 import './index.scss';
 
+/**
+ * 性别选项，静态数据。
+ * value 必须是数值，与服务端的接口类型对应，否则无法选中。
+ */
 const genderList = [
-  { label: '女', value: 0 },//value 必须是数值，与服务端的接口类型对应，否则无法选中。
+  { label: '女', value: 0 },
   { label: '男', value: 1 },
   { label: '未知', value: 2 }
 ];
@@ -16,11 +20,16 @@ const genderList = [
  * @author 大漠穷秋
  */
 export default props => {
+  // 导航对象
   const navigate = useNavigate();
+
+  // userId ，从路由参数中获取
   const { userId } = useParams();
+
+  // 表单校验错误信息
   const [isFormValid, setFormValid] = useState(true);
 
-  //formValue 里面的 k-v 与服务端接口对应，方便提交和加载数据。
+  // formValue 里面的 k-v 与服务端接口对应，方便提交和加载数据。
   const [formValue, setFormValue] = useState({
     userId,
     avatarURL: "",
@@ -296,6 +305,10 @@ export default props => {
     validateFormAll();
   }, [formValue]);
 
+  /**
+   * 保存数据到服务端
+   * @returns 
+   */
   const save = () => {
     validateFormAll();
     console.log("isFormValid", isFormValid);

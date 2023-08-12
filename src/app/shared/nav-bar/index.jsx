@@ -16,10 +16,19 @@ const languages = [
 ];
 
 const NavBar = props => {
+    //导航对象
     const navigate = useNavigate();
+
+    //redux hooks
     const dispatch = useDispatch();
+
+    //sessionUser，从 redux 中获取
     const sessionUser = useSelector((state) => state.session.user);
+
+    //i18n hooks
     const { t, i18n } = useTranslation();
+
+    //当前选中的语言
     const [selectedLanguage, setSelectedLanguage] = useState(
         () => {
             let lng = i18n.language;
@@ -33,6 +42,9 @@ const NavBar = props => {
         }
     );
 
+    /**
+     * 退出登录
+     */
     const doSignOut = () => {
         console.log("退出登录");
         signService.signOut().then(response => {

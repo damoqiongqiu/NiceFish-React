@@ -3,9 +3,16 @@ import { NavLink } from 'react-router-dom';
 import './index.scss';
 
 export default props => {
+  //文章详情
   const postDetail = props.postDetail;
+
+  //视频 URL 地址
   const [videoURL, setVideoURL] = useState(null);
-  const [imgFile0, setImgFile0] = useState(null);
+
+  //第0个媒体元素
+  const [media0, setMedia0] = useState(null);
+
+  //标题图片 URL 地址
   const [titleImgURL, setTitleImgURL] = useState(null);
 
   useEffect(() => {
@@ -16,7 +23,7 @@ export default props => {
         setVideoURL(`/cms/file/download/${item.id}`);
         break;
       } else {
-        setImgFile0(item);
+        setMedia0(item);
         setTitleImgURL(item?.id ? `/cms/file/download/${item?.id}` : "");
         break;
       }
@@ -41,7 +48,7 @@ export default props => {
             </video>
             :
             <img
-              alt={imgFile0?.name || "图片"}
+              alt={media0?.name || "图片"}
               role="presentation"
               src={`${titleImgURL}`}
             />

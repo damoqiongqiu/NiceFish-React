@@ -6,8 +6,13 @@ import apiPermissionService from "src/app/service/api-permission-service";
 import './index.scss';
 
 export default props => {
+  //导航对象
   const navigate = useNavigate();
+
+  //apiPermissionId，从路由参数中获取
   const { apiPermissionId } = useParams();
+
+  //表单校验错误信息
   const [isFormValid, setFormValid] = useState(true);
 
   //formValue 里面的 k-v 与服务端接口对应，方便提交和加载数据。
@@ -201,6 +206,10 @@ export default props => {
     setFormValid(flag);
   }
 
+  /**
+   * 保存数据到服务端
+   * @returns 
+   */
   const save = () => {
     validateFormAll();
     if (!isFormValid) {
