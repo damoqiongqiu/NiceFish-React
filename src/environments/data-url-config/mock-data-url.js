@@ -46,4 +46,5 @@ export const dataURL = {
     getSysParamsURL: "mock-data/sys-params-mock.json",
     commentListByPostIdURL: "mock-data/comment-list-mock.json",
     writeCommentURL: "",
+    fileUploadURL: "",
 };

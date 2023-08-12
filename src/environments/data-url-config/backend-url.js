@@ -49,4 +49,5 @@ export const dataURL = {
     getSysParamsURL: "/cms/param/all",
     commentListByPostIdURL: "/cms/comment/post-id/<%= postId %>/page/<%= page %>",
     writeCommentURL: "/cms/comment/write-comment",
+    fileUploadURL: "/cms/file/upload",
 };

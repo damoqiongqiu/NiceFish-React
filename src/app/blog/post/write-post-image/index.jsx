@@ -1,172 +1,66 @@
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
-import { ProgressBar } from 'primereact/progressbar';
 import { Tag } from 'primereact/tag';
 import { Tooltip } from 'primereact/tooltip';
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import postService from 'src/app/service/post-service';
 import fileUploadService from 'src/app/service/file-upload-service';
 import Captcha from 'src/app/shared/captcha';
+import ajv from "src/app/service/ajv-validate-service";
 
 import environment from "src/environments/environment";
-
 import './index.scss';
+
+// 表单输入项数据规格定义
+const schema = {
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "errorMessage": "内容长度在 1 到 200 个字符之间。"
+    },
+    "captcha": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4,
+      "errorMessage": "验证码必须为字符串，长度在 1 到 4 个字符之间。"
+    },
+  },
+  "required": ["content", "captcha"],
+}
+//ajv 的 compile 吃资源较多，这里放在组件外面，保证只执行一次。
+const ajvValidate = ajv.compile(schema);
 
 export default props => {
   const navigate = useNavigate();
   const isMock = environment.isMock;
-  const fileMaxSize = 1000 * 1000 * 1000;//文件最大尺寸，字节
+
+  //文件最大尺寸，字节
+  const fileMaxSize = 1000 * 1000 * 1000;
+
+  //文件总大小，字节
   const [totalSize, setTotalSize] = useState(0);
+
+  //文件上传组件
   const fileUploadRef = useRef(null);
+
+  //已经上传的文件
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [isFormValid, setFormValid] = useState(true);
+
+  //表单校验状态
+  const [errors, setErrors] = useState({});
+
+  //数据 Entity
   const [post, setPost] = useState({
-    title: "",
+    title: "",//服务端接口要求必须传 title ，可为空字符串
     content: "",
     captcha: ""
   });
-
-  /**
-   * 输入项的校验状态
-   */
-  const [validationResult, setValidationResult] = useState({
-    content: {
-      valid: true,
-      ruleName: "",
-      message: '',
-    },
-    captcha: {
-      valid: true,
-      ruleName: "",
-      message: '',
-    },
-  });
-
-  /**
-   * 输入项的校验规则
-   */
-  const validators = {
-    content: [
-      {
-        ruleName: 'required',
-        message: '请输入内容',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '内容最长 200 个字符',
-        fn: (value) => {
-          return value && value.length <= 200;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '内容至少1个字符',
-        fn: (value) => {
-          return value && value.length >= 1;
-        }
-      }
-    ],
-    captcha: [
-      {
-        ruleName: 'required',
-        message: '请输入验证码',
-        fn: (value) => {
-          return value && value.length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '验证码最多10位',
-        fn: (value) => {
-          return value && value.length <= 10;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '验证码最少1位',
-        fn: (value) => {
-          return value && value.length >= 1;
-        }
-      }
-    ]
-  }
-
-  /**
-   * 失去焦点触发校验
-   * @param {*} key 
-   * @param {*} value 
-   */
-  const onBlurHandler = (key, value) => {
-    const temp = {
-      content: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
-      captcha: {
-        valid: true,
-        ruleName: "",
-        message: '',
-      },
-    };
-
-    validators[key].forEach(validator => {
-      if (!validator.fn(value)) {
-        temp[key].valid = false;
-        temp[key].ruleName = validator.ruleName;
-        temp[key].message = validator.message;
-      }
-    });
-
-    setValidationResult(temp);
-  }
-
-  /**
-   * 校验单个输入项的合法性
-   */
-  const validateField = (name, value) => {
-    if (!validators[name]) {
-      return;
-    }
-
-    let temp = {
-      ...validationResult,
-      ...{
-        [name]: {
-          valid: true,
-          ruleName: "",
-          message: '',
-        }
-      }
-    };
-
-    //非必填且值为空时，结果标记为合法，不再继续校验。
-    if (value.length === 0) {
-      let isRequired = false;
-      validators[name].forEach(validator => {
-        if (validator.ruleName === 'required') {
-          isRequired = true;
-        }
-      });
-      if (!isRequired) {
-        return;
-      }
-    }
-
-    validators[name].forEach(validator => {
-      if (!validator.fn(value)) {
-        temp[name].valid = false;
-        temp[name].ruleName = validator.ruleName;
-        temp[name].message = validator.message;
-      }
-    });
-
-    setValidationResult(temp);
-  }
 
   const handleInputChange = (key, value) => {
     const temp = {
@@ -177,33 +71,19 @@ export default props => {
   }
 
   /**
-   * 校验表单整体的合法性，只要有一个输入项不合法，表单整体标记为不合法。
-   * @returns 
-   */
-  const validateFormAll = () => {
-    let flag = true;
-
-    for (let key in post) {
-      if (document.getElementsByName(key).length) {
-        let value = document.getElementsByName(key)[0].value;
-        validateField(key, value);
-      }
-    }
-
-    for (let key in validationResult) {
-      if (!validationResult[key].valid) {
-        flag = false;
-      }
-    }
-
-    setFormValid(flag);
-  }
-
-  /**
    * 上传文件
    * @param {*} e 
    */
   const doUpLoadFiles = async (e) => {
+    if (isMock) {
+      niceFishToast({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Mock 状态不会向服务端提交数据。',
+      });
+      return;
+    }
+
     fileUploadService.uploadFiles(e.files).then(
       response => {
         if (response && response.data.success) {
@@ -223,17 +103,28 @@ export default props => {
   /**
    * 整理并提交所有数据
    */
-  const doWritePost = () => {
-    //TODO:表单校验看起来没有生效
-    validateFormAll();
-    if (!isFormValid) {
-      niceFishToast({
-        severity: 'error',
-        summary: 'Error',
-        detail: '存在不合法的输入项，请检查',
+  const doWritePost = (e) => {
+    e.preventDefault();
+
+    //mock 状态无法从服务端加载验证码，这里提供一个假的默认值
+    if (isMock) {
+      post.captcha = "0000";
+    }
+
+    const isValid = ajvValidate(post);
+    setErrors({});
+
+    if (!isValid) {
+      const fieldErrors = {};
+      ajvValidate?.errors.forEach((error) => {
+        const field = error.instancePath.substring(1);
+        fieldErrors[field] = error.message;
       });
+      setErrors(fieldErrors);
+      console.log(fieldErrors);
       return;
     }
+
     if (!uploadedFiles.length) {
       niceFishToast({
         severity: 'error',
@@ -405,7 +296,7 @@ export default props => {
           <div className="row">
             <div className="col-md-12">
               <form role="form" noValidate className="form-horizontal">
-                <div className={`form-group ${validationResult.content.valid ? "" : "has-error"}`}>
+                <div className={`form-group ${errors.content ? "has-error" : ""}`}>
                   <textarea
                     rows="10"
                     className="form-control"
@@ -413,27 +304,26 @@ export default props => {
                     name="content"
                     value={post.content}
                     onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-                    onBlur={(e) => validateField(e.target.name, e.target.value)}
                   ></textarea>
+                  {
+                    errors.content ? <div className="text-danger">{errors.content}</div> : <></>
+                  }
                 </div>
                 {
                   isMock ? <></> :
                     <>
-                      <div className={`form-group ${validationResult.captcha.valid ? "" : "has-error"}`}>
+                      <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
                         <input
                           className={`form-control`}
-                          required
-                          maxLength="4"
                           type="text"
                           placeholder="至少1位，最多4位"
                           autoComplete="off"
                           name="captcha"
                           value={post.captcha}
                           onChange={(e) => handleInputChange('captcha', e.target.value)}
-                          onBlur={(e) => onBlurHandler('captcha', e.target.value)}
                         />
                         {
-                          !validationResult.captcha.valid ? <div className="text-danger">{validationResult.captcha.message}</div> : <></>
+                          errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
                         }
                       </div>
                       <div className="form-group">

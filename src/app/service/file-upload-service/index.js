@@ -2,7 +2,8 @@ import axiosService from "src/app/service/nicefish-axios-service";
 import * as _ from 'lodash';
 import environment from "src/environments/environment";
 
-const fileUploadAPI = "/cms/file/upload";
+
+const fileUploadURL = environment.dataURL.fileUploadURL;
 
 export default {
     /**
@@ -16,7 +17,7 @@ export default {
             formData.append('files', files[i]);
         }
 
-        const response = await axiosService.post(fileUploadAPI, formData, {
+        const response = await axiosService.post(fileUploadURL, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

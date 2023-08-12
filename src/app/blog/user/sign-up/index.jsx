@@ -32,6 +32,7 @@ const schema = {
   },
   "required": ["email", "password", "confirmPassword"],
 }
+//ajv 的 compile 吃资源较多，这里放在组件外面，保证只执行一次。
 const ajvValidate = ajv.compile(schema);
 
 export default props => {

@@ -37,6 +37,7 @@ const schema = {
   },
   "required": ["userName", "password", "captcha"]
 }
+//ajv 的 compile 吃资源较多，这里放在组件外面，保证只执行一次。
 const ajvValidate = ajv.compile(schema);
 
 
