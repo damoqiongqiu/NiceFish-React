@@ -1,10 +1,12 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
-
 import Captcha from 'src/app/shared/captcha';
 import commentService from "src/app/service/comment-service";
 import environment from "src/environments/environment";
 import ajv from "src/app/service/ajv-validate-service";
+
+//导入全局共用的 i18n 实例。
+import i18n from "src/app/shared/i18n";
 
 import './index.scss';
 
@@ -16,13 +18,11 @@ const schema = {
       "type": "string",
       "minLength": 1,
       "maxLength": 200,
-      "errorMessage": "内容长度在 1 到 200 个字符之间。"
     },
     "captcha": {
       "type": "string",
       "minLength": 1,
       "maxLength": 4,
-      "errorMessage": "验证码必须为字符串，长度在 1 到 4 个字符之间。"
     },
   },
   "required": ["content", "captcha"],
@@ -37,6 +37,9 @@ export default props => {
   //mock 状态
   const isMock = environment.isMock;
 
+  //验证码组件引用
+  const captchaRef = useRef();
+
   //评论列表
   const [commentList, setCommentList] = useState([]);
 
@@ -49,8 +52,8 @@ export default props => {
   //表单校验状态
   const [errors, setErrors] = useState({});
 
-  //评论 Entity
-  const [commentData, setCommentData] = useState({
+  //表单数据
+  const [formData, setFormData] = useState({
     postId: id,
     content: "",
     captcha: ""
@@ -79,10 +82,10 @@ export default props => {
    */
   const handleInputChange = (key, value) => {
     const temp = {
-      ...commentData,
+      ...formData,
       [key]: value
     };
-    setCommentData(temp);
+    setFormData(temp);
   }
 
   /**
@@ -95,24 +98,40 @@ export default props => {
 
     //mock 状态无法从服务端加载验证码，这里提供一个假的默认值
     if (isMock) {
-      commentData.captcha = "0000";
+      formData.captcha = "0000";
     }
 
-    const isValid = ajvValidate(commentData);
+    const isValid = ajvValidate(formData);
     setErrors({});
 
     if (!isValid) {
       const fieldErrors = {};
-      ajvValidate?.errors.forEach((error) => {
+
+      ajvValidate.errors.forEach((error) => {
         const field = error.instancePath.substring(1);
-        fieldErrors[field] = error.message;
+        const keyword = error.keyword;
+        // 获取 i8n 中的错误信息，如果没有则使用默认的错误信息。i18n 字符串定义在 src\app\shared\i18n\ 中。
+        const errorMessage = i18n.t(`validation.${keyword}`, error.params);
+        fieldErrors[field] = errorMessage || error.message;;
       });
+
       setErrors(fieldErrors);
       console.log(fieldErrors);
       return;
     }
 
-    commentService.writeComment(commentData).then(response => {
+    commentService.writeComment(formData).then(response => {
+      // 触发验证码刷新
+      captchaRef.current.refresh();
+
+      // 清空表单数据
+      setFormData({
+        postId: id,
+        content: "",
+        captcha: ""
+      });
+
+      // 重新加载评论列表
       loadCommentList();
     });
   }
@@ -127,9 +146,9 @@ export default props => {
                 rows="5"
                 className="form-control"
                 name="content"
-                value={commentData.content}
+                value={formData.content}
                 onChange={(e) => handleInputChange('content', e.target.value)}
-                placeholder="1-200个字符，非法字符自动截断。"
+                placeholder={i18n.t("pleaseInputSomeContent")}
               />
               {
                 errors.content ? <div className="text-danger">{errors.content}</div> : <></>
@@ -143,10 +162,10 @@ export default props => {
                     <input
                       className={`form-control`}
                       type="text"
-                      placeholder="至少1位，最多4位"
+                      placeholder={i18n.t("pleaseInputCaptcha")}
                       autoComplete="off"
                       name="captcha"
-                      value={commentData.captcha}
+                      value={formData.captcha}
                       onChange={(e) => handleInputChange('captcha', e.target.value)}
                     />
                     {
@@ -154,12 +173,12 @@ export default props => {
                     }
                   </div>
                   <div className="form-group">
-                    <Captcha></Captcha>
+                    <Captcha ref={captchaRef} ></Captcha>
                   </div>
                 </>
             }
             <button className="btn btn-primary">
-              提交
+              {i18n.t("submit")}
             </button>
           </form>
         </div>

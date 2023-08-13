@@ -1,16 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
 import { Tag } from 'primereact/tag';
 import { Tooltip } from 'primereact/tooltip';
-
 import postService from 'src/app/service/post-service';
 import fileUploadService from 'src/app/service/file-upload-service';
 import Captcha from 'src/app/shared/captcha';
 import ajv from "src/app/service/ajv-validate-service";
-
+import i18n from "src/app/shared/i18n";
 import environment from "src/environments/environment";
 import './index.scss';
 
@@ -341,7 +339,9 @@ export default props => {
                     </>
                 }
                 <div className="form-group">
-                  <button type="button" className="btn btn-primary" onClick={doWritePost}>提交</button>
+                  <button type="button" className="btn btn-primary" onClick={doWritePost}>
+                    {i18n.t("submit")}
+                  </button>
                 </div>
               </form>
             </div>

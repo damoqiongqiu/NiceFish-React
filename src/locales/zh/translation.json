@@ -3,5 +3,17 @@
     "discover": "发现",
     "write": "创作",
     "manage": "管理",
-    "changeLanguage": "切换语言"
+    "changeLanguage": "切换语言",
+    "submit": "提交",
+    "pleaseInputSomeContent": "请输入内容。",
+    "pleaseInputCaptcha": "请输入验证码。",
+    "validation": {
+        "required": "{{field}} 字段必填。",
+        "emailFormat": "邮箱格式不正确。",
+        "minLength": "至少 {{limit}} 个字符。",
+        "maxLength": "最多 {{limit}} 个字符。",
+        "passwordFormat": "密码格式不正确。",
+        "captchaFormat": "验证码格式不正确",
+        "captchaLength": "验证码长度不正确"
+    }
 }
