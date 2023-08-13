@@ -14,4 +14,10 @@ ajv.addFormat('email', (data) => {
     return emailRegex.test(data);
 });
 
+// 使用正则表达式来验证手机号码格式，由于国内外的手机号码格式很多样，所以只验证是否为数字即可
+ajv.addFormat('cellphone', (data) => {
+    const emailRegex = /^\\d{11}$/;
+    return emailRegex.test(data);
+});
+
 export default ajv;
