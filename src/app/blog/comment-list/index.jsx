@@ -4,7 +4,7 @@ import Captcha from 'src/app/shared/captcha';
 import commentService from "src/app/service/comment-service";
 import environment from "src/environments/environment";
 import ajv from "src/app/service/ajv-validate-service";
-import i18n from "src/app/shared/i18n";
+import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
@@ -29,6 +29,9 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //postId ，从路由参数中获取
   const { id } = useParams();
 

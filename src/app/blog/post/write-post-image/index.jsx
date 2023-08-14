@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
 import { Tag } from 'primereact/tag';
@@ -8,7 +9,6 @@ import postService from 'src/app/service/post-service';
 import fileUploadService from 'src/app/service/file-upload-service';
 import Captcha from 'src/app/shared/captcha';
 import ajv from "src/app/service/ajv-validate-service";
-import i18n from "src/app/shared/i18n";
 import environment from "src/environments/environment";
 import './index.scss';
 
@@ -33,6 +33,9 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 

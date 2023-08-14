@@ -13,14 +13,17 @@
     "mediaNote": "Only one video file can be uploaded. If multiple video files are uploaded, the system automatically ignores them and displays only the first video.",
     "atleastOneMedia": "Please upload at least one image or video.",
     "mockNote": "Mock state will not submit data to the server.",
+    "email": "Email",
+    "retrivePassword": "Retrive Password",
+    "sendEmail": "Send Email",
     "validation": {
-        "required": "{{field}} is required",
-        "emailFormat": "Email format is incorrect",
+        "required": "{{field}} is required.",
+        "format": "Please enter a valid email.",
         "minLength": "The field must be at least {{limit}} characters.",
         "maxLength": "The field must be at most {{limit}} characters.",
-        "passwordFormat": "Password format is incorrect",
-        "captchaFormat": "Captcha format is incorrect",
-        "captchaLength": "Captcha length is incorrect"
+        "passwordFormat": "Password format is incorrect.",
+        "captchaFormat": "Captcha format is incorrect.",
+        "captchaLength": "Captcha length is incorrect."
     },
     "http": {
         "400": "Bad Request",

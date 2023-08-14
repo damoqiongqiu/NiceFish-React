@@ -26,7 +26,7 @@ const NavBar = props => {
     const sessionUser = useSelector((state) => state.session.user);
 
     //i18n hooks
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     //当前选中的语言
     const [selectedLanguage, setSelectedLanguage] = useState(
@@ -73,12 +73,12 @@ const NavBar = props => {
                     <ul className="nav navbar-nav">
                         <li >
                             <NavLink to="/post">
-                                {t("discover")}
+                                {i18n.t("discover")}
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/write">
-                                {t("write")}
+                                {i18n.t("write")}
                             </NavLink>
                         </li>
                     </ul >
