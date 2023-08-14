@@ -105,7 +105,7 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/permission/api-permission-edit/" + item.apiPermissionId) }} />&nbsp;&nbsp;
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/api-permission-edit/" + item.apiPermissionId) }} />&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delApiPermission(item) }} />
       </>
     );
@@ -126,7 +126,7 @@ export default props => {
         </div>
         <div className="col-md-1">
           <div className="input-group pull-right">
-            <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/permission/api-permission-edit/-1") }} >
+            <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/api-permission-edit/-1") }} >
               <i className="pi pi-plus" aria-hidden="true"></i>
             </button>
           </div>
