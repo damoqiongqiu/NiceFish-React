@@ -23,6 +23,8 @@
     "rememberMe": "Remember Me",
     "signInBtn": "Sign In",
     "forgetPwd": "Forget Password?",
+    "signUp": "Sign Up",
+    "confirmPassword": "Confirm Password",
     "validation": {
         "required": "{{field}} is required.",
         "format": "Please enter a valid email.",

@@ -23,6 +23,8 @@
     "rememberMe": "记住我",
     "signInBtn": "登录",
     "forgetPwd": "忘记密码？",
+    "signUp": "注册",
+    "confirmPassword": "确认密码",
     "validation": {
         "required": "{{field}} 字段必填。",
         "format": "请输入正确的邮箱。",
