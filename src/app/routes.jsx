@@ -90,39 +90,39 @@ export default props => {
                     element: CommentTable,
                 },
                 {
-                    path: "permission/user-table",
+                    path: "user-table/page/:page",
                     element: UserTable,
                 },
                 {
-                    path: "permission/user-profile/:userId",
+                    path: "user-profile/:userId",
                     element: UserProfile,
                 },
                 {
-                    path: "permission/role-table",
+                    path: "role-table/page/:page",
                     element: RoleTable,
                 },
                 {
-                    path: "permission/role-edit/:roleId",
+                    path: "role-edit/:roleId",
                     element: RoleEdit,
                 },
                 {
-                    path: "permission/api-permission-table",
+                    path: "api-permission-table/page/:page",
                     element: ApiPermissionTable,
                 },
                 {
-                    path: "permission/api-permission-edit/:apiPermissionId",
+                    path: "api-permission-edit/:apiPermissionId",
                     element: ApiPermissionEdit,
                 },
                 {
-                    path: "permission/component-permission-table",
+                    path: "component-permission-table/page/:page",
                     element: ComponentPermissionTable,
                 },
                 {
-                    path: "permission/component-permission-edit/:compPermId/:pId",
+                    path: "component-permission-edit/:compPermId/:pId",
                     element: ComponentPermissionEdit,
                 },
                 {
-                    path: "sys-param",
+                    path: "sys-settings",
                     element: SysParam,
                 },
             ],
