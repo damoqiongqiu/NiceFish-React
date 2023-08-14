@@ -6,7 +6,13 @@
     "changeLanguage": "切换语言",
     "submit": "提交",
     "pleaseInputSomeContent": "请输入内容。",
+    "success": "成功",
+    "fail": "失败",
     "pleaseInputCaptcha": "请输入验证码。",
+    "chooseMedia": "选择图片或视频",
+    "mediaNote": "上传视频时，只能上传一个视频文件，如果上传多个，系统会自动忽略，只展示第一个视频。",
+    "atleaseOneMedia": "请至少上传一个图片或视频。",
+    "mockNote": "Mock 状态不会向服务端提交数据。",
     "validation": {
         "required": "{{field}} 字段必填。",
         "emailFormat": "邮箱格式不正确。",

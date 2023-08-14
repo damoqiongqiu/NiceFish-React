@@ -4,8 +4,6 @@ import Captcha from 'src/app/shared/captcha';
 import commentService from "src/app/service/comment-service";
 import environment from "src/environments/environment";
 import ajv from "src/app/service/ajv-validate-service";
-
-//导入全局共用的 i18n 实例。
 import i18n from "src/app/shared/i18n";
 
 import './index.scss';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PostListItem from 'src/app/blog/post/post-list-item';
-
+import PostCategory from 'src/app/blog/post/post-category';
 import postService from 'src/app/service/post-service';
 import './index.scss';
 
@@ -24,6 +24,9 @@ export default props => {
     setPage(event.page + 1);
   };
 
+  /**
+   * 加载文章列表
+   */
   useEffect(() => {
     postService.getPostList(page).then(response => {
       let data = response.data;
@@ -36,27 +39,7 @@ export default props => {
 
   return (
     <>
-      {/* TODO:抽成组件，实现业务逻辑 */}
-      <div className='tag-list-container'>
-        <h4>
-          <a className="label label-default">推荐</a>
-        </h4>
-        <h4>
-          <a className="label label-default">美食</a>
-        </h4>
-        <h4>
-          <a className="label label-default">电影</a>
-        </h4>
-        <h4>
-          <a className="label label-default">音乐</a>
-        </h4>
-        <h4>
-          <a className="label label-default">健身</a>
-        </h4>
-        <h4>
-          <a className="label label-default">旅行</a>
-        </h4>
-      </div>
+      <PostCategory></PostCategory>
       <div className='post-list-container'>
         {postList.map((item, index) => {
           return (

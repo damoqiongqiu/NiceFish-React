@@ -20,13 +20,11 @@ const schema = {
       "type": "string",
       "minLength": 1,
       "maxLength": 200,
-      "errorMessage": "内容长度在 1 到 200 个字符之间。"
     },
     "captcha": {
       "type": "string",
       "minLength": 1,
       "maxLength": 4,
-      "errorMessage": "验证码必须为字符串，长度在 1 到 4 个字符之间。"
     },
   },
   "required": ["content", "captcha"],
@@ -85,7 +83,7 @@ export default props => {
       niceFishToast({
         severity: 'error',
         summary: 'Error',
-        detail: 'Mock 状态不会向服务端提交数据。',
+        detail: i18n.t('mockNote'),
       });
       return;
     }
@@ -122,10 +120,15 @@ export default props => {
 
     if (!isValid) {
       const fieldErrors = {};
-      ajvValidate?.errors.forEach((error) => {
+
+      ajvValidate.errors.forEach((error) => {
         const field = error.instancePath.substring(1);
-        fieldErrors[field] = error.message;
+        const keyword = error.keyword;
+        // 获取 i8n 中的错误信息，如果没有则使用默认的错误信息。i18n 字符串定义在 src\app\shared\i18n\ 中。
+        const errorMessage = i18n.t(`validation.${keyword}`, error.params);
+        fieldErrors[field] = errorMessage || error.message;;
       });
+
       setErrors(fieldErrors);
       console.log(fieldErrors);
       return;
@@ -135,7 +138,7 @@ export default props => {
       niceFishToast({
         severity: 'error',
         summary: 'Error',
-        detail: '请至少上传一张图片',
+        detail: i18n.t("atleaseOneMedia"),
       });
       return;
     }
@@ -150,7 +153,7 @@ export default props => {
           niceFishToast({
             severity: 'success',
             summary: 'Success',
-            detail: '发布成功',
+            detail: i18n.t("success"),
           });
           navigate('/post');
         } else {
@@ -247,7 +250,7 @@ export default props => {
               multiple
               accept="image/*,video/mp4"
               maxFileSize={fileMaxSize}
-              customUpload={true} //自己手动处理上传
+              customUpload={true}
               mode="basic"
               onUpload={
                 (e) => {
@@ -292,12 +295,12 @@ export default props => {
                 icon: 'pi pi-fw pi-images',
                 iconOnly: false,
                 className: 'custom-choose-btn p-button-rounded p-button-outlined',
-                label: '选择图片或视频文件',
+                label: i18n.t("chooseMedia"),
               }}
             />
           </>
           <div className='row'>
-            <p className='text-danger'>上传视频时，只能上传一个视频文件，如果上传多个，系统会自动忽略，只展示第一个视频。</p>
+            <p className='text-danger'>{i18n.t("mediaNote")}</p>
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -306,7 +309,6 @@ export default props => {
                   <textarea
                     rows="10"
                     className="form-control"
-                    placeholder="说点什么吧，让大家更了解你"
                     name="content"
                     value={post.content}
                     onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -323,7 +325,6 @@ export default props => {
                         <input
                           className={`form-control`}
                           type="text"
-                          placeholder="至少1位，最多4位"
                           autoComplete="off"
                           name="captcha"
                           value={post.captcha}

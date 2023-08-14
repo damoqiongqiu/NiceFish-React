@@ -48,7 +48,7 @@ export default props => {
             </video>
             :
             <img
-              alt={media0?.name || "图片"}
+              alt={media0?.name || ""}
               role="presentation"
               src={`${titleImgURL}`}
             />

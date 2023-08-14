@@ -24,6 +24,9 @@ export default props => {
     }
   );
 
+  /**
+   * 获取文章详情
+   */
   useEffect(() => {
     postService.getPostDetail(id).then(response => {
       setPostDetail(response.data);
@@ -47,11 +50,22 @@ export default props => {
     });
   }, []);
 
-  //NOTE: 不要在这里传递 style 参数，会导致组件样式错乱。
+
+  /**
+   * 图片模板
+   * NOTE: 不要在这里传递 style 参数，会导致组件样式错乱。
+   * @param {*} item 
+   * @returns 
+   */
   const itemTemplate = (item) => {
     return <img src={item.itemImageSrc} alt={item.alt} />;
   }
 
+  /**
+   * 缩略图模板
+   * @param {*} item 
+   * @returns 
+   */
   const thumbnailTemplate = (item) => {
     return <img src={item.thumbnailImageSrc} alt={item.alt} />;
   }

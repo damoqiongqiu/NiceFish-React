@@ -6,7 +6,13 @@
     "changeLanguage": "Change Language",
     "submit": "Submit",
     "pleaseInputSomeContent": "Please input some content.",
+    "success": "Success",
+    "fail": "Failed",
     "pleaseInputCaptcha": "Please input captcha.",
+    "chooseMedia": "Choose image or video",
+    "mediaNote": "Only one video file can be uploaded. If multiple video files are uploaded, the system automatically ignores them and displays only the first video.",
+    "atleastOneMedia": "Please upload at least one image or video.",
+    "mockNote": "Mock state will not submit data to the server.",
     "validation": {
         "required": "{{field}} is required",
         "emailFormat": "Email format is incorrect",
