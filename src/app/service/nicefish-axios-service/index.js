@@ -1,5 +1,5 @@
 import axios from "axios";
-import environment from "../../../environments/environment";
+import i18n from "src/app/shared/i18n";
 
 /**
  * 默认加上 request 和 response 拦截器。
@@ -19,20 +19,6 @@ axiosService.interceptors.request.use(
     }
 );
 
-const errorMsgMap = {
-    400: '请求参数错误',
-    401: '当前操作没有权限',
-    403: '权限不足,请联系管理员',
-    404: '请求地址不存在',
-    405: '不支持该请求类型',
-    408: '请求超时',
-    500: '服务器内部错误',
-    501: '服务未实现',
-    503: '服务不可用',
-    504: '后端服务异常',
-    600: '网络异常，请稍后重试',
-}
-
 axiosService.interceptors.response.use(
     (response) => {
         window.hideGlobalSpin();
@@ -40,8 +26,8 @@ axiosService.interceptors.response.use(
     },
     (error) => {
         window.hideGlobalSpin();
-        let errorMsg = errorMsgMap[error?.response?.status] || `Error Code: ${error.response.status},  Message: ${error.message}`;
-        console.error(errorMsg);
+        console.log(error);
+        let errorMsg = i18n.t(`http.${error?.response?.status}`) || `Error Code: ${error.response.status},  Message: ${error.message}`;
         //TODO:发现 session 超时前端做退出动作，删掉浏览器缓存，跳转到首页。
         niceFishToast({
             severity: 'error',
