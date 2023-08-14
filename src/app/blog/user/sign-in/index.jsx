@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { signIn } from 'src/app/shared/session/';
-
 import environment from "src/environments/environment";
 import signService from 'src/app/service/sign-in-service';
 import Captcha from 'src/app/shared/captcha';
@@ -17,19 +17,16 @@ const schema = {
     "userName": {
       "type": "string",
       "format": 'email',
-      "errorMessage": "请输入合法的邮箱格式。"
     },
     "password": {
       "type": "string",
       "minLength": 8,
       "maxLength": 16,
-      "errorMessage": "密码长度在 8 到 16 个字符之间。"
     },
     "captcha": {
       "type": "string",
       "minLength": 1,
       "maxLength": 4,
-      "errorMessage": "验证码必须为字符串，长度在 1 到 4 个字符之间。"
     },
     "rememberMe": {
       "type": "boolean"
@@ -42,6 +39,9 @@ const ajvValidate = ajv.compile(schema);
 
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //redux hooks
   const dispatch = useDispatch();
 
@@ -93,10 +93,15 @@ export default props => {
 
     if (!isValid) {
       const fieldErrors = {};
-      ajvValidate?.errors.forEach((error) => {
+
+      ajvValidate.errors.forEach((error) => {
         const field = error.instancePath.substring(1);
-        fieldErrors[field] = error.message;
+        const keyword = error.keyword;
+        // 获取 i8n 中的错误信息，如果没有则使用默认的错误信息。i18n 字符串定义在 src\app\shared\i18n\ 中。
+        const errorMessage = i18n.t(`validation.${keyword}`, error.params);
+        fieldErrors[field] = errorMessage || error.message;;
       });
+
       setErrors(fieldErrors);
       console.log(fieldErrors);
       return;
@@ -132,13 +137,13 @@ export default props => {
     <div className="user-login-container">
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">Sign In</h3>
+          <h3 className="panel-title">{i18n.t("siginInTitle")}</h3>
         </div>
         <div className="panel-body">
-          <p className="bg-danger">测试用户: admin@126.com / 12345678</p>
+          <p className="bg-danger">{i18n.t("testAccount")}: admin@126.com / 12345678</p>
           <form noValidate className="form-horizontal" role="form">
             <div className={`form-group ${errors.userName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">邮箱：</label>
+              <label className="col-md-2 control-label">{i18n.t("email")}：</label>
               <div className="col-md-10">
                 <input
                   className={`form-control`}
@@ -147,7 +152,6 @@ export default props => {
                   value={userInfo.userName}
                   autoComplete="off"
                   type="text"
-                  placeholder="请输入完整邮箱或者手机号"
                   onChange={(e) => handleInputChange('userName', e.target.value)}
                 />
                 {
@@ -156,7 +160,7 @@ export default props => {
               </div>
             </div>
             <div className={`form-group ${errors.password ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">密码：</label>
+              <label className="col-md-2 control-label">{i18n.t("password")}：</label>
               <div className="col-md-10">
                 <input
                   className={`form-control`}
@@ -165,7 +169,6 @@ export default props => {
                   maxLength="32"
                   name="password"
                   type="password"
-                  placeholder="至少8位"
                   value={userInfo.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                 />
@@ -179,14 +182,13 @@ export default props => {
               isMock ? <></> :
                 <>
                   <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
-                    <label className="col-md-2 control-label">验证码：</label>
+                    <label className="col-md-2 control-label">{i18n.t("captcha")}：</label>
                     <div className="col-md-10">
                       <input
                         className={`form-control`}
                         required
                         maxLength="4"
                         type="text"
-                        placeholder="至少1位，最多4位"
                         autoComplete="off"
                         name="captcha"
                         value={userInfo.captcha}
@@ -205,7 +207,7 @@ export default props => {
                 </>
             }
             <div className="form-group" >
-              <label className="col-md-2 control-label">记住我：</label>
+              <label className="col-md-2 control-label">{i18n.t("rememberMe")}：</label>
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
@@ -220,8 +222,8 @@ export default props => {
             </div>
             <div className="form-group">
               <div className="col-md-offset-2 col-md-10">
-                <button type="button" className="btn btn-primary btn-margin-1rem" onClick={doSignIn}>登录</button>
-                <button type="button" className="btn btn-default" onClick={retrievePwd}>忘记密码？</button>
+                <button type="button" className="btn btn-primary btn-margin-1rem" onClick={doSignIn}>{i18n.t("signInBtn")}</button>
+                <button type="button" className="btn btn-default" onClick={retrievePwd}>{i18n.t("forgetPwd")}</button>
               </div>
             </div>
           </form>

@@ -16,6 +16,13 @@
     "email": "Email",
     "retrivePassword": "Retrive Password",
     "sendEmail": "Send Email",
+    "siginInTitle": "Sign In",
+    "testAccount": "Test Account",
+    "password": "Password",
+    "captcha": "Captcha",
+    "rememberMe": "Remember Me",
+    "signInBtn": "Sign In",
+    "forgetPwd": "Forget Password?",
     "validation": {
         "required": "{{field}} is required.",
         "format": "Please enter a valid email.",
