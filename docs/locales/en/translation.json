@@ -2,5 +2,149 @@
     "home": "Home",
     "discover": "Discover",
     "write": "Write",
-    "manage": "Manage"
+    "manage": "Manage",
+    "changeLanguage": "Change Language",
+    "submit": "Submit",
+    "pleaseInputSomeContent": "Please input some content.",
+    "success": "Success",
+    "error": "Error",
+    "fail": "Failed",
+    "pleaseInputCaptcha": "Please input captcha.",
+    "chooseMedia": "Choose image or video",
+    "mediaNote": "Only one video file can be uploaded. If multiple video files are uploaded, the system automatically ignores them and displays only the first video.",
+    "atleastOneMedia": "Please upload at least one image or video.",
+    "mockNote": "Mock state will not submit data to the server.",
+    "email": "Email",
+    "retrivePassword": "Retrive Password",
+    "sendEmail": "Send Email",
+    "siginInTitle": "Sign In",
+    "testAccount": "Test Account",
+    "password": "Password",
+    "captcha": "Captcha",
+    "rememberMe": "Remember Me",
+    "signInBtn": "Sign In",
+    "forgetPwd": "Forget Password?",
+    "signUp": "Sign Up",
+    "confirmPassword": "Confirm Password",
+    "confirmDelete": "Confirm Delete?",
+    "confirm": "Confirm",
+    "title": "Title",
+    "content": "Content",
+    "author": "Author",
+    "date": "Date",
+    "operation": "Operation",
+    "save": "Save",
+    "cancel": "Cancel",
+    "none": "None",
+    "status": "Status",
+    "gender": {
+        "female": "Female",
+        "male": "Male",
+        "unknown": "Unknown"
+    },
+    "apiPermission": {
+        "apiName": "API Name",
+        "apiUrl": "API URL",
+        "permissionWildCard": "Permission WildCard",
+        "createTime": "Create Time",
+        "updateTime": "Update Time",
+        "remark": "Remark",
+        "table": {
+            "associatedRoles": "Associated Roles"
+        },
+        "edit": {
+            "title": "Create/Edit Backend API Permission",
+            "plsEnterApiName": "Please enter API name.",
+            "plsEnterApiUrl": "Please enter API URL.",
+            "plsEnterPermissionWildCard": "Please enter permission wild card.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "componentPermission": {
+        "parentComponent": "Parent Component",
+        "componentName": "Component Name",
+        "componentUrl": "Component URL",
+        "iconUrl": "Icon URL",
+        "displayOrder": "Display Order",
+        "permissionWildCard": "Permission WildCard",
+        "enabled": "Enabled",
+        "remark": "Remark",
+        "table": {
+            "visiable": "Visiable"
+        },
+        "edit": {
+            "title": "Create/Edit Frontend Component Permission",
+            "plsEnterComponentName": "Please enter component name.",
+            "plsEnterIconUrl": "Please enter icon URL.",
+            "plsEnterComponentUrl": "Please enter component URL.",
+            "plsEnterDisplayOrder": "Please enter display order.",
+            "plsEnterPermissionWildCard": "Please enter permission wild card.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "role": {
+        "roleName": "Role Name",
+        "enabled": "Enabled",
+        "remark": "Remark",
+        "apiPermission": "Backend API Permission",
+        "componentPermission": "Frontend Component Permission",
+        "table": {
+            "visiable": "Visiable"
+        },
+        "edit": {
+            "title": "Create/Edit Role",
+            "plsEnterRoleName": "Please enter role name.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "user": {
+        "currentAvatar": "Current Avatar",
+        "uploadAvatar": "Upload Avatar",
+        "userName": "User Name",
+        "nickName": "Nick Name",
+        "gender": "Gender",
+        "email": "Email",
+        "mobile": "Mobile",
+        "password": "Password",
+        "confirmPassword": "Repeat Password",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "remark": "Remark",
+        "status": "Status",
+        "createTime": "Create Time",
+        "table": {
+            "associatedRoles": "Associated Roles"
+        },
+        "edit": {
+            "title": "Create/Edit User",
+            "plsEnterAvatar": "Please upload avatar.",
+            "plsEnterEmail": "Please enter email.",
+            "plsEnterMobile": "Please enter mobile.",
+            "plsEnterPassword": "Please enter password.",
+            "plsEnterConfirmPassword": "Please enter repeat password.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "validation": {
+        "required": "{{field}} is required.",
+        "format": "Please enter a valid email.",
+        "minLength": "The field must be at least {{limit}} characters.",
+        "maxLength": "The field must be at most {{limit}} characters.",
+        "passwordFormat": "Password format is incorrect.",
+        "captchaFormat": "Captcha format is incorrect.",
+        "captchaLength": "Captcha length is incorrect."
+    },
+    "http": {
+        "400": "Bad Request",
+        "401": "Unauthorized",
+        "403": "Forbidden",
+        "404": "Not Found",
+        "405": "Method Not Allowed",
+        "408": "Request Timeout",
+        "500": "Internal Server Error",
+        "501": "Not Implemented",
+        "503": "Service Unavailable",
+        "504": "Gateway Timeout",
+        "600": "Network Error"
+    }
 }

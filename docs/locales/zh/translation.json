@@ -2,5 +2,149 @@
     "home": "首页",
     "discover": "发现",
     "write": "创作",
-    "manage": "管理"
+    "manage": "管理",
+    "changeLanguage": "切换语言",
+    "submit": "提交",
+    "pleaseInputSomeContent": "请输入内容。",
+    "success": "成功",
+    "error": "错误",
+    "fail": "失败",
+    "pleaseInputCaptcha": "请输入验证码。",
+    "chooseMedia": "选择图片或视频",
+    "mediaNote": "上传视频时，只能上传一个视频文件，如果上传多个，系统会自动忽略，只展示第一个视频。",
+    "atleaseOneMedia": "请至少上传一个图片或视频。",
+    "mockNote": "Mock 状态不会向服务端提交数据。",
+    "email": "邮箱",
+    "retrivePassword": "找回密码",
+    "sendEmail": "发送邮件",
+    "siginInTitle": "登录",
+    "testAccount": "测试账号",
+    "password": "密码",
+    "captcha": "验证码",
+    "rememberMe": "记住我",
+    "signInBtn": "登录",
+    "forgetPwd": "忘记密码？",
+    "signUp": "注册",
+    "confirmPassword": "确认密码",
+    "confirmDelete": "确认删除？",
+    "confirm": "确认",
+    "title": "标题",
+    "content": "内容",
+    "author": "作者",
+    "date": "日期",
+    "operation": "操作",
+    "save": "保存",
+    "cancel": "取消",
+    "none": "无",
+    "status": "状态",
+    "gender": {
+        "female": "女",
+        "male": "男",
+        "unknown": "未知"
+    },
+    "apiPermission": {
+        "apiName": "API 名称",
+        "apiUrl": "API URL",
+        "permissionWildCard": "权限通配符",
+        "createTime": "创建时间",
+        "updateTime": "更新时间",
+        "remark": "备注",
+        "table": {
+            "associatedRoles": "已关联角色"
+        },
+        "edit": {
+            "title": "创建/编辑 API 权限",
+            "plsEnterApiName": "请输入 API 名称。",
+            "plsEnterApiUrl": "请输入 API URL。",
+            "plsEnterPermissionWildCard": "请输入权限通配符。",
+            "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "componentPermission": {
+        "parentComponent": "父层组件",
+        "componentName": "组件名称",
+        "componentUrl": "组件 URL",
+        "iconUrl": "组件图标",
+        "displayOrder": "显示顺序",
+        "permissionWildCard": "权限通配符",
+        "enabled": "是否启用",
+        "remark": "备注",
+        "table": {
+            "visiable": "是否可见"
+        },
+        "edit": {
+            "title": "创建/编辑前端组件权限",
+            "plsEnterComponentName": "请输入组件名称",
+            "plsEnterIconUrl": "请输入图标 URL",
+            "plsEnterComponentUrl": "请输入 URL",
+            "plsEnterDisplayOrder": "请输入显示顺序",
+            "plsEnterPermissionWildCard": "请输入权限通配符",
+            "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "role": {
+        "roleName": "角色名称",
+        "enabled": "是否启用",
+        "remark": "备注",
+        "apiPermission": "后端接口权限",
+        "componentPermission": "前端组件权限",
+        "table": {
+            "visiable": "是否可见"
+        },
+        "edit": {
+            "title": "创建/编辑角色",
+            "plsEnterRoleName": "请输入角色名称。",
+            "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "user": {
+        "currentAvatar": "当前头像",
+        "uploadAvatar": "选择头像",
+        "userName": "用户名",
+        "nickName": "昵称",
+        "gender": "性别",
+        "email": "常用邮箱",
+        "mobile": "手机号",
+        "password": "密码",
+        "confirmPassword": "重复密码",
+        "enabled": "启用",
+        "disabled": "禁用",
+        "remark": "简介",
+        "status": "状态",
+        "createTime": "创建时间",
+        "table": {
+            "associatedRoles": "已关联角色"
+        },
+        "edit": {
+            "title": "创建/编辑用户",
+            "plsEnterAvatar": "请选择头像。",
+            "plsEnterEmail": "请输入常用邮箱。",
+            "plsEnterMobile": "请输入手机号。",
+            "plsEnterPassword": "请输入密码。",
+            "plsEnterConfirmPassword": "请再次输入密码。",
+            "plsEnterRemark": "请输入简介。"
+        }
+    },
+    "validation": {
+        "required": "{{field}} 字段必填。",
+        "format": "请输入正确的邮箱。",
+        "minLength": "至少 {{limit}} 个字符。",
+        "maxLength": "最多 {{limit}} 个字符。",
+        "passwordFormat": "密码格式不正确。",
+        "captchaFormat": "验证码格式不正确",
+        "captchaLength": "验证码长度不正确"
+    },
+    "http": {
+        "400": "请求参数错误",
+        "401": "当前操作没有权限",
+        "403": "权限不足,请联系管理员",
+        "404": "请求地址不存在",
+        "405": "不支持该请求类型",
+        "408": "请求超时",
+        "500": "服务器内部错误",
+        "501": "服务未实现",
+        "503": "服务不可用",
+        "504": "后端服务异常",
+        "600": "网络异常，请稍后重试"
+    }
 }
