@@ -10,7 +10,10 @@ const webpackBar = require("webpackbar");
 
 const { NODE_ENV, ANALYZE, UNUSED, SMP, DATA_SOURCE } = process.env;
 const isDev = (NODE_ENV === "development");
-const baseUrl = isDev ? '/' : '/NiceFish-React/';//开发态默认指向根目录，构建指向 /NiceFish-React/ ，请根据项目情况修改这里的值。
+
+//开发态默认指向根目录，构建指向 /NiceFish-React/ ，请根据项目情况修改这里的值。
+const baseUrl = isDev ? '/' : '/NiceFish-React/';
+
 const isAnalyzerMode = (ANALYZE === "1");
 const isUnusedMode = (UNUSED === "1");
 const isSmpMode = (SMP === "1");
@@ -171,9 +174,6 @@ const webpackConfig = {
             filename: "index.html",
             chunks: ["main"],
             favicon: path.join(process.cwd(), "src/assets/images/nice-fish.png"),
-        }),
-        new webpack.DefinePlugin({
-            AUTHOR: JSON.stringify("yanyunchangfeng"),
         }),
         new CopyPlugin({
             patterns: [
