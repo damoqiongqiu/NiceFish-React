@@ -1,4 +1,5 @@
 import axios from "axios";
+import environment from "src/environments/environment";
 import i18n from "src/app/shared/i18n";
 
 /**
@@ -13,6 +14,22 @@ const axiosService = axios.create({
 axiosService.interceptors.request.use(
     (request) => {
         window.showGlobalSpin();
+
+        //Mock 状态下，所有的请求都改成 get 请求。
+        if (environment.isMock) {
+            niceFishToast({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: "注意：当前为 Mock 模式，不会与服务端交互，某些请求会报错。所有输入项都可以随意输入，符合校验规则即可。如果需要与服务端交互，请重新启动到 backend 模式 ng serve --configuration development-backend",
+                sticky: false,
+                life: 10000
+            });
+
+            if (request.method !== 'get') {
+                request.method = 'get';
+            }
+        }
+
         return request;
     }, (error) => {
         return Promise.reject(error);
