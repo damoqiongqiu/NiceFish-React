@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import apiPermissionService from "src/app/service/api-permission-service";
@@ -52,6 +53,9 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -113,23 +117,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '更新成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: '更新失败',
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '更新失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -140,23 +144,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '创建成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: '创建成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '创建失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -178,8 +182,8 @@ export default props => {
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '加载用户信息失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -190,17 +194,17 @@ export default props => {
     <div className="role-edit-container">
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">创建/编辑后端接口权限</h3>
+          <h3 className="panel-title">{i18n.t("editApiPermission.title")}</h3>
         </div>
         <div className="panel-body">
           <form className="form-horizontal" role="form" noValidate>
             <div className={`form-group  ${errors.apiName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">API 名称：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.apiName")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入 API 名称"
+                  placeholder={i18n.t("editApiPermission.plsEnterApiName")}
                   name="apiName"
                   value={formValue.apiName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -211,12 +215,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.url ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">API 接口 URL：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.apiUrl")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入 URL"
+                  placeholder={i18n.t("editApiPermission.plsEnterApiUrl")}
                   name="url"
                   value={formValue.url || ""}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -227,12 +231,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.permission ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">权限通配符：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.permissionWildCard")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入权限通配符"
+                  placeholder={i18n.t("editApiPermission.plsEnterPermissionWildCard")}
                   name="permission"
                   value={formValue.permission}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -241,29 +245,29 @@ export default props => {
                   errors.permission ? <div className="text-danger">{errors.permission}</div> : <></>
                 }
                 <p className="bg-danger">
-                  Apache Shiro 通配符权限文档： https://shiro.apache.org/permissions.html
+                  Apache Shiro Doc: https://shiro.apache.org/permissions.html
                 </p>
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">创建时间：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.createTime")}：</label>
+              <div className="col-md-9">
                 {formValue.createTime}
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">更新时间：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.updateTime")}：</label>
+              <div className="col-md-9">
                 {formValue.updateTime}
               </div>
             </div>
             <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">简介：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("editApiPermission.remark")}：</label>
+              <div className="col-md-9">
                 <textarea
                   rows="5"
                   className="form-control"
-                  placeholder="简介"
+                  placeholder={i18n.t("editApiPermission.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -274,12 +278,12 @@ export default props => {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-md-offset-2 col-md-10">
+              <div className="col-md-offset-3 col-md-9">
                 <button type="button" className="btn btn-primary btn-margin-1rem" onClick={save}>
-                  保存
+                  {i18n.t("save")}
                 </button>
                 <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
-                  取消
+                  {i18n.t("cancel")}
                 </button>
               </div>
             </div>

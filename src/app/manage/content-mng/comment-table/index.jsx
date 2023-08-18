@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -8,6 +9,9 @@ import commentService from "src/app/service/comment-service";
 import './index.scss';
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //评论列表
   const [commentList, setCommentList] = useState([]);
 
@@ -49,8 +53,8 @@ export default props => {
    */
   const delComment = (rowData, ri) => {
     confirmDialog({
-      message: '确定要删除吗？',
-      header: '确认',
+      message: i18n.t('confirmDelete'),
+      header: i18n.t('confirm'),
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         commentService.delComment(rowData.id)
@@ -58,15 +62,15 @@ export default props => {
             response => {
               niceFishToast({
                 severity: 'success',
-                summary: 'Success',
-                detail: '删除成功',
+                summary: i18n.t('success'),
+                detail: i18n.t('success'),
               });
             },
             error => {
               niceFishToast({
                 severity: 'error',
-                summary: 'Error',
-                detail: '删除失败',
+                summary: i18n.t('error'),
+                detail: i18n.t('fail'),
               });
             }
           )
@@ -86,7 +90,6 @@ export default props => {
   const operationTemplate = (item) => {
     return (
       <>
-        <Button icon="pi pi-pencil" className="p-button-success" />&nbsp;&nbsp;
         <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComment(item) }} />
       </>
     );
@@ -98,7 +101,7 @@ export default props => {
         <div className="row">
           <div className="col-md-12">
             <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder="内容" />
+              <input name="searchStr" className="form-control" type="text" placeholder={i18n.t('content')} />
               <span className="input-group-btn">
                 <button className="btn btn-default" type="button">
                   <i className="fa fa-search" aria-hidden="true"></i>
@@ -123,10 +126,10 @@ export default props => {
                 onPageChange: onPageChange
               }}
             >
-              <Column field="content" header="内容"></Column>
-              <Column field="nickName" header="作者"></Column>
-              <Column field="time" header="日期"></Column>
-              <Column field="" header="操作" body={operationTemplate}></Column>
+              <Column field="content" header={i18n.t('content')}></Column>
+              <Column field="nickName" header={i18n.t('author')}></Column>
+              <Column field="time" header={i18n.t('date')}></Column>
+              <Column field="" header={i18n.t('operation')} body={operationTemplate}></Column>
             </DataTable>
           </div>
         </div>
