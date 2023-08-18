@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -9,6 +10,9 @@ import roleSercice from "src/app/service/role-service";
 import './index.scss';
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -53,8 +57,8 @@ export default props => {
    */
   const delRole = (rowData, ri) => {
     confirmDialog({
-      message: '确定要删除吗？',
-      header: '确认',
+      message: i18n.t('confirmDelete'),
+      header: i18n.t('confirm'),
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         roleSercice.deleteRole(rowData.roleId)
@@ -62,15 +66,15 @@ export default props => {
             response => {
               niceFishToast({
                 severity: 'success',
-                summary: 'Success',
-                detail: '删除成功',
+                summary: i18n.t('success'),
+                detail: i18n.t('success'),
               });
             },
             error => {
               niceFishToast({
                 severity: 'error',
-                summary: 'Error',
-                detail: '删除失败',
+                summary: i18n.t('error'),
+                detail: i18n.t('fail'),
               });
             }
           )
@@ -125,27 +129,13 @@ export default props => {
     );
   };
 
-  /**
-   * 表格中的操作按钮模板
-   * @param {*} item 
-   * @returns 
-   */
-  const operationTemplate = (item) => {
-    return (
-      <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/role-edit/" + item.roleId) }} />&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delRole(item) }} />
-      </>
-    );
-  };
-
   return (
     <div className="role-table-container">
       <form className="form-vertical" role="form">
         <div className="row">
           <div className="col-md-11">
             <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder="角色名称" />
+              <input name="searchStr" className="form-control" type="text" />
               <span className="input-group-btn">
                 <button className="btn btn-default" type="button" >
                   <i className="fa fa-search" aria-hidden="true"></i>
@@ -177,12 +167,21 @@ export default props => {
                 onPageChange: onPageChange
               }}
             >
-              <Column field="roleName" header="角色名称"></Column>
-              <Column field="status" body={statusTemplate} header="状态"></Column>
-              <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>
-              <Column field="apiEntities" body={apiListTemplate} header="后端接口权限"></Column>
-              <Column field="componentEntities" body={componentListTemplate} header="前端页面权限"></Column>
-              <Column field="" header="操作" body={operationTemplate}></Column>
+              <Column field="roleName" header={i18n.t("role.roleName")}></Column>
+              <Column field="status" body={statusTemplate} header={i18n.t("status")}></Column>
+              <Column field="remark" style={{ maxWidth: "120px" }} header={i18n.t("role.remark")}></Column>
+              <Column field="apiEntities" body={apiListTemplate} header={i18n.t("role.apiPermission")}></Column>
+              <Column field="componentEntities" body={componentListTemplate} header={i18n.t("role.componentPermission")}></Column>
+              <Column field="" header={i18n.t("operation")} body={
+                (item) => {
+                  return (
+                    <>
+                      <Button icon="pi pi-pencil" className="p-button-success" onClick={() => { navigate("/manage/role-edit/" + item.roleId) }} />&nbsp;&nbsp;
+                      <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delRole(item) }} />
+                    </>
+                  );
+                }
+              }></Column>
             </DataTable>
           </div>
         </div>

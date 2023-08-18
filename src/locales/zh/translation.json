@@ -36,6 +36,7 @@
     "save": "保存",
     "cancel": "取消",
     "none": "无",
+    "status": "状态",
     "apiPermission": {
         "apiName": "API 名称",
         "apiUrl": "API URL",
@@ -73,6 +74,21 @@
             "plsEnterComponentUrl": "请输入 URL",
             "plsEnterDisplayOrder": "请输入显示顺序",
             "plsEnterPermissionWildCard": "请输入权限通配符",
+            "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "role": {
+        "roleName": "角色名称",
+        "enabled": "是否启用",
+        "remark": "备注",
+        "apiPermission": "后端接口权限",
+        "componentPermission": "前端组件权限",
+        "table": {
+            "visiable": "是否可见"
+        },
+        "edit": {
+            "title": "创建/编辑角色",
+            "plsEnterRoleName": "请输入角色名称。",
             "plsEnterRemark": "请输入备注。"
         }
     },

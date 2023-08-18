@@ -26,34 +26,37 @@ export default props => {
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
-  /**
-   * 表格中的操作按钮模板
-   * @param {*} item 
-   * @returns 
-   */
-  const operationTemplate = (item) => {
-    return (
-      <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => {
-          let pId = item.parentEntity ? item.parentEntity.compPermId : "-1";
-          navigate("/manage/component-permission-edit/" + item.compPermId + "/" + pId)
-        }} />&nbsp;&nbsp;
-        <Button icon="pi pi-plus" className="p-button-warning" onClick={() => {
-          navigate("/manage/component-permission-edit/-1/ " + item.compPermId)
-        }}></Button>&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
-      </>
-    );
-  };
-
-  // 表格列定义
+  // 表格列以及数据格式化方法定义
   const cols = [
     { field: "componentName", header: i18n.t("componentPermission.componentName"), expander: true },
     { field: "url", header: i18n.t("componentPermission.componentUrl") },
     { field: "displayOrder", header: i18n.t("componentPermission.displayOrder") },
     { field: "permission", header: i18n.t("componentPermission.permissionWildCard") },
-    { field: "visiable", header: i18n.t("componentPermission.table.visiable") },
-    { field: "", header: i18n.t("operation"), body: operationTemplate }
+    {
+      field: "visiable", header: i18n.t("componentPermission.table.visiable"), body: (item) => {
+        return (
+          item.visiable === 1 ?
+            <i className="fa fa-check" aria-hidden="true" style={{ color: 'green' }}></i> :
+            <i className="fa fa-times" aria-hidden="true" style={{ color: 'red' }}></i>
+        );
+      }
+    },
+    {
+      field: "", header: i18n.t("operation"), body: (item) => {
+        return (
+          <>
+            <Button icon="pi pi-pencil" className="p-button-success" onClick={() => {
+              let pId = item.parentEntity ? item.parentEntity.compPermId : "-1";
+              navigate("/manage/component-permission-edit/" + item.compPermId + "/" + pId)
+            }} />&nbsp;&nbsp;
+            <Button icon="pi pi-plus" className="p-button-warning" onClick={() => {
+              navigate("/manage/component-permission-edit/-1/ " + item.compPermId)
+            }}></Button>&nbsp;&nbsp;
+            <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
+          </>
+        );
+      }
+    }
   ];
 
   /**

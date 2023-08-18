@@ -36,6 +36,7 @@
     "save": "Save",
     "cancel": "Cancel",
     "none": "None",
+    "status": "Status",
     "apiPermission": {
         "apiName": "API Name",
         "apiUrl": "API URL",
@@ -73,6 +74,21 @@
             "plsEnterComponentUrl": "Please enter component URL.",
             "plsEnterDisplayOrder": "Please enter display order.",
             "plsEnterPermissionWildCard": "Please enter permission wild card.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "role": {
+        "roleName": "Role Name",
+        "enabled": "Enabled",
+        "remark": "Remark",
+        "apiPermission": "Backend API Permission",
+        "componentPermission": "Frontend Component Permission",
+        "table": {
+            "visiable": "Visiable"
+        },
+        "edit": {
+            "title": "Create/Edit Role",
+            "plsEnterRoleName": "Please enter role name.",
             "plsEnterRemark": "Please enter remark."
         }
     },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable } from 'primereact/datatable';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -6,10 +7,41 @@ import { useNavigate, useParams } from 'react-router-dom';
 import roleService from "src/app/service/role-service";
 import apiPermService from "src/app/service/api-permission-service";
 import compPermService from "src/app/service/component-permission-service";
+import ajv from "src/app/service/ajv-validate-service";
 
 import './index.scss';
 
+// 表单输入项数据规格定义
+const schema = {
+  "type": "object",
+  "properties": {
+    "roleName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 32,
+    },
+    "remark": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 200,
+          "errorMessage": "备注长度在 8 到 16 个字符之间。"
+        },
+        { "type": "null" },
+        { "type": "string", "minLength": 0 } // 允许空字符串
+      ]
+    },
+  },
+  "required": ["roleName"],
+}
+//ajv 的 compile 吃资源较多，这里放在组件外面，保证只执行一次。
+const ajvValidate = ajv.compile(schema);
+
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -31,6 +63,9 @@ export default props => {
   //当前角色拥有的全部前端页面权限列表
   const [selectedComp, setSelectedComp] = useState([]);
 
+  //表单校验错误信息
+  const [errors, setErrors] = useState({});
+
   //角色自身的详情
   const [roleDetail, setRoleDetail] = useState({
     roleId,
@@ -39,145 +74,14 @@ export default props => {
     remark: "",
   });
 
-  //角色详情表单是否合法
-  const [isFormValid, setFormValid] = useState(true);
-
-  /**
-   * 输入项的校验状态
-   */
-  const [validationResult, setValidationResult] = useState({
-    roleName: {
-      valid: true,
-      ruleName: "",//valid 为 true 时，此项为空
-      message: '',
-    },
-    remark: {
-      valid: true,
-      ruleName: "",
-      message: '',
-    }
-  });
-
-  /**
-   * 输入项的校验规则
-   */
-  const validators = {
-    roleName: [
-      {
-        ruleName: 'required',
-        message: '请输入角色名称',
-        fn: (value) => {
-          return (value + "").trim().length > 0;
-        }
-      },
-      {
-        ruleName: 'maxLength',
-        message: '角色名称最多 32 位',
-        fn: (value) => {
-          return (value + "").trim().length <= 32;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '角色名称最少 2 位',
-        fn: (value) => {
-          return (value + "").trim().length >= 2;
-        }
-      }
-    ],
-    remark: [
-      {
-        ruleName: 'maxLength',
-        message: '备注最多 200 个字符',
-        fn: (value) => {
-          return (value + "").trim().length <= 200;
-        }
-      },
-      {
-        ruleName: 'minLength',
-        message: '备注最少 2 个字符',
-        fn: (value) => {
-          return (value + "").trim().length >= 2;
-        }
-      }
-    ],
-  }
-
-  /**
-   * 校验单个输入项的合法性
-   */
-  const validateField = (name, value) => {
-    if (!validators[name]) {
-      return;
-    }
-
-    let temp = {
-      ...validationResult,
-      ...{
-        [name]: {
-          valid: true,
-          ruleName: "",
-          message: '',
-        }
-      }
-    };
-
-    //非必填且值为空时，结果标记为合法，不再继续校验。
-    if (value.length === 0) {
-      let isRequired = false;
-      validators[name].forEach(validator => {
-        if (validator.ruleName === 'required') {
-          isRequired = true;
-        }
-      });
-      if (!isRequired) {
-        return;
-      }
-    }
-
-    validators[name].forEach(validator => {
-      if (!validator.fn(value)) {
-        temp[name].valid = false;
-        temp[name].ruleName = validator.ruleName;
-        temp[name].message = validator.message;
-      }
-    });
-
-    setValidationResult(temp);
-  }
-
   /**
    * 所有 input 的 onChange 事件的处理函数，对于 checkbox/radio/select 这些组件，需要处理好 value 值再调用此函数。
    */
   const handleInputChange = (name, value) => {
-    validateField(name, value);
     setRoleDetail({
       ...roleDetail,
       [name]: value
     });
-  }
-
-  /**
-   * 校验表单整体的合法性，只要有一个输入项不合法，表单整体标记为不合法。
-   * @returns 
-   */
-  const validateFormAll = () => {
-    let flag = true;
-
-    for (let key in roleDetail) {
-      if (document.getElementsByName(key).length) {
-        let value = document.getElementsByName(key)[0].value;
-        validateField(key, value);
-      }
-    }
-
-    for (let key in validationResult) {
-      if (!validationResult[key].valid) {
-        flag = false;
-      }
-    }
-
-    setFormValid(flag);
   }
 
   /**
@@ -223,12 +127,21 @@ export default props => {
    * @returns 
    */
   const cols = [
-    { field: "componentName", header: "组件名称", expander: true },
-    { field: "url", header: "URL" },
-    { field: "displayOrder", header: "显示顺序" },
-    { field: "permission", header: "权限通配符" },
-    { field: "visiable", header: "是否可见" },
+    { field: "componentName", header: i18n.t("componentPermission.componentName"), expander: true },
+    { field: "url", header: i18n.t("componentPermission.componentUrl") },
+    { field: "displayOrder", header: i18n.t("componentPermission.displayOrder") },
+    { field: "permission", header: i18n.t("componentPermission.permissionWildCard") },
+    {
+      field: "visiable", header: i18n.t("componentPermission.table.visiable"), body: (item) => {
+        return (
+          item.visiable === 1 ?
+            <i className="fa fa-check" aria-hidden="true" style={{ color: 'green' }}></i> :
+            <i className="fa fa-times" aria-hidden="true" style={{ color: 'red' }}></i>
+        );
+      }
+    },
   ];
+
   const treeDataTransformer = (node) => {
     let temp = {};
     cols.forEach((col) => {
@@ -299,13 +212,22 @@ export default props => {
   const save = (e) => {
     e.preventDefault();
 
-    validateFormAll();//FIXME:校验逻辑看起来没有生效。
-    if (!isFormValid) {
-      niceFishToast({
-        severity: 'error',
-        summary: 'Error',
-        detail: '存在不合法的输入项，请检查',
+    const isValid = ajvValidate(roleDetail);
+    setErrors({});
+
+    if (!isValid) {
+      const fieldErrors = {};
+
+      ajvValidate.errors.forEach((error) => {
+        const field = error.instancePath.substring(1);
+        const keyword = error.keyword;
+        // 获取 i8n 中的错误信息，如果没有则使用默认的错误信息。i18n 字符串定义在 src\app\shared\i18n\ 中。
+        const errorMessage = i18n.t(`validation.${keyword}`, error.params);
+        fieldErrors[field] = errorMessage || error.message;;
       });
+
+      setErrors(fieldErrors);
+      console.log(fieldErrors);
       return;
     }
 
@@ -330,7 +252,6 @@ export default props => {
     roleDetail.apiEntities = apiPermListTemp;
     roleDetail.componentEntities = compPermListTemp;
 
-
     //如果 roleId 为 -1，则为新增角色，否则为更新角色。
     if (roleId == "-1") {
       roleService.newRole(roleDetail).then(
@@ -338,23 +259,23 @@ export default props => {
           if (response?.data?.success) {
             niceFishToast({
               severity: 'success',
-              summary: '成功',
-              detail: '新增角色成功'
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: '失败',
-              detail: '新增角色失败'
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: '失败',
-            detail: '新增角色失败'
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
           console.error(error);
         }
@@ -365,23 +286,23 @@ export default props => {
           if (response?.data?.success) {
             niceFishToast({
               severity: 'success',
-              summary: '成功',
-              detail: '更新角色成功'
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: '失败',
-              detail: '更新角色失败'
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: '失败',
-            detail: '更新角色失败'
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
           console.error(error);
         }
@@ -393,17 +314,17 @@ export default props => {
     <div className="role-edit-container">
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">创建/编辑角色</h3>
+          <h3 className="panel-title">{i18n.t("role.edit.title")}</h3>
         </div>
         <div className="panel-body">
           <form noValidate className="form-horizontal" role="form">
             <div className="form-group">
-              <label className="col-md-2 control-label">角色名称：</label>
+              <label className="col-md-2 control-label">{i18n.t("role.roleName")}：</label>
               <div className="col-md-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入角色名称"
+                  placeholder={i18n.t("role.edit.plsEnterRoleName")}
                   name="roleName"
                   value={roleDetail.roleName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -412,7 +333,7 @@ export default props => {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">是否启用：</label>
+              <label className="col-md-2 control-label">{i18n.t("role.enabled")}：</label>
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
@@ -430,13 +351,13 @@ export default props => {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">备注：</label>
+              <label className="col-md-2 control-label">{i18n.t("role.remark")}：</label>
               <div className="col-md-10">
                 <textarea
                   rows="5"
                   type="text"
                   className="form-control"
-                  placeholder="备注"
+                  placeholder={i18n.t("role.edit.plsEnterRemark")}
                   name="remark"
                   value={roleDetail.remark}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -448,10 +369,11 @@ export default props => {
           </form>
         </div>
       </div>
+
       {/* 后端接口权限配置表格 */}
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">后端接口权限</h3>
+          <h3 className="panel-title">{i18n.t("role.apiPermission")}</h3>
         </div>
         <div className="panel-body">
           <DataTable
@@ -466,10 +388,10 @@ export default props => {
             }}
           >
             <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
-            <Column field="apiName" header="API 名称"></Column>
-            <Column field="url" header="URL"></Column>
-            <Column field="permission" header="权限通配符"></Column>
-            <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>
+            <Column field="apiName" header={i18n.t("apiPermission.apiName")}></Column>
+            <Column field="url" header={i18n.t("apiPermission.apiUrl")}></Column>
+            <Column field="permission" header={i18n.t("apiPermission.permissionWildCard")}></Column>
+            <Column field="remark" header={i18n.t("apiPermission.remark")} style={{ maxWidth: "120px" }}></Column>
             <Column field="roleEntities" body={
               (item) => {
                 return (
@@ -480,14 +402,15 @@ export default props => {
                   ))
                 );
               }
-            } header="已关联角色"></Column>
+            } header={i18n.t("apiPermission.table.associatedRoles")}></Column>
           </DataTable>
         </div>
       </div>
+
       {/* 前端权限配置表格 */}
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">前端页面权限</h3>
+          <h3 className="panel-title">{i18n.t("role.componentPermission")}</h3>
         </div>
         <div className="panel-body">
           {/* TODO:默认展开所有节点 */}
@@ -521,10 +444,10 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <button type="button" className="btn btn-success btn-margin-1rem" onClick={save}>
-            保存
+            {i18n.t("save")}
           </button>
           <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
-            取消
+            {i18n.t("cancel")}
           </button>
         </div>
       </div>
