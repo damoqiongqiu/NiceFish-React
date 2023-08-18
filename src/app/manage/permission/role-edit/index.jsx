@@ -90,8 +90,7 @@ export default props => {
   const getRoleInfo = () => {
     roleService.getRoleInfo(roleId).then(
       response => {
-        let data = response.data;
-        setRoleDetail(data);
+        setRoleDetail(response.data);
       },
       error => console.error(error)
     );
@@ -328,7 +327,6 @@ export default props => {
                   name="roleName"
                   value={roleDetail.roleName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-                  onBlur={(e) => validateField(e.target.name, e.target.value)}
                 />
               </div>
             </div>
@@ -361,7 +359,6 @@ export default props => {
                   name="remark"
                   value={roleDetail.remark}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-                  onBlur={(e) => validateField(e.target.name, e.target.value)}
                 >
                 </textarea>
               </div>
