@@ -35,18 +35,23 @@
     "operation": "Operation",
     "save": "Save",
     "cancel": "Cancel",
-    "editApiPermission": {
-        "title": "Create/Edit Backend API Permission",
+    "apiPermission": {
         "apiName": "API Name",
-        "plsEnterApiName": "Please enter API name.",
         "apiUrl": "API URL",
-        "plsEnterApiUrl": "Please enter API URL.",
         "permissionWildCard": "Permission WildCard",
-        "plsEnterPermissionWildCard": "Please enter permission wild card.",
         "createTime": "Create Time",
         "updateTime": "Update Time",
         "remark": "Remark",
-        "plsEnterRemark": "Please enter remark."
+        "table": {
+            "associatedRoles": "Associated Roles"
+        },
+        "edit": {
+            "title": "Create/Edit Backend API Permission",
+            "plsEnterApiName": "Please enter API name.",
+            "plsEnterApiUrl": "Please enter API URL.",
+            "plsEnterPermissionWildCard": "Please enter permission wild card.",
+            "plsEnterRemark": "Please enter remark."
+        }
     },
     "validation": {
         "required": "{{field}} is required.",

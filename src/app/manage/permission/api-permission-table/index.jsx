@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -9,6 +10,9 @@ import apiPermissionService from "src/app/service/api-permission-service";
 import './index.scss';
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -53,8 +57,8 @@ export default props => {
    */
   const delApiPermission = (rowData, ri) => {
     confirmDialog({
-      message: '确定要删除吗？',
-      header: '确认',
+      message: i18n.t('confirmDelete'),
+      header: i18n.t('confirm'),
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         apiPermissionService.deleteByApiId(rowData.apiPermissionId)
@@ -62,15 +66,15 @@ export default props => {
             response => {
               niceFishToast({
                 severity: 'success',
-                summary: 'Success',
-                detail: '删除成功',
+                summary: i18n.t('success'),
+                detail: i18n.t('success'),
               });
             },
             error => {
               niceFishToast({
                 severity: 'error',
-                summary: 'Error',
-                detail: '删除失败',
+                summary: i18n.t('error'),
+                detail: i18n.t('fail'),
               });
             }
           )
@@ -116,7 +120,7 @@ export default props => {
       <div className="row">
         <div className="col-md-11">
           <div className="input-group">
-            <input name="searchStr" className="form-control" type="text" placeholder="API 名称或者权限字符串" />
+            <input name="searchStr" className="form-control" type="text" />
             <span className="input-group-btn">
               <button className="btn btn-default" type="button">
                 <i className="fa fa-search" aria-hidden="true"></i>
@@ -148,12 +152,12 @@ export default props => {
               onPageChange: onPageChange
             }}
           >
-            <Column field="apiName" header="API 名称"></Column>
-            <Column field="url" header="URL"></Column>
-            <Column field="permission" header="权限通配符"></Column>
-            <Column field="remark" header="备注" style={{ maxWidth: "120px" }}></Column>
-            <Column field="roleEntities" body={roleListTemplate} header="已关联角色"></Column>
-            <Column field="" header="操作" body={operationTemplate}></Column>
+            <Column field="apiName" header={i18n.t("apiPermission.apiName")}></Column>
+            <Column field="url" header={i18n.t("apiPermission.apiUrl")}></Column>
+            <Column field="permission" header={i18n.t("apiPermission.permissionWildCard")}></Column>
+            <Column field="remark" header={i18n.t("apiPermission.remark")} style={{ maxWidth: "120px" }}></Column>
+            <Column field="roleEntities" body={roleListTemplate} header={i18n.t("apiPermission.table.associatedRoles")}></Column>
+            <Column field="" header={i18n.t("operation")} body={operationTemplate}></Column>
           </DataTable>
         </div>
       </div>

@@ -194,17 +194,17 @@ export default props => {
     <div className="role-edit-container">
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("editApiPermission.title")}</h3>
+          <h3 className="panel-title">{i18n.t("apiPermission.edit.title")}</h3>
         </div>
         <div className="panel-body">
           <form className="form-horizontal" role="form" noValidate>
             <div className={`form-group  ${errors.apiName ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.apiName")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.apiName")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder={i18n.t("editApiPermission.plsEnterApiName")}
+                  placeholder={i18n.t("apiPermission.edit.plsEnterApiName")}
                   name="apiName"
                   value={formValue.apiName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -215,12 +215,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.url ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.apiUrl")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.apiUrl")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder={i18n.t("editApiPermission.plsEnterApiUrl")}
+                  placeholder={i18n.t("apiPermission.edit.plsEnterApiUrl")}
                   name="url"
                   value={formValue.url || ""}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -231,12 +231,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.permission ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.permissionWildCard")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.permissionWildCard")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder={i18n.t("editApiPermission.plsEnterPermissionWildCard")}
+                  placeholder={i18n.t("apiPermission.edit.plsEnterPermissionWildCard")}
                   name="permission"
                   value={formValue.permission}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -245,29 +245,29 @@ export default props => {
                   errors.permission ? <div className="text-danger">{errors.permission}</div> : <></>
                 }
                 <p className="bg-danger">
-                  Apache Shiro Doc: https://shiro.apache.org/permissions.html
+                  <a href="https://shiro.apache.org/permissions.html" target="_blank" rel="noreferrer">Apache Shiro Doc</a>
                 </p>
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.createTime")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.createTime")}：</label>
               <div className="col-md-9">
                 {formValue.createTime}
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.updateTime")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.updateTime")}：</label>
               <div className="col-md-9">
                 {formValue.updateTime}
               </div>
             </div>
             <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("editApiPermission.remark")}：</label>
+              <label className="col-md-3 control-label">{i18n.t("apiPermission.remark")}：</label>
               <div className="col-md-9">
                 <textarea
                   rows="5"
                   className="form-control"
-                  placeholder={i18n.t("editApiPermission.plsEnterRemark")}
+                  placeholder={i18n.t("apiPermission.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}

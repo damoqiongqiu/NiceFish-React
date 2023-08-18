@@ -35,18 +35,23 @@
     "operation": "操作",
     "save": "保存",
     "cancel": "取消",
-    "editApiPermission": {
-        "title": "创建/编辑 API 权限",
+    "apiPermission": {
         "apiName": "API 名称",
-        "plsEnterApiName": "请输入 API 名称。",
         "apiUrl": "API URL",
-        "plsEnterApiUrl": "请输入 API URL。",
         "permissionWildCard": "权限通配符",
-        "plsEnterPermissionWildCard": "请输入权限通配符。",
         "createTime": "创建时间",
         "updateTime": "更新时间",
         "remark": "备注",
-        "plsEnterRemark": "请输入备注。"
+        "table": {
+            "associatedRoles": "已关联角色"
+        },
+        "edit": {
+            "title": "创建/编辑 API 权限",
+            "plsEnterApiName": "请输入 API 名称。",
+            "plsEnterApiUrl": "请输入 API URL。",
+            "plsEnterPermissionWildCard": "请输入权限通配符。",
+            "plsEnterRemark": "请输入备注。"
+        }
     },
     "validation": {
         "required": "{{field}} 字段必填。",
