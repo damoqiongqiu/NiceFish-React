@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 import { Button } from 'primereact/button';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -11,6 +11,9 @@ import compPermService from "src/app/service/component-permission-service";
 import './index.scss';
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   // 导航对象
   const navigate = useNavigate();
 
@@ -23,13 +26,34 @@ export default props => {
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
+  /**
+   * 表格中的操作按钮模板
+   * @param {*} item 
+   * @returns 
+   */
+  const operationTemplate = (item) => {
+    return (
+      <>
+        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => {
+          let pId = item.parentEntity ? item.parentEntity.compPermId : "-1";
+          navigate("/manage/component-permission-edit/" + item.compPermId + "/" + pId)
+        }} />&nbsp;&nbsp;
+        <Button icon="pi pi-plus" className="p-button-warning" onClick={() => {
+          navigate("/manage/component-permission-edit/-1/ " + item.compPermId)
+        }}></Button>&nbsp;&nbsp;
+        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
+      </>
+    );
+  };
+
   // 表格列定义
   const cols = [
-    { field: "componentName", header: "组件名称", expander: true },
-    { field: "url", header: "URL" },
-    { field: "displayOrder", header: "显示顺序" },
-    { field: "permission", header: "权限通配符" },
-    { field: "visiable", header: "是否可见" },
+    { field: "componentName", header: i18n.t("componentPermission.componentName"), expander: true },
+    { field: "url", header: i18n.t("componentPermission.componentUrl") },
+    { field: "displayOrder", header: i18n.t("componentPermission.displayOrder") },
+    { field: "permission", header: i18n.t("componentPermission.permissionWildCard") },
+    { field: "visiable", header: i18n.t("componentPermission.table.visiable") },
+    { field: "", header: i18n.t("operation"), body: operationTemplate }
   ];
 
   /**
@@ -85,8 +109,8 @@ export default props => {
    */
   const delComponentPermission = (rowData) => {
     confirmDialog({
-      message: '确定要删除吗？',
-      header: '确认',
+      message: i18n.t("confirmDelete"),
+      header: i18n.t("confirm"),
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         let compPermId = rowData.compPermId;
@@ -96,15 +120,15 @@ export default props => {
             response => {
               niceFishToast({
                 severity: 'success',
-                summary: 'Success',
-                detail: '删除成功',
+                summary: i18n.t('success'),
+                detail: i18n.t('success'),
               });
             },
             error => {
               niceFishToast({
                 severity: 'error',
-                summary: 'Error',
-                detail: '删除失败',
+                summary: i18n.t('error'),
+                detail: i18n.t('fail'),
               });
             }
           )
@@ -117,25 +141,6 @@ export default props => {
     getCompPermListByPage();
   }, []);
 
-  /**
-   * 表格中的操作按钮模板
-   * @param {*} item 
-   * @returns 
-   */
-  const operationTemplate = (item) => {
-    return (
-      <>
-        <Button icon="pi pi-pencil" className="p-button-success" onClick={() => {
-          let pId = item.parentEntity ? item.parentEntity.compPermId : "-1";
-          navigate("/manage/component-permission-edit/" + item.compPermId + "/" + pId)
-        }} />&nbsp;&nbsp;
-        <Button icon="pi pi-plus" className="p-button-warning" onClick={() => {
-          navigate("/manage/component-permission-edit/-1/ " + item.compPermId)
-        }}></Button>&nbsp;&nbsp;
-        <Button icon="pi pi-trash" className="p-button-danger" onClick={() => { delComponentPermission(item); }} />
-      </>
-    );
-  };
 
   return (
     <div className="component-permission-table-container">
@@ -143,7 +148,7 @@ export default props => {
         <div className="row">
           <div className="col-md-11">
             <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder="组件名称或者权限字符串" />
+              <input name="searchStr" className="form-control" type="text" />
               <span className="input-group-btn">
                 <button className="btn btn-default" type="button">
                   <i className="fa fa-search" aria-hidden="true"></i>
@@ -174,15 +179,15 @@ export default props => {
                     field={col.field}
                     header={col.header}
                     expander={col.expander}
+                    body={col.body}
                   >
                   </Column>
                 })
               }
-              <Column field="" header="操作" body={operationTemplate}></Column>
             </TreeTable>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };

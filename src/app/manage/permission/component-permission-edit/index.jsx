@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import compPermService from "src/app/service/component-permission-service";
@@ -69,6 +70,9 @@ const schema = {
 const ajvValidate = ajv.compile(schema);
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -138,23 +142,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '更新成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: '更新失败',
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '更新失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -165,23 +169,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '创建成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: '创建成功',
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '创建失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -204,8 +208,8 @@ export default props => {
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '加载用户信息失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -229,13 +233,13 @@ export default props => {
     <div className="role-edit-container">
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title">创建/编辑前端组件权限</h3>
+          <h3 className="panel-title">{i18n.t("componentPermission.edit.title")}</h3>
         </div>
         <div className="panel-body">
           <form className="form-horizontal" role="form" noValidate>
             <div className="form-group">
-              <label className="col-md-2 control-label">父层组件：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.parentComponent")}：</label>
+              <div className="col-md-9">
                 {
                   formValue.parentEntity ? (
                     <span className="label label-success form-control">
@@ -243,19 +247,19 @@ export default props => {
                     </span>
                   ) : (
                     <span className="label label-danger form-control">
-                      无
+                      {i18n.t("none")}
                     </span>
                   )
                 }
               </div>
             </div>
             <div className={`form-group  ${errors.componentName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">组件名称：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.componentName")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入组件名称"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterComponentName")}
                   name="componentName"
                   value={formValue.componentName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -266,12 +270,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.icon ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">组件图标：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.iconUrl")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入图标 URL"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterIconUrl")}
                   name="icon"
                   value={formValue.icon || ""}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -282,12 +286,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.url ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">组件 URL：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.componentUrl")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入 URL"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterComponentUrl")}
                   name="url"
                   value={formValue.url || ""}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -298,12 +302,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.displayOrder ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">显示顺序：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.displayOrder")}：</label>
+              <div className="col-md-9">
                 <input
                   type="number"
                   className="form-control"
-                  placeholder="请输入显示顺序"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterDisplayOrder")}
                   name="displayOrder"
                   value={formValue.displayOrder}
                   onChange={(e) => handleInputChange(e.target.name, parseInt(e.target.value))}
@@ -314,12 +318,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.permission ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">权限通配符：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.permissionWildCard")}：</label>
+              <div className="col-md-9">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="请输入权限通配符"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterPermissionWildCard")}
                   name="permission"
                   value={formValue.permission}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -328,13 +332,13 @@ export default props => {
                   errors.permission ? <div className="text-danger">{errors.permission}</div> : <></>
                 }
                 <p className="bg-danger">
-                  Apache Shiro 通配符权限文档： https://shiro.apache.org/permissions.html
+                  <a href="https://shiro.apache.org/permissions.html" target="_blank" rel="noreferrer">Apache Shiro Doc</a>
                 </p>
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">是否启用：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.enabled")}：</label>
+              <div className="col-md-9">
                 <div className="checkbox">
                   <label>
                     <input
@@ -351,13 +355,13 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">备注：</label>
-              <div className="col-md-10">
+              <label className="col-md-3 control-label">{i18n.t("componentPermission.remark")}：</label>
+              <div className="col-md-9">
                 <textarea
                   rows="5"
                   type="text"
                   className="form-control"
-                  placeholder="备注"
+                  placeholder={i18n.t("componentPermission.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -369,12 +373,12 @@ export default props => {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-md-offset-2 col-md-10">
+              <div className="col-md-offset-3 col-md-9">
                 <button type="button" className="btn btn-primary btn-margin-1rem" onClick={save}>
-                  保存
+                  {i18n.t("save")}
                 </button>
                 <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
-                  取消
+                  {i18n.t("cancel")}
                 </button>
               </div>
             </div>

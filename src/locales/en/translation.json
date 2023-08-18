@@ -35,6 +35,7 @@
     "operation": "Operation",
     "save": "Save",
     "cancel": "Cancel",
+    "none": "None",
     "apiPermission": {
         "apiName": "API Name",
         "apiUrl": "API URL",
@@ -49,6 +50,28 @@
             "title": "Create/Edit Backend API Permission",
             "plsEnterApiName": "Please enter API name.",
             "plsEnterApiUrl": "Please enter API URL.",
+            "plsEnterPermissionWildCard": "Please enter permission wild card.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "componentPermission": {
+        "parentComponent": "Parent Component",
+        "componentName": "Component Name",
+        "componentUrl": "Component URL",
+        "iconUrl": "Icon URL",
+        "displayOrder": "Display Order",
+        "permissionWildCard": "Permission WildCard",
+        "enabled": "Enabled",
+        "remark": "Remark",
+        "table": {
+            "visiable": "Visiable"
+        },
+        "edit": {
+            "title": "Create/Edit Frontend Component Permission",
+            "plsEnterComponentName": "Please enter component name.",
+            "plsEnterIconUrl": "Please enter icon URL.",
+            "plsEnterComponentUrl": "Please enter component URL.",
+            "plsEnterDisplayOrder": "Please enter display order.",
             "plsEnterPermissionWildCard": "Please enter permission wild card.",
             "plsEnterRemark": "Please enter remark."
         }

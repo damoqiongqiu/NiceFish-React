@@ -35,6 +35,7 @@
     "operation": "操作",
     "save": "保存",
     "cancel": "取消",
+    "none": "无",
     "apiPermission": {
         "apiName": "API 名称",
         "apiUrl": "API URL",
@@ -50,6 +51,28 @@
             "plsEnterApiName": "请输入 API 名称。",
             "plsEnterApiUrl": "请输入 API URL。",
             "plsEnterPermissionWildCard": "请输入权限通配符。",
+            "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "componentPermission": {
+        "parentComponent": "父层组件",
+        "componentName": "组件名称",
+        "componentUrl": "组件 URL",
+        "iconUrl": "组件图标",
+        "displayOrder": "显示顺序",
+        "permissionWildCard": "权限通配符",
+        "enabled": "是否启用",
+        "remark": "备注",
+        "table": {
+            "visiable": "是否可见"
+        },
+        "edit": {
+            "title": "创建/编辑前端组件权限",
+            "plsEnterComponentName": "请输入组件名称",
+            "plsEnterIconUrl": "请输入图标 URL",
+            "plsEnterComponentUrl": "请输入 URL",
+            "plsEnterDisplayOrder": "请输入显示顺序",
+            "plsEnterPermissionWildCard": "请输入权限通配符",
             "plsEnterRemark": "请输入备注。"
         }
     },
