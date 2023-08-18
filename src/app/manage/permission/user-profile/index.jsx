@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import userService from 'src/app/service/user-service';
 import defaultAvatar from 'src/assets/images/react.svg';
@@ -82,21 +83,25 @@ const schema = {
 //ajv 的 compile 吃资源较多，这里放在组件外面，保证只执行一次。
 const ajvValidate = ajv.compile(schema);
 
-/**
- * 性别选项，静态数据。
- * value 必须是数值，与服务端的接口类型对应，否则无法选中。
- */
-const genderList = [
-  { label: '女', value: 0 },
-  { label: '男', value: 1 },
-  { label: '未知', value: 2 }
-];
 
 /**
  * UserProfile 用户详情组件，创建和编辑用户都用这个组件。
  * @author 大漠穷秋
  */
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
+  /**
+   * 性别选项，静态数据。
+   * value 必须是数值，与服务端的接口类型对应，否则无法选中。
+   */
+  const genderList = [
+    { label: i18n.t("gender.female"), value: 0 },
+    { label: i18n.t("gender.male"), value: 1 },
+    { label: i18n.t("gender.unknown"), value: 2 }
+  ];
+
   // 导航对象
   const navigate = useNavigate();
 
@@ -161,23 +166,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '更新成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: '更新失败',
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '更新失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -188,23 +193,23 @@ export default props => {
           if (data.success) {
             niceFishToast({
               severity: 'success',
-              summary: 'Success',
-              detail: '创建成功',
+              summary: i18n.t('success'),
+              detail: i18n.t('success'),
             });
             window.history.back();
           } else {
             niceFishToast({
               severity: 'error',
-              summary: 'Error',
-              detail: data?.msg || '创建失败',
+              summary: i18n.t('error'),
+              detail: i18n.t('fail'),
             });
           }
         },
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '创建失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -228,8 +233,8 @@ export default props => {
         error => {
           niceFishToast({
             severity: 'error',
-            summary: 'Error',
-            detail: '加载用户信息失败',
+            summary: i18n.t('error'),
+            detail: i18n.t('fail'),
           });
         }
       );
@@ -239,11 +244,11 @@ export default props => {
   return (
     <div className="user-profile-container">
       <div className="panel panel-default">
-        <div className="panel-heading">创建/编辑用户</div>
+        <div className="panel-heading">{i18n.t("user.edit.title")}</div>
         <div className="panel-body">
           <form className="form-horizontal" role="form">
             <div className="form-group">
-              <label className="col-md-2 control-label">当前头像：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.currentAvatar")}：</label>
               <div className="col-md-10">
                 <img
                   src={formValue.avatarURL || defaultAvatar}
@@ -252,22 +257,22 @@ export default props => {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-md-2 control-label">上传头像：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.uploadAvatar")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="file"
-                  placeholder="上传头像"
+                  placeholder={i18n.t("user.edit.plsUploadAvatar")}
                 />
               </div>
             </div>
             <div className={`form-group  ${errors.userName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">用户名：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.userName")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="input"
-                  placeholder="用户名"
+                  placeholder={i18n.t("user.edit.plsEnterUserName")}
                   name="userName"
                   value={formValue.userName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -278,12 +283,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.nickName ? "has-error" : ""}`} >
-              <label className="col-md-2 control-label">昵称：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.nickName")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="input"
-                  placeholder="昵称"
+                  placeholder={i18n.t("user.edit.plsEnterNickName")}
                   name="nickName"
                   value={formValue.nickName}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -294,7 +299,7 @@ export default props => {
               </div>
             </div>
             <div className={`form-group`} >
-              <label className="col-md-2 control-label">性别：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.gender")}：</label>
               <div className="col-md-10">
                 {
                   genderList.map((item, index) => {
@@ -312,12 +317,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.email ? "has-error" : ""}`} >
-              <label className="col-md-2 control-label">常用邮箱：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.email")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="input"
-                  placeholder="常用邮箱"
+                  placeholder={i18n.t("user.edit.plsEnterEmail")}
                   name="email"
                   value={formValue.email}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -328,12 +333,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.cellphone ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">手机号：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.mobile")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="input"
-                  placeholder="手机号"
+                  placeholder={i18n.t("user.edit.plsEnterMobile")}
                   name="cellphone"
                   value={formValue.cellphone}
                   onChange={(e) => handleInputChange(e.target.name, e.target.value)}
@@ -344,13 +349,14 @@ export default props => {
               </div>
             </div>
             <div className={`form-group ${errors.password ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">密码：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.password")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="password"
                   value={formValue.password}
                   autoComplete="off"
+                  placeholder={i18n.t("user.edit.plsEnterPassword")}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                 />
                 {
@@ -359,13 +365,14 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.confirmPassword ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">重复密码：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.confirmPassword")}：</label>
               <div className="col-md-10">
                 <input
                   className="form-control"
                   type="password"
                   value={formValue.confirmPassword}
                   autoComplete="off"
+                  placeholder={i18n.t("user.edit.plsEnterConfirmPassword")}
                   onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
                 />
                 {
@@ -374,7 +381,7 @@ export default props => {
               </div>
             </div>
             <div className={`form-group`}>
-              <label className="col-md-2 control-label">启用：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.enabled")}：</label>
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
@@ -392,12 +399,12 @@ export default props => {
               </div>
             </div>
             <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">简介：</label>
+              <label className="col-md-2 control-label">{i18n.t("user.remark")}：</label>
               <div className="col-md-10">
                 <textarea
                   rows="5"
                   className="form-control"
-                  placeholder="简介"
+                  placeholder={i18n.t("user.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
                   onChange={(e) => {
@@ -416,10 +423,10 @@ export default props => {
         <div className="form-group">
           <div className="col-md-12">
             <button type="button" className="btn btn-primary btn-margin-1rem" onClick={save}>
-              保存
+              {i18n.t("save")}
             </button>
             <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
-              取消
+              {i18n.t("cancel")}
             </button>
           </div>
         </div>

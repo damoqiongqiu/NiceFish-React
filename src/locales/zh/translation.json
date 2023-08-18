@@ -37,6 +37,11 @@
     "cancel": "取消",
     "none": "无",
     "status": "状态",
+    "gender": {
+        "female": "女",
+        "male": "男",
+        "unknown": "未知"
+    },
     "apiPermission": {
         "apiName": "API 名称",
         "apiUrl": "API URL",
@@ -90,6 +95,34 @@
             "title": "创建/编辑角色",
             "plsEnterRoleName": "请输入角色名称。",
             "plsEnterRemark": "请输入备注。"
+        }
+    },
+    "user": {
+        "currentAvatar": "当前头像",
+        "uploadAvatar": "选择头像",
+        "userName": "用户名",
+        "nickName": "昵称",
+        "gender": "性别",
+        "email": "常用邮箱",
+        "mobile": "手机号",
+        "password": "密码",
+        "confirmPassword": "重复密码",
+        "enabled": "启用",
+        "disabled": "禁用",
+        "remark": "简介",
+        "status": "状态",
+        "createTime": "创建时间",
+        "table": {
+            "associatedRoles": "已关联角色"
+        },
+        "edit": {
+            "title": "创建/编辑用户",
+            "plsEnterAvatar": "请选择头像。",
+            "plsEnterEmail": "请输入常用邮箱。",
+            "plsEnterMobile": "请输入手机号。",
+            "plsEnterPassword": "请输入密码。",
+            "plsEnterConfirmPassword": "请再次输入密码。",
+            "plsEnterRemark": "请输入简介。"
         }
     },
     "validation": {

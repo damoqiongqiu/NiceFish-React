@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -9,6 +10,9 @@ import userSercice from "src/app/service/user-service";
 import './index.scss';
 
 export default props => {
+  //i18n hooks
+  const { i18n } = useTranslation();
+
   //导航对象
   const navigate = useNavigate();
 
@@ -53,8 +57,8 @@ export default props => {
    */
   const delUser = (rowData, ri) => {
     confirmDialog({
-      message: '确定要删除吗？',
-      header: '确认',
+      message: i18n.t('confirmDelete'),
+      header: i18n.t('confirm'),
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         userSercice.del(rowData.userId)
@@ -62,15 +66,15 @@ export default props => {
             response => {
               niceFishToast({
                 severity: 'success',
-                summary: 'Success',
-                detail: '删除成功',
+                summary: i18n.t('success'),
+                detail: i18n.t('success'),
               });
             },
             error => {
               niceFishToast({
                 severity: 'error',
-                summary: 'Error',
-                detail: '删除失败',
+                summary: i18n.t('error'),
+                detail: i18n.t('fail'),
               });
             }
           )
@@ -90,8 +94,8 @@ export default props => {
   const statusTemplate = (item) => {
     return (
       item.status == 0 ?
-        <span className="label label-danger">禁用</span> :
-        <span className="label label-success">正常</span>
+        <span className="label label-danger">{i18n.t("enabled")}</span> :
+        <span className="label label-success">{i18n.t("disabled")}</span>
     );
   };
 
@@ -130,7 +134,7 @@ export default props => {
         <div className="row">
           <div className="col-md-11">
             <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder="用户名，手机号" />
+              <input name="searchStr" className="form-control" type="text" />
               <span className="input-group-btn">
                 <button className="btn btn-default" type="button">
                   <i className="fa fa-search" aria-hidden="true"></i>
@@ -162,14 +166,14 @@ export default props => {
                 onPageChange: onPageChange
               }}
             >
-              <Column field="userName" header="用户名"></Column>
-              <Column field="nickName" header="昵称"></Column>
-              <Column field="status" body={statusTemplate} header="状态"></Column>
-              <Column field="email" header="email"></Column>
-              <Column field="cellphone" header="手机号"></Column>
-              <Column field="createTime" header="注册时间"></Column>
-              <Column field="roleEntities" body={roleListTemplate} header="角色列表"></Column>
-              <Column field="" header="操作" body={operationTemplate}></Column>
+              <Column field="userName" header={i18n.t("user.userName")}></Column>
+              <Column field="nickName" header={i18n.t("user.nickName")}></Column>
+              <Column field="status" body={statusTemplate} header={i18n.t("user.status")}></Column>
+              <Column field="email" header={i18n.t("user.email")}></Column>
+              <Column field="cellphone" header={i18n.t("user.mobile")}></Column>
+              <Column field="createTime" header={i18n.t("user.createTime")}></Column>
+              <Column field="roleEntities" body={roleListTemplate} header={i18n.t("user.table.associatedRoles")}></Column>
+              <Column field="" header={i18n.t("operation")} body={operationTemplate}></Column>
             </DataTable>
           </div>
         </div>

@@ -37,6 +37,11 @@
     "cancel": "Cancel",
     "none": "None",
     "status": "Status",
+    "gender": {
+        "female": "Female",
+        "male": "Male",
+        "unknown": "Unknown"
+    },
     "apiPermission": {
         "apiName": "API Name",
         "apiUrl": "API URL",
@@ -89,6 +94,34 @@
         "edit": {
             "title": "Create/Edit Role",
             "plsEnterRoleName": "Please enter role name.",
+            "plsEnterRemark": "Please enter remark."
+        }
+    },
+    "user": {
+        "currentAvatar": "Current Avatar",
+        "uploadAvatar": "Upload Avatar",
+        "userName": "User Name",
+        "nickName": "Nick Name",
+        "gender": "Gender",
+        "email": "Email",
+        "mobile": "Mobile",
+        "password": "Password",
+        "confirmPassword": "Repeat Password",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "remark": "Remark",
+        "status": "Status",
+        "createTime": "Create Time",
+        "table": {
+            "associatedRoles": "Associated Roles"
+        },
+        "edit": {
+            "title": "Create/Edit User",
+            "plsEnterAvatar": "Please upload avatar.",
+            "plsEnterEmail": "Please enter email.",
+            "plsEnterMobile": "Please enter mobile.",
+            "plsEnterPassword": "Please enter password.",
+            "plsEnterConfirmPassword": "Please enter repeat password.",
             "plsEnterRemark": "Please enter remark."
         }
     },
