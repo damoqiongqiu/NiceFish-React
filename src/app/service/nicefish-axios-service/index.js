@@ -20,7 +20,7 @@ axiosService.interceptors.request.use(
             niceFishToast({
                 severity: 'warn',
                 summary: 'Warning',
-                detail: "注意：当前为 Mock 模式，不会与服务端交互，某些请求会报错。所有输入项都可以随意输入，符合校验规则即可。如果需要与服务端交互，请重新启动到 backend 模式 ng serve --configuration development-backend",
+                detail: "注意：当前为 Mock 模式，不会与服务端交互，某些请求会报错。所有输入项都可以随意输入，符合校验规则即可。如果需要与服务端交互，请重新启动到 backend 模式 npm run start:dev-backend ",
                 sticky: false,
                 life: 10000
             });
