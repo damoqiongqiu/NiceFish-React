@@ -8,6 +8,15 @@ $navbarBgHoverColor: #303d47;
 $textColor: #fff;
 $bodyBgColor: rgba(0, 0, 0, 0.85);
 
+$btnBgColor: #04091e;
+$btnHoverBgColor: #303d47;
+$btnDefaultBgColor: #04091e;
+$btnDefaultHoverBgColor: #303d47;
+$btnTextColor: #fff;
+$marginRight: 1rem;
+$checkboxBorderColor: #757575;
+$formBgColor: #fff;
+
 /* 一些自定义的全局样式 */
 * {
     font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
@@ -24,6 +33,106 @@ body {
     ::selection {
         background-color: $brandColor;
         color: $textColor;
+    }
+}
+
+.btn {
+    &:focus {
+        outline: none;
+
+        &:active {
+            outline: none;
+        }
+    }
+}
+
+.form-horizontal.form-bgcolor {
+    padding: 1.9rem 1rem 1rem 1rem;
+}
+
+.form-bgcolor {
+    background-color: $formBgColor;
+}
+
+.col-padding {
+    padding: 1.5rem;
+}
+
+.btn.btn-primary {
+    background-color: $brandColor;
+    border-color: $brandColor;
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        background-color: $brandColor;
+        border-color: $brandColor;
+    }
+
+    &:active {
+        outline: none;
+        background-color: darken($brandColor, 5%);
+        border-color: darken($brandColor, 5%);
+    }
+}
+
+.btn.btn-default {
+    background-color: $btnDefaultBgColor;
+    border-color: $btnDefaultBgColor;
+    color: $btnTextColor;
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        background-color: $btnDefaultHoverBgColor;
+        border-color: $btnDefaultHoverBgColor;
+    }
+
+    &:active {
+        outline: none;
+        color: $btnTextColor;
+        background-color: darken($btnDefaultHoverBgColor, 5%);
+        border-color: darken($btnDefaultHoverBgColor, 5%);
+    }
+}
+
+.form-control:focus {
+    border-color: $btnBgColor;
+}
+
+.mr-1rem {
+    margin-right: $marginRight;
+}
+
+.mb-1rem {
+    margin-bottom: 1rem !important;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+a {
+    color: $btnBgColor;
+
+    &:hover {
+        color: darken($btnBgColor, 5%);
+    }
+
+    &.text-danger {
+        color: #cb4a1c;
+
+        &:hover {
+            color: darken(#cb4a1c, 5%)
+        }
+    }
+
+    &.list-group-item {
+        color: #555;
     }
 }
 
