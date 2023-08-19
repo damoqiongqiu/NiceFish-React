@@ -422,7 +422,7 @@ export default props => {
       <form className="form-horizontal" role="form">
         <div className="form-group">
           <div className="col-md-12">
-            <button type="button" className="btn btn-primary btn-margin-1rem" onClick={save}>
+            <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
               {i18n.t("save")}
             </button>
             <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>

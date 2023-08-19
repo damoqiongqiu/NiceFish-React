@@ -222,7 +222,7 @@ export default props => {
             </div>
             <div className="form-group">
               <div className="col-md-offset-2 col-md-10">
-                <button type="button" className="btn btn-primary btn-margin-1rem" onClick={doSignIn}>{i18n.t("signInBtn")}</button>
+                <button type="button" className="btn btn-primary mr-1rem" onClick={doSignIn}>{i18n.t("signInBtn")}</button>
                 <button type="button" className="btn btn-default" onClick={retrievePwd}>{i18n.t("forgetPwd")}</button>
               </div>
             </div>

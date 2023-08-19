@@ -440,10 +440,10 @@ export default props => {
       </div>
       <div className="row">
         <div className="col-md-12">
-          <button type="button" className="btn btn-success btn-margin-1rem" onClick={save}>
+          <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
             {i18n.t("save")}
           </button>
-          <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
+          <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
             {i18n.t("cancel")}
           </button>
         </div>

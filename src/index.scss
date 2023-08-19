@@ -1,8 +1,12 @@
 //PrimeReact 官方样式定制工具：https://primereact.org
 @import "~primereact/resources/primereact.css";
 @import "~primereact/resources/themes/bootstrap4-light-blue/theme.css";
+
+//bootstrap 官方样式定制工具：https://getbootstrap.com/docs/3.3/customize/
 @import "./assets/css/bootstrap-3.3.7-custom/css/bootstrap.min.css";
-@import "./assets/css/bootstrap-custom.scss";
+@import "./assets/css/bootstrap-custom-dark.scss";
+
+//font-awesome 图标库 https://fontawesome.com
 @import "~font-awesome/css/font-awesome.min.css";
 
 //PrimeReact 提供的图标库 https://primereact.org

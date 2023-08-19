@@ -180,7 +180,7 @@ export default props => {
             </div>
             <div className="form-group">
               <div className="col-md-offset-3 col-md-9">
-                <button type="button" onClick={doSignUp} className="btn btn-success">{i18n.t("signUp")}</button>
+                <button type="button" onClick={doSignUp} className="btn btn-primary">{i18n.t("signUp")}</button>
               </div>
             </div>
           </form>
