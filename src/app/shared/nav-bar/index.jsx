@@ -9,6 +9,8 @@ import signService from 'src/app/service/sign-in-service';
 
 import niceFishPNG from 'src/assets/images/nice-fish.png';
 
+import './index.scss';
+
 //TODO:从服务端加载支持的语言列表
 const languages = [
     { name: '汉语', value: 'zh' },

@@ -1,0 +1,47 @@
+//导航条背景色
+$navbarBgColor: #000;
+//导航条悬停背景色
+$navbarBgHoverColor: #303d47;
+//文字颜色
+$textColor: #fff;
+
+.main-nav {
+    background: $navbarBgColor;
+    height: 50px;
+    min-height: 50px;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+
+    .navbar-toggle {
+        .icon-bar {
+            background-color: $textColor;
+        }
+    }
+
+    .navbar-brand-my {
+        line-height: 50px;
+        padding: 0 15px 0 0;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .navbar-collapse {
+        background: $navbarBgColor;
+
+        .navbar-nav {
+            >li {
+                >a {
+                    border: none;
+
+                    &:hover {
+                        background: $navbarBgHoverColor;
+                    }
+
+                    &:focus {
+                        background: $navbarBgHoverColor;
+                    }
+                }
+            }
+        }
+    }
+}

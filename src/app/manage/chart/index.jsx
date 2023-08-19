@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import Color from 'src/app/shared/color.util';
 import ReactEcharts from "echarts-for-react";
 
+import "echarts/theme/shine";
+
 import './index.scss';
 
 export default props => {
   //Echarts 饼图配置项
   const pieOptions = {
-    theme: '',
+    theme: 'shine',//FIXME:主题没有生效
     event: [
       {
         type: 'click',
@@ -75,6 +77,7 @@ export default props => {
 
   //Echarts 柱状图配置项
   const barOptions = {
+    theme: 'shine',
     title: {
       text: 'NiceFish月访问量统计',
       subtext: '纯属虚构',
@@ -120,6 +123,7 @@ export default props => {
 
   //Echarts 折线图配置项
   const lineOptions = {
+    theme: 'shine',
     title: {
       text: 'NiceFish月访问趋势图',
       subtext: '纯属虚构',
@@ -202,7 +206,7 @@ export default props => {
   }, []);
 
   return (
-    <div>
+    <div className='mng-chart-container'>
       <div className="row">
         <div className="col-md-12">
           <div className="nf-chart">

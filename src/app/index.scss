@@ -1,21 +1,7 @@
 //品牌主色调
 $brandColor: #f6214b;
-//导航条背景色
-$navbarBgColor: #000;
-//导航条悬停背景色
-$navbarBgHoverColor: #303d47;
 //文字颜色
 $textColor: #fff;
-$bodyBgColor: rgba(0, 0, 0, 0.85);
-
-$btnBgColor: #04091e;
-$btnHoverBgColor: #303d47;
-$btnDefaultBgColor: #04091e;
-$btnDefaultHoverBgColor: #303d47;
-$btnTextColor: #fff;
-$marginRight: 1rem;
-$checkboxBorderColor: #757575;
-$formBgColor: #fff;
 
 /* 一些自定义的全局样式 */
 * {
@@ -26,153 +12,9 @@ $formBgColor: #fff;
 
 body {
     font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    background-color: $bodyBgColor;
 
     ::selection {
-        background-color: $brandColor;
-        color: $textColor;
-    }
-}
-
-.btn {
-    &:focus {
-        outline: none;
-
-        &:active {
-            outline: none;
-        }
-    }
-}
-
-.form-horizontal.form-bgcolor {
-    padding: 1.9rem 1rem 1rem 1rem;
-}
-
-.form-bgcolor {
-    background-color: $formBgColor;
-}
-
-.col-padding {
-    padding: 1.5rem;
-}
-
-.btn.btn-primary {
-    background-color: $brandColor;
-    border-color: $brandColor;
-
-    &:focus {
-        outline: 0;
-    }
-
-    &:hover {
-        background-color: $brandColor;
-        border-color: $brandColor;
-    }
-
-    &:active {
-        outline: none;
-        background-color: darken($brandColor, 5%);
-        border-color: darken($brandColor, 5%);
-    }
-}
-
-.btn.btn-default {
-    background-color: $btnDefaultBgColor;
-    border-color: $btnDefaultBgColor;
-    color: $btnTextColor;
-
-    &:focus {
-        outline: 0;
-    }
-
-    &:hover {
-        background-color: $btnDefaultHoverBgColor;
-        border-color: $btnDefaultHoverBgColor;
-    }
-
-    &:active {
-        outline: none;
-        color: $btnTextColor;
-        background-color: darken($btnDefaultHoverBgColor, 5%);
-        border-color: darken($btnDefaultHoverBgColor, 5%);
-    }
-}
-
-.form-control:focus {
-    border-color: $btnBgColor;
-}
-
-.mr-1rem {
-    margin-right: $marginRight;
-}
-
-.mb-1rem {
-    margin-bottom: 1rem !important;
-}
-
-.no-padding-left {
-    padding-left: 0;
-}
-
-a {
-    color: $btnBgColor;
-
-    &:hover {
-        color: darken($btnBgColor, 5%);
-    }
-
-    &.text-danger {
-        color: #cb4a1c;
-
-        &:hover {
-            color: darken(#cb4a1c, 5%)
-        }
-    }
-
-    &.list-group-item {
-        color: #555;
-    }
-}
-
-.main-nav {
-    background: $navbarBgColor;
-    height: 50px;
-    min-height: 50px;
-    padding: 0;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
-
-    .navbar-toggle {
-        .icon-bar {
-            background-color: $textColor;
-        }
-    }
-
-    .navbar-collapse {
-        background: $navbarBgColor;
-
-        li>a {
-            color: $textColor;
-        }
-
-        li.active,
-        li>a:hover,
-        li>a:focus,
-        .open>a,
-        .open>a:hover,
-        .open>a:focus {
-            color: $textColor;
-            background-color: $navbarBgHoverColor;
-        }
-    }
-
-    .navbar-brand-my {
-        color: $textColor;
-        line-height: 50px;
-        padding: 0 15px 0 0;
-        text-align: left;
-        vertical-align: middle;
+        background-color: #fff;
     }
 }
 
@@ -184,10 +26,10 @@ a {
 
 .footer {
     padding: 30px 0px;
-    background: $navbarBgColor;
+    background: #000;
     color: $textColor;
 
     a {
-        color: $textColor;
+        color: #fff;
     }
 }
