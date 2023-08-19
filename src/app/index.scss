@@ -1,5 +1,31 @@
-$navbarBgColor: #04091e;
+//品牌主色调
+$brandColor: #f6214b;
+//导航条背景色
+$navbarBgColor: #000;
+//导航条悬停背景色
 $navbarBgHoverColor: #303d47;
+//文字颜色
+$textColor: #fff;
+$bodyBgColor: rgba(0, 0, 0, 0.85);
+
+/* 一些自定义的全局样式 */
+* {
+    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: $bodyBgColor;
+
+    ::selection {
+        background-color: $brandColor;
+        color: $textColor;
+    }
+}
 
 .main-nav {
     background: $navbarBgColor;
@@ -10,7 +36,7 @@ $navbarBgHoverColor: #303d47;
 
     .navbar-toggle {
         .icon-bar {
-            background-color: #fff;
+            background-color: $textColor;
         }
     }
 
@@ -18,7 +44,7 @@ $navbarBgHoverColor: #303d47;
         background: $navbarBgColor;
 
         li>a {
-            color: #fff;
+            color: $textColor;
         }
 
         li.active,
@@ -27,13 +53,13 @@ $navbarBgHoverColor: #303d47;
         .open>a,
         .open>a:hover,
         .open>a:focus {
-            color: #fff;
+            color: $textColor;
             background-color: $navbarBgHoverColor;
         }
     }
 
     .navbar-brand-my {
-        color: #fff;
+        color: $textColor;
         line-height: 50px;
         padding: 0 15px 0 0;
         text-align: left;
@@ -50,9 +76,9 @@ $navbarBgHoverColor: #303d47;
 .footer {
     padding: 30px 0px;
     background: $navbarBgColor;
-    color: #fff;
+    color: $textColor;
 
     a {
-        color: #fff;
+        color: $textColor;
     }
 }
