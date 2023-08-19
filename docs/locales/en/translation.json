@@ -1,7 +1,5 @@
 {
     "home": "Home",
-    "discover": "Discover",
-    "write": "Write",
     "manage": "Manage",
     "changeLanguage": "Change Language",
     "submit": "Submit",
@@ -41,6 +39,17 @@
         "female": "Female",
         "male": "Male",
         "unknown": "Unknown"
+    },
+    "navbar": {
+        "discover": "Discover",
+        "follow": "Follow",
+        "favorite": "Favorite",
+        "travel": "Travel",
+        "fitness": "Fitness",
+        "movies": "Movies",
+        "music": "Music",
+        "food": "Food",
+        "write": "Write"
     },
     "apiPermission": {
         "apiName": "API Name",
