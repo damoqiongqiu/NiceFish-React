@@ -55,6 +55,59 @@ const NavBar = props => {
         });
     }
 
+    const menus = [
+        {
+            label: i18n.t("home"),
+            icon: "fa-home",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.discover"),
+            icon: "fa-globe",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.follow"),
+            icon: "fa-heart",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.favorite"),
+            icon: "fa-star",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.travel"),
+            icon: "fa-plane",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.fitness"),
+            icon: "fa-futbol-o",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.movies"),
+            icon: "fa-film",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.music"),
+            icon: "fa-music",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.food"),
+            icon: "fa-cutlery",
+            url: "/post"
+        },
+        {
+            label: i18n.t("navbar.write"),
+            icon: "fa-pencil",
+            url: "/write"
+        }
+    ];
+
     return (
         <div className="navbar navbar-fixed-top main-nav" role="navigation">
             <div className="container-fluid">
@@ -71,17 +124,19 @@ const NavBar = props => {
                 </div>
                 <div className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
-                        <li >
-                            <NavLink to="/post">
-                                {i18n.t("discover")}
-                            </NavLink>
-                        </li>
-                        <li >
-                            <NavLink to="/write">
-                                {i18n.t("write")}
-                            </NavLink>
-                        </li>
-                    </ul >
+                        {
+                            menus.map((item, index) => {
+                                return (
+                                    <li key={index}>
+                                        <NavLink to={item.url}>
+                                            <i className={`fa ${item.icon}`}></i>&nbsp;
+                                            {item.label}
+                                        </NavLink>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <NiceFishDropDown
                             options={languages}
@@ -125,7 +180,7 @@ const NavBar = props => {
                             </>
                         }
                     </ul >
-                </div >
+                </div>
             </div >
         </div >
     );

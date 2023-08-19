@@ -1,7 +1,5 @@
 {
     "home": "首页",
-    "discover": "发现",
-    "write": "创作",
     "manage": "管理",
     "changeLanguage": "切换语言",
     "submit": "提交",
@@ -41,6 +39,17 @@
         "female": "女",
         "male": "男",
         "unknown": "未知"
+    },
+    "navbar": {
+        "discover": "发现",
+        "follow": "关注",
+        "favorite": "收藏",
+        "travel": "旅行",
+        "fitness": "健身",
+        "movies": "电影",
+        "music": "音乐",
+        "food": "美食",
+        "write": "创作"
     },
     "apiPermission": {
         "apiName": "API 名称",
