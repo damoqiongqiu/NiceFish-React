@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-import Color from 'src/app/shared/color.util';
 import ReactEcharts from "echarts-for-react";
 
-import "echarts/theme/shine";
+import "echarts/theme/dark";
 
 import './index.scss';
 
 export default props => {
   //Echarts 饼图配置项
   const pieOptions = {
-    theme: 'shine',//FIXME:主题没有生效
     event: [
       {
         type: 'click',
@@ -18,17 +16,12 @@ export default props => {
         }
       }
     ],
-    color: Color.baseColor,
     title: {
       text: 'NiceFish访问用户地区分布',
       subtext: '纯属虚构',
-      x: 'center'
+      x: 'center',
+      padding: [20, 0, 20, 0],
     },
-
-    // tooltip: {
-    //   trigger: "item",
-    //   formatter: "{a} <br/>{b} : {c} ({d}%)",
-    // },
     legend: {
       orient: 'vertical',
       top: '7%',
@@ -77,11 +70,11 @@ export default props => {
 
   //Echarts 柱状图配置项
   const barOptions = {
-    theme: 'shine',
     title: {
       text: 'NiceFish月访问量统计',
       subtext: '纯属虚构',
-      x: 'center'
+      x: 'center',
+      padding: [20, 0, 20, 0],
     },
     tooltip: {
       trigger: 'axis',
@@ -90,12 +83,6 @@ export default props => {
         type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
       },
       formatter: '{b}月{a}:{c}'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
     },
     xAxis: [
       {
@@ -123,21 +110,17 @@ export default props => {
 
   //Echarts 折线图配置项
   const lineOptions = {
-    theme: 'shine',
     title: {
       text: 'NiceFish月访问趋势图',
       subtext: '纯属虚构',
-      x: 'center'
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
+      x: 'center',
+      textStyle: {
+        margin: '10',
+      }
     },
     legend: {
       x: 'center',
-      y: 'center'
+      y: 'bottom'
     },
     tooltip: {
       trigger: 'axis'
@@ -210,21 +193,21 @@ export default props => {
       <div className="row">
         <div className="col-md-12">
           <div className="nf-chart">
-            <ReactEcharts option={pieOptions} />
+            <ReactEcharts option={pieOptions} theme={"dark"} />
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
           <div className="nf-chart">
-            <ReactEcharts option={barOptions} />
+            <ReactEcharts option={barOptions} theme={"dark"} />
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
           <div className="nf-chart">
-            <ReactEcharts option={lineOptions} />
+            <ReactEcharts option={lineOptions} theme={"dark"} />
           </div>
         </div>
       </div>
