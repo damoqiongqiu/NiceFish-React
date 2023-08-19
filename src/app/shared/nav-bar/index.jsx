@@ -154,7 +154,7 @@ const NavBar = props => {
                         {
                             sessionUser ? <>
                                 <li>
-                                    <NavLink to="/home">
+                                    <NavLink to="/user-home/1">
                                         <i className="fa fa-user" />
                                     </NavLink>
                                 </li>

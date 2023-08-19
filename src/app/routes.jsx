@@ -50,6 +50,9 @@ const ComponentPermissionEdit = lazy(() =>
 const PostDetailMain = lazy(() =>
     import(/*webpackChunkName:'post-detail-main',webpackPrefetch:true*/ "./blog/post/post-detail-main")
 );
+const UserHome = lazy(() =>
+    import(/*webpackChunkName:'user-home',webpackPrefetch:true*/ "./blog/user/user-home")
+);
 
 export default props => {
     const sessionUser = useSelector((state) => state.session.user);
@@ -143,6 +146,10 @@ export default props => {
             path: "/write",
             element: WritePostImg,
             redirect: !sessionUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
+        },
+        {
+            path: "/user-home/:userId",
+            element: UserHome,
         },
         {
             path: "*",
