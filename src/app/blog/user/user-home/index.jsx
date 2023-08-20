@@ -88,7 +88,7 @@ const UserHome = (props) => {
             </div>
             <div className="tab-content">
                 <TabView onBeforeTabChange={
-                    e => { return e.index === 4 ? false : true; }
+                    e => { return e.index === 3 ? false : true; }
                 }>
                     <TabPanel header="作品">
                         <div className='post-list-container'>
@@ -117,11 +117,6 @@ const UserHome = (props) => {
                     <TabPanel header="收藏">
                         <p>
                             33333333333333333333333333333333333
-                        </p>
-                    </TabPanel>
-                    <TabPanel header="历史">
-                        <p>
-                            4444444444444444444444444444444
                         </p>
                     </TabPanel>
                     <TabPanel headerTemplate={
