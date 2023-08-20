@@ -20,12 +20,15 @@ export const dataURL = {
     delCommentURL: "/cms/comment/manage/delete/<%= id %>",
     userListURL: "/auth/user/list/<%= page %>",
     userDetailURL: "/auth/user/detail/<%= id %>",
-    userFollowerCountURL: "/cms/user-follow/follower-count/<%= userId %>",                       //粉丝数量
-    userFollowingCountURL: "/cms/user-follow/following-count/<%= userId %>",                     //已关注数量
-    userPostLikedCountURL: "/cms/user-post-relation/count-likes-for-user-posts/<%= userId %>",   //用户被赞数量
+    userFollowerCountURL: "/cms/user-follow/follower-count/<%= userId %>",//粉丝数量
+    userFollowingCountURL: "/cms/user-follow/following-count/<%= userId %>",//已关注数量
+    userPostLikedCountURL: "/cms/user-post-relation/count-likes-for-user-posts/<%= userId %>",//用户被赞数量
+    userPostRelationURL: "/cms/user-post-relation/exists-relation",//用户与内容的关系
+    userPostRelationSaveURL: "/cms/user-post-relation/save-relation",//保存用户与内容的关系
+    userPostRelationDeleteURL: "/cms/user-post-relation/delete-relation",//删除用户与内容的关系
     updateUserURL: "/auth/user/update",
     delUserURL: "/auth/user/delete/<%= id %>",
-    userMenuListURL: "/auth/shiro/menu/<%= id %>",  //用户对应的菜单
+    userMenuListURL: "/auth/shiro/menu/<%= id %>",//用户对应的菜单
     roleTableURL: "/auth/role/list/<%= page %>",
     roleListByUserIdURL: "/auth/role/list-by-user-id/<%= userId %>",
     updateUserRoleRelationURL: "/auth/user/update-user-role-relation",

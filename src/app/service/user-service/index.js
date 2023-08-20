@@ -11,6 +11,9 @@ const userMenuListURL = environment.dataURL.userMenuListURL;
 const userFollowerCountURL = environment.dataURL.userFollowerCountURL;
 const userFollowingCountURL = environment.dataURL.userFollowingCountURL;
 const userPostLikedCountURL = environment.dataURL.userPostLikedCountURL;
+const userPostRelationURL = environment.dataURL.userPostRelationURL;
+const userPostRelationSaveURL = environment.dataURL.userPostRelationSaveURL;
+const userPostRelationDeleteURL = environment.dataURL.userPostRelationDeleteURL;
 
 export default {
     /**
@@ -72,6 +75,33 @@ export default {
     getUserLikedCount: (userId) => {
         let reqURL = _.template(userPostLikedCountURL)({ userId });
         return axiosService.get(reqURL);
+    },
+
+    /**
+     * 判断用户与内容之间是否存在点赞与收藏的关系
+     * @param {*} userPostRelation 
+     * @returns {boolean}
+     */
+    existsRelation: (userPostRelation) => {
+        return axiosService.post(userPostRelationURL, userPostRelation);
+    },
+
+    /**
+     * 保存用户与内容之间的点赞和收藏关系
+     * @param {*} userPostRelation 
+     * @returns
+     */
+    saveRelation: (userPostRelation) => {
+        return axiosService.post(userPostRelationSaveURL, userPostRelation);
+    },
+
+    /**
+     * 删除用户与内容之间的点赞和收藏关系
+     * @param {*} userPostRelation 
+     * @returns 
+     */
+    deleteRelation: (userPostRelation) => {
+        return axiosService.delete(userPostRelationDeleteURL, { data: userPostRelation });
     },
 
     /**

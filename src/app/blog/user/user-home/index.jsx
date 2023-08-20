@@ -8,14 +8,22 @@ import postListMock from "src/mock-data/post-list-mock.json";
 import './index.scss';
 
 const UserHome = (props) => {
+    //userId ，从路由参数中获取
     const { userId } = useParams();
 
+    //用户详情
     const [userDetail, setUserDetail] = useState({});
-    const [followers, setFollowers] = useState(0);
-    const [following, setFollowing] = useState(0);
-    const [liked, setLiked] = useState(0);
 
-    // 从 redux 中获取当前登录用户
+    //粉丝数
+    const [followerCount, setFollowerCount] = useState(0);
+
+    //关注数
+    const [followingCount, setFollowingCount] = useState(0);
+
+    //获赞数
+    const [likedCount, setLikedCount] = useState(0);
+
+    //从 redux 中获取当前登录用户
     const sessionUser = useSelector((state) => state.session.user);
 
     //导航对象
@@ -26,13 +34,13 @@ const UserHome = (props) => {
 
     useEffect(() => {
         userService.getUserFollowerCount(userId).then(response => {
-            setFollowers(response.data);
+            setFollowerCount(response.data);
         });
         userService.getUserFollowingCount(userId).then(response => {
-            setFollowing(response.data);
+            setFollowingCount(response.data);
         });
         userService.getUserLikedCount(userId).then(response => {
-            setLiked(response.data);
+            setLikedCount(response.data);
         });
         userService.getUserDetails(userId).then(response => {
             setUserDetail(response.data.data);
@@ -50,15 +58,15 @@ const UserHome = (props) => {
                     <div className="user-stats">
                         <p>
                             <span>粉丝</span>
-                            <span>{followers}</span>
+                            <span>{followerCount}</span>
                         </p>
                         <p>
                             <span>关注</span>
-                            <span>{following}</span>
+                            <span>{followingCount}</span>
                         </p>
                         <p>
                             <span>获赞</span>
-                            <span>{liked}</span>
+                            <span>{likedCount}</span>
                         </p>
                     </div>
                     <div className="info2">

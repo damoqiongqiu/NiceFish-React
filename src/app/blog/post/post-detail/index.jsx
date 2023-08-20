@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import postService from 'src/app/service/post-service';
+import userService from 'src/app/service/user-service'
 import ReactPlayer from 'react-player'
 import { Galleria } from 'primereact/galleria';
 
 import './index.scss';
 
 export default props => {
+  //导航对象
+  const navigate = useNavigate();
+
   //postId ，从路由参数中获取
   const { id } = useParams();
+
+  //从 redux 中获取当前登录用户
+  const sessionUser = useSelector((state) => state.session.user);
 
   //视频 URL 地址
   const [videoURL, setVideoURL] = useState(null);
@@ -16,7 +24,7 @@ export default props => {
   //图片列表
   const [images, setImages] = useState(null);
 
-  //文章详情
+  //内容详情
   const [postDetail, setPostDetail] = useState(
     {
       nickName: "",
@@ -24,8 +32,14 @@ export default props => {
     }
   );
 
+  //是否已经点赞
+  const [liked, setLiked] = useState(false);
+
+  //是否已经收藏
+  const [collected, setCollected] = useState(false);
+
   /**
-   * 获取文章详情
+   * 获取内容详情
    */
   useEffect(() => {
     postService.getPostDetail(id).then(response => {
@@ -48,8 +62,53 @@ export default props => {
       }
       setImages(temp);
     });
+
+    if (sessionUser) {
+      //检查当前用户是否已经点赞
+      userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 1 }).then(response => {
+        setLiked(response.data);
+      });
+
+      //检查当前用户是否已经收藏
+      userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 2 }).then(response => {
+        setCollected(response.data);
+      });
+    }
   }, []);
 
+  /**
+   * 处理点赞和收藏
+   * @param {*} toggleRelationType 
+   */
+  const handleRelation = async (toggleRelationType) => {
+    //如果没有登录，跳转到登录页面
+    if (!sessionUser) {
+      navigate("sign-in");
+      return;
+    }
+
+    if (toggleRelationType === 1) {
+      if (liked) {
+        await userService.deleteRelation({ postId: id, userId: sessionUser.userId, relationType: 1 }).then(response => {
+          setLiked(false);
+        });
+      } else {
+        await userService.saveRelation({ postId: id, userId: sessionUser.userId, relationType: 1 }).then(response => {
+          setLiked(true);
+        });
+      }
+    } else if (toggleRelationType === 2) {
+      if (collected) {
+        await userService.deleteRelation({ postId: id, userId: sessionUser.userId, relationType: 2 }).then(response => {
+          setCollected(false);
+        });
+      } else {
+        await userService.saveRelation({ postId: id, userId: sessionUser.userId, relationType: 2 }).then(response => {
+          setCollected(true);
+        });
+      }
+    }
+  }
 
   /**
    * 图片模板
@@ -90,8 +149,14 @@ export default props => {
               className='galleria-root'
             />
         }
+        <ul>
+          <li className="fa fa-heart" style={liked ? { color: "#f6214b" } : {}} onClick={() => { handleRelation(1); }}>
+          </li>
+          <li className="fa fa-star" style={collected ? { color: "#f6214b" } : {}} onClick={() => { handleRelation(2); }}>
+          </li>
+        </ul>
       </div>
-      <div className='content-container'>
+      <div className='post-info-container'>
         <h4>
           <NavLink to={`/user-home/${postDetail.userId}`}>
             @{(postDetail.nickName + "").trim().substring(0, 16)}

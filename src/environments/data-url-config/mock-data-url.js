@@ -17,12 +17,15 @@ export const dataURL = {
     delCommentURL: "",
     userListURL: "mock-data/user-list-mock.json",
     userDetailURL: "mock-data/user-detail-mock.json",
-    userFollowerCountURL: "mock-data/user-follower-count-mock.json",        //粉丝数量
-    userFollowingCountURL: "mock-data/user-following-count-mock.json",      //已关注数量
-    userPostLikedCountURL: "mock-data/user-post-liked-count-mock.json",     //用户被赞数量
+    userFollowerCountURL: "mock-data/user-follower-count-mock.json",//粉丝数量
+    userFollowingCountURL: "mock-data/user-following-count-mock.json",//已关注数量
+    userPostLikedCountURL: "mock-data/user-post-liked-count-mock.json",//用户被赞数量
+    userPostRelationURL: "mock-data/user-post-relation-mock.json",//用户与内容的关系
+    userPostRelationSaveURL: "mock-data/user-post-relation-mock.json",//保存用户与内容的关系
+    userPostRelationDeleteURL: "mock-data/user-post-relation-mock.json",//删除用户与内容的关系
     updateUserURL: "mock-data/user-register-mock.json",
     delUserURL: "",
-    userMenuListURL: "mock-data/user-menu-list-mock.json",  //用户对应的菜单
+    userMenuListURL: "mock-data/user-menu-list-mock.json",//用户对应的菜单
     roleTableURL: "mock-data/role-list-mock.json",
     roleListByUserIdURL: "mock-data/role-list-mock.json",
     updateUserRoleRelationURL: "",
