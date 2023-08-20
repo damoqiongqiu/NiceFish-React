@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import postService from 'src/app/service/post-service';
 import ReactPlayer from 'react-player'
 import { Galleria } from 'primereact/galleria';
@@ -93,7 +93,9 @@ export default props => {
       </div>
       <div className='content-container'>
         <h4>
-          @{(postDetail.nickName + "").trim().substring(0, 16)}
+          <NavLink to={`/user-home/${postDetail.userId}`}>
+            @{(postDetail.nickName + "").trim().substring(0, 16)}
+          </NavLink>
         </h4>
         <div className="post-content"
           dangerouslySetInnerHTML={

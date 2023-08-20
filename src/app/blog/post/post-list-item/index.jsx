@@ -58,7 +58,7 @@ export default props => {
         <NavLink to={`/post/post-detail/${postDetail.postId}`}>
           {(postDetail.content + "").trim().substring(0, 16)}
         </NavLink>
-        <NavLink to={`/post/post-detail/${postDetail.postId}`}>
+        <NavLink to={`/user-home/${postDetail.userId}`}>
           @{(postDetail.nickName + "").trim().substring(0, 16)}
           &nbsp;&nbsp;&nbsp;&nbsp;
           {postDetail.postTime}
