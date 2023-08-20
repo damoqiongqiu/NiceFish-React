@@ -37,13 +37,18 @@ export default props => {
       >
         {
           videoURL ?
-            <video controls style={{
-              width: " 100%",
-              height: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0
-            }}>
+            <video
+              muted
+              style={{
+                width: " 100%",
+                height: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+              }}
+              onMouseEnter={e => { e.target.play(); }}
+              onMouseLeave={e => { e.target.pause(); }}
+            >
               <source src={videoURL} />
             </video>
             :
@@ -64,6 +69,6 @@ export default props => {
           {postDetail.postTime}
         </NavLink>
       </div>
-    </section>
+    </section >
   );
 };
