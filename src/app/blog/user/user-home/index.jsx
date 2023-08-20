@@ -31,6 +31,9 @@ const UserHome = (props) => {
         userService.getUserFollowingCount(userId).then(response => {
             setFollowing(response.data);
         });
+        userService.getUserLikedCount(userId).then(response => {
+            setLiked(response.data);
+        });
         userService.getUserDetails(userId).then(response => {
             setUserDetail(response.data.data);
         });

@@ -10,6 +10,7 @@ const updateUserURL = environment.dataURL.updateUserURL;
 const userMenuListURL = environment.dataURL.userMenuListURL;
 const userFollowerCountURL = environment.dataURL.userFollowerCountURL;
 const userFollowingCountURL = environment.dataURL.userFollowingCountURL;
+const userPostLikedCountURL = environment.dataURL.userPostLikedCountURL;
 
 export default {
     /**
@@ -60,6 +61,16 @@ export default {
      */
     getUserFollowingCount: (userId) => {
         let reqURL = _.template(userFollowingCountURL)({ userId });
+        return axiosService.get(reqURL);
+    },
+
+    /**
+     * 根据 userId 加载此用户的被赞数量
+     * @param {*} userId 
+     * @returns 
+     */
+    getUserLikedCount: (userId) => {
+        let reqURL = _.template(userPostLikedCountURL)({ userId });
         return axiosService.get(reqURL);
     },
 
