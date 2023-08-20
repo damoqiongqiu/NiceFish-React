@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PostListItem from 'src/app/blog/post/post-list-item';
 
 import postListMock from "src/mock-data/post-list-mock.json";
@@ -8,6 +9,12 @@ import './index.scss';
 
 const UserHome = (props) => {
     const { userId } = useParams();
+
+    // 从 redux 中获取当前登录用户
+    const sessionUser = useSelector((state) => state.session.user);
+
+    //导航对象
+    const navigate = useNavigate();
 
     //内容列表
     const [postList, setPostList] = useState(postListMock.content);
@@ -46,9 +53,18 @@ const UserHome = (props) => {
                 <div className="user-details">
                     <span>{user.username}</span>
                     <div className="user-stats">
-                        <p>粉丝: {user.followers}</p>
-                        <p>关注: {user.following}</p>
-                        <p>获赞: {user.likes}</p>
+                        <p>
+                            <span>粉丝</span>
+                            <span>{user.followers}</span>
+                        </p>
+                        <p>
+                            <span>关注</span>
+                            <span>{user.following}</span>
+                        </p>
+                        <p>
+                            <span>获赞</span>
+                            <span>{user.likes}</span>
+                        </p>
                     </div>
                     <div className="info2">
                         <span>用户号: {user.userId}</span>
@@ -57,9 +73,23 @@ const UserHome = (props) => {
                     </div>
                     <p>{user.bio}</p>
                 </div>
+                <div className='operations'>
+                    <div>
+                        {
+                            sessionUser
+                                ?
+                                <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>编辑资料</button>
+                                :
+                                <></>
+                        }
+
+                    </div>
+                </div>
             </div>
             <div className="tab-content">
-                <TabView>
+                <TabView onBeforeTabChange={
+                    e => { return e.index === 4 ? false : true; }
+                }>
                     <TabPanel header="作品">
                         <div className='post-list-container'>
                             {postList.map((item, index) => {
@@ -93,6 +123,16 @@ const UserHome = (props) => {
                         <p>
                             4444444444444444444444444444444
                         </p>
+                    </TabPanel>
+                    <TabPanel headerTemplate={
+                        () => {
+                            return (
+                                <div>
+                                    <input type="text" className="search-box" placeholder="搜索你的作品..." />
+                                </div>
+                            )
+                        }
+                    } style={{ marginLeft: "auto" }}>
                     </TabPanel>
                 </TabView>
             </div>
