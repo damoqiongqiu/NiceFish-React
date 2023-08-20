@@ -10,8 +10,10 @@ import './index.scss';
 const UserHome = (props) => {
     const { userId } = useParams();
 
+    const [userDetail, setUserDetail] = useState({});
     const [followers, setFollowers] = useState(0);
     const [following, setFollowing] = useState(0);
+    const [liked, setLiked] = useState(0);
 
     // 从 redux 中获取当前登录用户
     const sessionUser = useSelector((state) => state.session.user);
@@ -22,31 +24,6 @@ const UserHome = (props) => {
     //内容列表
     const [postList, setPostList] = useState(postListMock.content);
 
-    const user = {
-        avatar: 'https://via.placeholder.com/150',
-        username: '大漠穷秋',
-        userId: '123456',
-        city: '纽约',
-        education: '东方理工大学',
-        followers: 100,
-        following: 200,
-        likes: 500,
-        bio: `从明天起，做一个幸福的人。
-                喂马、劈柴，周游世界。
-                从明天起，关心粮食和蔬菜。
-                我有一所房子，面朝大海，春暖花开。
-                从明天起，和每一个亲人通信。
-                告诉他们我的幸福。
-                那幸福的闪电告诉我的。
-                我将告诉每一个人。
-                给每一条河每一座山取一个温暖的名字。
-                陌生人，我也为你祝福。
-                愿你有一个灿烂的前程。
-                愿你有情人终成眷属。
-                愿你在尘世获得幸福。
-                我只愿面朝大海，春暖花开。`,
-    };
-
     useEffect(() => {
         userService.getUserFollowerCount(userId).then(response => {
             setFollowers(response.data);
@@ -54,16 +31,19 @@ const UserHome = (props) => {
         userService.getUserFollowingCount(userId).then(response => {
             setFollowing(response.data);
         });
+        userService.getUserDetails(userId).then(response => {
+            setUserDetail(response.data.data);
+        });
     }, []);
 
     return (
         <div className="user-home-container">
             <div className="user-info">
                 <div className="user-avatar">
-                    <img src={user.avatar} alt="User Avatar" />
+                    <img src={userDetail.avatarURL || 'https://via.placeholder.com/150'} alt="User Avatar" />
                 </div>
                 <div className="user-details">
-                    <span>{user.username}</span>
+                    <span>{userDetail.nickName}</span>
                     <div className="user-stats">
                         <p>
                             <span>粉丝</span>
@@ -75,15 +55,15 @@ const UserHome = (props) => {
                         </p>
                         <p>
                             <span>获赞</span>
-                            <span>{user.likes}</span>
+                            <span>{liked}</span>
                         </p>
                     </div>
                     <div className="info2">
-                        <span>用户号: {user.userId}</span>
-                        <span>{user.city}</span>
-                        <span>{user.education}</span>
+                        <span>用户号: {userDetail.userId}</span>
+                        <span>{userDetail.city}</span>
+                        <span>{userDetail.education}</span>
                     </div>
-                    <p>{user.bio}</p>
+                    <p>{userDetail.remark || "暂时没有介绍。"}</p>
                 </div>
                 <div className='operations'>
                     <div>
