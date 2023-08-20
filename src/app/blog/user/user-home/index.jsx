@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import userService from 'src/app/service/user-service';
 import PostListItem from 'src/app/blog/post/post-list-item';
-
 import postListMock from "src/mock-data/post-list-mock.json";
 import './index.scss';
 
 const UserHome = (props) => {
     const { userId } = useParams();
+
+    const [followers, setFollowers] = useState(0);
+    const [following, setFollowing] = useState(0);
 
     // 从 redux 中获取当前登录用户
     const sessionUser = useSelector((state) => state.session.user);
@@ -44,6 +47,15 @@ const UserHome = (props) => {
                 我只愿面朝大海，春暖花开。`,
     };
 
+    useEffect(() => {
+        userService.getUserFollowerCount(userId).then(response => {
+            setFollowers(response.data);
+        });
+        userService.getUserFollowingCount(userId).then(response => {
+            setFollowing(response.data);
+        });
+    }, []);
+
     return (
         <div className="user-home-container">
             <div className="user-info">
@@ -55,11 +67,11 @@ const UserHome = (props) => {
                     <div className="user-stats">
                         <p>
                             <span>粉丝</span>
-                            <span>{user.followers}</span>
+                            <span>{followers}</span>
                         </p>
                         <p>
                             <span>关注</span>
-                            <span>{user.following}</span>
+                            <span>{following}</span>
                         </p>
                         <p>
                             <span>获赞</span>

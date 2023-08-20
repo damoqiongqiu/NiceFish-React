@@ -8,6 +8,8 @@ const userDetailURL = environment.dataURL.userDetailURL;
 const signUpURL = environment.dataURL.signUpURL;
 const updateUserURL = environment.dataURL.updateUserURL;
 const userMenuListURL = environment.dataURL.userMenuListURL;
+const userFollowerCountURL = environment.dataURL.userFollowerCountURL;
+const userFollowingCountURL = environment.dataURL.userFollowingCountURL;
 
 export default {
     /**
@@ -38,6 +40,26 @@ export default {
      */
     getUserDetails: (userId) => {
         let reqURL = _.template(userDetailURL)({ id: userId });
+        return axiosService.get(reqURL);
+    },
+
+    /**
+     * 根据 userId 加载此用户的粉丝数量
+     * @param {*} userId 
+     * @returns 
+     */
+    getUserFollowerCount: (userId) => {
+        let reqURL = _.template(userFollowerCountURL)({ userId });
+        return axiosService.get(reqURL);
+    },
+
+    /**
+     * 根据 userId 加载此用户的已关注数量
+     * @param {*} userId 
+     * @returns 
+     */
+    getUserFollowingCount: (userId) => {
+        let reqURL = _.template(userFollowingCountURL)({ userId });
         return axiosService.get(reqURL);
     },
 
