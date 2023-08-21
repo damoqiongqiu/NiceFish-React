@@ -7,8 +7,9 @@ function formatTimeAgo(timestamp) {
     if (!timestamp) {
         return "";
     }
+
     const now = new Date();
-    const date = parseTimestamp(timestamp);
+    const date = new Date(parseTimestamp(timestamp));
 
     const timeDiff = now - date;
 
@@ -18,9 +19,17 @@ function formatTimeAgo(timestamp) {
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
     const months = Math.floor(weeks / 4); // Assuming 4 weeks in a month
+    const years = Math.floor(months / 12);
 
-    if (months > 0) {
-        return `${months}个月前`;
+    if (years > 0) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${year}年${month}月${day}日`;
+    } else if (months > 0) {
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${month}月${day}日`;
     } else if (weeks > 0) {
         return `${weeks}周前`;
     } else if (days > 0) {
