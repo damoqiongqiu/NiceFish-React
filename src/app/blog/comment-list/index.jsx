@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Captcha from 'src/app/shared/captcha';
 import commentService from "src/app/service/comment-service";
 import environment from "src/environments/environment";
+import formatTimeAgo from 'src/app/shared/date-formater';
 import ajv from "src/app/service/ajv-validate-service";
 import { useTranslation } from 'react-i18next';
 
@@ -189,10 +190,13 @@ export default props => {
           {commentList.map((item, index) => {
             return (
               <div className="comment-item-container" key={index}>
-                <p>
-                  {item.nickName || item.userName} {item.time}
-                </p>
-                <h5>{item.content}</h5>
+                <div className='comment-header'>
+                  <h4>
+                    @{item.nickName || item.userName}
+                  </h4>
+                  <span>{formatTimeAgo(item.time)}</span>
+                </div>
+                <p>{item.content}</p>
               </div>
             );
           })}

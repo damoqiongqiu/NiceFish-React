@@ -1,20 +1,45 @@
 .add-component-container {
   .comment-item-container {
-    padding: 20px;
-    border-bottom: 1px dashed #d9d9d9;
+    margin-bottom: 30px;
+
+    .comment-header {
+      display: flex;
+      align-items: baseline;
+
+      >h4 {
+        color: #fff;
+        font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        white-space: pre-wrap;
+        /* CSS3 */
+        white-space: -moz-pre-wrap;
+        /* Firefox */
+        white-space: -pre-wrap;
+        /* Opera <7 */
+        white-space: -o-pre-wrap;
+        /* Opera 7 */
+        word-wrap: break-word;
+        /* IE */
+      }
+
+      >span {
+        flex: 1;
+        color: #b3b3b3;
+        display: block;
+        font-size: 14px;
+        padding-left: 5px;
+      }
+    }
+
+    >p {
+      word-wrap: break-word;
+      word-break: break-all;
+    }
   }
 
   form {
     margin-bottom: 15px;
-  }
-
-  h5 {
-    word-wrap: break-word;
-    word-break: break-all;
-  }
-
-  p {
-    word-wrap: break-word;
-    word-break: break-all;
   }
 }
