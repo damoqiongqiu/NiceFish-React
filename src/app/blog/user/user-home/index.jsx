@@ -3,8 +3,8 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import userService from 'src/app/service/user-service';
+import postService from 'src/app/service/post-service';
 import PostListItem from 'src/app/blog/post/post-list-item';
-import postListMock from "src/mock-data/post-list-mock.json";
 import './index.scss';
 
 const UserHome = (props) => {
@@ -29,8 +29,17 @@ const UserHome = (props) => {
     //导航对象
     const navigate = useNavigate();
 
-    //内容列表
-    const [postList, setPostList] = useState(postListMock.content);
+    //我的作品列表
+    const [myPostList, setMyPostList] = useState([]);
+
+    //我的收藏列表
+    const [myCollectionList, setMyCollectionList] = useState([]);
+
+    //分页参数
+    const [first, setFirst] = useState(0);
+    const [rows, setRows] = useState(10);
+    const [page, setPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
 
     useEffect(() => {
         userService.getUserFollowerCount(userId).then(response => {
@@ -44,6 +53,20 @@ const UserHome = (props) => {
         });
         userService.getUserDetails(userId).then(response => {
             setUserDetail(response.data.data);
+        });
+
+        postService.getPostTable(page).then(response => {
+            let data = response.data;
+            setTotalElements(data.totalElements);
+
+            data = data?.content || [];
+            setMyPostList(data);
+        });
+
+        //TODO:分页
+        userService.getUserRelatedPostList({ userId, relationType: 2 }).then(response => {
+            let data = response.data || [];
+            setMyCollectionList(data);
         });
     }, []);
 
@@ -91,11 +114,11 @@ const UserHome = (props) => {
             </div>
             <div className="tab-content">
                 <TabView onBeforeTabChange={
-                    e => { return e.index === 3 ? false : true; }
+                    e => { return e.index === 2 ? false : true; }
                 }>
                     <TabPanel header="作品">
                         <div className='post-list-container'>
-                            {postList.map((item, index) => {
+                            {myPostList.map((item, index) => {
                                 return (
                                     <PostListItem postDetail={item} key={index}></PostListItem>
                                 );
@@ -112,15 +135,24 @@ const UserHome = (props) => {
                             <i></i>
                         </div>
                     </TabPanel>
-                    <TabPanel header="喜欢">
-                        <p>
-                            222222222222222222222222222
-                        </p>
-                    </TabPanel>
                     <TabPanel header="收藏">
-                        <p>
-                            33333333333333333333333333333333333
-                        </p>
+                        <div className='post-list-container'>
+                            {myCollectionList.map((item, index) => {
+                                return (
+                                    <PostListItem postDetail={item} key={index}></PostListItem>
+                                );
+                            })}
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
                     </TabPanel>
                     <TabPanel headerTemplate={
                         () => {

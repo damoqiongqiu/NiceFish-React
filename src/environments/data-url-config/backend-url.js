@@ -26,9 +26,10 @@ export const dataURL = {
     userFollowerCountURL: "/cms/user-follow/follower-count/<%= userId %>",//粉丝数量
     userFollowingCountURL: "/cms/user-follow/following-count/<%= userId %>",//已关注数量
     userPostLikedCountURL: "/cms/user-post-relation/count-likes-for-user-posts/<%= userId %>",//用户被赞数量
-    userPostRelationURL: "/cms/user-post-relation/exists-relation",//用户与内容的关系
-    userPostRelationSaveURL: "/cms/user-post-relation/save-relation",//保存用户与内容的关系
+    userPostRelationURL: "/cms/user-post-relation/exists-relation",//检测用户与内容之间是否存在点赞和收藏关系
+    userPostRelationSaveURL: "/cms/user-post-relation/save-relation",//创建用户与内容的关系
     userPostRelationDeleteURL: "/cms/user-post-relation/delete-relation",//删除用户与内容的关系
+    userRelatedPostListURL: "/cms/user-post-relation/find-user-related-posts",//用户相关的内容列表
     updateUserURL: "/auth/user/update",
     delUserURL: "/auth/user/delete/<%= id %>",
     userMenuListURL: "/auth/shiro/menu/<%= id %>",//用户对应的菜单

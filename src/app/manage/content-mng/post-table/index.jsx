@@ -4,9 +4,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { confirmDialog } from 'primereact/confirmdialog';
-
 import postService from 'src/app/service/post-service';
-
 import './index.scss';
 
 export default props => {

@@ -17,6 +17,7 @@ const userPostRelationDeleteURL = environment.dataURL.userPostRelationDeleteURL;
 const userFollowURL = environment.dataURL.userFollowURL;
 const userUnFollowURL = environment.dataURL.userUnFollowURL;
 const userFollowExistsURL = environment.dataURL.userFollowExistsURL;
+const userRelatedPostListURL = environment.dataURL.userRelatedPostListURL;
 
 export default {
     /**
@@ -105,6 +106,15 @@ export default {
      */
     deleteRelation: (userPostRelation) => {
         return axiosService.delete(userPostRelationDeleteURL, { data: userPostRelation });
+    },
+
+    /**
+     * 获取用户点赞或者收藏的内容列表
+     * @param {*} userRelactionEntity 
+     * @returns 
+     */
+    getUserRelatedPostList: (userRelactionEntity) => {
+        return axiosService.post(userRelatedPostListURL, userRelactionEntity);
     },
 
     /**
