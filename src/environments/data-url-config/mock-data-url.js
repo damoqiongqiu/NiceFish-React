@@ -26,7 +26,7 @@ export const dataURL = {
     userPostRelationURL: "mock-data/user-post-relation-mock.json",//检测用户与内容之间是否存在点赞和收藏关系
     userPostRelationSaveURL: "mock-data/user-post-relation-mock.json",//创建用户与内容的关系
     userPostRelationDeleteURL: "mock-data/user-post-relation-mock.json",//删除用户与内容的关系
-    userRelatedPostListURL: "mock-data/post-list-mock.json",//用户相关的内容列表
+    userRelatedPostListURL: "mock-data/post-list-data-mock.json",//用户相关的内容列表
     updateUserURL: "mock-data/user-register-mock.json",
     delUserURL: "",
     userMenuListURL: "mock-data/user-menu-list-mock.json",//用户对应的菜单

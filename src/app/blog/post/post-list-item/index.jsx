@@ -21,15 +21,16 @@ export default props => {
 
   useEffect(() => {
     let imgs = postDetail.fileUploadEntities;
-    let temp = [];
-    for (let item of imgs) {
-      if (item.fileSuffix === 'mp4') {//TODO: 增加视频格式
-        setVideoURL(`/cms/file/download/${item.id}`);
-        break;
-      } else {
-        setMedia0(item);
-        setTitleImgURL(item?.id ? `/cms/file/download/${item?.id}` : "");
-        break;
+    if (imgs && imgs.length) {
+      for (let item of imgs) {
+        if (item.fileSuffix === 'mp4') {//TODO: 增加视频格式
+          setVideoURL(`/cms/file/download/${item.id}`);
+          break;
+        } else {
+          setMedia0(item);
+          setTitleImgURL(item?.id ? `/cms/file/download/${item?.id}` : "");
+          break;
+        }
       }
     }
   }, []);
@@ -60,8 +61,9 @@ export default props => {
           />
       }
       <div className='list-item-footer'>
-        <NavLink to={`/post/post-detail/${postDetail.postId}`}>
-          {(postDetail.content + "").trim().substring(0, 16)}
+        <NavLink to={`/post/post-detail/${postDetail.postId}`} dangerouslySetInnerHTML={
+          { __html: (postDetail.content + "").trim().substring(0, 16) }
+        }>
         </NavLink>
         <div className='sub-footer'>
           <NavLink to={`/user-home/${postDetail.userId}`}>
