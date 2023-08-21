@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import formatTimeAgo from 'src/app/shared/date-formater';
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 
@@ -63,11 +64,12 @@ export default props => {
         <NavLink to={`/post/post-detail/${postDetail.postId}`}>
           {(postDetail.content + "").trim().substring(0, 16)}
         </NavLink>
-        <NavLink to={`/user-home/${postDetail.userId}`}>
-          @{(postDetail.nickName + "").trim().substring(0, 16)}
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          {postDetail.postTime}
-        </NavLink>
+        <div className='sub-footer'>
+          <NavLink to={`/user-home/${postDetail.userId}`}>
+            @{(postDetail.nickName + "").trim().substring(0, 16)}
+          </NavLink>
+          <span>{formatTimeAgo(postDetail.postTime)}</span>
+        </div>
       </div>
     </section >
   );

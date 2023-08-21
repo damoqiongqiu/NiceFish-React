@@ -3,6 +3,7 @@ import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import postService from 'src/app/service/post-service';
 import userService from 'src/app/service/user-service'
+import formatTimeAgo from 'src/app/shared/date-formater';
 import ReactPlayer from 'react-player'
 import { Galleria } from 'primereact/galleria';
 
@@ -202,11 +203,14 @@ export default props => {
         </div>
       </div>
       <div className='post-info-container'>
-        <h4>
-          <NavLink to={`/user-home/${postDetail.userId}`}>
-            @{(postDetail.nickName + "").trim().substring(0, 16)}
-          </NavLink>
-        </h4>
+        <div className='info-header'>
+          <h4>
+            <NavLink to={`/user-home/${postDetail.userId}`}>
+              @{(postDetail.nickName + "").trim().substring(0, 16)}
+            </NavLink>
+          </h4>
+          <span>{formatTimeAgo(postDetail.postTime)}</span>
+        </div>
         <div className="post-content"
           dangerouslySetInnerHTML={
             { __html: (postDetail.content + "").trim().substring(0, 120) }
