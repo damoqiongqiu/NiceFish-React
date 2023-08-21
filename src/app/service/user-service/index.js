@@ -14,6 +14,9 @@ const userPostLikedCountURL = environment.dataURL.userPostLikedCountURL;
 const userPostRelationURL = environment.dataURL.userPostRelationURL;
 const userPostRelationSaveURL = environment.dataURL.userPostRelationSaveURL;
 const userPostRelationDeleteURL = environment.dataURL.userPostRelationDeleteURL;
+const userFollowURL = environment.dataURL.userFollowURL;
+const userUnFollowURL = environment.dataURL.userUnFollowURL;
+const userFollowExistsURL = environment.dataURL.userFollowExistsURL;
 
 export default {
     /**
@@ -102,6 +105,33 @@ export default {
      */
     deleteRelation: (userPostRelation) => {
         return axiosService.delete(userPostRelationDeleteURL, { data: userPostRelation });
+    },
+
+    /**
+     * 关注用户
+     * @param {*} userFollow 
+     * @returns 
+     */
+    follow: (userFollow) => {
+        return axiosService.post(userFollowURL, userFollow);
+    },
+
+    /**
+     * 取消关注用户
+     * @param {*} userFollow 
+     * @returns 
+     */
+    unfollow: (userFollow) => {
+        return axiosService.delete(userUnFollowURL, { data: userFollow });
+    },
+
+    /**
+     * 判断用户是否关注了某人
+     * @param {*} userFollow 
+     * @returns 
+     */
+    existsFollow: (userFollow) => {
+        return axiosService.post(userFollowExistsURL, userFollow);
     },
 
     /**

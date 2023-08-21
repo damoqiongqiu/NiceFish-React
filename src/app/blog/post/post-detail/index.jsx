@@ -38,6 +38,9 @@ export default props => {
   //是否已经收藏
   const [collected, setCollected] = useState(false);
 
+  //是否已经关注
+  const [followed, setFollowed] = useState(false);
+
   /**
    * 获取内容详情
    */
@@ -61,26 +64,31 @@ export default props => {
         }
       }
       setImages(temp);
+
+      if (sessionUser) {
+        //检查当前用户是否已经点赞
+        userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 1 }).then(resp => {
+          setLiked(resp.data);
+        });
+
+        //检查当前用户是否已经收藏
+        userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 2 }).then(resp => {
+          setCollected(resp.data);
+        });
+
+        //检查当前用户是否已经关注
+        userService.existsFollow({ fromId: sessionUser.userId, toId: response.data.userId }).then(resp => {
+          setFollowed(resp.data);
+        });
+      }
     });
-
-    if (sessionUser) {
-      //检查当前用户是否已经点赞
-      userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 1 }).then(response => {
-        setLiked(response.data);
-      });
-
-      //检查当前用户是否已经收藏
-      userService.existsRelation({ postId: id, userId: sessionUser.userId, relationType: 2 }).then(response => {
-        setCollected(response.data);
-      });
-    }
   }, []);
 
   /**
    * 处理点赞和收藏
    * @param {*} toggleRelationType 
    */
-  const handleRelation = async (toggleRelationType) => {
+  const handleUserPostRelation = async (toggleRelationType) => {
     //如果没有登录，跳转到登录页面
     if (!sessionUser) {
       navigate("sign-in");
@@ -107,6 +115,27 @@ export default props => {
           setCollected(true);
         });
       }
+    }
+  }
+
+  /**
+   * 处理用户关注和取消关注操作
+   * @returns 
+   */
+  const handleFollow = async () => {
+    //如果没有登录，跳转到登录页面
+    if (!sessionUser) {
+      navigate("sign-in");
+      return;
+    }
+    if (followed) {
+      await userService.unfollow({ fromId: sessionUser.userId, toId: postDetail.userId }).then(response => {
+        setFollowed(false);
+      });
+    } else {
+      await userService.follow({ fromId: sessionUser.userId, toId: postDetail.userId }).then(response => {
+        setFollowed(true);
+      });
     }
   }
 
@@ -149,12 +178,28 @@ export default props => {
               className='galleria-root'
             />
         }
-        <ul>
-          <li className="fa fa-heart" style={liked ? { color: "#f6214b" } : {}} onClick={() => { handleRelation(1); }}>
-          </li>
-          <li className="fa fa-star" style={collected ? { color: "#f6214b" } : {}} onClick={() => { handleRelation(2); }}>
-          </li>
-        </ul>
+        <div className='right-bar'>
+          <div className='follow-container'>
+            <div className="user-avatar">
+              <img src={'https://via.placeholder.com/150'} alt="User Avatar" />
+            </div>
+            {
+              followed
+                ?
+                <span className="fa fa-check-circle op-follow" onClick={handleFollow}>
+                </span>
+                :
+                <span className="fa fa-plus-circle op-follow" onClick={handleFollow}>
+                </span>
+            }
+          </div>
+          <span className="fa fa-heart op-icon-basic" style={liked ? { color: "#f6214b" } : {}} onClick={() => { handleUserPostRelation(1); }}>
+          </span>
+          <span className="fa fa-star op-icon-basic" style={collected ? { color: "#f6214b" } : {}} onClick={() => { handleUserPostRelation(2); }}>
+          </span>
+          <span className="fa fa-share op-icon-basic" onClick={() => { }}>
+          </span>
+        </div>
       </div>
       <div className='post-info-container'>
         <h4>

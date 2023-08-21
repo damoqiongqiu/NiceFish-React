@@ -17,6 +17,9 @@ export const dataURL = {
     delCommentURL: "",
     userListURL: "mock-data/user-list-mock.json",
     userDetailURL: "mock-data/user-detail-mock.json",
+    userFollowExistsURL: "mock-data/user-follow-exists-mock.json",//用户是否关注了某人
+    userFollowURL: "mock-data/user-follow-mock.json",//关注
+    userUnFollowURL: "mock-data/user-unfollow-mock.json",//取消关注
     userFollowerCountURL: "mock-data/user-follower-count-mock.json",//粉丝数量
     userFollowingCountURL: "mock-data/user-following-count-mock.json",//已关注数量
     userPostLikedCountURL: "mock-data/user-post-liked-count-mock.json",//用户被赞数量

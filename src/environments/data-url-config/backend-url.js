@@ -20,6 +20,9 @@ export const dataURL = {
     delCommentURL: "/cms/comment/manage/delete/<%= id %>",
     userListURL: "/auth/user/list/<%= page %>",
     userDetailURL: "/auth/user/detail/<%= id %>",
+    userFollowExistsURL: "/cms/user-follow/exists-follow",//用户是否关注了某人
+    userFollowURL: "/cms/user-follow/follow",//关注
+    userUnFollowURL: "/cms/user-follow/unfollow",//取消关注
     userFollowerCountURL: "/cms/user-follow/follower-count/<%= userId %>",//粉丝数量
     userFollowingCountURL: "/cms/user-follow/following-count/<%= userId %>",//已关注数量
     userPostLikedCountURL: "/cms/user-post-relation/count-likes-for-user-posts/<%= userId %>",//用户被赞数量
