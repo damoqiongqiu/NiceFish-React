@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import Masonry from 'react-masonry-css';
 import PostListItem from 'src/app/blog/post/post-list-item';
 import postService from 'src/app/service/post-service';
 import './index.scss';
@@ -36,23 +37,29 @@ export default props => {
     });
   }, []);
 
+  //瀑布流布局响应式断点 TODO:需要再优化一下
+  const breakpointColumnsObj = {
+    default: 6,
+    1396: 4,
+    1024: 3,
+    768: 2,
+    500: 1
+  };
+
   return (
     <div className='post-list-container'>
-      {postList.map((item, index) => {
-        return (
-          <PostListItem postDetail={item} key={index}></PostListItem>
-        );
-      })}
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column">
+        {
+          postList.map((item, index) => {
+            return (
+              <PostListItem postDetail={item} key={index}></PostListItem>
+            );
+          })
+        }
+      </Masonry>
     </div>
   );
 };

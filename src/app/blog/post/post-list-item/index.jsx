@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import formatTimeAgo from 'src/app/shared/date-formater';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './index.scss';
 
 export default props => {
+  //导航对象
+  const navigate = useNavigate();
+
   //文章详情
   const postDetail = props.postDetail;
 
@@ -33,33 +36,29 @@ export default props => {
 
   return (
     <section className='post-list-item'>
-      <NavLink
-        to={`/post/post-detail/${postDetail.postId}`}
-      >
-        {
-          videoURL ?
-            <video
-              muted
-              style={{
-                width: " 100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-              }}
-              onMouseEnter={e => { e.target.play(); }}
-              onMouseLeave={e => { e.target.pause(); }}
-            >
-              <source src={videoURL} />
-            </video>
-            :
-            <img
-              alt={media0?.name || ""}
-              role="presentation"
-              src={`${titleImgURL}`}
-            />
-        }
-      </NavLink>
+      {
+        videoURL ?
+          <video
+            muted
+            style={{
+              width: "100%",
+              height: "auto",
+              cursor: "pointer",
+            }}
+            onMouseEnter={e => { e.target.play(); }}
+            onMouseLeave={e => { e.target.pause(); }}
+            onClick={e => { navigate(`/post/post-detail/${postDetail.postId}`); }}
+          >
+            <source src={videoURL} />
+          </video>
+          :
+          <img
+            alt={media0?.name || ""}
+            role="presentation"
+            src={`${titleImgURL}`}
+            onClick={e => { navigate(`/post/post-detail/${postDetail.postId}`); }}
+          />
+      }
       <div className='list-item-footer'>
         <NavLink to={`/post/post-detail/${postDetail.postId}`}>
           {(postDetail.content + "").trim().substring(0, 16)}
@@ -71,6 +70,6 @@ export default props => {
           <span>{formatTimeAgo(postDetail.postTime)}</span>
         </div>
       </div>
-    </section >
+    </section>
   );
 };

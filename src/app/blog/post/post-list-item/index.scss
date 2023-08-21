@@ -1,64 +1,30 @@
-$rate: 16/9;
-$cardWidth: 245px;
-$cardHeight: $cardWidth * $rate;
+$cardWidth: 220px;
 
 .post-list-item {
-    display: block;
+    display: flex;
     width: $cardWidth;
-    height: $cardHeight;
-    margin-bottom: 15px;
-    margin-right: 30px;
+    height: auto;
+    min-height: 300px;
     border-radius: 12px;
     overflow: hidden;
     background-color: #000;
     position: relative;
+    align-items: center;
+    justify-content: center;
 
-    a {
-        display: block;
-        position: relative;
-        text-decoration: none;
-
-        img {
-            max-height: 100%;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-    }
-
-    a:link {
-        text-decoration: none;
-    }
-
-    a:visited {
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    a:active {
-        text-decoration: none;
-    }
-
-    >a {
-        display: block;
-        height: $cardHeight;
-        overflow: hidden;
+    img {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
     }
 
     .list-item-footer {
+        background-color: #000;
         padding: 12px;
         overflow: hidden;
         width: 100%;
-        height: 80px;
+        height: 75px;
         position: absolute;
         left: 0;
         bottom: 0;

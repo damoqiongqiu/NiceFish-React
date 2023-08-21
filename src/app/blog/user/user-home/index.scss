@@ -76,10 +76,23 @@
 
     .tab-content {
         .post-list-container {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
+            .my-masonry-grid {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                margin-left: -30px;
+                width: auto;
+            }
+
+            .my-masonry-grid_column {
+                padding-left: 30px;
+                background-clip: padding-box;
+
+                >section {
+                    background: #000;
+                    margin-bottom: 15px;
+                }
+            }
         }
 
         .search-box {

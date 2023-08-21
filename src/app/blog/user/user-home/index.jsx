@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Masonry from 'react-masonry-css';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -70,6 +71,15 @@ const UserHome = (props) => {
         });
     }, []);
 
+    //瀑布流布局响应式断点 TODO:需要再优化一下
+    const breakpointColumnsObj = {
+        default: 6,
+        1396: 4,
+        1024: 3,
+        768: 2,
+        500: 1
+    };
+
     return (
         <div className="user-home-container">
             <div className="user-info">
@@ -118,40 +128,34 @@ const UserHome = (props) => {
                 }>
                     <TabPanel header="作品">
                         <div className='post-list-container'>
-                            {myPostList.map((item, index) => {
-                                return (
-                                    <PostListItem postDetail={item} key={index}></PostListItem>
-                                );
-                            })}
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
+                            <Masonry
+                                breakpointCols={breakpointColumnsObj}
+                                className="my-masonry-grid"
+                                columnClassName="my-masonry-grid_column">
+                                {
+                                    myPostList.map((item, index) => {
+                                        return (
+                                            <PostListItem postDetail={item} key={index}></PostListItem>
+                                        );
+                                    })
+                                }
+                            </Masonry>
                         </div>
                     </TabPanel>
                     <TabPanel header="收藏">
                         <div className='post-list-container'>
-                            {myCollectionList.map((item, index) => {
-                                return (
-                                    <PostListItem postDetail={item} key={index}></PostListItem>
-                                );
-                            })}
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
+                            <Masonry
+                                breakpointCols={breakpointColumnsObj}
+                                className="my-masonry-grid"
+                                columnClassName="my-masonry-grid_column">
+                                {
+                                    myCollectionList.map((item, index) => {
+                                        return (
+                                            <PostListItem postDetail={item} key={index}></PostListItem>
+                                        );
+                                    })
+                                }
+                            </Masonry>
                         </div>
                     </TabPanel>
                     <TabPanel headerTemplate={
