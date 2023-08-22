@@ -25,7 +25,7 @@ const UserHome = (props) => {
     const [likedCount, setLikedCount] = useState(0);
 
     //从 redux 中获取当前登录用户
-    const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session.user) || {};
 
     //导航对象
     const navigate = useNavigate();
@@ -42,6 +42,9 @@ const UserHome = (props) => {
     const [page, setPage] = useState(1);
     const [totalElements, setTotalElements] = useState(0);
 
+    //是否已经关注
+    const [followed, setFollowed] = useState(false);
+
     useEffect(() => {
         userService.getUserFollowerCount(userId).then(response => {
             setFollowerCount(response.data);
@@ -56,7 +59,7 @@ const UserHome = (props) => {
             setUserDetail(response.data.data);
         });
 
-        postService.getPostTable(page).then(response => {
+        postService.getPostTable(userId, page).then(response => {
             let data = response.data;
             setTotalElements(data.totalElements);
 
@@ -69,7 +72,14 @@ const UserHome = (props) => {
             let data = response.data || [];
             setMyCollectionList(data);
         });
-    }, []);
+
+        //检查当前用户是否已经关注
+        if (sessionUser && sessionUser.userId != userId) {
+            userService.existsFollow({ fromId: sessionUser.userId, toId: userId }).then(resp => {
+                setFollowed(resp.data);
+            });
+        };
+    }, [userId]);
 
     //瀑布流布局响应式断点 TODO:需要再优化一下
     const breakpointColumnsObj = {
@@ -79,6 +89,27 @@ const UserHome = (props) => {
         768: 2,
         500: 1
     };
+
+    /**
+     * 处理用户关注和取消关注操作
+     * @returns 
+     */
+    const handleFollow = async () => {
+        //如果没有登录，跳转到登录页面
+        if (!sessionUser) {
+            navigate("sign-in");
+            return;
+        }
+        if (followed) {
+            await userService.unfollow({ fromId: sessionUser.userId, toId: userId }).then(response => {
+                setFollowed(false);
+            });
+        } else {
+            await userService.follow({ fromId: sessionUser.userId, toId: userId }).then(response => {
+                setFollowed(true);
+            });
+        }
+    }
 
     return (
         <div className="user-home-container">
@@ -112,13 +143,30 @@ const UserHome = (props) => {
                 <div className='operations'>
                     <div>
                         {
-                            sessionUser
+                            followed
+                                ?
+                                <>
+                                    <button className='btn btn-default' onClick={handleFollow}>已关注</button>
+                                </>
+                                :
+                                <></>
+                        }
+                        {
+                            ((sessionUser?.userId != userId) && !followed)
+                                ?
+                                <>
+                                    <button className='btn btn-primary' onClick={handleFollow}>关注</button>
+                                </>
+                                :
+                                <></>
+                        }
+                        {
+                            (sessionUser && sessionUser.userId == userId)
                                 ?
                                 <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>编辑资料</button>
                                 :
                                 <></>
                         }
-
                     </div>
                 </div>
             </div>

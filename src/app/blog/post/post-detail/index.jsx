@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import postService from 'src/app/service/post-service';
-import userService from 'src/app/service/user-service'
+import userService from 'src/app/service/user-service';
 import formatTimeAgo from 'src/app/shared/date-formater';
 import ReactPlayer from 'react-player'
 import { Galleria } from 'primereact/galleria';

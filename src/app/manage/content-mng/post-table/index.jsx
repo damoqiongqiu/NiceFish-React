@@ -11,6 +11,9 @@ export default props => {
   //i18n hooks
   const { i18n } = useTranslation();
 
+  //从 redux 中获取当前登录用户
+  const sessionUser = useSelector((state) => state.session.user) || {};
+
   //文章列表
   const [postList, setPostList] = useState([]);
 
@@ -34,7 +37,7 @@ export default props => {
    * 加载文章列表
    */
   const loadData = () => {
-    postService.getPostTable(page).then(response => {
+    postService.getPostTable(sessionUser?.userId, page).then(response => {
       let data = response.data;
       setTotalElements(data.totalElements);
 

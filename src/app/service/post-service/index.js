@@ -39,11 +39,12 @@ export default {
 
     /**
      * 管理后台用的文章列表
+     * @param {*} userId 
      * @param {*} page 
      * @returns 
      */
-    getPostTable: (page) => {
-        let reqURL = _.template(postTableURL)({ page: page });
+    getPostTable: (userId, page) => {
+        let reqURL = _.template(postTableURL)({ userId, page });
         return axiosService.get(reqURL);
     },
 
