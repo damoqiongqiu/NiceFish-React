@@ -57,4 +57,6 @@ export const dataURL = {
     commentListByPostIdURL: "mock-data/comment-list-mock.json",
     writeCommentURL: "",
     fileUploadURL: "",
+    searchPostURL: "mock-data/post-list-mock.json",
+    searchUserURL: "mock-data/user-list-mock.json",
 };

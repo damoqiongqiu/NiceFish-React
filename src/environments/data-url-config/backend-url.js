@@ -60,4 +60,6 @@ export const dataURL = {
     commentListByPostIdURL: "/cms/comment/post-id/<%= postId %>/page/<%= page %>",
     writeCommentURL: "/cms/comment/write-comment",
     fileUploadURL: "/cms/file/upload",
+    searchPostURL: "/search/post/q/<%= page %>/<%= size %>/<%= keywords %>",
+    searchUserURL: "/search/user/q/<%= page %>/<%= size %>/<%= keywords %>",
 };

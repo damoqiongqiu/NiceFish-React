@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from 'src/app/shared/session/';
@@ -18,6 +18,9 @@ const languages = [
 ];
 
 const NavBar = props => {
+    //搜索类型、关键字
+    let { searchType = "post", keywords = "" } = useParams();
+
     //导航对象
     const navigate = useNavigate();
 
@@ -74,11 +77,6 @@ const NavBar = props => {
             url: "/post"
         },
         {
-            label: i18n.t("navbar.favorite"),
-            icon: "fa-star",
-            url: "/post"
-        },
-        {
             label: i18n.t("navbar.travel"),
             icon: "fa-plane",
             url: "/post"
@@ -110,6 +108,17 @@ const NavBar = props => {
         }
     ];
 
+    /**
+     * 搜索
+     */
+    const doSearch = (e) => {
+        e.preventDefault();
+        if (e.key === 'Enter') {
+            keywords = e.target.value;
+            navigate(`/do-search/${searchType}/${keywords}`);
+        }
+    }
+
     return (
         <div className="navbar navbar-fixed-top main-nav" role="navigation">
             <div className="container-fluid">
@@ -138,6 +147,11 @@ const NavBar = props => {
                                 );
                             })
                         }
+                        <form className="navbar-form navbar-left" onSubmit={e => { e.preventDefault(); }}>
+                            <div className="form-group">
+                                <input type="text" className="form-control" placeholder="Search" onKeyUp={doSearch} />
+                            </div>
+                        </form>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <NiceFishDropDown

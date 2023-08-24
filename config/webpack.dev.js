@@ -27,6 +27,12 @@ module.exports = merge(commonConfig, {
                 "secure": false,
                 "changeOrigin": true,
                 "logLevel": "debug"
+            },
+            "/search": {
+                "target": "http://localhost:8899/nicefish",
+                "secure": false,
+                "changeOrigin": true,
+                "logLevel": "debug"
             }
         },
     },

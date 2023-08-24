@@ -116,6 +116,10 @@ Configuration items related to the startup environment can be found in environme
 
 <img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/9.png">
 
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/11.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/12.png">
+
 ## 9. Open Source License
 
 MIT

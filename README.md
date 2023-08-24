@@ -116,6 +116,10 @@ NiceFish-React 在 GitHub Pages 上的演示地址（Mock 数据，无后端）�
 
 <img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/9.png">
 
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/11.png">
+
+<img src="https://gitee.com/mumu-osc/NiceFish-React/raw/master/src/assets/images/12.png">
+
 ## 9.开源许可证
 
 MIT

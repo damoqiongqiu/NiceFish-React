@@ -1,4 +1,5 @@
 import React, { lazy, useState, useEffect } from "react";
+import SearchResultMain from "src/app/blog/search-result/search-result-main";
 import Home from "src/app/blog/home";
 import Exception404 from "src/app/shared/exception/404";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -76,6 +77,31 @@ export default props => {
             element: Home,
         },
         {
+            path: "/sign-in",
+            element: SignIn,
+        },
+        {
+            path: "/retrieve-pwd",
+            element: RetrievePwd,
+        },
+        {
+            path: "/sign-up",
+            element: SignUp,
+        },
+        {
+            path: "/write",
+            element: WritePostImg,
+            redirect: !sessionUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
+        },
+        {
+            path: "/user-home/:userId",
+            element: UserHome,
+        },
+        {
+            path: "/do-search/:searchType?/:keywords?",
+            element: SearchResultMain,
+        },
+        {
             path: "/manage",
             element: Manage,
             redirect: !sessionUser ? "/sign-in" : null,
@@ -129,27 +155,6 @@ export default props => {
                     element: SysParam,
                 },
             ],
-        },
-        {
-            path: "/sign-in",
-            element: SignIn,
-        },
-        {
-            path: "/retrieve-pwd",
-            element: RetrievePwd,
-        },
-        {
-            path: "/sign-up",
-            element: SignUp,
-        },
-        {
-            path: "/write",
-            element: WritePostImg,
-            redirect: !sessionUser ? "/sign-in" : null,//如果没有登录，重定向到登录页面
-        },
-        {
-            path: "/user-home/:userId",
-            element: UserHome,
         },
         {
             path: "*",

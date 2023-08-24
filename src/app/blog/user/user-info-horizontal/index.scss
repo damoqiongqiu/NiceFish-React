@@ -28,6 +28,14 @@
         text-overflow: ellipsis;
         position: relative;
 
+        >p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 24px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
         >span {
             font-family: 'PingFang SC', 'sans-serif';
             font-size: 20px;

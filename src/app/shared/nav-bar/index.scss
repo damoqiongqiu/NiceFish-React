@@ -42,6 +42,16 @@ $textColor: #fff;
                     }
                 }
             }
+
+            .navbar-form {
+                margin: 10px 15px;
+                padding: 0;
+
+                input {
+                    width: 300px;
+                    height: 30px;
+                }
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import userService from 'src/app/service/user-service';
 import './index.scss';
 
-const UserInfoHorizontal = (props) => {
+export default props => {
     //userId
     const { userId } = props;
 
@@ -132,5 +132,3 @@ const UserInfoHorizontal = (props) => {
         </div>
     );
 };
-
-export default UserInfoHorizontal;

@@ -1,0 +1,19 @@
+.post-list-container {
+    .my-masonry-grid {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-left: -30px;
+        width: auto;
+    }
+
+    .my-masonry-grid_column {
+        padding-left: 30px;
+        background-clip: padding-box;
+
+        >section {
+            background: #000;
+            margin-bottom: 15px;
+        }
+    }
+}
