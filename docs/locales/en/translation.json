@@ -35,6 +35,17 @@
     "cancel": "Cancel",
     "none": "None",
     "status": "Status",
+    "posts": "Posts",
+    "saved": "Saved",
+    "searchYourPosts": "Search your posts",
+    "followers": "Followers",
+    "following": "Following",
+    "liked": "Liked",
+    "userId": "User ID",
+    "noIntroduction": "No introduction at the moment.",
+    "follow": "Follow",
+    "followed": "Followed",
+    "editProfile": "Edit Profile",
     "gender": {
         "female": "Female",
         "male": "Male",
@@ -155,5 +166,10 @@
         "503": "Service Unavailable",
         "504": "Gateway Timeout",
         "600": "Network Error"
+    },
+    "search": {
+        "posts": "Posts",
+        "users": "Users",
+        "noData": "No data found."
     }
 }

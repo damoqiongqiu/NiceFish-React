@@ -35,6 +35,17 @@
     "cancel": "取消",
     "none": "无",
     "status": "状态",
+    "posts": "作品",
+    "saved": "收藏",
+    "searchYourPosts": "搜索你的作品",
+    "followers": "粉丝",
+    "following": "关注",
+    "liked": "获赞",
+    "userId": "用户号",
+    "noIntroduction": "暂时没有介绍",
+    "follow": "关注",
+    "followed": "已关注",
+    "editProfile": "编辑资料",
     "gender": {
         "female": "女",
         "male": "男",
@@ -155,5 +166,10 @@
         "503": "服务不可用",
         "504": "后端服务异常",
         "600": "网络异常，请稍后重试"
+    },
+    "search": {
+        "posts": "作品",
+        "users": "用户",
+        "noData": "没有找到任何数据。"
     }
 }
