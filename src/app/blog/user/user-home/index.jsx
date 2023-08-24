@@ -6,9 +6,13 @@ import userService from 'src/app/service/user-service';
 import postService from 'src/app/service/post-service';
 import PostListItem from 'src/app/blog/post/post-list-item';
 import UserInfoHorizontal from "src/app/blog/user/user-info-horizontal";
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 const UserHome = (props) => {
+    //i18n hooks
+    const { i18n } = useTranslation();
+
     //userId ，从路由参数中获取
     const { userId } = useParams();
 
@@ -59,7 +63,7 @@ const UserHome = (props) => {
                 <TabView onBeforeTabChange={
                     e => { return e.index === 2 ? false : true; }
                 }>
-                    <TabPanel header="作品">
+                    <TabPanel header={i18n.t("posts")}>
                         <div className='post-list-container'>
                             <Masonry
                                 breakpointCols={breakpointColumnsObj}
@@ -75,7 +79,7 @@ const UserHome = (props) => {
                             </Masonry>
                         </div>
                     </TabPanel>
-                    <TabPanel header="收藏">
+                    <TabPanel header={i18n.t("saved")}>
                         <div className='post-list-container'>
                             <Masonry
                                 breakpointCols={breakpointColumnsObj}
@@ -95,7 +99,7 @@ const UserHome = (props) => {
                         () => {
                             return (
                                 <div>
-                                    <input type="text" className="search-box" placeholder="搜索你的作品..." />
+                                    <input type="text" className="search-box" placeholder={`${i18n.t("searchYourPosts")}...`} />
                                 </div>
                             )
                         }

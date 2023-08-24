@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import userService from 'src/app/service/user-service';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 export default props => {
+    //i18n hooks
+    const { i18n } = useTranslation();
+
     //userId
     const { userId } = props;
 
@@ -81,31 +85,31 @@ export default props => {
                 <span>{userDetail.nickName}</span>
                 <div className="user-stats">
                     <p>
-                        <span>粉丝</span>
+                        <span>{i18n.t("followers")}</span>
                         <span>{followerCount}</span>
                     </p>
                     <p>
-                        <span>关注</span>
+                        <span>{i18n.t("following")}</span>
                         <span>{followingCount}</span>
                     </p>
                     <p>
-                        <span>获赞</span>
+                        <span>{i18n.t("liked")}</span>
                         <span>{likedCount}</span>
                     </p>
                 </div>
                 <div className="info2">
-                    <span>用户号: {userDetail.userId}</span>
+                    <span>{i18n.t("userId")}: {userDetail.userId}</span>
                     <span>{userDetail.city}</span>
                     <span>{userDetail.education}</span>
                 </div>
-                <p>{userDetail.remark || "暂时没有介绍。"}</p>
+                <p>{userDetail.remark || i18n.t("noIntroduction")}</p>
                 <div className='operations'>
                     <div>
                         {
                             followed
                                 ?
                                 <>
-                                    <button className='btn btn-default' onClick={handleFollow}>已关注</button>
+                                    <button className='btn btn-default' onClick={handleFollow}>{i18n.t("followed")}</button>
                                 </>
                                 :
                                 <></>
@@ -114,7 +118,7 @@ export default props => {
                             ((sessionUser?.userId != userId) && !followed)
                                 ?
                                 <>
-                                    <button className='btn btn-primary' onClick={handleFollow}>关注</button>
+                                    <button className='btn btn-primary' onClick={handleFollow}>{i18n.t("follow")}</button>
                                 </>
                                 :
                                 <></>
@@ -122,7 +126,7 @@ export default props => {
                         {
                             (sessionUser && sessionUser.userId == userId)
                                 ?
-                                <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>编辑资料</button>
+                                <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>{i18n.t("editProfile")}</button>
                                 :
                                 <></>
                         }

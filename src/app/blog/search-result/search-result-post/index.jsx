@@ -3,9 +3,14 @@ import Masonry from 'react-masonry-css';
 import PostListItem from 'src/app/blog/post/post-list-item';
 import { useParams, useNavigate } from 'react-router-dom';
 import searchService from 'src/app/service/search-service';
+import { useTranslation } from 'react-i18next';
+
 import './index.scss';
 
 export default props => {
+    //i18n hooks
+    const { i18n } = useTranslation();
+
     //关键字
     const { keywords = "" } = props;
 
@@ -69,7 +74,7 @@ export default props => {
                         }
                     </Masonry>
                     :
-                    <div className='no-data'>没有找到任何内容</div>
+                    <div className='no-data'>{i18n.t("search.noData")}</div>
             }
         </div>
     );
