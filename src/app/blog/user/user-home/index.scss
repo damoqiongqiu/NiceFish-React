@@ -2,6 +2,8 @@
     .user-info {
         display: flex;
         margin-bottom: 30px;
+        background-color: #2a323d;
+        padding: 30px;
 
         .user-avatar {
             width: 150px;
@@ -13,7 +15,6 @@
             >img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
             }
         }
 
