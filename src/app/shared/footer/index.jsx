@@ -7,14 +7,14 @@ const Footer = props => {
                 <div className="row">
                     <div className="col-md-12">
                         <p>
-                            Powered by <a href="http://git.oschina.net/mumu-osc/NiceFish" target="_blank">NiceFish</a>
+                            Powered by <a href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank">NiceFish-React</a>
                         </p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <a href='https://gitee.com/mumu-osc/NiceFish/stargazers' target="_blank">
-                            <img src='https://gitee.com/mumu-osc/NiceFish/badge/star.svg?theme=dark' alt='star' />
+                        <a href='https://gitee.com/mumu-osc/NiceFish-React/stargazers'>
+                            <img src='https://gitee.com/mumu-osc/NiceFish-React/badge/star.svg?theme=dark' alt='star'></img>
                         </a>
                     </div>
                 </div>
