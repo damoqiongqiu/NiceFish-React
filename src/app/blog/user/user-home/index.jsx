@@ -139,34 +139,34 @@ const UserHome = (props) => {
                         <span>{userDetail.education}</span>
                     </div>
                     <p>{userDetail.remark || "暂时没有介绍。"}</p>
-                </div>
-                <div className='operations'>
-                    <div>
-                        {
-                            followed
-                                ?
-                                <>
-                                    <button className='btn btn-default' onClick={handleFollow}>已关注</button>
-                                </>
-                                :
-                                <></>
-                        }
-                        {
-                            ((sessionUser?.userId != userId) && !followed)
-                                ?
-                                <>
-                                    <button className='btn btn-primary' onClick={handleFollow}>关注</button>
-                                </>
-                                :
-                                <></>
-                        }
-                        {
-                            (sessionUser && sessionUser.userId == userId)
-                                ?
-                                <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>编辑资料</button>
-                                :
-                                <></>
-                        }
+                    <div className='operations'>
+                        <div>
+                            {
+                                followed
+                                    ?
+                                    <>
+                                        <button className='btn btn-default' onClick={handleFollow}>已关注</button>
+                                    </>
+                                    :
+                                    <></>
+                            }
+                            {
+                                ((sessionUser?.userId != userId) && !followed)
+                                    ?
+                                    <>
+                                        <button className='btn btn-primary' onClick={handleFollow}>关注</button>
+                                    </>
+                                    :
+                                    <></>
+                            }
+                            {
+                                (sessionUser && sessionUser.userId == userId)
+                                    ?
+                                    <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>编辑资料</button>
+                                    :
+                                    <></>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
