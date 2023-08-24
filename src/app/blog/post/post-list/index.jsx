@@ -10,7 +10,7 @@ export default props => {
 
   //分页参数
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(10);
+  const [rows, setRows] = useState(20);
   const [page, setPage] = useState(1);
   const [totalElements, setTotalElements] = useState(0);
 
@@ -28,7 +28,7 @@ export default props => {
    * 加载文章列表
    */
   useEffect(() => {
-    postService.getPostList(page).then(response => {
+    postService.getPostList(page, rows).then(response => {
       let data = response.data;
       setTotalElements(data.totalElements);
 

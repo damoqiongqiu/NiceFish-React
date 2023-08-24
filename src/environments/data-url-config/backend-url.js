@@ -6,7 +6,7 @@
  * 这些配置项会被 environment.* 中的 dataURL 属性引用。所有 *.service.ts 文件中的请求路径都会从 environment.* 中的 dataURL 属性中获取。
  */
 export const dataURL = {
-    postListURL: "/cms/post/post-list/<%= page %>",
+    postListURL: "/cms/post/post-list/<%= page %>/<%= rows %>",
     postDetailURL: "/cms/post/post-detail/<%= id %>",
     postTableURL: "/cms/post/manage/post-table/<%= userId %>/<%= page %>",
     delPostURL: "/cms/post/manage/del-post/<%= id %>",

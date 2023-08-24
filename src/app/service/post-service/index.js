@@ -13,8 +13,8 @@ export default {
      * @param {*} page 
      * @returns 
      */
-    getPostList: (page) => {
-        let reqURL = _.template(postListURL)({ page: page });
+    getPostList: (page, rows) => {
+        let reqURL = _.template(postListURL)({ page, rows });
         return axiosService.get(reqURL);
     },
 
