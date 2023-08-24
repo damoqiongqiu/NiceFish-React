@@ -39,11 +39,11 @@ export default props => {
 
   //瀑布流布局响应式断点 TODO:需要再优化一下
   const breakpointColumnsObj = {
-    default: 6,
-    1396: 4,
-    1024: 3,
+    default: 5,
+    1200: 4,
+    992: 3,
     768: 2,
-    500: 1
+    576: 1
   };
 
   return (

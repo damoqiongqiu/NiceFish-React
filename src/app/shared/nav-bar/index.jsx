@@ -96,11 +96,11 @@ const NavBar = props => {
             icon: "fa-music",
             url: "/post"
         },
-        {
-            label: i18n.t("navbar.food"),
-            icon: "fa-cutlery",
-            url: "/post"
-        },
+        // {
+        //     label: i18n.t("navbar.food"),
+        //     icon: "fa-cutlery",
+        //     url: "/post"
+        // },
         {
             label: i18n.t("navbar.write"),
             icon: "fa-pencil",
