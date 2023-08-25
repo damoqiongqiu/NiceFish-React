@@ -33,6 +33,12 @@ const NavBar = props => {
     //i18n hooks
     const { i18n } = useTranslation();
 
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+    const toggleNav = () => {
+        setIsNavExpanded(prevState => !prevState);
+    };
+
     //当前选中的语言
     const [selectedLanguage, setSelectedLanguage] = useState(
         () => {
@@ -46,12 +52,6 @@ const NavBar = props => {
             return result;
         }
     );
-
-    const [isNavExpanded, setIsNavExpanded] = useState(false);
-
-    const toggleNav = () => {
-        setIsNavExpanded(prevState => !prevState);
-    };
 
     /**
      * 退出登录
@@ -145,7 +145,6 @@ const NavBar = props => {
                         <img src={niceFishPNG} width="44" />
                     </a>
                 </div>
-                {/* <div className="collapse navbar-collapse"> */}
                 <div className={'collapse navbar-collapse' + (isNavExpanded ? ' in' : '')}>
                     <ul className="nav navbar-nav">
                         {
