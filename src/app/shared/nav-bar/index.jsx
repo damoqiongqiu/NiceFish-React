@@ -47,6 +47,12 @@ const NavBar = props => {
         }
     );
 
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+    const toggleNav = () => {
+        setIsNavExpanded(prevState => !prevState);
+    };
+
     /**
      * 退出登录
      */
@@ -123,17 +129,24 @@ const NavBar = props => {
         <div className="navbar navbar-fixed-top main-nav" role="navigation">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button
+                        type="button"
+                        className="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse"
+                        onClick={toggleNav}
+                    >
                         <span className="sr-only">Toggle Navigation</span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand-my">
-                        <img src={niceFishPNG} width="45" />
+                    <a className="navbar-brand  navbar-brand-my">
+                        <img src={niceFishPNG} width="44" />
                     </a>
                 </div>
-                <div className="collapse navbar-collapse">
+                {/* <div className="collapse navbar-collapse"> */}
+                <div className={'collapse navbar-collapse' + (isNavExpanded ? ' in' : '')}>
                     <ul className="nav navbar-nav">
                         {
                             menus.map((item, index) => {
