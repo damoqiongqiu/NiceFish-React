@@ -1,9 +1,9 @@
-//PrimeReact 官方样式定制工具：https://primereact.org
+//bootstrap 基础样式（已定制） https://www.bootstrap-live-customizer.com/
+@import "./assets/css/bootstrap-3.4.0-custom-dark/css/theme.css";
+
+//PrimeReact 官方样式（已定制） https://primereact.org
 @import "~primereact/resources/primereact.css";
 @import "~primereact/resources/themes/bootstrap4-dark-purple/theme.css";
-
-//bootstrap 样式定制 https://www.bootstrap-live-customizer.com/
-@import "./assets/css/bootstrap-3.4.0-custom-dark/css/theme.css";
 
 //font-awesome 图标库 https://fontawesome.com
 @import "~font-awesome/css/font-awesome.min.css";

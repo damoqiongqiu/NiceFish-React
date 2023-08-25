@@ -40,13 +40,15 @@ export default props => {
     fetchMoreData();
   }, []);
 
-  //瀑布流布局响应式断点 TODO:需要再优化一下
+  /**
+   * 瀑布流布局响应式断点
+   * 这里需要与 Bootstrap 的断点对应
+   */
   const breakpointColumnsObj = {
-    default: 5,
-    1200: 4,
-    992: 3,
-    768: 2,
-    576: 1
+    default: 3,
+    1200: 3,
+    992: 2,
+    768: 1,
   };
 
   return (

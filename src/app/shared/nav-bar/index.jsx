@@ -66,36 +66,36 @@ const NavBar = props => {
             icon: "fa-home",
             url: "/post"
         },
-        {
-            label: i18n.t("navbar.discover"),
-            icon: "fa-globe",
-            url: "/post"
-        },
+        // {
+        //     label: i18n.t("navbar.discover"),
+        //     icon: "fa-globe",
+        //     url: "/post"
+        // },
         {
             label: i18n.t("navbar.follow"),
             icon: "fa-heart",
             url: "/post"
         },
-        {
-            label: i18n.t("navbar.travel"),
-            icon: "fa-plane",
-            url: "/post"
-        },
-        {
-            label: i18n.t("navbar.fitness"),
-            icon: "fa-futbol-o",
-            url: "/post"
-        },
-        {
-            label: i18n.t("navbar.movies"),
-            icon: "fa-film",
-            url: "/post"
-        },
-        {
-            label: i18n.t("navbar.music"),
-            icon: "fa-music",
-            url: "/post"
-        },
+        // {
+        //     label: i18n.t("navbar.travel"),
+        //     icon: "fa-plane",
+        //     url: "/post"
+        // },
+        // {
+        //     label: i18n.t("navbar.fitness"),
+        //     icon: "fa-futbol-o",
+        //     url: "/post"
+        // },
+        // {
+        //     label: i18n.t("navbar.movies"),
+        //     icon: "fa-film",
+        //     url: "/post"
+        // },
+        // {
+        //     label: i18n.t("navbar.music"),
+        //     icon: "fa-music",
+        //     url: "/post"
+        // },
         // {
         //     label: i18n.t("navbar.food"),
         //     icon: "fa-cutlery",
@@ -123,7 +123,7 @@ const NavBar = props => {
         <div className="navbar navbar-fixed-top main-nav" role="navigation">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <button className="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span className="sr-only">Toggle Navigation</span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
@@ -133,7 +133,7 @@ const NavBar = props => {
                         <img src={niceFishPNG} width="45" />
                     </a>
                 </div>
-                <div className="navbar-collapse collapse">
+                <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav">
                         {
                             menus.map((item, index) => {

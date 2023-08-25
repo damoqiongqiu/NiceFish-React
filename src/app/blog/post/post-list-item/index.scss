@@ -1,10 +1,10 @@
-$cardWidth: 220px;
-
 .post-list-item {
     display: flex;
-    width: $cardWidth;
-    height: auto;
+    width: 100%;
+    min-width: 220px;
+    max-width: 768px;
     min-height: 300px;
+    height: auto;
     border-radius: 12px;
     overflow: hidden;
     background-color: #000;

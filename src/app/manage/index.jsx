@@ -21,7 +21,7 @@ export default props => {
   }, []);
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
         <div className="col-md-10">
           <div className="mng-main-container">

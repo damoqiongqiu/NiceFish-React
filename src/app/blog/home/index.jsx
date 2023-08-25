@@ -4,10 +4,10 @@ import PostList from 'src/app/blog/post/post-list';
 export default props => {
   return (
     <div className="row">
-      <div className="col-md-10">
+      <div className="col-md-9">
         <PostList />
       </div>
-      <div className="col-md-2">
+      <div className="col-md-3">
         {/* TODO:榜单抽成一个组件 */}
         <div className="online-contact-container">
           <div className="panel panel-default">

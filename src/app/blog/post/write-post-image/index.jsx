@@ -180,7 +180,7 @@ export default props => {
   }
 
   return (
-    <div className="container-fluid write-post-container">
+    <div className="container write-post-container">
       <div className="row">
         <div className="col-md-10">
           <div className="row">

@@ -59,17 +59,19 @@ const App = props => {
       <NavBar></NavBar>
 
       {/* 主体内容区域 */}
-      <div className="container-fluid main-container">
-        <ErrorBoundary>
-          <Suspense
-            fallback={
-              <div className="loading-container d-flex align-items-center justify-content-center">
-              </div>
-            }
-          >
-            <NiceFishRoutes />
-          </Suspense>
-        </ErrorBoundary>
+      <div className="container">
+        <div className='main-container'>
+          <ErrorBoundary>
+            <Suspense
+              fallback={
+                <div className="loading-container d-flex align-items-center justify-content-center">
+                </div>
+              }
+            >
+              <NiceFishRoutes />
+            </Suspense>
+          </ErrorBoundary>
+        </div>
       </div>
 
       {/* 页面底部区域 */}
