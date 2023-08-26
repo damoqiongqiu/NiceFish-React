@@ -109,7 +109,7 @@ export default props => {
                             followed
                                 ?
                                 <>
-                                    <button className='btn btn-default' onClick={handleFollow}>{i18n.t("followed")}</button>
+                                    <button className='btn btn-secondary' onClick={handleFollow}>{i18n.t("followed")}</button>
                                 </>
                                 :
                                 <></>
@@ -126,7 +126,7 @@ export default props => {
                         {
                             (sessionUser && sessionUser.userId == userId)
                                 ?
-                                <button className='btn btn-primary' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>{i18n.t("editProfile")}</button>
+                                <button className='btn btn-danger' onClick={() => { navigate(`/manage/user-profile/${sessionUser.userId}`); }}>{i18n.t("editProfile")}</button>
                                 :
                                 <></>
                         }

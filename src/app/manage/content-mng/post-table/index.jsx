@@ -101,18 +101,12 @@ export default props => {
 
   return (
     <div className="post-table-container">
-      <form className="form-vertical" role="form">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" placeholder={i18n.t('title')} />
-              <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </span>
-            </div>
-          </div>
+      <form role="form">
+        <div className="input-group">
+          <input name="searchStr" className="form-control" type="text" placeholder={i18n.t('title')} />
+          <button className="btn btn-success" type="button">
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </button>
         </div>
       </form>
       <div className="row">

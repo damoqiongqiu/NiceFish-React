@@ -4,6 +4,7 @@ import { DataTable } from 'primereact/datatable';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
 import { useNavigate, useParams } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import roleService from "src/app/service/role-service";
 import apiPermService from "src/app/service/api-permission-service";
 import compPermService from "src/app/service/component-permission-service";
@@ -311,14 +312,14 @@ export default props => {
 
   return (
     <div className="role-edit-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("role.edit.title")}</h3>
-        </div>
-        <div className="panel-body">
-          <form noValidate className="form-horizontal" role="form">
-            <div className="form-group">
-              <label className="col-md-2 control-label">{i18n.t("role.roleName")}：</label>
+      <Card className='mb-3'>
+        <Card.Header>
+          <Card.Title as="h5">{i18n.t("role.edit.title")}</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <form noValidate role="form">
+            <div className="row mb-3">
+              <label className="col-md-2 col-form-label">{i18n.t("role.roleName")}：</label>
               <div className="col-md-10">
                 <input
                   type="text"
@@ -330,8 +331,8 @@ export default props => {
                 />
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-2 control-label">{i18n.t("role.enabled")}：</label>
+            <div className="row mb-3 align-items-center">
+              <label className="col-md-2 col-form-label">{i18n.t("role.enabled")}：</label>
               <div className="col-md-10">
                 <div className="checkbox">
                   <label>
@@ -348,8 +349,8 @@ export default props => {
                 </div>
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-2 control-label">{i18n.t("role.remark")}：</label>
+            <div className="row mb-3">
+              <label className="col-md-2 col-form-label">{i18n.t("role.remark")}：</label>
               <div className="col-md-10">
                 <textarea
                   rows="5"
@@ -364,86 +365,85 @@ export default props => {
               </div>
             </div>
           </form>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
 
       {/* 后端接口权限配置表格 */}
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("role.apiPermission")}</h3>
-        </div>
-        <div className="panel-body">
-          <DataTable
-            value={apiPermissionListAll}
-            showGridlines
-            stripedRows
-            tableStyle={{ width: "100%" }}
-            selectionMode={rowClick ? null : 'checkbox'}
-            selection={apiPermissionListByRole}
-            onSelectionChange={(e) => {
-              setApiPermissionListByRole(e.value);
-            }}
-          >
-            <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
-            <Column field="apiName" header={i18n.t("apiPermission.apiName")}></Column>
-            <Column field="url" header={i18n.t("apiPermission.apiUrl")}></Column>
-            <Column field="permission" header={i18n.t("apiPermission.permissionWildCard")}></Column>
-            <Column field="remark" header={i18n.t("apiPermission.remark")} style={{ maxWidth: "120px" }}></Column>
-            <Column field="roleEntities" body={
-              (item) => {
-                return (
-                  item?.roleEntities?.map(role => (
-                    <h5 key={role.roleId}>
-                      <span className="label label-success">{role.roleName}</span>
-                    </h5>
-                  ))
-                );
-              }
-            } header={i18n.t("apiPermission.table.associatedRoles")}></Column>
-          </DataTable>
-        </div>
-      </div>
+      <Card className='mb-3'>
+        <Card.Header>
+          <Card.Title as="h5">{i18n.t("role.apiPermission")}</Card.Title>
+        </Card.Header>
+        <DataTable
+          variant="flush"
+          value={apiPermissionListAll}
+          showGridlines
+          stripedRows
+          tableStyle={{ width: "100%" }}
+          selectionMode={rowClick ? null : 'checkbox'}
+          selection={apiPermissionListByRole}
+          onSelectionChange={(e) => {
+            setApiPermissionListByRole(e.value);
+          }}
+        >
+          <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
+          <Column field="apiName" header={i18n.t("apiPermission.apiName")}></Column>
+          <Column field="url" header={i18n.t("apiPermission.apiUrl")}></Column>
+          <Column field="permission" header={i18n.t("apiPermission.permissionWildCard")}></Column>
+          <Column field="remark" header={i18n.t("apiPermission.remark")} style={{ maxWidth: "120px" }}></Column>
+          <Column field="roleEntities" body={
+            (item) => {
+              return (
+                item?.roleEntities?.map(role => (
+                  <h5 key={role.roleId}>
+                    <span className="badge bg-success">{role.roleName}</span>
+                  </h5>
+                ))
+              );
+            }
+          } header={i18n.t("apiPermission.table.associatedRoles")}></Column>
+        </DataTable>
+      </Card>
 
       {/* 前端权限配置表格 */}
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("role.componentPermission")}</h3>
-        </div>
-        <div className="panel-body">
-          {/* TODO:默认展开所有节点 */}
-          <TreeTable
-            tableStyle={{ minWidth: '100' }}
-            value={compPermList}
-            selectionMode="checkbox"
-            selectionKeys={selectedComp}
-            onSelectionChange={
-              (e) => {
-                setSelectedComp(e.value);
-              }
+      <Card className='mb-3'>
+        <Card.Header>
+          <Card.Title as="h5">{i18n.t("role.componentPermission")}</Card.Title>
+        </Card.Header>
+        {/* TODO:默认展开所有节点 */}
+        <TreeTable
+          variant="flush"
+          tableStyle={{ minWidth: '100' }}
+          value={compPermList}
+          selectionMode="checkbox"
+          selectionKeys={selectedComp}
+          onSelectionChange={
+            (e) => {
+              setSelectedComp(e.value);
             }
-          >
-            {
-              cols.map((col, index) => {
-                return (
-                  <Column
-                    key={index}
-                    field={col.field}
-                    header={col.header}
-                    expander={col.expander}
-                  >
-                  </Column>
-                )
-              })
-            }
-          </TreeTable>
-        </div>
-      </div>
+          }
+        >
+          {
+            cols.map((col, index) => {
+              return (
+                <Column
+                  key={index}
+                  field={col.field}
+                  header={col.header}
+                  expander={col.expander}
+                >
+                </Column>
+              )
+            })
+          }
+        </TreeTable>
+      </Card>
+
       <div className="row">
         <div className="col-md-12">
-          <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
+          <button type="button" className="btn btn-primary me-3" onClick={save}>
             {i18n.t("save")}
           </button>
-          <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
+          <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
             {i18n.t("cancel")}
           </button>
         </div>

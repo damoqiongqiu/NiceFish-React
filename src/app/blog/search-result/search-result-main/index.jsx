@@ -18,10 +18,10 @@ export default props => {
                 <div className='row'>
                     <div className="col-md-12 search-type-label">
                         <NavLink to={`/do-search/post/${keywords}`}>
-                            <span className={`label ${searchType === "post" ? "label-primary" : "label-default"}`}>{i18n.t("search.posts")}</span>
+                            <span className={`badge ${searchType === "post" ? "bg-danger" : "bg-secondary"}`}>{i18n.t("search.posts")}</span>
                         </NavLink>
                         <NavLink to={`/do-search/user/${keywords}`}>
-                            <span className={`label ${searchType === "user" ? "label-primary" : "label-default"}`}>{i18n.t("search.users")}</span>
+                            <span className={`badge ${searchType === "user" ? "bg-danger" : "bg-secondary"}`}>{i18n.t("search.users")}</span>
                         </NavLink>
                     </div>
                 </div>

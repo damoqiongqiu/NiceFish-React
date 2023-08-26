@@ -30,12 +30,12 @@ export default props => {
         </div>
         <div className="col-md-2">
           {/* 静态菜单不需要配置到数据库 */}
-          <div className="list-group">
+          <div className="list-group mb-3">
             <NavLink to="chart" className="list-group-item">
               统计图表
             </NavLink>
           </div>
-          <div className="list-group">
+          <div className="list-group mb-3">
             <NavLink to="post-table" className="list-group-item">
               文章管理
             </NavLink>
@@ -46,7 +46,7 @@ export default props => {
               个人设置
             </NavLink>
           </div>
-          <div className="list-group">
+          <div className="list-group mb-3">
             {/* 当前用户持有的动态菜单 */}
             {
               menuList.map((menu, index) => {

@@ -3,3 +3,9 @@
   height: 50px;
   background: url('src/assets/images/react.svg') no-repeat;
 }
+
+.text-right {
+  >label {
+    text-align: right;
+  }
+}

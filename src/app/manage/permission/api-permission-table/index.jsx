@@ -95,7 +95,7 @@ export default props => {
     return (
       item?.roleEntities?.map(role => (
         <h5 key={role.roleId}>
-          <span className="label label-success">{role.roleName}</span>
+          <span className="badge bg-success">{role.roleName}</span>
         </h5>
       ))
     );
@@ -116,25 +116,15 @@ export default props => {
   };
 
   return (<div className="api-permission-table-container">
-    <form className="form-vertical" role="form">
-      <div className="row">
-        <div className="col-md-11">
-          <div className="input-group">
-            <input name="searchStr" className="form-control" type="text" />
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="button">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-        <div className="col-md-1">
-          <div className="input-group pull-right">
-            <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/api-permission-edit/-1") }} >
-              <i className="pi pi-plus" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
+    <form role="form">
+      <div className="input-group">
+        <input name="searchStr" className="form-control" type="text" />
+        <button className="btn btn-success" type="button">
+          <i className="fa fa-search"></i>
+        </button>
+        <button className="btn btn-danger" type="button" onClick={() => { navigate("/manage/api-permission-edit/-1") }}>
+          <i className="fa fa-plus"></i>
+        </button>
       </div>
     </form>
     <div className="row">

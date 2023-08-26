@@ -168,6 +168,7 @@
         "600": "Network Error"
     },
     "search": {
+        "label": "Search",
         "posts": "Posts",
         "users": "Users",
         "noData": "No data found."

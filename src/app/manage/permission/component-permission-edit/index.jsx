@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import compPermService from "src/app/service/component-permission-service";
 import ajv from "src/app/service/ajv-validate-service";
 
@@ -231,34 +231,34 @@ export default props => {
 
   return (
     <div className="role-edit-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("componentPermission.edit.title")}</h3>
-        </div>
-        <div className="panel-body">
-          <form className="form-horizontal" role="form" noValidate>
-            <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.parentComponent")}：</label>
+      <Card>
+        <Card.Header>
+          <Card.Title as="h5">{i18n.t("componentPermission.edit.title")}</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <form role="form" noValidate>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.parentComponent")}：</label>
               <div className="col-md-9">
                 {
                   formValue.parentEntity ? (
-                    <span className="label label-success form-control">
+                    <span className="badge bg-success">
                       {formValue.parentEntity.componentName}
                     </span>
                   ) : (
-                    <span className="label label-danger form-control">
+                    <span className="badge bg-danger">
                       {i18n.t("none")}
                     </span>
                   )
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.componentName ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.componentName")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.componentName")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.componentName ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterComponentName")}
                   name="componentName"
                   value={formValue.componentName}
@@ -269,12 +269,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.icon ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.iconUrl")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.iconUrl")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.icon ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterIconUrl")}
                   name="icon"
                   value={formValue.icon || ""}
@@ -285,12 +285,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.url ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.componentUrl")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.componentUrl")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.url ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterComponentUrl")}
                   name="url"
                   value={formValue.url || ""}
@@ -301,12 +301,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.displayOrder ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.displayOrder")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.displayOrder")}：</label>
               <div className="col-md-9">
                 <input
                   type="number"
-                  className="form-control"
+                  className={`form-control  ${errors.displayOrder ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterDisplayOrder")}
                   name="displayOrder"
                   value={formValue.displayOrder}
@@ -317,12 +317,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.permission ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.permissionWildCard")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.permissionWildCard")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.permission ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterPermissionWildCard")}
                   name="permission"
                   value={formValue.permission}
@@ -336,8 +336,8 @@ export default props => {
                 </p>
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.enabled")}：</label>
+            <div className="row mb-3 text-right align-items-center">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.enabled")}：</label>
               <div className="col-md-9">
                 <div className="checkbox">
                   <label>
@@ -354,13 +354,13 @@ export default props => {
                 </div>
               </div>
             </div>
-            <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("componentPermission.remark")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("componentPermission.remark")}：</label>
               <div className="col-md-9">
                 <textarea
                   rows="5"
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.remark ? "has-error" : ""}`}
                   placeholder={i18n.t("componentPermission.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
@@ -372,19 +372,19 @@ export default props => {
                 }
               </div>
             </div>
-            <div className="form-group">
-              <div className="col-md-offset-3 col-md-9">
-                <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
+            <div className="row mb-3 text-right">
+              <div className="offset-md-3 col-md-9">
+                <button type="button" className="btn btn-primary me-3" onClick={save}>
                   {i18n.t("save")}
                 </button>
-                <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
+                <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
                   {i18n.t("cancel")}
                 </button>
               </div>
             </div>
           </form>
-        </div >
-      </div >
+        </Card.Body>
+      </Card>
     </div >
   );
 };

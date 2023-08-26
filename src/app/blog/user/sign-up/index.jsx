@@ -1,6 +1,7 @@
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Card from 'react-bootstrap/Card';
 import userService from 'src/app/service/user-service';
 import ajv from "src/app/service/ajv-validate-service";
 import './index.scss';
@@ -61,7 +62,7 @@ export default props => {
    * @param {*} key 
    * @param {*} value 
    */
-  const handleChange = (key, value) => {
+  const handleInputChange = (key, value) => {
     const upRegister = {
       ...userInfo,
       [key]: value
@@ -127,65 +128,69 @@ export default props => {
 
   return (
     <div className="user-register-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("signUp")}</h3>
-        </div>
-        <div className="panel-body">
-          <form className="form-horizontal" role="form" noValidate onSubmit={(e) => doRegister(e)}>
-            <div className={`form-group  ${errors.email ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("email")}:</label>
-              <div className="col-md-9">
+      <Card>
+        <Card.Header>{i18n.t("signUp")}</Card.Header>
+        <Card.Body>
+          <form role="form" noValidate onSubmit={(e) => doRegister(e)}>
+            <div className="row mb-3 text-right">
+              <label className="col-md-2 col-form-label">{i18n.t("email")}：</label>
+              <div className="col-md-10">
                 <input
-                  className="form-control"
-                  type="text"
-                  autoComplete="off"
+                  className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                  required
+                  name="email"
                   value={userInfo.email}
-                  onChange={(e) => handleChange('email', e.target.value)}
+                  autoComplete="off"
+                  type="text"
+                  onChange={(e) => handleInputChange('email', e.target.value)}
                 />
                 {
                   errors.email ? <div className="text-danger">{errors.email}</div> : <></>
                 }
               </div>
             </div>
-            <div className={`form-group ${errors.password ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("password")}:</label>
-              <div className="col-md-9">
+            <div className="row mb-3 text-right">
+              <label className="col-md-2 col-form-label">{i18n.t("password")}：</label>
+              <div className="col-md-10">
                 <input
-                  className="form-control"
-                  type="password"
+                  className={`form-control ${errors.password ? "is-invalid" : ""}`}
+                  required
+                  name="password"
                   value={userInfo.password}
                   autoComplete="off"
-                  onChange={(e) => handleChange('password', e.target.value)}
+                  type="text"
+                  onChange={(e) => handleInputChange('password', e.target.value)}
                 />
                 {
                   errors.password ? <div className="text-danger">{errors.password}</div> : <></>
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.confirmPassword ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("confirmPassword")}:</label>
-              <div className="col-md-9">
+            <div className="row mb-3 text-right">
+              <label className="col-md-2 col-form-label">{i18n.t("confirmPassword")}：</label>
+              <div className="col-md-10">
                 <input
-                  className="form-control"
-                  type="password"
+                  className={`form-control ${errors.confirmPassword ? "is-invalid" : ""}`}
+                  required
+                  name="confirmPassword"
                   value={userInfo.confirmPassword}
                   autoComplete="off"
-                  onChange={(e) => handleChange('confirmPassword', e.target.value)}
+                  type="text"
+                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
                 />
                 {
                   errors.confirmPassword ? <div className="text-danger">{errors.confirmPassword}</div> : <></>
                 }
               </div>
             </div>
-            <div className="form-group">
-              <div className="col-md-offset-3 col-md-9">
+            <div className="row mb-3">
+              <div className="col-md-10 offset-md-2">
                 <button type="button" onClick={doSignUp} className="btn btn-primary">{i18n.t("signUp")}</button>
               </div>
             </div>
           </form>
-        </div>
-      </div >
+        </Card.Body>
+      </Card>
     </div >
   );
 };

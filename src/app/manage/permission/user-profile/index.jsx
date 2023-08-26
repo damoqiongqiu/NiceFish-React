@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import userService from 'src/app/service/user-service';
 import defaultAvatar from 'src/assets/images/react.svg';
 import ajv from "src/app/service/ajv-validate-service";
@@ -243,22 +244,22 @@ export default props => {
 
   return (
     <div className="user-profile-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">{i18n.t("user.edit.title")}</div>
-        <div className="panel-body">
-          <form className="form-horizontal" role="form">
-            <div className="form-group">
-              <label className="col-md-2 control-label">{i18n.t("user.currentAvatar")}：</label>
-              <div className="col-md-10">
+      <Card>
+        <Card.Header>{i18n.t("user.edit.title")}</Card.Header>
+        <Card.Body>
+          <form role="form">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.currentAvatar")}：</label>
+              <div className="col-md-9">
                 <img
                   src={formValue.avatarURL || defaultAvatar}
                   style={{ width: "64px" }}
                 />
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-2 control-label">{i18n.t("user.uploadAvatar")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.uploadAvatar")}：</label>
+              <div className="col-md-9">
                 <input
                   className="form-control"
                   type="file"
@@ -266,11 +267,11 @@ export default props => {
                 />
               </div>
             </div>
-            <div className={`form-group  ${errors.userName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("user.userName")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.userName")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control  ${errors.userName ? "has-error" : ""}`}
                   type="input"
                   placeholder={i18n.t("user.edit.plsEnterUserName")}
                   name="userName"
@@ -282,11 +283,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.nickName ? "has-error" : ""}`} >
-              <label className="col-md-2 control-label">{i18n.t("user.nickName")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.nickName")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control  ${errors.nickName ? "has-error" : ""}`}
                   type="input"
                   placeholder={i18n.t("user.edit.plsEnterNickName")}
                   name="nickName"
@@ -298,9 +299,9 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group`} >
-              <label className="col-md-2 control-label">{i18n.t("user.gender")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right" >
+              <label className="col-md-3 col-form-label">{i18n.t("user.gender")}：</label>
+              <div className="col-md-9">
                 {
                   genderList.map((item, index) => {
                     return <label className="radio-inline" key={index}>
@@ -316,11 +317,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.email ? "has-error" : ""}`} >
-              <label className="col-md-2 control-label">{i18n.t("user.email")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right" >
+              <label className="col-md-3 col-form-label">{i18n.t("user.email")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control  ${errors.email ? "has-error" : ""}`}
                   type="input"
                   placeholder={i18n.t("user.edit.plsEnterEmail")}
                   name="email"
@@ -332,11 +333,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.cellphone ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("user.mobile")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.mobile")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control  ${errors.cellphone ? "has-error" : ""}`}
                   type="input"
                   placeholder={i18n.t("user.edit.plsEnterMobile")}
                   name="cellphone"
@@ -348,11 +349,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group ${errors.password ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("user.password")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.password")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control ${errors.password ? "has-error" : ""}`}
                   type="password"
                   value={formValue.password}
                   autoComplete="off"
@@ -364,11 +365,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.confirmPassword ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("user.confirmPassword")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.confirmPassword")}：</label>
+              <div className="col-md-9">
                 <input
-                  className="form-control"
+                  className={`form-control  ${errors.confirmPassword ? "has-error" : ""}`}
                   type="password"
                   value={formValue.confirmPassword}
                   autoComplete="off"
@@ -380,30 +381,27 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group`}>
-              <label className="col-md-2 control-label">{i18n.t("user.enabled")}：</label>
-              <div className="col-md-10">
-                <div className="checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="status"
-                      checked={(formValue.status === 1) ? true : false}
-                      onChange={(e) => {
-                        let status = e.target.checked ? 1 : 0;
-                        handleInputChange(e.target.name, status);
-                      }}
-                    />
-                  </label>
-                </div>
+            <div className="row mb-3 text-right align-items-center">
+              <label className="col-md-3 col-form-label">{i18n.t("user.enabled")}：</label>
+              <div className="col-md-9">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="status"
+                  checked={(formValue.status === 1) ? true : false}
+                  onChange={(e) => {
+                    let status = e.target.checked ? 1 : 0;
+                    handleInputChange(e.target.name, status);
+                  }}
+                />
               </div>
             </div>
-            <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("user.remark")}：</label>
-              <div className="col-md-10">
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("user.remark")}：</label>
+              <div className="col-md-9">
                 <textarea
                   rows="5"
-                  className="form-control"
+                  className={`form-control  ${errors.remark ? "has-error" : ""}`}
                   placeholder={i18n.t("user.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
@@ -417,20 +415,18 @@ export default props => {
               </div>
             </div>
           </form>
-        </div>
-      </div >
-      <form className="form-horizontal" role="form">
-        <div className="form-group">
-          <div className="col-md-12">
-            <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
-              {i18n.t("save")}
-            </button>
-            <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
-              {i18n.t("cancel")}
-            </button>
+          <div className="row mb-3 text-right">
+            <div className="col-md-9 offset-md-3">
+              <button type="button" className="btn btn-primary me-3" onClick={save}>
+                {i18n.t("save")}
+              </button>
+              <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
+                {i18n.t("cancel")}
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </Card.Body>
+      </Card>
     </div >
   );
 };

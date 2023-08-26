@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import apiPermissionService from "src/app/service/api-permission-service";
 import ajv from "src/app/service/ajv-validate-service";
 
@@ -192,18 +192,18 @@ export default props => {
 
   return (
     <div className="role-edit-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("apiPermission.edit.title")}</h3>
-        </div>
-        <div className="panel-body">
-          <form className="form-horizontal" role="form" noValidate>
-            <div className={`form-group  ${errors.apiName ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.apiName")}：</label>
+      <Card>
+        <Card.Header>
+          <Card.Title as="h5">{i18n.t("apiPermission.edit.title")}</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <form role="form" noValidate>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.apiName")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.apiName ? "has-error" : ""}`}
                   placeholder={i18n.t("apiPermission.edit.plsEnterApiName")}
                   name="apiName"
                   value={formValue.apiName}
@@ -214,12 +214,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.url ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.apiUrl")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.apiUrl")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.url ? "has-error" : ""}`}
                   placeholder={i18n.t("apiPermission.edit.plsEnterApiUrl")}
                   name="url"
                   value={formValue.url || ""}
@@ -230,12 +230,12 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group  ${errors.permission ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.permissionWildCard")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.permissionWildCard")}：</label>
               <div className="col-md-9">
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control  ${errors.permission ? "has-error" : ""}`}
                   placeholder={i18n.t("apiPermission.edit.plsEnterPermissionWildCard")}
                   name="permission"
                   value={formValue.permission}
@@ -249,24 +249,24 @@ export default props => {
                 </p>
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.createTime")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.createTime")}：</label>
               <div className="col-md-9">
                 {formValue.createTime}
               </div>
             </div>
-            <div className="form-group">
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.updateTime")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.updateTime")}：</label>
               <div className="col-md-9">
                 {formValue.updateTime}
               </div>
             </div>
-            <div className={`form-group  ${errors.remark ? "has-error" : ""}`}>
-              <label className="col-md-3 control-label">{i18n.t("apiPermission.remark")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-3 col-form-label">{i18n.t("apiPermission.remark")}：</label>
               <div className="col-md-9">
                 <textarea
                   rows="5"
-                  className="form-control"
+                  className={`form-control  ${errors.remark ? "has-error" : ""}`}
                   placeholder={i18n.t("apiPermission.edit.plsEnterRemark")}
                   name="remark"
                   value={formValue.remark}
@@ -277,19 +277,19 @@ export default props => {
                 }
               </div>
             </div>
-            <div className="form-group">
-              <div className="col-md-offset-3 col-md-9">
-                <button type="button" className="btn btn-primary mr-1rem" onClick={save}>
+            <div className="row mb-3 text-right">
+              <div className="offset-md-3 col-md-9">
+                <button type="button" className="btn btn-primary me-3" onClick={save}>
                   {i18n.t("save")}
                 </button>
-                <button type="button" className="btn btn-default" onClick={() => { navigate(-1) }}>
+                <button type="button" className="btn btn-danger" onClick={() => { navigate(-1) }}>
                   {i18n.t("cancel")}
                 </button>
               </div>
             </div>
           </form>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

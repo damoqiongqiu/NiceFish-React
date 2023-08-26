@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
 import { Tag } from 'primereact/tag';
 import { Tooltip } from 'primereact/tooltip';
+import { Card, ListGroup } from 'react-bootstrap';
 import postService from 'src/app/service/post-service';
 import fileUploadService from 'src/app/service/file-upload-service';
 import Captcha from 'src/app/shared/captcha';
@@ -180,7 +181,7 @@ export default props => {
   }
 
   return (
-    <div className="container write-post-container">
+    <div className="write-post-container">
       <div className="row">
         <div className="col-md-10">
           <div className="row">
@@ -305,81 +306,64 @@ export default props => {
           <div className='row'>
             <p className='text-danger'>{i18n.t("mediaNote")}</p>
           </div>
-          <div className="row">
-            <div className="col-md-12">
-              <form role="form" noValidate className="form-horizontal">
-                <div className={`form-group ${errors.content ? "has-error" : ""}`}>
-                  <textarea
-                    rows="10"
-                    className="form-control"
-                    name="content"
-                    value={post.content}
-                    onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-                  ></textarea>
-                  {
-                    errors.content ? <div className="text-danger">{errors.content}</div> : <></>
-                  }
-                </div>
+          <form role="form" noValidate>
+            <div className="row mb-3">
+              <div className="col-md-12">
+                <textarea
+                  rows="10"
+                  className={`form-control ${errors.content ? "is-invalid" : ""}`}
+                  name="content"
+                  value={post.content}
+                  onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+                ></textarea>
                 {
-                  // 如果是 mock 模式，不需要验证码
-                  isMock ? <></> :
-                    <>
-                      <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
-                        <input
-                          className={`form-control`}
-                          type="text"
-                          autoComplete="off"
-                          name="captcha"
-                          value={post.captcha}
-                          onChange={(e) => handleInputChange('captcha', e.target.value)}
-                        />
-                        {
-                          errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
-                        }
-                      </div>
-                      <div className="form-group">
-                        <Captcha></Captcha>
-                      </div>
-                    </>
+                  errors.content ? <div className="text-danger">{errors.content}</div> : <></>
                 }
-                <div className="form-group">
-                  <button type="button" className="btn btn-primary" onClick={doWritePost}>
-                    {i18n.t("submit")}
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
+            {
+              // 如果是 mock 模式，不需要验证码
+              isMock ?
+                <></>
+                :
+                <>
+                  <div className="row mb-3">
+                    <div className="col-md-12">
+                      <input
+                        className={`form-control ${errors.captcha ? "is-invalid" : ""}`}
+                        type="text"
+                        autoComplete="off"
+                        name="captcha"
+                        value={post.captcha}
+                        onChange={(e) => handleInputChange('captcha', e.target.value)}
+                      />
+                      {
+                        errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
+                      }
+                    </div>
+                  </div>
+                  <div className="row mb-3">
+                    <Captcha></Captcha>
+                  </div>
+                </>
+            }
+            <button type="button" className="btn btn-primary" onClick={doWritePost}>
+              {i18n.t("submit")}
+            </button>
+          </form>
         </div>
         <div className="col-md-2">
-          {/* 规则描述 */}
-          <div className="online-contact-container">
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">规则描述</h3>
-              </div>
-              <div className="list-group">
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-                <li className="list-group-item">
-                  平台规则一
-                </li>
-              </div>
-            </div>
-          </div>
+          <Card>
+            <Card.Header>规则描述</Card.Header>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+              <ListGroup.Item>平台规则一</ListGroup.Item>
+            </ListGroup>
+          </Card>
         </div>
       </div>
     </div>

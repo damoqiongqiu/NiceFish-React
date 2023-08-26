@@ -45,10 +45,11 @@ export default props => {
    * 这里需要与 Bootstrap 的断点对应
    */
   const breakpointColumnsObj = {
-    default: 3,
-    1200: 3,
-    992: 2,
-    768: 1,
+    default: 4,
+    1200: 4,
+    992: 3,
+    768: 2,
+    576: 1,
   };
 
   return (

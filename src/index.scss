@@ -1,7 +1,7 @@
-//bootstrap 基础样式（已定制） https://www.bootstrap-live-customizer.com/
-@import "./assets/css/bootstrap-3.4.0-custom-dark/css/theme.css";
+//bootstrap5 基础样式 https://getbootstrap.com/docs/5.3
+@import '~bootstrap/scss/bootstrap';
 
-//PrimeReact 官方样式（已定制） https://primereact.org
+//PrimeReact 官方样式（此样式只包含 primereact 组件自身的样式，不包含 bootstrap 基础样式） https://primereact.org
 @import "~primereact/resources/primereact.css";
 @import "~primereact/resources/themes/bootstrap4-dark-purple/theme.css";
 

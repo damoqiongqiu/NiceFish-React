@@ -61,12 +61,17 @@ export default props => {
           />
       }
       <div className='list-item-footer'>
-        <NavLink to={`/post/post-detail/${postDetail.postId}`} dangerouslySetInnerHTML={
-          { __html: (postDetail.content + "").trim().substring(0, 16) }
-        }>
+        <NavLink
+          to={`/post/post-detail/${postDetail.postId}`}
+          dangerouslySetInnerHTML={
+            { __html: (postDetail.content + "").trim().substring(0, 16) }
+          }
+        >
         </NavLink>
         <div className='sub-footer'>
-          <NavLink to={`/user-home/${postDetail.userId}`}>
+          <NavLink
+            to={`/user-home/${postDetail.userId}`}
+          >
             @{(postDetail.nickName + "").trim().substring(0, 16)}
           </NavLink>
           <span>{formatTimeAgo(postDetail.postTime)}</span>

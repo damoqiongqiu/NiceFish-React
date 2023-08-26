@@ -1,5 +1,7 @@
 import React from 'react';
+import { Card, ListGroup } from 'react-bootstrap';
 import PostList from 'src/app/blog/post/post-list';
+import "./index.scss";
 
 export default props => {
   return (
@@ -8,34 +10,27 @@ export default props => {
         <PostList />
       </div>
       <div className="col-md-3">
-        {/* TODO:榜单抽成一个组件 */}
-        <div className="online-contact-container">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3 className="panel-title">热门榜单</h3>
-            </div>
-            <div className="list-group">
-              <li className="list-group-item">Cras justo odio</li>
-              <li className="list-group-item">Dapibus ac facilisis in</li>
-              <li className="list-group-item">Morbi leo risus</li>
-              <li className="list-group-item">Porta ac consectetur ac</li>
-              <li className="list-group-item">Vestibulum at eros</li>
-            </div>
-          </div>
-        </div>
-
-        {/* TODO:推荐关注抽成一个组件 */}
-        <div className="online-contact-container">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3 className="panel-title">推荐关注</h3>
-            </div>
-            <div className="list-group">
-              <li className="list-group-item">Cras justo odio</li>
-              <li className="list-group-item">Dapibus ac facilisis in</li>
-              <li className="list-group-item">Morbi leo risus</li>
-            </div>
-          </div>
+        <div className='sider-bar-container'>
+          <Card className='mb-3'>
+            <Card.Header>热门榜单</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Cras justo odio</ListGroup.Item>
+              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+              <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
+          </Card>
+          <Card className='mb-3'>
+            <Card.Header>推荐关注</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Cras justo odio</ListGroup.Item>
+              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+              <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
+          </Card>
         </div>
       </div>
     </div>

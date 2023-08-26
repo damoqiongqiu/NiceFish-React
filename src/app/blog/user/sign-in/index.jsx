@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Card from 'react-bootstrap/Card';
 import { useTranslation } from 'react-i18next';
 import { signIn } from 'src/app/shared/session/';
 import environment from "src/environments/environment";
@@ -135,18 +136,18 @@ export default props => {
 
   return (
     <div className="user-login-container">
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">{i18n.t("siginInTitle")}</h3>
-        </div>
-        <div className="panel-body">
-          <p className="bg-danger">{i18n.t("testAccount")}: admin@126.com / 12345678</p>
-          <form noValidate className="form-horizontal" role="form">
-            <div className={`form-group ${errors.userName ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("email")}：</label>
+      <Card>
+        <Card.Header>{i18n.t("siginInTitle")}</Card.Header>
+        <Card.Body>
+          <div className="row mb-3">
+            <div className="text-bg-info p-3">{i18n.t("testAccount")}: admin@126.com / 12345678</div>
+          </div>
+          <form noValidate role="form">
+            <div className="row mb-3 text-right">
+              <label className="col-md-2 col-form-label">{i18n.t("email")}：</label>
               <div className="col-md-10">
                 <input
-                  className={`form-control`}
+                  className={`form-control ${errors.userName ? "is-invalid" : ""}`}
                   required
                   name="userName"
                   value={userInfo.userName}
@@ -159,11 +160,11 @@ export default props => {
                 }
               </div>
             </div>
-            <div className={`form-group ${errors.password ? "has-error" : ""}`}>
-              <label className="col-md-2 control-label">{i18n.t("password")}：</label>
+            <div className="row mb-3 text-right">
+              <label className="col-md-2 col-form-label">{i18n.t("password")}：</label>
               <div className="col-md-10">
                 <input
-                  className={`form-control`}
+                  className={`form-control ${errors.password ? "is-invalid" : ""}`}
                   required
                   minLength="8"
                   maxLength="32"
@@ -177,15 +178,29 @@ export default props => {
                 }
               </div>
             </div>
+            <div className="row mb-3 text-right align-items-center">
+              <label className="col-md-2 col-form-label">{i18n.t("rememberMe")}：</label>
+              <div className="col-md-10">
+                <input
+                  type="checkbox"
+                  name="rememberMe"
+                  className="form-check-input"
+                  value={userInfo.rememberMe}
+                  onChange={(e) => handleInputChange('rememberMe', e.target.checked)} />
+              </div>
+            </div>
             {
               //mock 状态下不显示验证码
-              isMock ? <></> :
+              isMock
+                ?
+                <></>
+                :
                 <>
-                  <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
-                    <label className="col-md-2 control-label">{i18n.t("captcha")}：</label>
+                  <div className="row mb-3 text-right">
+                    <label className="col-md-2 col-form-label">{i18n.t("captcha")}：</label>
                     <div className="col-md-10">
                       <input
-                        className={`form-control`}
+                        className={`form-control ${errors.captcha ? "is-invalid" : ""}`}
                         required
                         maxLength="4"
                         type="text"
@@ -199,36 +214,22 @@ export default props => {
                       }
                     </div>
                   </div>
-                  <div className="form-group">
-                    <div className="col-md-10 col-md-offset-2">
+                  <div className="row mb-3">
+                    <div className="col-md-10 offset-md-2">
                       <Captcha></Captcha>
                     </div>
                   </div>
                 </>
             }
-            <div className="form-group" >
-              <label className="col-md-2 control-label">{i18n.t("rememberMe")}：</label>
-              <div className="col-md-10">
-                <div className="checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="rememberMe"
-                      value={userInfo.rememberMe}
-                      onChange={(e) => handleInputChange('rememberMe', e.target.checked)} />
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="col-md-offset-2 col-md-10">
-                <button type="button" className="btn btn-primary mr-1rem" onClick={doSignIn}>{i18n.t("signInBtn")}</button>
+            <div className="row mb-3">
+              <div className="col-md-10 offset-md-2">
+                <button type="button" className="btn btn-primary me-3" onClick={doSignIn}>{i18n.t("signInBtn")}</button>
                 <button type="button" className="btn btn-default" onClick={retrievePwd}>{i18n.t("forgetPwd")}</button>
               </div>
             </div>
           </form>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

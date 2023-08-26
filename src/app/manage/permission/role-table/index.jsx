@@ -94,8 +94,8 @@ export default props => {
   const statusTemplate = (item) => {
     return (
       item.status == 0 ?
-        <span className="label label-danger">禁用</span> :
-        <span className="label label-success">正常</span>
+        <span className="badge bg-danger">禁用</span> :
+        <span className="badge bg-success">正常</span>
     );
   };
 
@@ -108,7 +108,7 @@ export default props => {
     return (
       item?.apiEntities?.map(api => (
         <h5 key={api.apiPermissionId}>
-          <span className="label label-success">{api.apiName}</span>
+          <span className="badge bg-success">{api.apiName}</span>
         </h5>
       ))
     );
@@ -123,7 +123,7 @@ export default props => {
     return (
       item?.componentEntities?.map(comp => (
         <h5 key={comp.compPermId}>
-          <span className="label label-success">{comp.componentName}</span>
+          <span className="badge bg-success">{comp.componentName}</span>
         </h5>
       ))
     );
@@ -131,25 +131,15 @@ export default props => {
 
   return (
     <div className="role-table-container">
-      <form className="form-vertical" role="form">
-        <div className="row">
-          <div className="col-md-11">
-            <div className="input-group">
-              <input name="searchStr" className="form-control" type="text" />
-              <span className="input-group-btn">
-                <button className="btn btn-default" type="button" >
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-          <div className="col-md-1">
-            <div className="input-group pull-right">
-              <button className="btn btn-primary" type="button" onClick={() => { navigate("/manage/role-edit/-1") }}>
-                <i className="pi pi-plus" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
+      <form role="form">
+        <div className="input-group">
+          <input name="searchStr" className="form-control" type="text" />
+          <button className="btn btn-success" type="button">
+            <i className="fa fa-search"></i>
+          </button>
+          <button className="btn btn-danger" type="button" onClick={() => { navigate("/manage/role-edit/-1") }}>
+            <i className="fa fa-plus"></i>
+          </button>
         </div>
       </form>
       <div className="row">

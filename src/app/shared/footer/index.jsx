@@ -1,9 +1,11 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import './index.scss';
 
-const Footer = props => {
+export default props => {
     return (
-        <div className="footer bs-footer">
-            <div className="container-fluid">
+        <div className="footer bg-body-tertiary">
+            <Container fluid="md">
                 <div className="row">
                     <div className="col-md-12">
                         <p>
@@ -18,9 +20,7 @@ const Footer = props => {
                         </a>
                     </div>
                 </div>
-            </div>
+            </Container>
         </div>
     );
-}
-
-export default Footer;
+};

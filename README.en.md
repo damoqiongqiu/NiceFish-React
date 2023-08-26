@@ -25,16 +25,17 @@ NiceFish-React demo on GitHub Pages (Mock data, no backend): https://damoqiongqi
 | Name             | Version | Description                                              |
 | ---------------- | ------- | -------------------------------------------------------- |
 | React            | 18.2.0  | React core library.                                      |
-| Bootstrap        | 3.3.7   | Used for responsive layouts.                             |
-| echarts          | 4.2.1   | Open-source data visualization tool by Baidu.            |
+| react-redux      | 8.1.2   | State management.                                        |
+| react-router-dom | 6.13.0  | Routing.                                                 |
+| Bootstrap        | 5.3.1   | Used for responsive layout.                              |
+| react-bootstrap  | 2.8.0   | Bootstrap-based React component library.                 |
 | primereact       | 9.6.0   | PrimeReact is an open-source React UI component library. |
-| CKEditor 5       | 27.1.0  | Open-source rich text editor.                            |
+| echarts          | 4.2.1   | Open-source data visualization tool by Baidu.            |
+| CKEditor 5       | 27.1.0  | CKEditor is an open-source rich text editor.             |
 | ajv              | 8.12.0  | Ajv is a JSON Schema validation tool.                    |
 | i18next          | 23.4.1  | i18next is an internationalization tool.                 |
 | react-player     | 2.12.0  | Video player.                                            |
-| react-redux      | 8.1.2   | State management.                                        |
 | axios            | 1.4.0   | Sending HTTP requests.                                   |
-| react-router-dom | 6.13.0  | Routing.                                                 |
 
 **Note: To prevent potential NodeJS module compatibility issues, this project locks all Node module versions in the package.json file. If necessary, you can test compatible version numbers on your own (though this is not recommended, as it may consume a significant amount of time).**
 

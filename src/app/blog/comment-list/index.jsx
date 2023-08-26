@@ -140,52 +140,52 @@ export default props => {
 
   return (
     <div className="add-component-container mt-16px">
-      <div className="row no-gutters">
-        <div className="col-md-12">
-          <form onSubmit={onSubmit}>
-            <div className={`form-group ${errors.content ? "has-error" : ""}`}>
-              <textarea
-                rows="5"
-                className="form-control"
-                name="content"
-                value={formData.content}
-                onChange={(e) => handleInputChange('content', e.target.value)}
-                placeholder={i18n.t("pleaseInputSomeContent")}
-              />
-              {
-                errors.content ? <div className="text-danger">{errors.content}</div> : <></>
-              }
-            </div>
+      <form onSubmit={onSubmit}>
+        <div className="row mb-3">
+          <div className="col-md-12">
+            <textarea
+              rows="5"
+              className={`form-control ${errors.content ? "has-error" : ""}`}
+              name="content"
+              value={formData.content}
+              onChange={(e) => handleInputChange('content', e.target.value)}
+              placeholder={i18n.t("pleaseInputSomeContent")}
+            />
             {
-              // mock 状态不需要验证码
-              isMock ? <></> :
-                <>
-                  <div className={`form-group ${errors.captcha ? "has-error" : ""}`}>
-                    <input
-                      className={`form-control`}
-                      type="text"
-                      placeholder={i18n.t("pleaseInputCaptcha")}
-                      autoComplete="off"
-                      name="captcha"
-                      value={formData.captcha}
-                      onChange={(e) => handleInputChange('captcha', e.target.value)}
-                    />
-                    {
-                      errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
-                    }
-                  </div>
-                  <div className="form-group">
-                    <Captcha ref={captchaRef} ></Captcha>
-                  </div>
-                </>
+              errors.content ? <div className="text-danger">{errors.content}</div> : <></>
             }
-            <button className="btn btn-primary">
-              {i18n.t("submit")}
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
-      <div className="row no-gutters">
+        {
+          // mock 状态不需要验证码
+          isMock ? <></> :
+            <>
+              <div className="row mb-3">
+                <div className="col-md-12">
+                  <input
+                    className={`form-control ${errors.captcha ? "has-error" : ""}`}
+                    type="text"
+                    placeholder={i18n.t("pleaseInputCaptcha")}
+                    autoComplete="off"
+                    name="captcha"
+                    value={formData.captcha}
+                    onChange={(e) => handleInputChange('captcha', e.target.value)}
+                  />
+                  {
+                    errors.captcha ? <div className="text-danger">{errors.captcha}</div> : <></>
+                  }
+                </div>
+              </div>
+              <div className="row mb-3">
+                <Captcha ref={captchaRef} ></Captcha>
+              </div>
+            </>
+        }
+        <button className="btn btn-success">
+          {i18n.t("submit")}
+        </button>
+      </form>
+      <div className="row">
         <div className="col-md-12">
           {commentList.map((item, index) => {
             return (

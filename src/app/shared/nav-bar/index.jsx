@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
 import { signOut } from 'src/app/shared/session/';
-
-import NiceFishDropDown from 'src/app/shared/drop-down';
 import signService from 'src/app/service/sign-in-service';
-
 import niceFishPNG from 'src/assets/images/nice-fish.png';
-
 import './index.scss';
 
 //TODO:从服务端加载支持的语言列表
@@ -126,91 +127,82 @@ const NavBar = props => {
     }
 
     return (
-        <div className="navbar navbar-fixed-top main-nav" role="navigation">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                    <button
-                        type="button"
-                        className="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target=".navbar-collapse"
-                        onClick={toggleNav}
-                    >
-                        <span className="sr-only">Toggle Navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                    </button>
-                    <a className="navbar-brand  navbar-brand-my">
-                        <img src={niceFishPNG} width="44" />
-                    </a>
-                </div>
-                <div className={'collapse navbar-collapse' + (isNavExpanded ? ' in' : '')}>
-                    <ul className="nav navbar-nav">
+        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary main-nav" fixed="top">
+            <Container fluid="md">
+                <Navbar.Brand href="/home">
+                    <img src={niceFishPNG} width="44" />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse>
+                    <Nav className="me-auto">
                         {
                             menus.map((item, index) => {
                                 return (
-                                    <li key={index}>
-                                        <NavLink to={item.url}>
-                                            <i className={`fa ${item.icon}`}></i>&nbsp;
-                                            {item.label}
-                                        </NavLink>
-                                    </li>
+                                    <Nav.Link key={index} href="#" onClick={e => { navigate(item.url) }}>
+                                        <i className={`fa ${item.icon}`}></i>&nbsp;
+                                        {item.label}
+                                    </Nav.Link>
                                 );
                             })
                         }
-                        <form className="navbar-form navbar-left" onSubmit={e => { e.preventDefault(); }}>
-                            <div className="form-group">
-                                <input type="text" className="form-control" placeholder="Search" onKeyUp={doSearch} />
-                            </div>
-                        </form>
-                    </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <NiceFishDropDown
-                            options={languages}
-                            defaultSelection={selectedLanguage}
-                            onSelection={(item) => {
-                                setSelectedLanguage(item);
-                                i18n.changeLanguage(item.value);
-                            }}
-                        ></NiceFishDropDown>
-                        <li >
-                            <a href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank"><i className="fa fa-github"></i></a>
-                        </li>
+                    </Nav>
+                    <div className="d-flex justify-content-center align-items-center flex-grow-1">
+                        <Form inline onSubmit={e => { e.preventDefault() }}>
+                            <Form.Control
+                                placeholder={i18n.t("search.label")}
+                                aria-label={i18n.t("search.label")}
+                                type="search"
+                                className="me-5"
+                                onKeyUp={doSearch}
+                            />
+                        </Form>
+                    </div>
+                    <Nav>
+                        <NavDropdown title={selectedLanguage.name}>
+                            {
+                                languages.map((item, index) => {
+                                    return (
+                                        <NavDropdown.Item
+                                            href="#"
+                                            key={index}
+                                            onClick={e => {
+                                                setSelectedLanguage(item);
+                                                i18n.changeLanguage(item.value);
+                                            }}
+                                        >
+                                            {item.name}
+                                        </NavDropdown.Item>
+                                    );
+                                })
+                            }
+                        </NavDropdown>
+                        <Nav.Link href="https://gitee.com/mumu-osc/NiceFish-React" target="_blank">
+                            <i className="fa fa-github"></i>
+                        </Nav.Link>
                         {
                             sessionUser ? <>
-                                <li>
-                                    <NavLink to={`/user-home/${sessionUser.userId}`}>
-                                        <i className="fa fa-user" />
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/manage/chart">
-                                        <i className="fa fa-cog" />
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink onClick={doSignOut}>
-                                        <i className="fa fa-sign-out"></i>
-                                    </NavLink>
-                                </li>
+                                <Nav.Link href="#" onClick={e => { navigate(`/user-home/${sessionUser.userId}`) }}>
+                                    <i className="fa fa-user" />
+                                </Nav.Link>
+                                <Nav.Link href="#" onClick={e => { navigate(`/manage/chart`) }}>
+                                    <i className="fa fa-cog" />
+                                </Nav.Link>
+                                <Nav.Link href="#" onClick={doSignOut}>
+                                    <i className="fa fa-sign-out"></i>
+                                </Nav.Link>
                             </> : <>
-                                <li>
-                                    <NavLink to="/sign-in">
-                                        <i className="fa fa-sign-in" />
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/sign-up">
-                                        <i className="fa fa-user-plus" />
-                                    </NavLink>
-                                </li>
+                                <Nav.Link href="#" onClick={e => { navigate(`/sign-in`) }}>
+                                    <i className="fa fa-sign-in" />
+                                </Nav.Link>
+                                <Nav.Link href="#" onClick={e => { navigate(`/sign-up`) }}>
+                                    <i className="fa fa-user-plus" />
+                                </Nav.Link>
                             </>
                         }
-                    </ul >
-                </div>
-            </div >
-        </div >
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
