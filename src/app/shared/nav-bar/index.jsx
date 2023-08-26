@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/Container';
@@ -138,7 +138,11 @@ const NavBar = props => {
                         {
                             menus.map((item, index) => {
                                 return (
-                                    <Nav.Link key={index} href="#" onClick={e => { navigate(item.url) }}>
+                                    <Nav.Link
+                                        key={index}
+                                        as={NavLink}
+                                        to={item.url}
+                                    >
                                         <i className={`fa ${item.icon}`}></i>&nbsp;
                                         {item.label}
                                     </Nav.Link>
@@ -181,20 +185,31 @@ const NavBar = props => {
                         </Nav.Link>
                         {
                             sessionUser ? <>
-                                <Nav.Link href="#" onClick={e => { navigate(`/user-home/${sessionUser.userId}`) }}>
+                                <Nav.Link
+                                    as={NavLink}
+                                    to={`/user-home/${sessionUser.userId}`}
+                                >
                                     <i className="fa fa-user" />
                                 </Nav.Link>
-                                <Nav.Link href="#" onClick={e => { navigate(`/manage/chart`) }}>
+                                <Nav.Link
+                                    as={NavLink}
+                                    to="/manage/chart"
+                                >
                                     <i className="fa fa-cog" />
                                 </Nav.Link>
                                 <Nav.Link href="#" onClick={doSignOut}>
                                     <i className="fa fa-sign-out"></i>
                                 </Nav.Link>
                             </> : <>
-                                <Nav.Link href="#" onClick={e => { navigate(`/sign-in`) }}>
+                                <Nav.Link
+                                    as={NavLink}
+                                    to="/sign-in"
+                                >
                                     <i className="fa fa-sign-in" />
                                 </Nav.Link>
-                                <Nav.Link href="#" onClick={e => { navigate(`/sign-up`) }}>
+                                <Nav.Link
+                                    as={NavLink}
+                                    to="/sign-up">
                                     <i className="fa fa-user-plus" />
                                 </Nav.Link>
                             </>
