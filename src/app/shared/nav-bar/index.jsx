@@ -147,7 +147,7 @@ const NavBar = props => {
                         }
                     </Nav>
                     <div className="d-flex justify-content-center align-items-center flex-grow-1">
-                        <Form inline onSubmit={e => { e.preventDefault() }}>
+                        <Form onSubmit={e => { e.preventDefault() }}>
                             <Form.Control
                                 placeholder={i18n.t("search.label")}
                                 aria-label={i18n.t("search.label")}
