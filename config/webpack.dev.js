@@ -13,6 +13,7 @@ module.exports = merge(commonConfig, {
         static: path.resolve("./docs/"),//为了配合 github pages，这里的路径使用 docs ，不使用默认的 public
         historyApiFallback: true,
         compress: true,
+        allowedHosts: 'all',
         open: true,
         port: 8091,
         proxy: {
