@@ -299,8 +299,8 @@ export default props => {
                 }
               </div>
             </div>
-            <div className="row mb-3 text-right" >
-              <label className="col-md-3 col-form-label">{i18n.t("user.gender")}：</label>
+            <div className="row mb-3 align-items-center" >
+              <label className="col-md-3 col-form-label text-right">{i18n.t("user.gender")}：</label>
               <div className="col-md-9">
                 {
                   genderList.map((item, index) => {
@@ -381,8 +381,8 @@ export default props => {
                 }
               </div>
             </div>
-            <div className="row mb-3 text-right align-items-center">
-              <label className="col-md-3 col-form-label">{i18n.t("user.enabled")}：</label>
+            <div className="row mb-3 align-items-center">
+              <label className="col-md-3 col-form-label text-right">{i18n.t("user.enabled")}：</label>
               <div className="col-md-9">
                 <input
                   className="form-check-input"
