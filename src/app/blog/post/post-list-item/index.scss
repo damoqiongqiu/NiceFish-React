@@ -7,7 +7,7 @@
     height: auto;
     border-radius: 12px;
     overflow: hidden;
-    background-color: #000;
+    background-color: #777;
     position: relative;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@
     }
 
     .list-item-footer {
-        background-color: #000;
+        background-color: #555;
         padding: 12px;
         overflow: hidden;
         width: 100%;
@@ -30,9 +30,10 @@
         bottom: 0;
 
         a {
-            display: block ruby;
+            display: block;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
             padding: 0;
             margin: 0 0 5px 0;
             font-size: 16px;
