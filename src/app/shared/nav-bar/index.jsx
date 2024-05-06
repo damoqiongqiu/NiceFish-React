@@ -44,12 +44,8 @@ const NavBar = props => {
     const [selectedLanguage, setSelectedLanguage] = useState(
         () => {
             let lng = i18n.language;
-            let result = 'en';
-            languages.forEach(item => {
-                if (item.value === lng) {
-                    result = item;
-                }
-            });
+            let result = languages.filter(item => item.value === lng)[0];
+            result = result || languages[1];
             return result;
         }
     );
