@@ -15,7 +15,7 @@
             border-bottom-left-radius: 0px;
             height: 210px;
             overflow-x: hidden;
-            overflow-y: scroll;
+            overflow-y: auto;
 
             .p-fileupload-row {
                 display: inline-block;
@@ -50,7 +50,7 @@
     }
 
     .uploaded-image-container {
-        background: #bbb;
+        background: #555;
         padding: 2rem 1rem;
         border: 1px solid #555;
         color: #212529;
@@ -58,7 +58,7 @@
         border-bottom-left-radius: 0px;
         height: 410px;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin-bottom: 15px;
 
         .p-fileupload-row {

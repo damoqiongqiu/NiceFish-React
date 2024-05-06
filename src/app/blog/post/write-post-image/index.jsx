@@ -310,7 +310,7 @@ export default props => {
             <div className="row mb-3">
               <div className="col-md-12">
                 <textarea
-                  rows="10"
+                  rows="5"
                   className={`form-control ${errors.content ? "is-invalid" : ""}`}
                   name="content"
                   value={post.content}
