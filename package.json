@@ -46,6 +46,7 @@
     "i18next": "23.4.1",
     "i18next-browser-languagedetector": "7.1.0",
     "i18next-http-backend": "2.2.1",
+    "nicefish-react": "file:",
     "primeflex": "3.3.0",
     "primeicons": "6.0.1",
     "primereact": "9.6.0",
