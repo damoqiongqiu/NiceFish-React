@@ -124,5 +124,3 @@ Configuration items related to the startup environment can be found in environme
 ## 9. Open Source License
 
 MIT
-
-**(The author of this project is currently seeking a new job opportunity. If you have a good opportunity, please contact me on WeChat: lanxinshuma.)**

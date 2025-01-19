@@ -124,5 +124,3 @@ NiceFish-React 在 GitHub Pages 上的演示地址（Mock 数据，无后端）�
 ## 9.开源许可证
 
 MIT
-
-**（此项目的作者正在寻找一份新的工作，如果有好的机会，请联系我的 VX： lanxinshuma）**
